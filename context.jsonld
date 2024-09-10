@@ -1,0 +1,14 @@
+{
+    "@context": {
+        "address": "https://smartdatamodels.org/address",
+        "addressCountry": "https://smartdatamodels.org/addressCountry",
+        "addressLocality": "https://smartdatamodels.org/addressLocality",
+        "addressRegion": "https://smartdatamodels.org/addressRegion",
+        "alternateName": "https://smartdatamodels.org/alternateName",
+        "description": "http://purl.org/dc/terms/description",
+        "id": "@id",
+        "name": "https://smartdatamodels.org/name",
+        "ngsi-ld": "https://uri.etsi.org/ngsi-ld/",
+        "type": "@type"
+    }
+}

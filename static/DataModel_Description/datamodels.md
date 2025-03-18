@@ -1,4 +1,8 @@
-# HydropowerPlant
+# Data Model Description
+
+![hydropowerplant_dataModel](https://github.com/satrai-lab/di-hydro-data-models/blob/main/static/Diagrams/hydropower_plant_model.png)
+
+## HydropowerPlant
 
 
 -  `id`: Unique identifier of the Hydropower Plant
@@ -70,7 +74,7 @@
 
 
 
-# CatchmentArea
+## CatchmentArea
 
 
 -  `id`: Unique identifier of the WaterBody
@@ -106,7 +110,7 @@
 
 
 
-# WaterBody
+## WaterBody
 
 
 -  `id`: Unique identifier of the WaterBody
@@ -151,7 +155,7 @@
 
 
 
-# Reservoir
+## Reservoir
 
 
 -  `id`: Unique identifier of the WaterBody
@@ -214,7 +218,7 @@
 
 
 
-# Dam
+## Dam
 
 
 -  `id`: Unique identifier of the Dam
@@ -259,7 +263,7 @@
 
 
 
-# Spillway
+## Spillway
 
 
 -  `id`: Unique identifier of the Spillway
@@ -292,7 +296,7 @@
 
 
 
-# HydroPump
+## HydroPump
 
 
 -  `id`: Unique identifier of the HydroPump
@@ -328,7 +332,7 @@
 
 
 
-# Intake
+## Intake
 
 
 -  `id`: Unique identifier of the Intake
@@ -364,7 +368,7 @@
 
 
 
-# Penstock
+## Penstock
 
 
 -  `id`: Unique identifier of the Penstock
@@ -412,7 +416,7 @@
 
 
 
-# SurgeTank
+## SurgeTank
 
 
 -  `id`: Unique identifier of the SurgeTank
@@ -439,7 +443,7 @@
 
 
 
-# ValveHouse
+## ValveHouse
 
 
 -  `id`: Unique identifier of the ValveHouse
@@ -466,7 +470,7 @@
 
 
 
-# Valve
+## Valve
 
 
 -  `id`: Unique identifier for the valve
@@ -499,7 +503,7 @@
 
 
 
-# Turbine
+## Turbine
 
 
 -  `id`: Unique identifier of the Turbine
@@ -547,7 +551,7 @@
 
 
 
-# Generator
+## Generator
 
 
 -  `id`: Unique identifier of the Generator
@@ -583,7 +587,7 @@
 
 
 
-# Governor
+## Governor
 
 
 -  `id`: Unique identifier of the Governor
@@ -619,7 +623,7 @@
 
 
 
-# PowerHouse
+## PowerHouse
 
 
 -  `id`: Unique identifier of the PowerHouse

@@ -148,14 +148,14 @@ components:
           x-ngsi:
             type: Relationship
     
-        hasWaterBody:
-          type: array
-          description: "Array of Reservoir entity identifiers"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
+        # hasReservoir:
+        #   type: array
+        #   description: "Array of Reservoir entity identifiers"
+        #   items:
+        #     type: string
+        #     format: uri
+        #   x-ngsi:
+        #     type: Relationship
     
         hasDams:
           type: array
@@ -256,7 +256,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     CatchmentArea:
       required:
@@ -342,7 +342,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     WaterBody:
       required:
@@ -653,126 +653,126 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     Reservoir:
       allOf:
         - $ref: "#/components/schemas/WaterBody"
         - type: object
-      properties:
-        storageCapacity:
-          type: object
-          description: "Total volume of water that can be stored (in cubic meters)"
           properties:
-            value:
-              type: number
-              description: "Storage capacity value"
-            unitCode:
-              type: string
-              enum:
-                - "M3"
-              description: "UN/CEFACT unit code for cubic meter"
-          x-ngsi:
-            type: Property
-        inflowCharacteristics:
-          type: object
-          description: "Details about the water inflow regulation"
-          properties:
-            averageInflowRate:
+            storageCapacity:
               type: object
-              description: "Average inflow rate (in m³/s)"
+              description: "Total volume of water that can be stored (in cubic meters)"
               properties:
                 value:
                   type: number
-                  description: "Average inflow rate value"
+                  description: "Storage capacity value"
                 unitCode:
                   type: string
                   enum:
-                    - "M3S"
-                  description: "UN/CEFACT unit code for cubic meters per second"
-            retentionTime:
+                    - "M3"
+                  description: "UN/CEFACT unit code for cubic meter"
+              x-ngsi:
+                type: Property
+            inflowCharacteristics:
               type: object
-              description: "Retention time (e.g., in hours)"
+              description: "Details about the water inflow regulation"
               properties:
-                value:
-                  type: number
-                  description: "Retention time value"
-                unitCode:
-                  type: string
-                  enum:
-                    - "H"
-                  description: "UN/CEFACT unit code for hour"
-          x-ngsi:
-            type: Property
-        outflowControl:
-          type: object
-          description: "Data regarding controlled water release"
-          properties:
-            gateStatus:
-              type: string
-              description: "Status of the outflow control gates"
-            averageOutflowRate:
+                averageInflowRate:
+                  type: object
+                  description: "Average inflow rate (in m³/s)"
+                  properties:
+                    value:
+                      type: number
+                      description: "Average inflow rate value"
+                    unitCode:
+                      type: string
+                      enum:
+                        - "M3S"
+                      description: "UN/CEFACT unit code for cubic meters per second"
+                retentionTime:
+                  type: object
+                  description: "Retention time (e.g., in hours)"
+                  properties:
+                    value:
+                      type: number
+                      description: "Retention time value"
+                    unitCode:
+                      type: string
+                      enum:
+                        - "H"
+                      description: "UN/CEFACT unit code for hour"
+              x-ngsi:
+                type: Property
+            outflowControl:
               type: object
-              description: "Average outflow rate (in m³/s)"
+              description: "Data regarding controlled water release"
               properties:
-                value:
-                  type: number
-                  description: "Average outflow rate value"
-                unitCode:
+                gateStatus:
                   type: string
-                  enum:
-                    - "M3S"
-                  description: "UN/CEFACT unit code for cubic meters per second"
-          x-ngsi:
-            type: Property
-        operationalData:
-          type: object
-          description: "Operational data such as historical water level management"
-          properties:
-            historicalMaxLevel:
+                  description: "Status of the outflow control gates"
+                averageOutflowRate:
+                  type: object
+                  description: "Average outflow rate (in m³/s)"
+                  properties:
+                    value:
+                      type: number
+                      description: "Average outflow rate value"
+                    unitCode:
+                      type: string
+                      enum:
+                        - "M3S"
+                      description: "UN/CEFACT unit code for cubic meters per second"
+              x-ngsi:
+                type: Property
+            operationalData:
               type: object
-              description: "Historical maximum water level (in meters)"
+              description: "Operational data such as historical water level management"
               properties:
-                value:
-                  type: number
-                  description: "Historical maximum water level value"
-                unitCode:
-                  type: string
-                  enum:
-                    - "M"
-                  description: "UN/CEFACT unit code for meter"
-            historicalMinLevel:
-              type: object
-              description: "Historical minimum water level (in meters)"
-              properties:
-                value:
-                  type: number
-                  description: "Historical minimum water level value"
-                unitCode:
-                  type: string
-                  enum:
-                    - "M"
-                  description: "UN/CEFACT unit code for meter"
-          x-ngsi:
-            type: Property
-        hasDams:
-          type: array
-          description: "Array of references to the dams of the reservoir"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
-        feedsIntakes:
-          type: array
-          description: "Array of references to the intakes that the reservoir feeds"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
+                historicalMaxLevel:
+                  type: object
+                  description: "Historical maximum water level (in meters)"
+                  properties:
+                    value:
+                      type: number
+                      description: "Historical maximum water level value"
+                    unitCode:
+                      type: string
+                      enum:
+                        - "M"
+                      description: "UN/CEFACT unit code for meter"
+                historicalMinLevel:
+                  type: object
+                  description: "Historical minimum water level (in meters)"
+                  properties:
+                    value:
+                      type: number
+                      description: "Historical minimum water level value"
+                    unitCode:
+                      type: string
+                      enum:
+                        - "M"
+                      description: "UN/CEFACT unit code for meter"
+              x-ngsi:
+                type: Property
+            hasDams:
+              type: array
+              description: "Array of references to the dams of the reservoir"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+            feedsIntakes:
+              type: array
+              description: "Array of references to the intakes that the reservoir feeds"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     Dam:
       required:
@@ -915,7 +915,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
             
     Spillway:
       required:
@@ -1023,7 +1023,7 @@ components:
           x-ngsi:
             type: Property
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     HydroPump:
       required:
@@ -1138,7 +1138,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     Intake:
       required:
@@ -1237,7 +1237,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     Penstock:
       required:
@@ -1396,7 +1396,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     SurgeTank:
       required:
@@ -1482,7 +1482,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"      
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"      
 
     ValveHouse:
       required:
@@ -1557,7 +1557,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     Valve:
       required:
@@ -1651,7 +1651,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     Turbine:
       required:
@@ -1798,7 +1798,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     Generator:
       required:
@@ -1896,7 +1896,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
     Governor:
       required:
@@ -2023,7 +2023,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
         
     PowerHouse:
       required:
@@ -2140,7 +2140,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
 
 info:

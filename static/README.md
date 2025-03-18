@@ -27,7 +27,7 @@ Since each use case may vary, certain scenarios might not include all components
      
      - **To generate the context file:**
        ```sh
-       ./services ngsil types.yaml
+       ./services ngsi types.yaml
        ```
      
      - **To create the Markdown documentation for the data model:**

@@ -37,7 +37,7 @@ Since each use case may vary, certain scenarios might not include all components
    - The generated Markdown file provides a **detailed description of each component and its properties** in a human-readable format.
 
 ## Data Model Components
-Each element plays a crucial role in defining the structure and relationships within the hydropower plant data model. You will find a detailed description of each component and its respective properties [here](https://github.com/satrai-lab/di-hydro-data-models/tree/main/static/DataModel_Description).
+Each element plays a crucial role in defining the structure and relationships within the hydropower plant data model. You will find a detailed description of each component and its respective properties [here](https://github.com/satrai-lab/di-hydro-data-models/blob/main/static/DataModel_Description/datamodels.md).
 
 ---
 

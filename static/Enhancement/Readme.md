@@ -44,7 +44,7 @@ installations**.Each entry includes:
 ### **Additional Relationships (HydropowerPlant):**  
 **partOfCommunity** → Community  
 **hasTransformers** → Transformer  
-**hasPressureTunnel** → PressureTunnel
+**hasPressureTunnel** → PressureTunnel  
 **boostedByPumpingStation** → PumpingStation  
 Indicates which pumping station(s) increase this plant’s generation by feeding water back upstream.
 

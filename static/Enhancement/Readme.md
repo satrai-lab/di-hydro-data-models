@@ -204,7 +204,10 @@ Insulation temperature rating class of the generator windings
 **fromReservoir** → Reservoir  
 Links this tunnel to the upstream Reservoir entity.  
 **toPenstock** → Penstock  
-Links this tunnel to the downstream Penstock entity.  
+Links this tunnel to the downstream Penstock entity.   
+
+**isPartOfHydroPowerPlant** → HydroPower Plant    
+Links this tunnel to the HydroPower Plant entity.
 
 ---
 

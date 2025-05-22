@@ -123,19 +123,26 @@ Indicates which pumping station(s) deliver water into this reservoir.
 
 **Example:**  
 ```json
-"dischargesToReservoir": {
-  "type": "Relationship",
-  "value": [
+"dischargesToReservoir": [
     {
-      "tunnelLengthKm": 18,
-      "object": "urn:ngsi-ld:Reservoir:Ambiesta"
+      "type": "Relationship",
+      "object": "urn:ngsi-ld:Reservoir:001",
+      "tunnelLength": {
+        "type": "Property",
+        "value": 520,
+        "unitCode": "KM"
+      }
     },
     {
-      "tunnelLengthKm": 12.5,
-      "object": "urn:ngsi-ld:Reservoir:OvcarBanja"
+      "type": "Relationship",
+      "object": "urn:ngsi-ld:Reservoir:002",
+      "tunnelLength": {
+        "type": "Property",
+        "value": 390,
+        "unitCode": "KM"
+      }
     }
   ]
-}
 ```
 
   ---

@@ -3,199 +3,336 @@
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
   "definitions": {
-    "HydropowerPlant": {
-      "type": "object",
-      "required": ["id", "type", "name"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
-        },
-        "type": {
-          "type": "string",
-          "enum": ["HydropowerPlant"]
-        },
-        "name": {
-          "type": "string"
-        },
-        "geographicalLocation": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": ["Point"]
-            },
-            "coordinates": {
-              "type": "array",
-              "items": {
-                "type": "number"
-              },
-              "minItems": 2
-            }
-          }
-        },
-        "address": {
-          "type": "string"
-        },
-        "size": {
-          "type": "object",
-          "properties": {
-            "category": {
-              "type": "string",
-              "enum": ["Pico", "Micro", "Mini", "Small", "Medium", "Large"]
-            },
-            "interval": {
-              "type": "object",
-              "properties": {
-                "min": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    },
-                    "unitCode": {
-                      "type": "string",
-                      "enum": ["MW"]
-                    }
-                  }
-                },
-                "max": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    },
-                    "unitCode": {
-                      "type": "string",
-                      "enum": ["MW"]
-                    }
-                  }
-                }
-              }
-            },
-            "standard": {
-              "type": "string"
-            }
-          }
-        },
-        "powerPlantCapacity": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["MW"]
-            }
-          }
-        },
-        "powerplantType": {
-          "type": "string"
-        },
-        "conversionEfficiency": {
-          "type": "number"
-        },
-        "averageWaterFlow": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M3S"]
-            }
-          }
-        },
-        "hasHydroPumps": {
-          "type": "array",
-          "items": {
+
+    "HydroPowerCommunity": {
+    "type": "object",
+    "required": ["id", "type", "name"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["Community"]
+      },
+      "name": {
+        "type": "string"
+      },
+      "region": {
+        "type": "string"
+      },
+      "establishedYear": {
+        "type": "number"
+      },
+      "totalInstalledCapacity": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "unitCode": {
             "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasWaterBody": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasDams": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "containsGenerators": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasGovernors": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "containsTurbines": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasIntakes": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasPowerHouses": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasPenstocks": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasValve": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasValveHouse": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasSurgeTank": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
+            "enum": ["MW"]
           }
         }
       },
-      "additionalProperties": false
+      "totalAnnualEnergyOutput": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "unitCode": {
+            "type": "string",
+            "enum": ["KWH"]
+          }
+        }
+      },
+      "governanceModel": {
+        "type": "string"
+      },
+      "contactEmail": {
+        "type": "string",
+        "format": "email"
+      },
+      "websiteURL": {
+        "type": "string",
+        "format": "uri"
+      },
+      "hasHPP": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
     },
+    "x-ngsi": {
+      "uri-prefix": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+    }
+    },
+
+    "HydropowerPlant": {
+    "type": "object",
+    "required": ["id", "type", "name"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["HydropowerPlant"]
+      },
+      "name": {
+        "type": "string"
+      },
+      "geographicalLocation": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["Point"]
+          },
+          "coordinates": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2
+          }
+        }
+      },
+      "address": {
+        "type": "string"
+      },
+      "size": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": ["Pico", "Micro", "Mini", "Small", "Medium", "Large"]
+          },
+          "interval": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  },
+                  "unitCode": {
+                    "type": "string",
+                    "enum": ["MW"]
+                  }
+                }
+              },
+              "max": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  },
+                  "unitCode": {
+                    "type": "string",
+                    "enum": ["MW"]
+                  }
+                }
+              }
+            }
+          },
+          "standard": {
+            "type": "string"
+          }
+        }
+      },
+      "powerPlantCapacity": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "unitCode": {
+            "type": "string",
+            "enum": ["MW"]
+          }
+        }
+      },
+      "powerplantType": {
+        "type": "string"
+      },
+      "conversionEfficiency": {
+        "type": "number"
+      },
+      "averageWaterFlow": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "unitCode": {
+            "type": "string",
+            "enum": ["M3S"]
+          }
+        }
+      },
+
+      "commissioningYear": {
+        "type": "integer"
+      },
+      "rehabilitationYear": {
+        "type": "integer"
+      },
+      "installedCapacity": {
+        "type": "number",
+        "unitCode": {
+          "type": "string",
+          "enum": ["MW"]
+        }
+      },
+      "annualEnergyOutput": {
+        "type": "number",
+        "unitCode": {
+          "type": "string",
+          "enum": ["KWH"]
+        }
+      },
+      "ecologicalDischarge": {
+        "type": "number",
+        "unitCode": {
+          "type": "string",
+          "enum": ["M3/S"]
+        }
+      },
+      "maxTailwaterLevel": {
+        "type": "number",
+        "unitCode": {
+          "type": "string",
+          "enum": ["M"]
+        }
+      },
+      "grossHead": {
+        "type": "number",
+        "unitCode": {
+          "type": "string",
+          "enum": ["M"]
+        }
+      },
+
+      "partOfCommunity": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "hasTransformers": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "hasPressureTunnel": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "boostedByPumpingStation": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+
+      "hasHydroPumps": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "hasDams": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "containsGenerators": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "hasGovernors": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "containsTurbines": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "hasIntakes": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "hasPowerHouses": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "hasPenstocks": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "hasValve": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "hasValveHouse": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "hasSurgeTank": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "additionalProperties": false
+    },
+
     "CatchmentArea": {
       "type": "object",
       "required": ["id", "type"],
@@ -244,6 +381,18 @@
         },
         "flowVariationProfile": {
           "type": "object"
+        },
+        "averageWaterFlow": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "number"
+          },
+          "unitCode": {
+            "type": "string",
+            "enum": ["M3S"]
+          }
+        }
         },
         "suppliesWaterToWaterBody": {
           "type": "array",
@@ -558,6 +707,7 @@
       },
       "additionalProperties": false
     },
+    
     "Reservoir": {
       "allOf": [
         {
@@ -656,6 +806,97 @@
                 }
               }
             },
+            "maxReservoirLevel": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["M"]
+              }
+            }
+            },
+            "normalReservoirLevel": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["M"]
+              }
+            }
+            },
+            "reservoirLength": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["KM"]
+              }
+            }
+            },
+            "maximumEnergeticVolume": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["GWH"]
+              }
+            }
+            },
+            "reservoirType": {
+            "type": "string",
+            "enum": ["seasonal", "weekly", "daily"]
+            },
+            "reservoirVolumes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "year": {
+                  "type": "integer"
+                },
+                "grossVolume": {
+                  "type": "number",
+                  "unitCode": {
+                    "type": "string",
+                    "enum": ["M3"]
+                  }
+                },
+                "usefulVolume": {
+                  "type": "number",
+                  "unitCode": {
+                    "type": "string",
+                    "enum": ["M3"]
+                  }
+                }
+              }
+            }
+            },
+            "hasPressureTunnel": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+            },
+            "fedByPumpingStation": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+            },
             "hasDams": {
               "type": "array",
               "items": {
@@ -674,6 +915,7 @@
         }
       ]
     },
+
     "Dam": {
       "type": "object",
       "required": ["id", "type", "name"],
@@ -730,19 +972,28 @@
             }
           }
         },
+        "damCrestElevation": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["M"]
+            }
+          }
+        },
+
         "constructionMaterials": {
           "type": "string",
           "enum": ["Concrete", "Earth-fill", "Rock-fill", "Masonry"]
         },
-        "structuralDesignParameters": {
-          "type": "object",
-          "properties": {
-            "structuralType": {
-              "type": "string",
-              "enum": ["Gravity Dam", "Arch Dam", "Embankment Dam"]
-            }
-          }
+        "damType": {
+          "type": "string",
+          "enum": ["Concrete Gravity", "Arch Dam", "Embankment Dam"]
         },
+
         "yearOfConstruction": {
           "type": "number"
         },
@@ -1401,6 +1652,58 @@
         "yearOfInstallation": {
           "type": "number"
         },
+        "numberOfImpellers": {
+          "type": "number"
+        },
+        "axis": {
+          "type": "string",
+          "enum": ["horizontal", "vertical"]
+        },
+        "maxPower": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["MW"]
+            }
+          }
+        },
+        "speed": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["RPM"]
+            }
+          }
+        },
+        "dischargesToReservoir": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tunnelLength": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  },
+                  "unitCode": {
+                    "type": "string",
+                    "enum": ["KM"]
+                  }
+                }
+              }
+            },
+            "format":"uri"
+          }
+        },
         "isPartOfHydroPowerPlant": {
           "type": "array",
           "items": {
@@ -1477,6 +1780,67 @@
         },
         "yearOfInstallation": {
           "type": "number"
+        },
+        "generatorType": {
+          "type": "string"
+        },
+        "axis": {
+          "type": "string",
+          "enum": ["Horizontal", "Vertical"]
+        },
+        "voltageLevel": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["KV"]
+            }
+          }
+        },
+        "ratedOutputMVA": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["MVA"]
+            }
+          }
+        },
+        "speed": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["RPM"]
+            }
+          }
+        },
+        "ratedPowerFactor": {
+          "type": "number"
+        },
+        "voltageRegulationRange": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["PCT"]
+            }
+          }
+        },
+        "windingInsulationClass": {
+          "type": "string"
         },
         "isPartOfHydroPowerPlant": {
           "type": "array",
@@ -1689,6 +2053,174 @@
         }
       },
       "additionalProperties": false
+    },
+    "PressureTunnel": {
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["PressureTunnel"]
+        },
+        "length": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["M"]
+            }
+          }
+        },
+        "fromReservoir": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "toPenstock": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "isPartOfHydroPowerPlant": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "Transformer": {
+        "required": ["id", "type"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["Transformer"]
+          },
+          "transformerSupplier": {
+            "type": "string"
+          },
+          "ratedPower": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["MVA"]
+              }
+            }
+          },
+          "regulationRange": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["KV"]
+              }
+            }
+          },
+          "belongsToGenerator": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "additionalProperties": false
+    },
+    "PumpingStation": {
+        "required": ["id", "type", "name"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["PumpingStation"]
+          },
+          "name": {
+            "type": "string"
+          },
+          "totalPower": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["MW"]
+              }
+            }
+          },
+          "unitCount": {
+            "type": "number"
+          },
+          "yearlyEnergyConsumption": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["KWH"]
+              }
+            }
+          },
+          "estimatedAnnualContribution": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["MWH"]
+              }
+            }
+          },
+          "feedsReservoir": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "increasesProductionAt": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        },
+        "additionalProperties": false
     }
   }
 }

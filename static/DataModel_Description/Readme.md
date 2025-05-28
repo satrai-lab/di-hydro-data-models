@@ -2,6 +2,45 @@
 
 ![hydropowerplant_dataModel](https://github.com/satrai-lab/di-hydro-data-models/blob/main/static/Diagrams/hydropower_plant_model.png)
 
+## HydroPowerCommunity
+
+
+-  `id`: Unique identifier of the community
+   -  Attribute type: **Property**. 
+   -  Required
+-  `type`: Must be set to ‘Community’. One of : `Community`.
+   -  Attribute type: **Property**. 
+   -  Required
+-  `name`: Official name of the community
+   -  Attribute type: **Property**. 
+   -  Required
+-  `region`: Geographic area or administrative region covered by the community
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `establishedYear`: Year the community organization was founded
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `totalInstalledCapacity`: Combined rated capacity of all member plants (MW)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `totalAnnualEnergyOutput`: Combined yearly energy production of all member plants (kWh)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `governanceModel`: Organizational structure (e.g., cooperative, public utility, private consortium)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `contactEmail`: Primary contact email for community administration
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `websiteURL`: Official website of the community
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `hasHPP`: Relationship linking to one or more HydropowerPlant entities
+   -  Attribute type: **Relationship**. 
+   -  Optional
+
+
+
 ## HydropowerPlant
 
 
@@ -15,7 +54,7 @@
    -  Attribute type: **Property**. 
    -  Required
 -  `geographicalLocation`: GeoJSON property of type 'Point' representing the hydropower plant’s location. The first element in coordinates is longitude, and the second is latitude.
-   -  Attribute type: **GeoProperty**. 
+   -  Attribute type: **Property**. 
    -  Optional
 -  `address`: Address of the Hydropower Plant
    -  Attribute type: **Property**. 
@@ -32,8 +71,38 @@
 -  `conversionEfficiency`: Conversion efficiency percentage (typically 90-95%)
    -  Attribute type: **Property**. 
    -  Optional
--  `averageWaterFlow`: Average historical water flow (in cubic meters per second)
+-  `commissioningYear`: The year when the plant first began operation
    -  Attribute type: **Property**. 
+   -  Optional
+-  `rehabilitationYear`: The year of the most recent full rehabilitation of the plant
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `installedCapacity`: The plant’s total rated electrical capacity (MW)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `annualEnergyOutput`: The average total energy the plant produces per year (kWh)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `ecologicalDischarge`: The minimum flow always released downstream to keep the river healthy (m³/s)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `maxTailwaterLevel`: Highest water‑surface elevation downstream of the turbines above mean sea level (m)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `grossHead`: Total vertical drop from reservoir water surface to turbine inlet before losses (m)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `partOfCommunity`: Relationship to the Community entity
+   -  Attribute type: **Relationship**. 
+   -  Optional
+-  `hasTransformers`: Array of Transformer entity identifiers
+   -  Attribute type: **Relationship**. 
+   -  Optional
+-  `hasPressureTunnel`: Array of PressureTunnel entity identifiers
+   -  Attribute type: **Relationship**. 
+   -  Optional
+-  `boostedByPumpingStation`: Array of PumpingStation entity identifiers
+   -  Attribute type: **Relationship**. 
    -  Optional
 -  `hasHydroPumps`: Array of HydroPump entity identifiers
    -  Attribute type: **Relationship**. 
@@ -99,6 +168,9 @@
    -  Attribute type: **Property**. 
    -  Optional
 -  `flowVariationProfile`: Data describing how water flow varies throughout the year
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `averageWaterFlow`: Average historical water flow (in cubic meters per second)
    -  Attribute type: **Property**. 
    -  Optional
 -  `suppliesWaterToWaterBody`: Array of references to Water Body entities that are supplied by this catchment area
@@ -215,6 +287,30 @@
 -  `feedsIntakes`: Array of references to the intakes that the reservoir feeds
    -  Attribute type: **Relationship**. 
    -  Optional
+-  `maxReservoirLevel`: Highest allowed water surface elevation in the reservoir (m above sea level)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `normalReservoirLevel`: Usual operating water surface elevation in the reservoir (m above sea level)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `reservoirLength`: Distance the reservoir extends upstream from the dam at its normal level (km)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `maximumEnergeticVolume`: Total potential energy contained in the stored water when the reservoir is full (GWh)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `reservoirType`: Classification of reservoir operation (e.g., seasonal, weekly, daily). One of : `seasonal`, `weekly`, `daily`.
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `reservoirVolumes`: Historical record of storage capacity over time — an array of objects
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `hasPressureTunnel`: Array of PressureTunnel entity identifiers
+   -  Attribute type: **Relationship**. 
+   -  Optional
+-  `fedByPumpingStation`: Array of PumpingStation entity identifiers
+   -  Attribute type: **Relationship**. 
+   -  Optional
 
 
 
@@ -242,10 +338,13 @@
 -  `constructionMaterials`: The primary materials used in constructing the dam (e.g., concrete, earth-fill). One of : `Concrete`, `Earth-fill`, `Rock-fill`, `Masonry`.
    -  Attribute type: **Property**. 
    -  Optional
--  `structuralDesignParameters`: Contains the key parameter Structural Type which defines the dam’s design
+-  `damType`: Structural design of the dam (e.g., ‘Concrete Gravity’, ‘Arch Dam’, ‘Embankment Dam’). One of : `Concrete Gravity`, `Arch Dam`, `Embankment Dam`.
    -  Attribute type: **Property**. 
    -  Optional
 -  `yearOfConstruction`: The year the dam was built
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `damCrestElevation`: Elevation of the top of the dam above mean sea level (m)
    -  Attribute type: **Property**. 
    -  Optional
 -  `hasSpillway`: Array of references to the Spillway entity that is part of the dam's design to safely release excess water
@@ -536,6 +635,21 @@
 -  `yearOfInstallation`: The year when the turbine was installed
    -  Attribute type: **Property**. 
    -  Optional
+-  `numberOfImpellers`: The number of water‑moving blades (‘buckets’) inside the turbine.
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `axis`: The orientation of the turbine shaft, indicating whether it is horizontal or vertical.. One of : `horizontal`, `vertical`.
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `maxPower`: The highest possible mechanical power the turbine can generate under extreme conditions (in MW). It's different from the capacity which is normal, guaranteed output.
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `speed`: The rated rotational speed of the turbine shaft, measured in revolutions per minute (RPM).
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `dischargesToReservoir`: Array of objects linking the turbine to a downstream reservoir via its pressure tunnel.
+   -  Attribute type: **Relationship**. 
+   -  Optional
 -  `isPartOfHydroPowerPlant`: Array of references to the HydropowerPlant entity that this Turbine is part of
    -  Attribute type: **Relationship**. 
    -  Optional
@@ -573,6 +687,30 @@
    -  Attribute type: **Property**. 
    -  Optional
 -  `yearOfInstallation`: The year when the generator was installed
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `generatorType`: Model or design identifier of the generator
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `axis`: Orientation of the rotating shaft (Horizontal or Vertical). One of : `Horizontal`, `Vertical`.
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `voltageLevel`: Voltage at which the generator produces electricity (kilovolts (kV))
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `ratedOutputMVA`: Nameplate apparent power capacity under standard conditions (megavolt-amperes (MVA))
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `speed`: Rotational speed of the generator shaft (revolutions per minute (RPM))
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `ratedPowerFactor`: Ratio of real power to apparent power (unitless)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `voltageRegulationRange`: Allowable percentage variation above or below nominal voltage (%)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `windingInsulationClass`: Insulation temperature rating class of the generator windings
    -  Attribute type: **Property**. 
    -  Optional
 -  `isPartOfHydroPowerPlant`: Array of references to the HydropowerPlant entity that this Generator is part of
@@ -662,6 +800,91 @@
 -  `hasGovernors`: Array of references to the Governor entities present in the PowerHouse
    -  Attribute type: **Relationship**. 
    -  Optional
+
+
+
+## PressureTunnel
+
+
+-  `id`: Unique identifier of the PressureTunnel
+   -  Attribute type: **Property**. 
+   -  Required
+-  `type`: Must be set to ‘PressureTunnel’. One of : `PressureTunnel`.
+   -  Attribute type: **Property**. 
+   -  Required
+-  `length`: Length of the pressure tunnel between reservoir and penstock (meters)
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `fromReservoir`: Array of references to the upstream Reservoir entities
+   -  Attribute type: **Relationship**. 
+   -  Optional
+-  `toPenstock`: Array of references to the downstream Penstock entities
+   -  Attribute type: **Relationship**. 
+   -  Optional
+-  `isPartOfHydroPowerPlant`: Array of references to the HydropowerPlant entities of which this water body is a part
+   -  Attribute type: **Relationship**. 
+   -  Optional
+
+
+
+## Transformer
+
+
+-  `id`: Unique identifier of the Transformer
+   -  Attribute type: **Property**. 
+   -  Required
+-  `type`: Must be set to ‘Transformer’. One of : `Transformer`.
+   -  Attribute type: **Property**. 
+   -  Required
+-  `transformerSupplier`: Manufacturer of the transformer
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `ratedPower`: Nameplate apparent-power capacity under normal operating conditions (megavolt-amperes (MVA))
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `regulationRange`: Voltage conversion ratio, expressed as 'input kV/output kV' (kilovolts (kV))
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `belongsToGenerator`: Array of references to the single Generator that this transformer serves
+   -  Attribute type: **Relationship**. 
+   -  Optional
+
+
+
+## PumpingStation
+
+
+-  `id`: Unique identifier of the PumpingStation
+   -  Attribute type: **Property**. 
+   -  Required
+-  `type`: Must be set to ‘PumpingStation’. One of : `PumpingStation`.
+   -  Attribute type: **Property**. 
+   -  Required
+-  `name`: Official name of the pumping station
+   -  Attribute type: **Property**. 
+   -  Required
+-  `totalPower`: Total installed motor power capacity (megawatts (MW))
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `unitCount`: Number of individual pump units
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `yearlyEnergyConsumption`: Annual electricity consumed by all pumps (kilowatt-hours (kWh))
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `estimatedAnnualContribution`: Estimated additional hydropower generation enabled by pumping (megawatt-hours (MWh))
+   -  Attribute type: **Property**. 
+   -  Optional
+-  `feedsReservoir`: Array of references to the Reservoir entity that this station pumps water into
+   -  Attribute type: **Relationship**. 
+   -  Optional
+-  `increasesProductionAt`: Array of references to the HydropowerPlant entity whose generation is boosted by this pumping station
+   -  Attribute type: **Relationship**. 
+   -  Optional
+
+
+
+
 
 
 

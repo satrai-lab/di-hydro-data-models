@@ -230,13 +230,6 @@
           "format": "uri"
         }
       },
-      "hasTransformers": {
-        "type": "array",
-        "items": {
-          "type": "string",
-          "format": "uri"
-        }
-      },
       "hasPressureTunnel": {
         "type": "array",
         "items": {
@@ -1856,6 +1849,13 @@
             "format": "uri"
           }
         },
+        "hasTransformers": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+         }
+       },
         "isPartOfPowerHouse": {
           "type": "array",
           "items": {

@@ -296,14 +296,6 @@ components:
           description: "Relationship to the Community entity"
           x-ngsi:
             type: Relationship
-        hasTransformers:
-          type: array
-          description: "Array of Transformer entity identifiers"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
         hasPressureTunnel:
           type: array
           description: "Array of PressureTunnel entity identifiers"
@@ -2327,7 +2319,14 @@ components:
             format: uri
           x-ngsi:
             type: Relationship
-    
+         hasTransformers:
+          type: array
+          description: "Array of Transformer entity identifiers"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
         isPartOfPowerHouse:
           type: array
           description: "Array of references to the PowerHouse entity that houses this Generator"

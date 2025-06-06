@@ -95,9 +95,6 @@
 -  `partOfCommunity`: Relationship to the Community entity
    -  Attribute type: **Relationship**. 
    -  Optional
--  `hasTransformers`: Array of Transformer entity identifiers
-   -  Attribute type: **Relationship**. 
-   -  Optional
 -  `hasPressureTunnel`: Array of PressureTunnel entity identifiers
    -  Attribute type: **Relationship**. 
    -  Optional
@@ -722,7 +719,9 @@
 -  `isPartOfPowerHouse`: Array of references to the PowerHouse entity that houses this Generator
    -  Attribute type: **Relationship**. 
    -  Optional
-
+-  `hasTransformers`: Array of Transformer entity identifiers
+   -  Attribute type: **Relationship**. 
+   -  Optional
 
 
 ## Governor

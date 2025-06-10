@@ -1,6 +1,12 @@
 # Hydro Power Plant Commmunity
-![image](https://github.com/satrai-lab/di-hydro-data-models/blob/main/static/Diagrams/HydroPowerPlantCommunity.png)
-## Denenition
+
+<div style="display: flex; justify-content: center; margin: 20px 0">
+  <img src="https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/Diagrams/HydroPowerPlantCommunity.png" 
+       alt="HydroPowerPlantCommunity Diagram" 
+       style="max-width: 100%; height: auto; width: 346px">
+</div>
+
+## Definition
 The **HydroPowerCommunity** entity represents an **organization**, **consortium**, or **company** that owns/manages one or more hydropower plants. It serves as the central administrative and strategic unit responsible for coordinating resources, compliance, and operations across its portfolio of plants
 
 ## Attribute Specifications

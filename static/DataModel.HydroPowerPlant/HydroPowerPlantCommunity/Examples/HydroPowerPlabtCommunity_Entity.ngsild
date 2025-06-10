@@ -1,1 +1,46 @@
-
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json",
+  "id": "urn:ngsi-ld:HydroPowerCommunity:comm-alpine-001",
+  "type": "Community",
+  "name": {
+    "type": "Property",
+    "value": "Alpine Hydro Consortium"
+  },
+  "region": {
+    "type": "Property",
+    "value": "Pacific Northwest"
+  },
+  "establishedYear": {
+    "type": "Property",
+    "value": 1995
+  },
+  "totalInstalledCapacity": {
+    "type": "Property",
+    "value": 2450.5,
+    "unitCode": "MW"
+  },
+  "totalAnnualEnergyOutput": {
+    "type": "Property",
+    "value": 12500000000,
+    "unitCode": "KWH"
+  },
+  "governanceModel": {
+    "type": "Property",
+    "value": "Public-Private Partnership"
+  },
+  "contactEmail": {
+    "type": "Property",
+    "value": "ops@alpinehydro.org"
+  },
+  "websiteURL": {
+    "type": "Property",
+    "value": "https://alpinehydro.org"
+  },
+  "hasHPP": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:hpp-alpine-001",
+      "urn:ngsi-ld:HydropowerPlant:hpp-alpine-002"
+    ]
+  }
+}

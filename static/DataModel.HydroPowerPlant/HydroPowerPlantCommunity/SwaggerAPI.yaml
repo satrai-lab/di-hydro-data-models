@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: Interactive NGSI-LD API with attribute-level documentation
 servers:
-  - url: https://context-broker.example.com/ngsi-ld/v1
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json
 
 paths:
   /entities:

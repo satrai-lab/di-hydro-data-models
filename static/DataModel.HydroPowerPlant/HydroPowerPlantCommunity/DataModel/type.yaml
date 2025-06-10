@@ -1,1 +1,113 @@
+---
+components:
+  schemas:
 
+    HydroPowerCommunity:
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          type: string
+          description: "Unique identifier of the community"
+          maxLength: 256
+          minLength: 1
+          pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+          x-ngsi:
+            type: Property
+        type:
+          type: string
+          enum:
+            - Community
+          description: "Must be set to ‘Community’"
+          x-ngsi:
+            type: Property
+        name:
+          type: string
+          description: "Official name of the community"
+          x-ngsi:
+            type: Property
+        region:
+          type: string
+          description: "Geographic area or administrative region covered by the community"
+          x-ngsi:
+            type: Property
+        establishedYear:
+          type: number
+          description: "Year the community organization was founded"
+          x-ngsi:
+            type: Property
+        totalInstalledCapacity:
+          type: object
+          description: "Combined rated capacity of all member plants (MW)"
+          properties:
+            value:
+              type: number
+              description: "Total installed capacity in MW"
+            unitCode:
+              type: string
+              enum:
+                - "MW"
+              description: "UN/CEFACT unit code for megawatt"
+          x-ngsi:
+            type: Property
+        totalAnnualEnergyOutput:
+          type: object
+          description: "Combined yearly energy production of all member plants (kWh)"
+          properties:
+            value:
+              type: number
+              description: "Total annual energy output in kWh"
+            unitCode:
+              type: string
+              enum:
+                - "KWH"
+              description: "UN/CEFACT unit code for kilowatt-hour"
+          x-ngsi:
+            type: Property
+        governanceModel:
+          type: string
+          description: "Organizational structure (e.g., cooperative, public utility, private consortium)"
+          x-ngsi:
+            type: Property
+        contactEmail:
+          type: string
+          description: "Primary contact email for community administration"
+          format: email
+          x-ngsi:
+            type: Property
+        websiteURL:
+          type: string
+          description: "Official website of the community"
+          format: uri
+          x-ngsi:
+            type: Property
+
+        hasHPP:
+          type: array
+          description: "Relationship linking to one or more HydropowerPlant entities"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+
+info:
+  description: "Data Model of HydroPowerCommunity"
+  title: HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

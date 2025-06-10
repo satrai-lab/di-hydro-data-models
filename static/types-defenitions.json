@@ -1455,10 +1455,9 @@
             "type": "string",
             "format": "uri"
           }
-        }
+        },
+        "additionalProperties": false
       },
-      "additionalProperties": false
-    },
     "ValveHouse": {
       "type": "object",
       "required": ["id", "type", "name"],

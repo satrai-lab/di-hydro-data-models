@@ -16,7 +16,7 @@ The **HydroPowerCommunity** entity represents an **organization**, **consortium*
 | **`id`**                   | Property    | Yes      | Unique identifier for the community. Critical for data integrity, relationships, and avoiding duplication.           |
 | **`type`**                 | Property    | Yes      | Fixed value `'Community'`. Explicitly classifies the entity type for system consistency and filtering.              |
 | **`name`**                 | Property    | Yes      | Official name of the organization. Identifies the entity in legal, regulatory, and operational contexts.            |
-| **`region`**               | Property    | No       | Geographic/administrative coverage. Links plants to regulatory jurisdictions and regional grids.                    |
+| **`region`**               | Property    | No       | Geographic area or administrative region covered by the community                    |
 | **`establishedYear`**      | Property    | No       | Year the community was founded. Indicates institutional experience for stakeholders/investors.                      |
 | **`totalInstalledCapacity`**| Property    | No       | Combined rated capacity of all plants (MW). Measures scale for grid contribution and investment.                     |
 | **`totalAnnualEnergyOutput`**| Property  | No       | Combined yearly energy production (kWh). Key metric for revenue forecasting and sustainability reporting.           |

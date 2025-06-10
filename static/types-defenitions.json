@@ -1449,6 +1449,14 @@
           }
         }
       },
+      "isPartOfHydroPowerPlant": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
       "additionalProperties": false
     },
     "ValveHouse": {

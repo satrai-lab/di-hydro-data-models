@@ -1754,7 +1754,14 @@ components:
           x-ngsi:
             type: Property
       
-
+        isPartOfHydroPowerPlant:
+          type: array
+          description: "Array of references to the HydropowerPlant entities of which this water body is a part"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
         relievesPressureForPenstock:
           type: array
           description: "Array of references to the Penstock entity that the surge tank relieves pressure for"

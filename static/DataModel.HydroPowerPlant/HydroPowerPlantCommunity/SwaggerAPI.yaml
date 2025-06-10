@@ -1,0 +1,185 @@
+openapi: 3.0.3
+info:
+  title: HydroPowerCommunity Interactive API
+  version: 1.0.0
+  description: |-
+    **Interactive NGSI-LD API for Hydropower Communities**
+    - Click "Try it out" on any operation
+    - Request body forms will show:
+      • Attribute descriptions
+      • Example values
+      • Required indicators
+servers:
+  - url: https://context-broker.example.com/ngsi-ld/v1
+
+paths:
+  /entities:
+    post:
+      summary: Create a Community
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/HydroPowerCommunity'
+            example:  # Interactive template
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:HydroPowerCommunity:comm-alpine-001"
+              type: "Community"
+              name: 
+                type: "Property"
+                value: "Alpine Hydro Consortium"
+              region: 
+                type: "Property"
+                value: "Pacific Northwest"
+              establishedYear: 
+                type: "Property"
+                value: 1995
+              totalInstalledCapacity: 
+                type: "Property"
+                value: 2450.5
+                unitCode: "MW"
+              totalAnnualEnergyOutput: 
+                type: "Property"
+                value: 12500000000
+                unitCode: "KWH"
+              governanceModel: 
+                type: "Property"
+                value: "Public-Private Partnership"
+              contactEmail: 
+                type: "Property"
+                value: "ops@alpinehydro.org"
+              websiteURL: 
+                type: "Property"
+                value: "https://alpinehydro.org"
+              hasHPP: 
+                type: "Relationship"
+                object: ["urn:ngsi-ld:HydropowerPlant:hpp-alpine-001"]
+      responses:
+        '201':
+          description: Entity created
+
+components:
+  schemas:
+    HydroPowerCommunity:
+      type: object
+      required: [id, type, name]
+      properties:
+        "@context":
+          type: string
+          description: Context file location
+          example: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+        id:
+          type: string
+          description: Unique URI identifier for the community
+          example: "urn:ngsi-ld:HydroPowerCommunity:comm-alpine-001"
+        type:
+          type: string
+          enum: ["Community"]
+          description: Fixed entity type identifier
+        name:
+          $ref: '#/components/schemas/Property'
+          description: Official organization name
+          example: 
+            type: "Property"
+            value: "Alpine Hydro Consortium"
+        region:
+          $ref: '#/components/schemas/Property'
+          description: Geographic/administrative coverage
+          example: 
+            type: "Property"
+            value: "Pacific Northwest"
+        establishedYear:
+          $ref: '#/components/schemas/Property'
+          description: Year the organization was founded
+          example: 
+            type: "Property"
+            value: 1995
+        totalInstalledCapacity:
+          $ref: '#/components/schemas/CapacityProperty'
+          description: Combined capacity of all plants (MW)
+        totalAnnualEnergyOutput:
+          $ref: '#/components/schemas/EnergyProperty'
+          description: Total yearly energy production (kWh)
+        governanceModel:
+          $ref: '#/components/schemas/Property'
+          description: Organizational structure
+          example: 
+            type: "Property"
+            value: "Public-Private Partnership"
+        contactEmail:
+          $ref: '#/components/schemas/Property'
+          description: Administrative contact email
+          example: 
+            type: "Property"
+            value: "ops@alpinehydro.org"
+        websiteURL:
+          $ref: '#/components/schemas/Property'
+          description: Official website URL
+          example: 
+            type: "Property"
+            value: "https://alpinehydro.org"
+        hasHPP:
+          $ref: '#/components/schemas/Relationship'
+          description: Linked hydropower plants
+          example: 
+            type: "Relationship"
+            object: ["urn:ngsi-ld:HydropowerPlant:hpp-alpine-001"]
+    
+    Property:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["Property"]
+          description: NGSI-LD attribute type
+        value:
+          oneOf:
+            - type: string
+            - type: number
+            - type: boolean
+          description: Actual attribute value
+    
+    CapacityProperty:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["Property"]
+        value:
+          type: number
+          description: Capacity value in megawatts (MW)
+          example: 2450.5
+        unitCode:
+          type: string
+          enum: ["MW"]
+          description: Measurement unit
+    
+    EnergyProperty:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["Property"]
+        value:
+          type: number
+          description: Energy value in kilowatt-hours (kWh)
+          example: 12500000000
+        unitCode:
+          type: string
+          enum: ["KWH"]
+    
+    Relationship:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["Relationship"]
+          description: NGSI-LD relationship type
+        object:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: List of target entity URIs
+          example: ["urn:ngsi-ld:HydropowerPlant:hpp-alpine-001"]

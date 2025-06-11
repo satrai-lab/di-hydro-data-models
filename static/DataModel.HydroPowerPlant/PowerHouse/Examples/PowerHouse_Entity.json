@@ -1,0 +1,68 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:PowerHouse:ph1",
+  "type": "PowerHouse",
+  "name": {
+    "type": "Property",
+    "value": "Alpine Main PowerHouse"
+  },
+  "geographicalLocation": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -121.5,
+        47.31
+      ]
+    }
+  },
+  "address": {
+    "type": "Property",
+    "value": "456 Generator Ave, Alpine Valley"
+  },
+  "buildingArea": {
+    "type": "Property",
+    "value": {
+      "value": 1200,
+      "unitCode": "M2"
+    }
+  },
+  "numberOfFloors": {
+    "type": "Property",
+    "value": 2
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  },
+  "containsGenerators": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Generator:gen1",
+      "urn:ngsi-ld:Generator:gen2"
+    ]
+  },
+  "containsTurbines": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Turbine:turb1",
+      "urn:ngsi-ld:Turbine:turb2"
+    ]
+  },
+  "isConnectedToPenstock": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Penstock:pen1",
+      "urn:ngsi-ld:Penstock:pen2"
+    ]
+  },
+  "hasGovernors": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Governor:gov1",
+      "urn:ngsi-ld:Governor:gov2"
+    ]
+  }
+}

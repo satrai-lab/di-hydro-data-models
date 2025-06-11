@@ -1,0 +1,87 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:Generator:gen1",
+  "type": "Generator",
+  "name": {
+    "type": "Property",
+    "value": "Alpine Unit 1 - Main Generator"
+  },
+  "ratedCapacity": {
+    "type": "Property",
+    "value": 250,
+    "unitCode": "MW"
+  },
+  "efficiency": {
+    "type": "Property",
+    "value": 97.2,
+    "unitCode": "PCT"
+  },
+  "manufacturer": {
+    "type": "Property",
+    "value": "HydroElec Inc"
+  },
+  "yearOfInstallation": {
+    "type": "Property",
+    "value": 2015
+  },
+  "generatorType": {
+    "type": "Property",
+    "value": "HEI-SyncGen-250MW"
+  },
+  "axis": {
+    "type": "Property",
+    "value": "Vertical"
+  },
+  "voltageLevel": {
+    "type": "Property",
+    "value": 15,
+    "unitCode": "KV"
+  },
+  "ratedOutputMVA": {
+    "type": "Property",
+    "value": 263,
+    "unitCode": "MVA"
+  },
+  "speed": {
+    "type": "Property",
+    "value": 150,
+    "unitCode": "RPM"
+  },
+  "ratedPowerFactor": {
+    "type": "Property",
+    "value": 0.95
+  },
+  "voltageRegulationRange": {
+    "type": "Property",
+    "value": 5,
+    "unitCode": "PCT"
+  },
+  "windingInsulationClass": {
+    "type": "Property",
+    "value": "F"
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  },
+  "isPartOfPowerHouse": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:PowerHouse:ph1"
+    ]
+  },
+  "isDrivenByTurbines": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Turbine:turb1"
+    ]
+  },
+  "hasTransformers": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Transformer:trans1"
+    ]
+  }
+}

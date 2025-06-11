@@ -1,0 +1,57 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:Governor:gov1",
+  "type": "Governor",
+  "name": {
+    "type": "Property",
+    "value": "Main Speed Governor"
+  },
+  "controlParameters": {
+    "type": "Property",
+    "value": {
+      "droopSetting": {
+        "value": 5,
+        "unitCode": "PCT"
+      },
+      "speedSetPoint": {
+        "value": 500,
+        "unitCode": "RPM"
+      },
+      "regulationRange": {
+        "value": 10,
+        "unitCode": "PCT"
+      }
+    }
+  },
+  "responseTime": {
+    "type": "Property",
+    "value": 0.5,
+    "unitCode": "S"
+  },
+  "manufacturer": {
+    "type": "Property",
+    "value": "ControlTech Ltd"
+  },
+  "yearOfInstallation": {
+    "type": "Property",
+    "value": 2017
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  },
+  "controlsTurbine": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Turbine:turb1"
+    ]
+  },
+  "isPartOfPowerHouse": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:PowerHouse:ph1"
+    ]
+  }
+}

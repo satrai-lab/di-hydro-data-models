@@ -1,0 +1,26 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:HydropowerPlant:plant-alpine-001",
+  "type": "HydropowerPlant",
+  "name": {"type": "Property", "value": "Alpine Hydro Plant 1"},
+  "geographicalLocation": {
+    "type": "GeoProperty",
+    "value": {"type": "Point", "coordinates": [-121.5, 47.3]}
+  },
+  "installedCapacity": {
+    "type": "Property", 
+    "value": 350, 
+    "unitCode": "MW"
+  },
+  "partOfCommunity": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydroPowerCommunity:comm-alpine-001"
+  },
+  "containsTurbines": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Turbine:turbine-alpine-001",
+      "urn:ngsi-ld:Turbine:turbine-alpine-002"
+    ]
+  }
+}

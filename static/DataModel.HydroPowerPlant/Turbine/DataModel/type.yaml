@@ -1,0 +1,235 @@
+---
+components:
+  schemas:
+
+    Turbine:
+      required:
+        - id
+        - type
+        - name
+        - turbineType
+      properties:
+        id:
+          anyOf: &anyof
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              type: string
+          format: uri
+          type: string
+          description: "Unique identifier of the Turbine"
+          x-ngsi:
+            type: Property
+        type:
+          type: string
+          enum:
+            - Turbine
+          description: "NGSI Entity type. It has to be Turbine"
+          x-ngsi:
+            type: Property
+        name:
+          type: string
+          description: "The official or common name of the Turbine"
+          x-ngsi:
+            type: Property
+        turbineType:
+          type: string
+          enum:
+            - Francis
+            - Kaplan
+            - Pelton
+            - Other
+          description: "Classification of the turbine (e.g., Francis, Kaplan, Pelton, or other types)"
+          x-ngsi:
+            type: Property
+        capacity:
+          type: object
+          description: "Rated power capacity of the turbine (in MW)"
+          properties:
+            value:
+              type: number
+              description: "Capacity value in megawatts"
+            unitCode:
+              type: string
+              enum:
+                - "MW"
+              description: "UN/CEFACT unit code for megawatt"
+          x-ngsi:
+            type: Property
+        efficiency:
+          type: object
+          description: "Conversion efficiency of the turbine (in percentage)"
+          properties:
+            value:
+              type: number
+              description: "Efficiency percentage"
+            unitCode:
+              type: string
+              enum:
+                - "PCT"
+              description: "UN/CEFACT unit code for percentage"
+          x-ngsi:
+            type: Property
+        operatingFlowRate:
+          type: object
+          description: "Water flow rate required for the turbine's operation (in m³/s)"
+          properties:
+            value:
+              type: number
+              description: "Operating flow rate value"
+            unitCode:
+              type: string
+              enum:
+                - "M3S"
+              description: "UN/CEFACT unit code for cubic meters per second"
+          x-ngsi:
+            type: Property
+        head:
+          type: object
+          description: "Effective head (vertical drop) available across the turbine (in meters)"
+          properties:
+            value:
+              type: number
+              description: "Head value in meters"
+            unitCode:
+              type: string
+              enum:
+                - "M"
+              description: "UN/CEFACT unit code for meter"
+          x-ngsi:
+            type: Property
+        manufacturer:
+          type: string
+          description: "Name or details of the manufacturer of the turbine"
+          x-ngsi:
+            type: Property
+        yearOfInstallation:
+          type: number
+          description: "The year when the turbine was installed"
+          x-ngsi:
+            type: Property
+
+        # New Properties to Add
+        numberOfImpellers:
+          type: number
+          description: "The number of water‑moving blades (‘buckets’) inside the turbine."
+          x-ngsi:
+            type: Property
+        axis:
+          type: string
+          enum:
+            - "horizontal"
+            - "vertical"
+          description: "The orientation of the turbine shaft, indicating whether it is horizontal or vertical."
+          x-ngsi:
+            type: Property
+        maxPower:
+          type: object
+          description: "The highest possible mechanical power the turbine can generate under extreme conditions (in MW). It's different from the capacity which is normal, guaranteed output."
+          properties:
+            value:
+              type: number
+              description: "Maximum power in megawatts"
+            unitCode:
+              type: string
+              enum:
+                - "MW"
+              description: "UN/CEFACT unit code for megawatt"
+          x-ngsi:
+            type: Property
+        speed:
+          type: object
+          description: "The rated rotational speed of the turbine shaft, measured in revolutions per minute (RPM)."
+          properties:
+            value:
+              type: number
+              description: "Speed in revolutions per minute"
+            unitCode:
+              type: string
+              enum:
+                - "RPM"
+              description: "UN/CEFACT unit code for revolutions per minute"
+          x-ngsi:
+            type: Property
+
+        # New Relationship to Add
+        dischargesToReservoir:
+          type: array
+          description: "Array of objects linking the turbine to a downstream reservoir via its pressure tunnel."
+          items:
+            type: object
+            properties:
+              tunnelLength:
+                type: object
+                description: "Length of the pressure tunnel from turbine to reservoir (in kilometers)"
+                properties:
+                  value:
+                    type: number
+                    description: "Tunnel length value"
+                  unitCode:
+                    type: string
+                    enum:
+                      - "KM"
+                    description: "UN/CEFACT unit code for kilometers"
+              object:
+                type: string
+                format: uri
+                description: "NGSI-LD URI of the target Reservoir entity"
+          x-ngsi:
+            type: Relationship
+
+        # Existing Relationships (remained unchanged)
+        isPartOfHydroPowerPlant:
+          type: array
+          description: "Array of references to the HydropowerPlant entity that this Turbine is part of"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        drivesGenerators:
+          type: array
+          description: "Array of references to the Generator entities driven by this Turbine"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        isPartOfPowerHouse:
+          type: array
+          description: "Array of references to the PowerHouse entity that houses this Turbine"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        controlledByGovernor:
+          type: array
+          description: "Array of references to the Governor entity that controls this Turbine"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+
+info:
+  description: "Data Model of HydroPowerCommunity"
+  title: HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

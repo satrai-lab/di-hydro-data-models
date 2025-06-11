@@ -1,0 +1,136 @@
+---
+components:
+  schemas:
+
+    PowerHouse:
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          anyOf: &anyof
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              type: string
+          format: uri
+          type: string
+          description: "Unique identifier of the PowerHouse"
+          x-ngsi:
+            type: Property
+        type:
+          type: string
+          enum:
+            - PowerHouse
+          description: "NGSI Entity type. It has to be PowerHouse"
+          x-ngsi:
+            type: Property
+        name:
+          type: string
+          description: "The official or common name of the PowerHouse"
+          x-ngsi:
+            type: Property
+        geographicalLocation:
+          type: object
+          description: "GeoJSON property of type 'Point' representing the location of the PowerHouse. The first element in coordinates is longitude and the second is latitude."
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+              minItems: 2
+          x-ngsi:
+            type: GeoProperty
+        address:
+          type: string
+          description: "The physical address of the PowerHouse"
+          x-ngsi:
+            type: Property
+        buildingArea:
+          type: object
+          description: "The total floor area of the PowerHouse (in square meters)"
+          properties:
+            value:
+              type: number
+              description: "Building area value"
+            unitCode:
+              type: string
+              enum:
+                - "M2"
+              description: "UN/CEFACT unit code for square meter"
+          x-ngsi:
+            type: Property
+        numberOfFloors:
+          type: number
+          description: "The number of floors or levels within the PowerHouse"
+          x-ngsi:
+            type: Property
+      
+        isPartOfHydroPowerPlant:
+          type: array
+          description: "Array of references to the HydropowerPlant entity that this PowerHouse is part of"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        containsGenerators:
+          type: array
+          description: "Array of references to the Generator entities contained in the PowerHouse"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        containsTurbines:
+          type: array
+          description: "Array of references to the Turbine entities contained in the PowerHouse"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        isConnectedToPenstock:
+          type: array
+          description: "Array of references to the Penstock entities connected to the PowerHouse"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        hasGovernors:
+          type: array
+          description: "Array of references to the Governor entities present in the PowerHouse"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+
+info:
+  description: "Data Model of PowerHouse"
+  title: HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

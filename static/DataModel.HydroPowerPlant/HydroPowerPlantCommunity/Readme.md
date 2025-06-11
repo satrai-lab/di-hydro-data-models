@@ -25,13 +25,3 @@ The **HydroPowerCommunity** entity represents an **organization**, **consortium*
 | **`websiteURL`**           | Property    | No       | Official information portal. Provides public transparency and resource access.                                      |
 | **`hasHPP`**               | Relationship| No       | Links to HydropowerPlant entities. Core relationship enabling portfolio management and operational analytics.        |
 
-
-### Key Notes:
-1. **Required Attributes**: Only `id`, `type`, and `name` are mandatory - essential for basic entity identification.
-2. **Optional Attributes**: 
-   - Operational metrics (`totalInstalledCapacity`, `totalAnnualEnergyOutput`) can be added as plants come online
-   - Descriptive fields (`region`, `governanceModel`) support stakeholder reporting
-3. **Relationship Flexibility**: 
-   - `hasHPP` optionality accommodates new communities without plants
-   - Allows smooth ownership transfers between communities
-4. **Type Enforcement**: Fixed `type='Community'` enables easy filtering in multi-entity systems.

@@ -1,0 +1,344 @@
+openapi: 3.0.3
+info:
+  title: HydropowerPlant NGSI-LD API
+  version: 1.0.0
+  description: Complete API for hydropower plant management with all attributes
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a HydropowerPlant (Full Attributes)
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/HydropowerPlant'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+              type: "HydropowerPlant"
+              name: 
+                type: "Property"
+                value: "Alpine Mega Plant"
+              geographicalLocation: 
+                type: "GeoProperty"
+                value: 
+                  type: "Point"
+                  coordinates: [-121.5, 47.3]
+              address: 
+                type: "Property"
+                value: "123 Dam Road, Alpine Valley"
+              size:
+                type: "Property"
+                value:
+                  category: "Large"
+                  interval:
+                    min:
+                      value: 300
+                      unitCode: "MW"
+                    max:
+                      value: 1000
+                      unitCode: "MW"
+                  standard: "IEC"
+              installedCapacity:
+                type: "Property"
+                value: 750
+                unitCode: "MW"
+              powerPlantCapacity:
+                type: "Property"
+                value: 750
+                unitCode: "MW"
+              powerplantType:
+                type: "Property"
+                value: "storage/reservoir"
+              conversionEfficiency:
+                type: "Property"
+                value: 92.5
+              commissioningYear:
+                type: "Property"
+                value: 1985
+              rehabilitationYear:
+                type: "Property"
+                value: 2018
+              annualEnergyOutput:
+                type: "Property"
+                value: 4200000000
+                unitCode: "KWH"
+              ecologicalDischarge:
+                type: "Property"
+                value: 15.2
+                unitCode: "M3/S"
+              maxTailwaterLevel:
+                type: "Property"
+                value: 324.5
+                unitCode: "M"
+              grossHead:
+                type: "Property"
+                value: 186
+                unitCode: "M"
+              partOfCommunity:
+                type: "Relationship"
+                object: "urn:ngsi-ld:HydroPowerCommunity:comm-alpine-001"
+              hasPressureTunnel:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:PressureTunnel:pt1"
+              boostedByPumpingStation:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:PumpingStation:ps1"
+              hasHydroPumps:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydroPump:hp1"
+              hasDams:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Dam:dam1"
+              containsGenerators:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Generator:gen1"
+              hasGovernors:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Governor:gov1"
+              containsTurbines:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Turbine:turb1"
+              hasIntakes:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Intake:int1"
+              hasPowerHouses:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:PowerHouse:ph1"
+              hasPenstocks:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Penstock:pen1"
+              hasValve:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Valve:valve1"
+              hasValveHouse:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:ValveHouse:vh1"
+              hasWaterBody:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:WaterBody:river1"
+              hasSurgeTank:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:SurgeTank:st1"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    HydropowerPlant:
+      type: object
+      required: [ "@context", id, type, name ]
+      properties:
+        "@context":
+          type: string
+          description: NGSI-LD context file location
+          example: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+        id:
+          type: string
+          description: Unique URI identifier following NGSI-LD pattern
+          example: "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+        type:
+          type: string
+          enum: ["HydropowerPlant"]
+          description: Fixed entity type identifier
+
+        # Core Properties
+        name:
+          $ref: '#/components/schemas/PropertyString'
+        geographicalLocation:
+          $ref: '#/components/schemas/GeoPropertyPoint'
+        address:
+          $ref: '#/components/schemas/PropertyString'
+
+        # Capacity
+        size:
+          $ref: '#/components/schemas/PropertySizeInterval'
+        installedCapacity:
+          $ref: '#/components/schemas/PropertyNumberWithUnit'
+        powerPlantCapacity:
+          $ref: '#/components/schemas/PropertyNumberWithUnit'
+
+        # Operational
+        powerplantType:
+          $ref: '#/components/schemas/PropertyString'
+        conversionEfficiency:
+          $ref: '#/components/schemas/PropertyNumber'
+
+        # Lifecycle
+        commissioningYear:
+          $ref: '#/components/schemas/PropertyNumber'
+        rehabilitationYear:
+          $ref: '#/components/schemas/PropertyNumber'
+
+        # Performance
+        annualEnergyOutput:
+          $ref: '#/components/schemas/PropertyNumberWithUnit'
+        ecologicalDischarge:
+          $ref: '#/components/schemas/PropertyNumberWithUnit'
+        maxTailwaterLevel:
+          $ref: '#/components/schemas/PropertyNumberWithUnit'
+        grossHead:
+          $ref: '#/components/schemas/PropertyNumberWithUnit'
+
+        # Relationships
+        partOfCommunity:
+          $ref: '#/components/schemas/RelationshipSingle'
+        hasPressureTunnel:
+          $ref: '#/components/schemas/RelationshipArray'
+        boostedByPumpingStation:
+          $ref: '#/components/schemas/RelationshipArray'
+        hasHydroPumps:
+          $ref: '#/components/schemas/RelationshipArray'
+        hasDams:
+          $ref: '#/components/schemas/RelationshipArray'
+        containsGenerators:
+          $ref: '#/components/schemas/RelationshipArray'
+        hasGovernors:
+          $ref: '#/components/schemas/RelationshipArray'
+        containsTurbines:
+          $ref: '#/components/schemas/RelationshipArray'
+        hasIntakes:
+          $ref: '#/components/schemas/RelationshipArray'
+        hasPowerHouses:
+          $ref: '#/components/schemas/RelationshipArray'
+        hasPenstocks:
+          $ref: '#/components/schemas/RelationshipArray'
+        hasValve:
+          $ref: '#/components/schemas/RelationshipArray'
+        hasValveHouse:
+          $ref: '#/components/schemas/RelationshipArray'
+        hasWaterBody:
+          $ref: '#/components/schemas/RelationshipArray'
+        hasSurgeTank:
+          $ref: '#/components/schemas/RelationshipArray'
+
+    # Reusable property schemas
+    PropertyString:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["Property"]
+        value:
+          type: string
+      required: [type, value]
+
+    PropertyNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["Property"]
+        value:
+          type: number
+      required: [type, value]
+
+    PropertyNumberWithUnit:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["Property"]
+        value:
+          type: number
+        unitCode:
+          type: string
+      required: [type, value, unitCode]
+
+    GeoPropertyPoint:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["GeoProperty"]
+        value:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Point"]
+            coordinates:
+              type: array
+              items:
+                type: number
+              minItems: 2
+              maxItems: 2
+          required: [type, coordinates]
+      required: [type, value]
+
+    PropertySizeInterval:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["Property"]
+        value:
+          type: object
+          properties:
+            category:
+              type: string
+              enum: ["Pico","Micro","Mini","Small","Medium","Large"]
+            interval:
+              type: object
+              properties:
+                min:
+                  $ref: '#/components/schemas/SubInterval'
+                max:
+                  $ref: '#/components/schemas/SubInterval'
+            standard:
+              type: string
+          required: [category, interval, standard]
+      required: [type, value]
+
+    SubInterval:
+      type: object
+      properties:
+        value:
+          type: number
+        unitCode:
+          type: string
+          enum: ["MW"]
+      required: [value, unitCode]
+
+    RelationshipSingle:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["Relationship"]
+        object:
+          type: string
+          format: uri
+      required: [type, object]
+
+    RelationshipArray:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: ["Relationship"]
+        object:
+          type: array
+          items:
+            type: string
+            format: uri
+      required: [type, object]

@@ -1,0 +1,49 @@
+{
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+    "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json"
+  ],
+  "id": "urn:ngsi-ld:HydroPump:pump-001",
+  "type": "HydroPump",
+  "name": {
+    "type": "Property",
+    "value": "Alpine Pump Unit #5"
+  },
+  "pumpCapacity": {
+    "type": "Property",
+    "value": 300,
+    "unitCode": "MW"
+  },
+  "pumpEfficiency": {
+    "type": "Property",
+    "value": 82.5,
+    "unitCode": "PCT"
+  },
+  "operationalMode": {
+    "type": "Property",
+    "value": "Pumping"
+  },
+  "powerConsumption": {
+    "type": "Property",
+    "value": 275,
+    "unitCode": "MW"
+  },
+  "cycleTime": {
+    "type": "Property",
+    "value": 4.5,
+    "unitCode": "H"
+  },
+  "PumpWaterTo": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Reservoir:upper-basin",
+      "urn:ngsi-ld:Reservoir:backup-storage"
+    ]
+  },
+  "isPartOfHydrPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:alpine-psp"
+    ]
+  }
+}

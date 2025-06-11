@@ -1,0 +1,354 @@
+openapi: 3.0.3
+info:
+  title: Generator Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a Generator Entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Generator'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:Generator:gen1"
+              type: "Generator"
+              name: { "type": "Property", "value": "Alpine Unit 1 - Main Generator" }
+              ratedCapacity: { "type": "Property", "value": 250, "unitCode": "MW" }
+              efficiency: { "type": "Property", "value": 97.2,"unitCode": "PCT"  }
+              manufacturer: { "type": "Property", "value": "HydroElec Inc"}
+              yearOfInstallation: { "type": "Property", "value": 2015}
+              generatorType: { "type": "Property", "value": "HEI-SyncGen-250MW"}
+              axis: { "type": "Property", "value": "Vertical"}
+              voltageLevel: { "type": "Property", "value": 15, "unitCode": "KV" }
+              ratedOutputMVA: { "type": "Property", "value": 263, "unitCode": "MVA" }
+              speed: { "type": "Property", "value": 150, "unitCode": "RPM" }
+              ratedPowerFactor: { "type": "Property", "value": 0.95}
+              voltageRegulationRange: { "type": "Property", "value": 5, "unitCode": "PCT" }
+              windingInsulationClass: { "type": "Property", "value": "F"}
+              isPartOfHydroPowerPlant: { "type": "Relationship", "object": ["urn:ngsi-ld:HydropowerPlant:plant-alpine-001"] }
+              isPartOfPowerHouse: { "type": "Relationship", "object": ["urn:ngsi-ld:PowerHouse:ph1"] }
+              isDrivenByTurbines: { "type": "Relationship", "object": ["urn:ngsi-ld:Turbine:turb1"] }
+              hasTransformers: { "type": "Relationship", "object": ["urn:ngsi-ld:Transformer:trans1"] }
+      responses:
+        '201':
+          description: Entity created
+
+components:
+  schemas:
+    Generator:
+      type: object
+      required:
+        - "@context"
+        - id
+        - type
+        - name
+      properties:
+
+        "@context":
+          type: string
+          description: Context file defining vocabulary
+          example: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the Generator
+          example: "urn:ngsi-ld:Generator:gen1"
+
+        type:
+          type: string
+          enum:
+            - Generator
+          description: Fixed entity type identifier
+
+        name:
+          type: object
+          description: Official name of the generator
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Alpine Unit 1 - Main Generator"
+
+        ratedCapacity:
+          type: object
+          description: Rated electrical capacity of the generator
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - MW
+          example:
+            type: "Property"
+            value: 250
+            unitCode: "MW"
+
+        efficiency:
+          type: object
+          description: Conversion efficiency percentage
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - PCT
+          example:
+            type: "Property"
+            value: 97.2
+            unitCode: "PCT"
+
+        manufacturer:
+          type: object
+          description: Manufacturer name
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "HydroElec Inc"
+
+        yearOfInstallation:
+          type: object
+          description: Year the generator was installed
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: integer
+          example:
+            type: "Property"
+            value: 2015
+
+        generatorType:
+          type: object
+          description: Model or type designation
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "HEI-SyncGen-250MW"
+
+        axis:
+          type: object
+          description: Shaft orientation
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Vertical"
+
+        voltageLevel:
+          type: object
+          description: Rated terminal voltage level
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - KV
+          example:
+            type: "Property"
+            value: 15
+            unitCode: "KV"
+
+        ratedOutputMVA:
+          type: object
+          description: Rated apparent power output
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - MVA
+          example:
+            type: "Property"
+            value: 263
+            unitCode: "MVA"
+
+        speed:
+          type: object
+          description: Rotational speed
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - RPM
+          example:
+            type: "Property"
+            value: 150
+            unitCode: "RPM"
+
+        ratedPowerFactor:
+          type: object
+          description: Rated power factor (dimensionless)
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+          example:
+            type: "Property"
+            value: 0.95
+
+        voltageRegulationRange:
+          type: object
+          description: Voltage regulation band as percentage
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - PCT
+          example:
+            type: "Property"
+            value: 5
+            unitCode: "PCT"
+
+        windingInsulationClass:
+          type: object
+          description: Insulation material class
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "F"
+
+        isPartOfHydroPowerPlant:
+          type: object
+          description: Relationship to parent HydropowerPlant entity
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+
+        isPartOfPowerHouse:
+          type: object
+          description: Relationship to the PowerHouse entity
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:PowerHouse:ph1"
+
+        isDrivenByTurbines:
+          type: object
+          description: Turbine entities driving this generator
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Turbine:turb1"
+
+        hasTransformers:
+          type: object
+          description: Transformer entities connected to the generator
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Transformer:trans1"

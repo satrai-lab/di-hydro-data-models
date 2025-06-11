@@ -1,0 +1,144 @@
+openapi: 3.0.3
+info:
+  title: HydroPump NGSI-LD API
+  version: 1.0.0
+  description: Direct API for hydro pump management without property wrappers
+servers:
+  - url: https://context-broker.example.com/ngsi-ld/v1
+
+paths:
+  /entities:
+    post:
+      summary: Create a HydroPump
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/HydroPump'
+            example:
+              "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+              id: "urn:ngsi-ld:HydroPump:pump-001"
+              type: "HydroPump"
+              name: 
+                type: Property
+                value: "Alpine Pump Unit #5"
+              pumpCapacity: 
+                type: Property
+                value: 300
+                unitCode: "MW"
+              pumpEfficiency: 
+                type: Property
+                value: 82.5
+                unitCode: "PCT"
+              operationalMode: 
+                type: Property
+                value: "Pumping"
+              powerConsumption: 
+                type: Property
+                value: 275
+                unitCode: "MW"
+              cycleTime:
+                type: Property
+                value: 4.5
+                unitCode: "H"
+              PumpWaterTo: 
+                type: Relationship
+                object: 
+                  [ "urn:ngsi-ld:Reservoir:upper-basin",
+                    "urn:ngsi-ld:Reservoir:backup-storage"]
+              isPartOfHydrPowerPlant: 
+                type: Relationship
+                object: 
+                  ["urn:ngsi-ld:HydropowerPlant:alpine-psp"]
+      responses:
+        '201':
+          description: Pump entity created
+
+components:
+  schemas:
+    HydroPump:
+      type: object
+      required:
+        - id
+        - type
+        - name
+      properties:
+        "@context":
+          type: string
+          example: "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+        id:
+          type: string
+          format: uri
+          example: "urn:ngsi-ld:HydroPump:pump-001"
+        type:
+          type: string
+          enum: ["HydroPump"]
+        name:
+          type: string
+          example: "Alpine Pump Unit #5"
+        pumpCapacity:
+          type: object
+          properties:
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum: ["MW", "M3S"]
+          example:
+            value: 300
+            unitCode: "MW"
+        pumpEfficiency:
+          type: object
+          properties:
+            value:
+              type: number
+              minimum: 0
+              maximum: 100
+            unitCode:
+              type: string
+              enum: ["PCT"]
+          example:
+            value: 82.5
+            unitCode: "PCT"
+        operationalMode:
+          type: string
+          enum: ["Pumping", "Generating"]
+          example: "Pumping"
+        powerConsumption:
+          type: object
+          properties:
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum: ["MW"]
+          example:
+            value: 275
+            unitCode: "MW"
+        cycleTime:
+          type: object
+          properties:
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum: ["H"]
+          example:
+            value: 4.5
+            unitCode: "H"
+        PumpWaterTo:
+          type: array
+          items:
+            type: string
+            format: uri
+          example:
+            - "urn:ngsi-ld:Reservoir:upper-basin"
+            - "urn:ngsi-ld:Reservoir:backup-storage"
+        isPartOfHydrPowerPlant:
+          type: array
+          items:
+            type: string
+            format: uri
+          example:
+            - "urn:ngsi-ld:HydropowerPlant:alpine-psp"

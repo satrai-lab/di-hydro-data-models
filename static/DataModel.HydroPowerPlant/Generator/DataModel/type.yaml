@@ -1,0 +1,207 @@
+---
+components:
+  schemas:
+
+    Generator:
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          anyOf: &anyof
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              type: string
+          format: uri
+          type: string
+          description: "Unique identifier of the Generator"
+          x-ngsi:
+            type: Property
+        type:
+          type: string
+          enum:
+            - Generator
+          description: "NGSI Entity type. It has to be Generator"
+          x-ngsi:
+            type: Property
+        name:
+          type: string
+          description: "The official or common name of the Generator"
+          x-ngsi:
+            type: Property
+        ratedCapacity:
+          type: object
+          description: "The rated electrical capacity of the generator (in MW). Short Explanation: It indicates the maximum power output the generator is designed to produce under normal operating conditions."
+          properties:
+            value:
+              type: number
+              description: "Capacity value in megawatts"
+            unitCode:
+              type: string
+              enum:
+                - "MW"
+              description: "UN/CEFACT unit code for megawatt"
+          x-ngsi:
+            type: Property
+        efficiency:
+          type: object
+          description: "The conversion efficiency of the generator, expressed as a percentage."
+          properties:
+            value:
+              type: number
+              description: "Efficiency percentage"
+            unitCode:
+              type: string
+              enum:
+                - "PCT"
+              description: "UN/CEFACT unit code for percentage"
+          x-ngsi:
+            type: Property
+        manufacturer:
+          type: string
+          description: "The name or details of the manufacturer of the generator"
+          x-ngsi:
+            type: Property
+        yearOfInstallation:
+          type: number
+          description: "The year when the generator was installed"
+          x-ngsi:
+            type: Property
+
+        # New Properties to Add
+        generatorType:
+          type: string
+          description: "Model or design identifier of the generator"
+          x-ngsi:
+            type: Property
+        axis:
+          type: string
+          enum:
+            - "Horizontal"
+            - "Vertical"
+          description: "Orientation of the rotating shaft (Horizontal or Vertical)"
+          x-ngsi:
+            type: Property
+        voltageLevel:
+          type: object
+          description: "Voltage at which the generator produces electricity (kilovolts (kV))"
+          properties:
+            value:
+              type: number
+              description: "Voltage level value"
+            unitCode:
+              type: string
+              enum:
+                - "KV"
+              description: "UN/CEFACT unit code for kilovolt"
+          x-ngsi:
+            type: Property
+        ratedOutputMVA:
+          type: object
+          description: "Nameplate apparent power capacity under standard conditions (megavolt-amperes (MVA))"
+          properties:
+            value:
+              type: number
+              description: "Rated output value in MVA"
+            unitCode:
+              type: string
+              enum:
+                - "MVA"
+              description: "UN/CEFACT unit code for megavolt-amperes"
+          x-ngsi:
+            type: Property
+        speed:
+          type: object
+          description: "Rotational speed of the generator shaft (revolutions per minute (RPM))"
+          properties:
+            value:
+              type: number
+              description: "Speed in revolutions per minute"
+            unitCode:
+              type: string
+              enum:
+                - "RPM"
+              description: "UN/CEFACT unit code for revolutions per minute"
+          x-ngsi:
+            type: Property
+        ratedPowerFactor:
+          type: number
+          description: "Ratio of real power to apparent power (unitless)"
+          x-ngsi:
+            type: Property
+        voltageRegulationRange:
+          type: object
+          description: "Allowable percentage variation above or below nominal voltage (%)"
+          properties:
+            value:
+              type: number
+              description: "Voltage regulation range value in percentage"
+            unitCode:
+              type: string
+              enum:
+                - "PCT"
+              description: "UN/CEFACT unit code for percentage"
+          x-ngsi:
+            type: Property
+        windingInsulationClass:
+          type: string
+          description: "Insulation temperature rating class of the generator windings"
+          x-ngsi:
+            type: Property
+
+        # Existing Relationships (remained unchanged)
+        isPartOfHydroPowerPlant:
+          type: array
+          description: "Array of references to the HydropowerPlant entity that this Generator is part of"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        isDrivenByTurbines:
+          type: array
+          description: "Array of references to the Turbine entities that drive this Generator"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+         hasTransformers:
+          type: array
+          description: "Array of Transformer entity identifiers"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+        isPartOfPowerHouse:
+          type: array
+          description: "Array of references to the PowerHouse entity that houses this Generator"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+
+
+info:
+  description: "Data Model of HydroPowerCommunity"
+  title: HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

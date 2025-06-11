@@ -1,0 +1,134 @@
+---
+components:
+  schemas:
+
+    HydroPump:
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          anyOf: &anyof
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              type: string
+          format: uri
+          type: string
+          description: "Unique identifier of the HydroPump"
+          x-ngsi:
+            type: Property
+        type:
+          type: string
+          enum:
+            - HydroPump
+          description: "NGSI Entity type. It has to be HydroPump"
+          x-ngsi:
+            type: Property
+        name:
+          type: string
+          description: "The official or common name of the HydroPump"
+          x-ngsi:
+            type: Property
+        pumpCapacity:
+          type: object
+          description: "The capacity of the pump, defined either as a volumetric flow rate (in m³/s) or as a power capacity (in MW) if the pump operates reversibly."
+          properties:
+            value:
+              type: number
+              description: "Capacity value"
+            unitCode:
+              type: string
+              enum:
+                - "MW"
+                - "M3S"
+              description: "UN/CEFACT unit code for megawatt or cubic meters per second"
+          x-ngsi:
+            type: Property
+        pumpEfficiency:
+          type: object
+          description: "The efficiency of the pump, expressed as a percentage."
+          properties:
+            value:
+              type: number
+              description: "Efficiency percentage"
+            unitCode:
+              type: string
+              enum:
+                - "PCT"
+              description: "UN/CEFACT unit code for percentage"
+          x-ngsi:
+            type: Property
+        operationalMode:
+          type: string
+          enum:
+            - Pumping
+            - Generating
+          description: "Mode of operation of the pump: 'Pumping' when using electricity to lift water, or 'Generating' when producing electricity."
+          x-ngsi:
+            type: Property
+        powerConsumption:
+          type: object
+          description: "The electrical power consumed by the pump when operating in pumping mode (in MW)."
+          properties:
+            value:
+              type: number
+              description: "Power consumption value"
+            unitCode:
+              type: string
+              enum:
+                - "MW"
+              description: "UN/CEFACT unit code for megawatt"
+          x-ngsi:
+            type: Property
+        cycleTime:
+          type: object
+          description: "The duration required to complete one full pumping cycle (in hours)."
+          properties:
+            value:
+              type: number
+              description: "Cycle time value"
+            unitCode:
+              type: string
+              enum:
+                - "H"
+              description: "UN/CEFACT unit code for hour"
+          x-ngsi:
+            type: Property
+        PumpWaterTo:
+          type: array
+          description: "Array of references to Reservoir entities to which water is pumped"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        isPartOfHydrPowerPlant:
+          type: array
+          description: "Array of references to HydropowerPlant entities that this HydroPump is a component of"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+
+info:
+  description: "Data Model of HydroPowerCommunity"
+  title: HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

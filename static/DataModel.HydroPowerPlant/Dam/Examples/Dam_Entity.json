@@ -18,17 +18,13 @@
   },
   "damHeight": {
     "type": "Property",
-    "value": {
-      "value": 85,
-      "unitCode": "M"
-    }
+    "value": 85,
+    "unitCode": "M"
   },
   "damLength": {
     "type": "Property",
-    "value": {
-      "value": 320,
-      "unitCode": "M"
-    }
+    "value": 320,
+    "unitCode": "M"
   },
   "constructionMaterials": {
     "type": "Property",
@@ -44,10 +40,8 @@
   },
   "damCrestElevation": {
     "type": "Property",
-    "value": {
-      "value": 400,
-      "unitCode": "M"
-    }
+    "value": 400,
+    "unitCode": "M"
   },
   "hasSpillway": {
     "type": "Relationship",

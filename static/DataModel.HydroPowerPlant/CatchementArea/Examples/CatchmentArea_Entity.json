@@ -1,0 +1,73 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:CatchmentArea:ca1",
+  "type": "CatchmentArea",
+  "area": {
+    "type": "Property",
+    "value": {
+      "value": 1250,
+      "unitCode": "KM2"
+    }
+  },
+  "annualPrecipitationVolume": {
+    "type": "Property",
+    "value": {
+      "value": 3500000000,
+      "unitCode": "M3"
+    }
+  },
+  "seasonalRainfallDistribution": {
+    "type": "Property",
+    "value": {
+      "spring": 0.3,
+      "summer": 0.25,
+      "autumn": 0.2,
+      "winter": 0.25
+    }
+  },
+  "soilType": {
+    "type": "Property",
+    "value": "Loam"
+  },
+  "vegetationCover": {
+    "type": "Property",
+    "value": "Mixed forest and grassland"
+  },
+  "flowVariationProfile": {
+    "type": "Property",
+    "value": {
+      "jan": 50,
+      "feb": 45,
+      "mar": 60,
+      "apr": 80,
+      "may": 120,
+      "jun": 150,
+      "jul": 140,
+      "aug": 130,
+      "sep": 100,
+      "oct": 70,
+      "nov": 55,
+      "dec": 50
+    }
+  },
+  "averageWaterFlow": {
+    "type": "Property",
+    "value": {
+      "value": 75,
+      "unitCode": "M3S"
+    }
+  },
+  "suppliesWaterToWaterBody": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:WaterBody:river1",
+      "urn:ngsi-ld:WaterBody:Res1"
+    ]
+  },
+  "suppliesWaterToHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "HydropowerPlantModeling",
+  "definitions": {
+    "Dam": {
+      "type": "object",
+      "required": ["id", "type", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["Dam"]
+        },
+        "name": {
+          "type": "string"
+        },
+        "geographicalLocation": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Point"]
+            },
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2
+            }
+          }
+        },
+        "damHeight": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["M"]
+            }
+          }
+        },
+        "damLength": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["M"]
+            }
+          }
+        },
+        "damCrestElevation": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["M"]
+            }
+          }
+        },
+
+        "constructionMaterials": {
+          "type": "string",
+          "enum": ["Concrete", "Earth-fill", "Rock-fill", "Masonry"]
+        },
+        "damType": {
+          "type": "string",
+          "enum": ["Concrete Gravity", "Arch Dam", "Embankment Dam"]
+        },
+
+        "yearOfConstruction": {
+          "type": "number"
+        },
+        "hasSpillway": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "hasintakes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "isPartOfReservoir": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "isPartOfHydroPlant": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

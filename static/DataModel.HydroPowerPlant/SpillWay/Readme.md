@@ -1,8 +1,8 @@
-# Valve
+# Spillway
 <div style="display: flex; justify-content: center; margin: 20px 0">
   <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/static/Diagrams/Spillway.png" 
        alt="Valve Diagram" 
-       style="max-width: 100%; height: auto; width: 350px">
+       style="max-width: 100%; height: auto; width: 300px">
 </div>
 
 ## Definition

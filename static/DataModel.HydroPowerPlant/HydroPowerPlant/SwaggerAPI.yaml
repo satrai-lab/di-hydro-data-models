@@ -138,6 +138,10 @@ paths:
                 type: "Relationship"
                 object:
                   - "urn:ngsi-ld:SurgeTank:st1"
+              hasSpillway:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Spillway:sw1"
       responses:
         '201':
           description: Entity created successfully
@@ -229,6 +233,8 @@ components:
         hasWaterBody:
           $ref: '#/components/schemas/RelationshipArray'
         hasSurgeTank:
+          $ref: '#/components/schemas/RelationshipArray'
+        hasSpillway:
           $ref: '#/components/schemas/RelationshipArray'
 
     # Reusable property schemas

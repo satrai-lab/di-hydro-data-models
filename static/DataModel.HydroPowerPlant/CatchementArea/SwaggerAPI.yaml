@@ -1,0 +1,280 @@
+openapi: 3.0.3
+info:
+  title: CatchmentArea Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for CatchmentArea entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a CatchmentArea entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/CatchmentArea'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:CatchmentArea:ca1"
+              type: "CatchmentArea"
+              area:
+                type: "Property"
+                value:
+                  value: 1250
+                  unitCode: "KM2"
+              annualPrecipitationVolume:
+                type: "Property"
+                value:
+                  value: 3500000000
+                  unitCode: "M3"
+              seasonalRainfallDistribution:
+                type: "Property"
+                value:
+                  spring: 0.30
+                  summer: 0.25
+                  autumn: 0.20
+                  winter: 0.25
+              soilType:
+                type: "Property"
+                value: "Loam"
+              vegetationCover:
+                type: "Property"
+                value: "Mixed forest and grassland"
+              flowVariationProfile:
+                type: "Property"
+                value:
+                  jan: 50
+                  feb: 45
+                  mar: 60
+                  apr: 80
+                  may: 120
+                  jun: 150
+                  jul: 140
+                  aug: 130
+                  sep: 100
+                  oct: 70
+                  nov: 55
+                  dec: 50
+              averageWaterFlow:
+                type: "Property"
+                value:
+                  value: 75
+                  unitCode: "M3S"
+              suppliesWaterToWaterBody:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:WaterBody:river1"
+                  - "urn:ngsi-ld:WaterBody:Res1"
+              suppliesWaterToHydroPowerPlant:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    CatchmentArea:
+      type: object
+      required:
+        - id
+        - type
+      properties:
+
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the CatchmentArea
+          example: "urn:ngsi-ld:CatchmentArea:ca1"
+
+        type:
+          type: string
+          enum:
+            - CatchmentArea
+          description: Fixed entity type identifier
+          example: "CatchmentArea"
+
+        area:
+          type: object
+          description: Total area of the catchment
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - KM2
+          example:
+            type: "Property"
+            value:
+              value: 1250
+              unitCode: "KM2"
+
+        annualPrecipitationVolume:
+          type: object
+          description: Annual rainfall volume collected
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M3
+          example:
+            type: "Property"
+            value:
+              value: 3500000000
+              unitCode: "M3"
+
+        seasonalRainfallDistribution:
+          type: object
+          description: Seasonal breakdown of precipitation (fractions)
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              description: Ratios for each season summing to 1.0
+          example:
+            type: "Property"
+            value:
+              spring: 0.30
+              summer: 0.25
+              autumn: 0.20
+              winter: 0.25
+
+        soilType:
+          type: object
+          description: Dominant soil classification
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Loam"
+
+        vegetationCover:
+          type: object
+          description: Description of vegetation types and coverage
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Mixed forest and grassland"
+
+        flowVariationProfile:
+          type: object
+          description: Monthly flow variation profile (m³/s)
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              description: Map of month abbreviations to average flow values
+          example:
+            type: "Property"
+            value:
+              jan: 50
+              feb: 45
+              mar: 60
+              apr: 80
+              may: 120
+              jun: 150
+              jul: 140
+              aug: 130
+              sep: 100
+              oct: 70
+              nov: 55
+              dec: 50
+
+        averageWaterFlow:
+          type: object
+          description: Average historical water flow rate
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+              example: "Property"
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M3S
+          example:
+            type: "Property"
+            value:
+              value: 75
+              unitCode: "M3S"
+
+        suppliesWaterToWaterBody:
+          type: object
+          description: Downstream WaterBody entities receiving flow
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:WaterBody:river1"
+              - "urn:ngsi-ld:WaterBody:Res1"
+
+        suppliesWaterToHydroPowerPlant:
+          type: object
+          description: HydropowerPlant entities supplied by this catchment
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"

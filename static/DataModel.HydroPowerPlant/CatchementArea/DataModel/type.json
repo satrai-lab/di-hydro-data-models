@@ -41,7 +41,21 @@
           }
         },
         "seasonalRainfallDistribution": {
-          "type": "object"
+          "type": "object",
+          "properties": {
+            "spring": {
+              "type": "number"
+            },
+            "summer": {
+              "type": "number"
+            },
+            "autumn": {
+              "type": "number"
+            },
+            "winter": {
+              "type": "number"
+            }
+          }
         },
         "soilType": {
           "type": "string"
@@ -50,7 +64,45 @@
           "type": "string"
         },
         "flowVariationProfile": {
-          "type": "object"
+          "type": "object",
+          "properties": {
+            "jan":{
+              "type": "number"
+            },
+            "feb": {
+              "type": "number"
+            },
+            "mar": {
+              "type": "number"
+            },
+            "apr": {
+              "type": "number"
+            },
+            "may": {
+              "type": "number"
+            },
+            "jun": {
+              "type": "number"
+            },
+            "jul": {
+              "type": "number"
+            },
+            "aug": {
+              "type": "number"
+            },
+            "sep": {
+              "type": "number"
+            },
+            "oct": {
+              "type": "number"
+            },
+            "nov": {
+              "type": "number"
+            },
+            "dec": {
+              "type": "number"
+            }
+          }
         },
         "averageWaterFlow": {
         "type": "object",

@@ -1,0 +1,25 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:Transformer:trans1",
+  "type": "Transformer",
+  "transformerSupplier": {
+    "type": "Property",
+    "value": "PowerGear Inc."
+  },
+  "ratedPower": {
+    "type": "Property",
+    "value": 500,
+    "unitCode": "MVA"
+  },
+  "regulationRange": {
+    "type": "Property",
+    "value": "110kV/33kV",
+    "unitCode": "KV"
+  },
+  "belongsToGenerator": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Generator:gen1"
+    ]
+  }
+}

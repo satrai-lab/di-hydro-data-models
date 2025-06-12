@@ -1,0 +1,45 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:SurgeTank:st1",
+  "type": "SurgeTank",
+  "name": {
+    "type": "Property",
+    "value": "Alpine Surge Tank"
+  },
+  "geographicalLocation": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -121.5,
+        47.35
+      ]
+    }
+  },
+  "volumeCapacity": {
+    "type": "Property",
+    "value": {
+      "value": 5000,
+      "unitCode": "M3"
+    }
+  },
+  "responseTime": {
+    "type": "Property",
+    "value": {
+      "value": 2,
+      "unitCode": "S"
+    }
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  },
+  "relievesPressureForPenstock": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Penstock:pen1"
+    ]
+  }
+}

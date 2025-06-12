@@ -1,0 +1,52 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:Intake:int1",
+  "type": "Intake",
+  "name": {
+    "type": "Property",
+    "value": "Main River Intake"
+  },
+  "geographicalLocation": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -121.49,
+        47.33
+      ]
+    }
+  },
+  "intakeStructureType": {
+    "type": "Property",
+    "value": "Gated"
+  },
+  "waterFlowRate": {
+    "type": "Property",
+    "value": {
+      "value": 120,
+      "unitCode": "M3S"
+    }
+  },
+  "filtrationOrDebrisControl": {
+    "type": "Property",
+    "value": "Trash rack with 10 mm spacing"
+  },
+  "isPartOfDam": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Dam:dam1"
+    ]
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  },
+  "leadsToPenstocks": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Penstock:pen1"
+    ]
+  }
+}

@@ -171,5 +171,11 @@
     "object": [
       "urn:ngsi-ld:SurgeTank:st1"
     ]
+  },
+  "hasSpillway": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Spillway:sw1"
+    ]
   }
 }

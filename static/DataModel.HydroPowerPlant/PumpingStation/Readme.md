@@ -8,7 +8,7 @@
 
 ## Definition
 
-A **PumpingStation** is an installation within a hydropower system that lifts water from a lower elevation back into an upstream reservoir—often as part of a pumped storage scheme. It consists of electrically driven pumps, motors, and associated controls, boosting stored potential energy and enabling additional generation capacity during peak demand.
+A **PumpingStation** is a facility that moves water from one location to another—such as from a river or lower reservoir up to an upper reservoir or between network segments—using electrically driven pumps.
 
 ## Attributes Specifications
 

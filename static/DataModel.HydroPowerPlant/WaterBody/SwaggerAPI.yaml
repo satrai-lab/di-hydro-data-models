@@ -1,0 +1,500 @@
+openapi: 3.0.3
+info:
+  title: WaterBody Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for WaterBody entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a WaterBody entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/WaterBody'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:WaterBody:river1"
+              type: "WaterBody"
+              name:
+                type: "Property"
+                value: "Alpine River"
+              waterBodyCategory:
+                type: "Property"
+                value: "River"
+              geographicalLocation:
+                type: "GeoProperty"
+                value:
+                  type: "Point"
+                  coordinates: [-121.51, 47.34]
+              dimensions:
+                type: "Property"
+                value:
+                  surfaceArea:
+                    value: 15.2
+                    unitCode: "KM2"
+                  length:
+                    value: 120
+                    unitCode: "KM"
+                  averageDepth:
+                    value: 8.5
+                    unitCode: "M"
+              waterFlowCharacteristics:
+                type: "Property"
+                value:
+                  averageFlowRate:
+                    value: 200
+                    unitCode: "M3S"
+                  peakFlow:
+                    value: 450
+                    unitCode: "M3S"
+                  seasonalVariation:
+                    winter:
+                      value: 120
+                      unitCode: "M3S"
+                    spring:
+                      value: 250
+                      unitCode: "M3S"
+                    summer:
+                      value: 180
+                      unitCode: "M3S"
+                    autumn:
+                      value: 160
+                      unitCode: "M3S"
+              waterLevel:
+                type: "Property"
+                value:
+                  averageLevel:
+                    value: 3.2
+                    unitCode: "M"
+              waterQuality:
+                type: "Property"
+                value:
+                  temperature:
+                    value: 7.5
+                    unitCode: "C"
+                  pH: 7.8
+                  dissolvedOxygen:
+                    value: 9.1
+                    unitCode: "MG/L"
+                  sedimentLoad:
+                    value: 45
+                    unitCode: "MG/L"
+              environmentalIndicators:
+                type: "Property"
+                value:
+                  biodiversityIndex: 0.82
+                  invasiveSpeciesPresent: false
+              operationalData:
+                type: "Property"
+                value:
+                  floodRisk: "Medium"
+                  waterRights: "Mixed"
+              isFedBy:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:CatchmentArea:ca1"
+              isPartOfHydroPowerPlant:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    WaterBody:
+      type: object
+      required:
+        - id
+        - type
+        - name
+      properties:
+
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the WaterBody
+          example: "urn:ngsi-ld:WaterBody:river1"
+
+        type:
+          type: string
+          enum:
+            - WaterBody
+          description: Fixed entity type identifier
+          example: "WaterBody"
+
+        name:
+          type: object
+          description: Official or common name of the WaterBody
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Alpine River"
+
+        waterBodyCategory:
+          type: object
+          description: Classification of the water body
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+              enum:
+                - River
+                - Lake
+                - Reservoir
+                - Other
+          example:
+            type: "Property"
+            value: "River"
+
+        geographicalLocation:
+          type: object
+          description: GeoJSON Point representing the water body’s location (longitude, latitude)
+          properties:
+            type:
+              type: string
+              enum:
+                - GeoProperty
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Point
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+                  minItems: 2
+                  maxItems: 2
+          example:
+            type: "GeoProperty"
+            value:
+              type: "Point"
+              coordinates: [-121.51, 47.34]
+
+        dimensions:
+          type: object
+          description: Physical size parameters of the water body
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                surfaceArea:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - KM2
+                length:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - KM
+                averageDepth:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - M
+          example:
+            type: "Property"
+            value:
+              surfaceArea:
+                value: 15.2
+                unitCode: "KM2"
+              length:
+                value: 120
+                unitCode: "KM"
+              averageDepth:
+                value: 8.5
+                unitCode: "M"
+
+        waterFlowCharacteristics:
+          type: object
+          description: Flow metrics including average, peak, and seasonal variation
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                averageFlowRate:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - M3S
+                peakFlow:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - M3S
+                seasonalVariation:
+                  type: object
+                  properties:
+                    winter:
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                        unitCode:
+                          type: string
+                          enum:
+                            - M3S
+                    spring:
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                        unitCode:
+                          type: string
+                          enum:
+                            - M3S
+                    summer:
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                        unitCode:
+                          type: string
+                          enum:
+                            - M3S
+                    autumn:
+                      type: object
+                      properties:
+                        value:
+                          type: number
+                        unitCode:
+                          type: string
+                          enum:
+                            - M3S
+          example:
+            type: "Property"
+            value:
+              averageFlowRate:
+                value: 200
+                unitCode: "M3S"
+              peakFlow:
+                value: 450
+                unitCode: "M3S"
+              seasonalVariation:
+                winter:
+                  value: 120
+                  unitCode: "M3S"
+                spring:
+                  value: 250
+                  unitCode: "M3S"
+                summer:
+                  value: 180
+                  unitCode: "M3S"
+                autumn:
+                  value: 160
+                  unitCode: "M3S"
+
+        waterLevel:
+          type: object
+          description: Water level statistics
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                averageLevel:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - M
+          example:
+            type: "Property"
+            value:
+              averageLevel:
+                value: 3.2
+                unitCode: "M"
+
+        waterQuality:
+          type: object
+          description: Key water quality parameters
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                temperature:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - C
+                pH:
+                  type: number
+                  example: 7.8
+                dissolvedOxygen:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - MG/L
+                sedimentLoad:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - MG/L
+          example:
+            type: "Property"
+            value:
+              temperature:
+                value: 7.5
+                unitCode: "C"
+              pH: 7.8
+              dissolvedOxygen:
+                value: 9.1
+                unitCode: "MG/L"
+              sedimentLoad:
+                value: 45
+                unitCode: "MG/L"
+
+        environmentalIndicators:
+          type: object
+          description: Ecological indicators and presence of invasive species
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                biodiversityIndex:
+                  type: number
+                invasiveSpeciesPresent:
+                  type: boolean
+          example:
+            type: "Property"
+            value:
+              biodiversityIndex: 0.82
+              invasiveSpeciesPresent: false
+
+        operationalData:
+          type: object
+          description: Management data including flood risk and water rights
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                floodRisk:
+                  type: string
+                  enum:
+                    - Low
+                    - Medium
+                    - High
+                waterRights:
+                  type: string
+                  enum:
+                    - Public
+                    - Private
+                    - Mixed
+          example:
+            type: "Property"
+            value:
+              floodRisk: "Medium"
+              waterRights: "Mixed"
+
+        isFedBy:
+          type: object
+          description: References to upstream CatchmentArea entities
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:CatchmentArea:ca1"
+
+        isPartOfHydroPowerPlant:
+          type: object
+          description: References to HydropowerPlant entities that utilize this water body
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"

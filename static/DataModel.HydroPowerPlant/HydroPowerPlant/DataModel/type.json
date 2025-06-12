@@ -251,6 +251,13 @@
           "format": "uri"
         }
       }
+      "hasSpillway": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
     },
     "additionalProperties": false
     }

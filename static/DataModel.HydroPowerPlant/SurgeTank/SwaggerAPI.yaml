@@ -1,0 +1,197 @@
+openapi: 3.0.3
+info:
+  title: SurgeTank Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for SurgeTank entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a SurgeTank entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/SurgeTank'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:SurgeTank:st1"
+              type: "SurgeTank"
+              name:
+                type: "Property"
+                value: "Alpine Surge Tank"
+              geographicalLocation:
+                type: "GeoProperty"
+                value:
+                  type: "Point"
+                  coordinates: [-121.50, 47.35]
+              volumeCapacity:
+                type: "Property"
+                value:
+                  value: 5000
+                  unitCode: "M3"
+              responseTime:
+                type: "Property"
+                value:
+                  value: 2
+                  unitCode: "S"
+              isPartOfHydroPowerPlant:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+              relievesPressureForPenstock:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Penstock:pen1"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    SurgeTank:
+      type: object
+      required:
+        - id
+        - type
+        - name
+      properties:
+
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the SurgeTank
+          example: "urn:ngsi-ld:SurgeTank:st1"
+
+        type:
+          type: string
+          enum:
+            - SurgeTank
+          description: Fixed entity type identifier
+          example: "SurgeTank"
+
+        name:
+          type: object
+          description: Official or common name of the SurgeTank
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Alpine Surge Tank"
+
+        geographicalLocation:
+          type: object
+          description: GeoJSON Point representing the surge tank’s location (longitude, latitude)
+          properties:
+            type:
+              type: string
+              enum:
+                - GeoProperty
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Point
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+                  minItems: 2
+                  maxItems: 2
+          example:
+            type: "GeoProperty"
+            value:
+              type: "Point"
+              coordinates: [-121.50, 47.35]
+
+        volumeCapacity:
+          type: object
+          description: Total volume that the surge tank can accommodate
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M3
+          example:
+            type: "Property"
+            value:
+              value: 5000
+              unitCode: "M3"
+
+        responseTime:
+          type: object
+          description: Time it takes for the surge tank to respond to a pressure surge
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - S
+          example:
+            type: "Property"
+            value:
+              value: 2
+              unitCode: "S"
+
+        isPartOfHydroPowerPlant:
+          type: object
+          description: Relationship to the HydropowerPlant entity this surge tank belongs to
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+
+        relievesPressureForPenstock:
+          type: object
+          description: Relationship to Penstock entities for which this surge tank relieves pressure
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Penstock:pen1"

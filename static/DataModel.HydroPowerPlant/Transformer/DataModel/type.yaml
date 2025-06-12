@@ -1,0 +1,85 @@
+---
+components:
+  schemas:
+
+    Transformer:
+      required:
+        - id
+        - type
+      properties:
+        id:
+          type: string
+          description: "Unique identifier of the Transformer"
+          maxLength: 256
+          minLength: 1
+          pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+          x-ngsi:
+            type: Property
+        type:
+          type: string
+          enum:
+            - Transformer
+          description: "Must be set to ‘Transformer’"
+          x-ngsi:
+            type: Property
+        transformerSupplier:
+          type: string
+          description: "Manufacturer of the transformer"
+          x-ngsi:
+            type: Property
+        ratedPower:
+          type: object
+          description: "Nameplate apparent-power capacity under normal operating conditions (megavolt-amperes (MVA))"
+          properties:
+            value:
+              type: number
+              description: "Rated power value in MVA"
+            unitCode:
+              type: string
+              enum:
+                - "MVA"
+              description: "UN/CEFACT unit code for megavolt-amperes"
+          x-ngsi:
+            type: Property
+        regulationRange:
+          type: object
+          description: "Voltage conversion ratio, expressed as 'input kV/output kV' (kilovolts (kV))"
+          properties:
+            value:
+              type: string
+              description: "Voltage conversion ratio (e.g., 110kV/33kV)"
+            unitCode:
+              type: string
+              enum:
+                - "KV"
+              description: "UN/CEFACT unit code for kilovolt"
+          x-ngsi:
+            type: Property
+
+        belongsToGenerator:
+          type: array
+          description: "Array of references to the single Generator that this transformer serves"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+
+info:
+  description: "Data Model of Transformer"
+  title: HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

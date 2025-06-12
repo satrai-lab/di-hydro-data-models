@@ -1,0 +1,179 @@
+---
+components:
+  schemas:
+
+    Penstock:
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          anyOf: &anyof
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              type: string
+          format: uri
+          type: string
+          description: "Unique identifier of the Penstock"
+          x-ngsi:
+            type: Property
+        type:
+          type: string
+          enum:
+            - Penstock
+          description: "NGSI Entity type. It has to be Penstock"
+          x-ngsi:
+            type: Property
+        name:
+          type: string
+          description: "The official or common name of the Penstock"
+          x-ngsi:
+            type: Property
+        geographicalLocation:
+          type: object
+          description: "GeoJSON property of type 'Point' representing the penstock’s starting location. The first element in coordinates is longitude, and the second is latitude."
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+              minItems: 2
+          x-ngsi:
+            type: GeoProperty
+        length:
+          type: object
+          description: "The physical length of the penstock"
+          properties:
+            value:
+              type: number
+              description: "Length value in meters"
+            unitCode:
+              type: string
+              enum:
+                - "M"
+              description: "UN/CEFACT unit code for meter"
+          x-ngsi:
+            type: Property
+        diameter:
+          type: object
+          description: "The internal diameter of the penstock"
+          properties:
+            value:
+              type: number
+              description: "Diameter value in meters"
+            unitCode:
+              type: string
+              enum:
+                - "M"
+              description: "UN/CEFACT unit code for meter"
+          x-ngsi:
+            type: Property
+        material:
+          type: string
+          enum:
+            - "Steel"
+            - "Reinforced Concrete"
+            - "Composite"
+          description: "The construction material of the penstock (e.g., steel, reinforced concrete, or composite materials)"
+          x-ngsi:
+            type: Property
+        designPressure:
+          type: object
+          description: "The maximum pressure the penstock is engineered to withstand"
+          properties:
+            value:
+              type: number
+              description: "Design pressure value"
+            unitCode:
+              type: string
+              enum:
+                - "BAR"
+              description: "UN/CEFACT unit code for bar"
+          x-ngsi:
+            type: Property
+        flowCapacity:
+          type: object
+          description: "The designed maximum flow capacity of the penstock"
+          properties:
+            value:
+              type: number
+              description: "Flow capacity value in cubic meters per second"
+            unitCode:
+              type: string
+              enum:
+                - "M3S"
+              description: "UN/CEFACT unit code for cubic meters per second"
+          x-ngsi:
+            type: Property
+      
+
+        isPartOfHydroPowerPlant:
+          type: array
+          description: "Array of references to the HydropowerPlant entity that this penstock is part of"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        isConnectedToIntake:
+          type: array
+          description: "Array of references to the Intake entity connected to this penstock"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        isConnectedToSurgeTank:
+          type: array
+          description: "Array of references to the SurgeTank entity connected to this penstock"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        isConnectedToValve:
+          type: array
+          description: "Array of references to the Valve entity connected to this penstock"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        isConnectedToValveHouse:
+          type: array
+          description: "Array of references to the ValveHouse entity connected to this penstock"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+
+
+info:
+  description: "Data Model of Penstock for Hydropower Plant Modeling"
+  title: HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

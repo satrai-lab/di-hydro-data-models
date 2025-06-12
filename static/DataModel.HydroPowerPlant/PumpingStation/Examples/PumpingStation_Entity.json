@@ -1,0 +1,46 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:PumpingStation:ps1",
+  "type": "PumpingStation",
+  "name": {
+    "type": "Property",
+    "value": "Alpine Peak Pumping Station"
+  },
+  "totalPower": {
+    "type": "Property",
+    "value": {
+      "value": 300,
+      "unitCode": "MW"
+    }
+  },
+  "unitCount": {
+    "type": "Property",
+    "value": 4
+  },
+  "yearlyEnergyConsumption": {
+    "type": "Property",
+    "value": {
+      "value": 1200000000,
+      "unitCode": "KWH"
+    }
+  },
+  "estimatedAnnualContribution": {
+    "type": "Property",
+    "value": {
+      "value": 8000000,
+      "unitCode": "MWH"
+    }
+  },
+  "feedsReservoir": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Reservoir:res1"
+    ]
+  },
+  "increasesProductionAt": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  }
+}

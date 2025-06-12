@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: Transformer Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for Transformer entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a Transformer entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Transformer'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:Transformer:trans1"
+              type: "Transformer"
+              transformerSupplier:
+                type: "Property"
+                value: "PowerGear Inc."
+              ratedPower:
+                type: "Property"
+                value: 500
+                unitCode: "MVA"
+              regulationRange:
+                type: "Property"
+                value: "110kV/33kV"
+                unitCode: "KV"
+              belongsToGenerator:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Generator:gen1"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    Transformer:
+      type: object
+      required:
+        - id
+        - type
+      properties:
+
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the Transformer
+          example: "urn:ngsi-ld:Transformer:trans1"
+
+        type:
+          type: string
+          enum:
+            - Transformer
+          description: Fixed entity type identifier
+          example: "Transformer"
+
+        transformerSupplier:
+          type: object
+          description: Manufacturer or supplier of the transformer
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "PowerGear Inc."
+
+        ratedPower:
+          type: object
+          description: Nameplate apparent-power capacity under normal conditions
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - MVA
+          example:
+            type: "Property"
+            value: 500
+            unitCode: "MVA"
+
+        regulationRange:
+          type: object
+          description: Voltage conversion ratio (input kV/output kV)
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+            unitCode:
+              type: string
+              enum:
+                - KV
+          example:
+            type: "Property"
+            value: "110kV/33kV"
+            unitCode: "KV"
+
+        belongsToGenerator:
+          type: object
+          description: Reference(s) to the Generator entity or entities this transformer serves
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Generator:gen1"

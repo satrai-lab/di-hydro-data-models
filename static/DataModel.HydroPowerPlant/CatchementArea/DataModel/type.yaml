@@ -152,7 +152,7 @@ components:
             type: Relationship
         
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/CatchementArea/DataModel/type.json#"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/CatchementArea/DataModel/type.json"
 
 info:
   description: "Data Model of Catchment Area for Hydropower Plant Modeling"

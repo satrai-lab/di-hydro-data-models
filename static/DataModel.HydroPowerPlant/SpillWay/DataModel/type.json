@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "HydropowerPlantModeling",
+  "definitions": {
+    "Spillway": {
+      "type": "object",
+      "required": ["id", "type", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["Spillway"]
+        },
+        "name": {
+          "type": "string"
+        },
+        "geographicalLocation": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Point"]
+            },
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2
+            }
+          }
+        },
+        "dischargeCapacity": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["M3S"]
+            }
+          }
+        },
+        "designFlowRate": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["M3S"]
+            }
+          }
+        },
+        "spillwayType": {
+          "type": "string",
+          "enum": [
+            "Chute Spillway",
+            "Side-Channel Spillway",
+            "Fuse Plug Spillway"
+          ]
+        },
+        "crestElevation": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["M"]
+            }
+          }
+        },
+        "spillwayClassification": {
+          "type": "string",
+          "enum": ["Principal", "Emergency"]
+        },
+        "isPartOfHydrPowerPlant": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

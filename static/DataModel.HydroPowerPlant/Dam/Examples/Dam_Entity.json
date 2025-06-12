@@ -1,0 +1,76 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:Dam:dam1",
+  "type": "Dam",
+  "name": {
+    "type": "Property",
+    "value": "Alpine Valley Dam"
+  },
+  "geographicalLocation": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -121.48,
+        47.32
+      ]
+    }
+  },
+  "damHeight": {
+    "type": "Property",
+    "value": {
+      "value": 85,
+      "unitCode": "M"
+    }
+  },
+  "damLength": {
+    "type": "Property",
+    "value": {
+      "value": 320,
+      "unitCode": "M"
+    }
+  },
+  "constructionMaterials": {
+    "type": "Property",
+    "value": "Concrete"
+  },
+  "damType": {
+    "type": "Property",
+    "value": "Concrete Gravity"
+  },
+  "yearOfConstruction": {
+    "type": "Property",
+    "value": 1978
+  },
+  "damCrestElevation": {
+    "type": "Property",
+    "value": {
+      "value": 400,
+      "unitCode": "M"
+    }
+  },
+  "hasSpillway": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Spillway:sw1"
+    ]
+  },
+  "hasintakes": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Intake:int1"
+    ]
+  },
+  "isPartOfReservoir": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Reservoir:res1"
+    ]
+  },
+  "isPartOfHydroPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  }
+}

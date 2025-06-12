@@ -52,6 +52,19 @@ components:
         seasonalRainfallDistribution:
           type: object
           description: "Breakdown of how the annual precipitation is distributed across different seasons"
+          properties:
+            spring:
+              type: number
+              description: "Percentage of annual precipitation in spring"
+            summer:
+              type: number
+              description: "Percentage of annual precipitation in summer"
+            autumn:
+              type: number
+              description: "Percentage of annual precipitation in autumn"
+            winter:
+              type: number
+              description: "Percentage of annual precipitation in winter"
           x-ngsi:
             type: Property
         soilType:
@@ -67,6 +80,43 @@ components:
         flowVariationProfile:
           type: object
           description: "Data describing how water flow varies throughout the year"
+          properties:
+            jan:
+              type: number
+              description: "Water flow in January (in cubic meters per second)"
+            feb:
+              type: number
+              description: "Water flow in February (in cubic meters per second)"
+            mar:
+              type: number
+              description: "Water flow in March (in cubic meters per second)"
+            apr:
+              type: number
+              description: "Water flow in April (in cubic meters per second)"
+            may:
+              type: number
+              description: "Water flow in May (in cubic meters per second)"
+            jun:
+              type: number
+              description: "Water flow in June (in cubic meters per second)"
+            jul:
+              type: number
+              description: "Water flow in July (in cubic meters per second)"
+            aug:
+              type: number
+              description: "Water flow in August (in cubic meters per second)"
+            sep:
+              type: number
+              description: "Water flow in September (in cubic meters per second)"
+            oct:
+              type: number
+              description: "Water flow in October (in cubic meters per second)"
+            nov:
+              type: number
+              description: "Water flow in November (in cubic meters per second)"
+            dec:
+              type: number
+              description: "Water flow in December (in cubic meters per second)"
           x-ngsi:
             type: Property
         averageWaterFlow:
@@ -102,7 +152,7 @@ components:
             type: Relationship
         
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/CatchementArea/DataModel/type.json#"
 
 info:
   description: "Data Model of Catchment Area for Hydropower Plant Modeling"

@@ -1,0 +1,324 @@
+openapi: 3.0.3
+info:
+  title: Dam Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for Dam entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a Dam entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Dam'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:Dam:dam1"
+              type: "Dam"
+              name:
+                type: "Property"
+                value: "Alpine Valley Dam"
+              geographicalLocation:
+                type: "GeoProperty"
+                value:
+                  type: "Point"
+                  coordinates: [-121.48, 47.32]
+              damHeight:
+                type: "Property"
+                value:
+                  value: 85
+                  unitCode: "M"
+              damLength:
+                type: "Property"
+                value:
+                  value: 320
+                  unitCode: "M"
+              constructionMaterials:
+                type: "Property"
+                value: "Concrete"
+              damType:
+                type: "Property"
+                value: "Concrete Gravity"
+              yearOfConstruction:
+                type: "Property"
+                value: 1978
+              damCrestElevation:
+                type: "Property"
+                value:
+                  value: 400
+                  unitCode: "M"
+              hasSpillway:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Spillway:sw1"
+              hasintakes:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Intake:int1"
+              isPartOfReservoir:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Reservoir:res1"
+              isPartOfHydroPlant:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    Dam:
+      type: object
+      required:
+        - id
+        - type
+        - name
+      properties:
+
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the Dam
+          example: "urn:ngsi-ld:Dam:dam1"
+
+        type:
+          type: string
+          enum:
+            - Dam
+          description: Fixed entity type identifier
+          example: "Dam"
+
+        name:
+          type: object
+          description: Official or common name of the Dam
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Alpine Valley Dam"
+
+        geographicalLocation:
+          type: object
+          description: GeoJSON Point of the dam’s location (longitude, latitude)
+          properties:
+            type:
+              type: string
+              enum:
+                - GeoProperty
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Point
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+                  minItems: 2
+                  maxItems: 2
+          example:
+            type: "GeoProperty"
+            value:
+              type: "Point"
+              coordinates: [-121.48, 47.32]
+
+        damHeight:
+          type: object
+          description: Vertical height from foundation to crest
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M
+          example:
+            type: "Property"
+            value:
+              value: 85
+              unitCode: "M"
+
+        damLength:
+          type: object
+          description: Horizontal span or width of the dam
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M
+          example:
+            type: "Property"
+            value:
+              value: 320
+              unitCode: "M"
+
+        constructionMaterials:
+          type: object
+          description: Primary materials used in dam construction
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Concrete"
+
+        damType:
+          type: object
+          description: Structural design classification
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+              enum:
+                - "Concrete Gravity"
+                - "Arch Dam"
+                - "Embankment Dam"
+          example:
+            type: "Property"
+            value: "Concrete Gravity"
+
+        yearOfConstruction:
+          type: object
+          description: Calendar year when the dam was built
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: integer
+          example:
+            type: "Property"
+            value: 1978
+
+        damCrestElevation:
+          type: object
+          description: Elevation of the dam crest above mean sea level
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M
+          example:
+            type: "Property"
+            value:
+              value: 400
+              unitCode: "M"
+
+        hasSpillway:
+          type: object
+          description: References to Spillway entities for controlled releases
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Spillway:sw1"
+
+        hasintakes:
+          type: object
+          description: References to Intake entities feeding the dam
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Intake:int1"
+
+        isPartOfReservoir:
+          type: object
+          description: References to Reservoir entities created by this dam
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Reservoir:res1"
+
+        isPartOfHydroPlant:
+          type: object
+          description: References to HydropowerPlant entities this dam belongs to
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"

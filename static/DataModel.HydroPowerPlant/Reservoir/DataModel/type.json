@@ -1,0 +1,510 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "HydropowerPlantModeling",
+  "definitions": {
+    "WaterBody": {
+      "type": "object",
+      "required": ["id", "type", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["WaterBody"]
+        },
+        "name": {
+          "type": "string"
+        },
+        "waterBodyCategory": {
+          "type": "string",
+          "enum": ["River", "Lake", "Reservoir", "Other"]
+        },
+        "geographicalLocation": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Point"]
+            },
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2
+            }
+          }
+        },
+        "dimensions": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "surfaceArea": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["KM2"]
+                    }
+                  }
+                },
+                "length": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["KM"]
+                    }
+                  }
+                },
+                "averageDepth": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["M"]
+                    }
+                  }
+                }
+              },
+              "required": ["surfaceArea", "length", "averageDepth"]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "surfaceArea": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["KM2"]
+                    }
+                  }
+                },
+                "averageDepth": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["M"]
+                    }
+                  }
+                }
+              },
+              "required": ["surfaceArea", "averageDepth"]
+            }
+          ]
+        },
+        "waterFlowCharacteristics": {
+          "type": "object",
+          "properties": {
+            "averageFlowRate": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M3S"]
+                }
+              }
+            },
+            "peakFlow": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M3S"]
+                }
+              }
+            },
+            "seasonalVariation": {
+              "type": "object",
+              "properties": {
+                "winter": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["M3S"]
+                    }
+                  }
+                },
+                "spring": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["M3S"]
+                    }
+                  }
+                },
+                "summer": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["M3S"]
+                    }
+                  }
+                },
+                "autumn": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["M3S"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "waterLevel": {
+          "type": "object",
+          "properties": {
+            "averageLevel": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
+              }
+            }
+          }
+        },
+        "waterQuality": {
+          "type": "object",
+          "properties": {
+            "temperature": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["C"]
+                }
+              }
+            },
+            "pH": {
+              "type": "number"
+            },
+            "dissolvedOxygen": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MG/L"]
+                }
+              }
+            },
+            "sedimentLoad": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MG/L"]
+                }
+              }
+            }
+          }
+        },
+        "environmentalIndicators": {
+          "type": "object",
+          "properties": {
+            "biodiversityIndex": {
+              "type": "number"
+            },
+            "invasiveSpeciesPresent": {
+              "type": "boolean"
+            }
+          }
+        },
+        "operationalData": {
+          "type": "object",
+          "properties": {
+            "floodRisk": {
+              "type": "string",
+              "enum": ["Low", "Medium", "High"]
+            },
+            "waterRights": {
+              "type": "string",
+              "enum": ["Public", "Private", "Mixed"]
+            }
+          }
+        },
+        "isFedBy": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "isPartOfHydroPowerPlant": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "Reservoir": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/WaterBody"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "storageCapacity": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M3"]
+                }
+              }
+            },
+            "inflowCharacteristics": {
+              "type": "object",
+              "properties": {
+                "averageInflowRate": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["M3S"]
+                    }
+                  }
+                },
+                "retentionTime": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["H"]
+                    }
+                  }
+                }
+              }
+            },
+            "outflowControl": {
+              "type": "object",
+              "properties": {
+                "gateStatus": {
+                  "type": "string"
+                },
+                "averageOutflowRate": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["M3S"]
+                    }
+                  }
+                }
+              }
+            },
+            "operationalData": {
+              "type": "object",
+              "properties": {
+                "historicalMaxLevel": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["M"]
+                    }
+                  }
+                },
+                "historicalMinLevel": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["M"]
+                    }
+                  }
+                }
+              }
+            },
+            "maxReservoirLevel": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["M"]
+              }
+            }
+            },
+            "normalReservoirLevel": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["M"]
+              }
+            }
+            },
+            "reservoirLength": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["KM"]
+              }
+            }
+            },
+            "maximumEnergeticVolume": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["GWH"]
+              }
+            }
+            },
+            "reservoirType": {
+            "type": "string",
+            "enum": ["seasonal", "weekly", "daily"]
+            },
+            "reservoirVolumes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "year": {
+                  "type": "integer"
+                },
+                "grossVolume": {
+                  "type": "number",
+                  "unitCode": {
+                    "type": "string",
+                    "enum": ["M3"]
+                  }
+                },
+                "usefulVolume": {
+                  "type": "number",
+                  "unitCode": {
+                    "type": "string",
+                    "enum": ["M3"]
+                  }
+                }
+              }
+            }
+            },
+            "hasPressureTunnel": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+            },
+            "fedByPumpingStation": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+            },
+            "hasDams": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "feedsIntakes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

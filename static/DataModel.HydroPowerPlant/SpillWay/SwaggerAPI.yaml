@@ -1,0 +1,244 @@
+openapi: 3.0.3
+info:
+  title: Spillway Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for Spillway entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a Spillway entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Spillway'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:Spillway:sw1"
+              type: "Spillway"
+              name:
+                type: "Property"
+                value: "Main Dam Spillway"
+              geographicalLocation:
+                type: "GeoProperty"
+                value:
+                  type: "Point"
+                  coordinates: [-121.49, 47.33]
+              dischargeCapacity:
+                type: "Property"
+                value:
+                  value: 2000
+                  unitCode: "M3S"
+              designFlowRate:
+                type: "Property"
+                value:
+                  value: 1800
+                  unitCode: "M3S"
+              spillwayType:
+                type: "Property"
+                value: "Chute Spillway"
+              crestElevation:
+                type: "Property"
+                value:
+                  value: 385
+                  unitCode: "M"
+              spillwayClassification:
+                type: "Property"
+                value: "Principal"
+              isPartOfHydroPowerPlant:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    Spillway:
+      type: object
+      required:
+        - id
+        - type
+        - name
+      properties:
+
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the Spillway
+          example: "urn:ngsi-ld:Spillway:sw1"
+
+        type:
+          type: string
+          enum:
+            - Spillway
+          description: Fixed entity type identifier
+          example: "Spillway"
+
+        name:
+          type: object
+          description: Official or common name of the Spillway
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Main Dam Spillway"
+
+        geographicalLocation:
+          type: object
+          description: GeoJSON Point representing the spillway’s location (longitude, latitude)
+          properties:
+            type:
+              type: string
+              enum:
+                - GeoProperty
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Point
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+                  minItems: 2
+                  maxItems: 2
+          example:
+            type: "GeoProperty"
+            value:
+              type: "Point"
+              coordinates: [-121.49, 47.33]
+
+        dischargeCapacity:
+          type: object
+          description: Maximum water discharge capacity of the spillway
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M3S
+          example:
+            type: "Property"
+            value:
+              value: 2000
+              unitCode: "M3S"
+
+        designFlowRate:
+          type: object
+          description: Flow rate engineered for normal operation
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M3S
+          example:
+            type: "Property"
+            value:
+              value: 1800
+              unitCode: "M3S"
+
+        spillwayType:
+          type: object
+          description: Classification or design type of the spillway
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+              enum:
+                - "Chute Spillway"
+                - "Side-Channel Spillway"
+                - "Fuse Plug Spillway"
+          example:
+            type: "Property"
+            value: "Chute Spillway"
+
+        crestElevation:
+          type: object
+          description: Elevation of the spillway’s crest above mean sea level
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M
+          example:
+            type: "Property"
+            value:
+              value: 385
+              unitCode: "M"
+
+        spillwayClassification:
+          type: object
+          description: Indicates principal or emergency operation role
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+              enum:
+                - Principal
+                - Emergency
+          example:
+            type: "Property"
+            value: "Principal"
+
+        isPartOfHydroPowerPlant:
+          type: object
+          description: Relationship to HydropowerPlant entities that this spillway serves
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"

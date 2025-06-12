@@ -1,0 +1,330 @@
+---
+components:
+  schemas:
+
+    WaterBody:
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          anyOf: &anyof
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              type: string
+          format: uri
+          type: string
+          description: "Unique identifier of the WaterBody"
+          x-ngsi:
+            type: Property
+        type:
+          type: string
+          enum:
+            - WaterBody
+          description: "NGSI Entity type. It has to be WaterBody"
+          x-ngsi:
+            type: Property
+        name:
+          type: string
+          description: "The name of the WaterBody"
+          x-ngsi:
+            type: Property
+        waterBodyCategory:
+          type: string
+          enum:
+            - River
+            - Lake
+            - Reservoir
+            - Other
+          description: "Indicates whether the water body is a River, Lake, Reservoir, or Other"
+          x-ngsi:
+            type: Property
+        geographicalLocation:
+          type: object
+          description: "GeoJSON property of type 'Point' representing the water body’s location. The first element in coordinates is longitude, and the second is latitude."
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+              minItems: 2
+          x-ngsi:
+            type: GeoProperty
+        dimensions:
+          type: object
+          description: "Physical dimensions of the water body. Note: Not all nested properties may be applicable to every type of water body."
+          anyOf:
+            - type: object
+              properties:
+                surfaceArea:
+                  type: object
+                  description: "Surface area of the water body"
+                  properties:
+                    value:
+                      type: number
+                      description: "Surface area value"
+                    unitCode:
+                      type: string
+                      enum:
+                        - "KM2"
+                      description: "UN/CEFACT unit code for square kilometer"
+                length:
+                  type: object
+                  description: "Length of the water body (applicable for rivers or elongated lakes)"
+                  properties:
+                    value:
+                      type: number
+                      description: "Length value"
+                    unitCode:
+                      type: string
+                      enum:
+                        - "KM"
+                      description: "UN/CEFACT unit code for kilometer"
+                averageDepth:
+                  type: object
+                  description: "Average depth of the water body"
+                  properties:
+                    value:
+                      type: number
+                      description: "Depth value in meters"
+                    unitCode:
+                      type: string
+                      enum:
+                        - "M"
+                      description: "UN/CEFACT unit code for meter"
+              required:
+                - surfaceArea
+                - length
+                - averageDepth
+            - type: object
+              properties:
+                surfaceArea:
+                  type: object
+                  description: "Surface area of the water body"
+                  properties:
+                    value:
+                      type: number
+                      description: "Surface area value"
+                    unitCode:
+                      type: string
+                      enum:
+                        - "KM2"
+                      description: "UN/CEFACT unit code for square kilometer"
+                averageDepth:
+                  type: object
+                  description: "Average depth of the water body"
+                  properties:
+                    value:
+                      type: number
+                      description: "Depth value in meters"
+                    unitCode:
+                      type: string
+                      enum:
+                        - "M"
+                      description: "UN/CEFACT unit code for meter"
+              required:
+                - surfaceArea
+                - averageDepth
+          x-ngsi:
+            type: Property
+        waterFlowCharacteristics:
+          type: object
+          description: "Flow characteristics of the water body"
+          properties:
+            averageFlowRate:
+              type: object
+              description: "Average flow rate"
+              properties:
+                value:
+                  type: number
+                  description: "Average flow rate value"
+                unitCode:
+                  type: string
+                  enum:
+                    - "M3S"
+                  description: "UN/CEFACT unit code for cubic meters per second"
+            peakFlow:
+              type: object
+              description: "Peak flow rate"
+              properties:
+                value:
+                  type: number
+                  description: "Peak flow rate value"
+                unitCode:
+                  type: string
+                  enum:
+                    - "M3S"
+                  description: "UN/CEFACT unit code for cubic meters per second"
+            seasonalVariation:
+              type: object
+              description: "Seasonal flow variation details"
+              properties:
+                winter:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - "M3S"
+                spring:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - "M3S"
+                summer:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - "M3S"
+                autumn:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - "M3S"
+          x-ngsi:
+            type: Property
+        waterLevel:
+          type: object
+          description: "Water level data"
+          properties:
+            averageLevel:
+              type: object
+              description: "Average water level"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "M"
+          x-ngsi:
+            type: Property
+        waterQuality:
+          type: object
+          description: "Key water quality parameters"
+          properties:
+            temperature:
+              type: object
+              description: "Water temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "C"
+                  description: "UN/CEFACT unit code for Celsius"
+            pH:
+              type: number
+              description: "pH level"
+            dissolvedOxygen:
+              type: object
+              description: "Dissolved oxygen level"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "MG/L"
+                  description: "UN/CEFACT unit code for milligrams per liter"
+            sedimentLoad:
+              type: object
+              description: "Sediment load"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "MG/L"
+                  description: "UN/CEFACT unit code for milligrams per liter"
+          x-ngsi:
+            type: Property
+        environmentalIndicators:
+          type: object
+          description: "Environmental and ecological indicators"
+          properties:
+            biodiversityIndex:
+              type: number
+              description: "Biodiversity index"
+            invasiveSpeciesPresent:
+              type: boolean
+              description: "Indicator if invasive species are present"
+          x-ngsi:
+            type: Property
+        operationalData:
+          type: object
+          description: "Operational data such as flood risk and water rights"
+          properties:
+            floodRisk:
+              type: string
+              enum:
+                - "Low"
+                - "Medium"
+                - "High"
+              description: "Flood risk classification (e.g., Low, Medium, High)"
+            waterRights:
+              type: string
+              enum:
+                - "Public"
+                - "Private"
+                - "Mixed"
+              description: "Information on water rights or allocation"
+          x-ngsi:
+            type: Property
+        isFedBy:
+          type: array
+          description: "Array of references to the CatchmentArea entities that feed this water body"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+        isPartOfHydroPowerPlant:
+          type: array
+          description: "Array of references to the HydropowerPlant entities of which this water body is a part"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+
+info:
+  description: "Data Model of WaterBody for Hydropower Plant Modeling"
+  title: HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

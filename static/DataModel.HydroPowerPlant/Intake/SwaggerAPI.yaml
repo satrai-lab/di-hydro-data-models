@@ -1,0 +1,225 @@
+openapi: 3.0.3
+info:
+  title: Intake Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for Intake entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create an Intake entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Intake'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:Intake:int1"
+              type: "Intake"
+              name:
+                type: "Property"
+                value: "Main River Intake"
+              geographicalLocation:
+                type: "GeoProperty"
+                value:
+                  type: "Point"
+                  coordinates: [-121.49, 47.33]
+              intakeStructureType:
+                type: "Property"
+                value: "Gated"
+              waterFlowRate:
+                type: "Property"
+                value:
+                  value: 120
+                  unitCode: "M3S"
+              filtrationOrDebrisControl:
+                type: "Property"
+                value: "Trash rack with 10 mm spacing"
+              isPartOfDam:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Dam:dam1"
+              isPartOfHydroPowerPlant:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+              leadsToPenstocks:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Penstock:pen1"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    Intake:
+      type: object
+      required:
+        - id
+        - type
+        - name
+      properties:
+
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the Intake
+          example: "urn:ngsi-ld:Intake:int1"
+
+        type:
+          type: string
+          enum:
+            - Intake
+          description: Fixed entity type identifier
+          example: "Intake"
+
+        name:
+          type: object
+          description: Official or common name of the Intake
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Main River Intake"
+
+        geographicalLocation:
+          type: object
+          description: GeoJSON Point representing the intake’s location (longitude, latitude)
+          properties:
+            type:
+              type: string
+              enum:
+                - GeoProperty
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Point
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+                  minItems: 2
+                  maxItems: 2
+          example:
+            type: "GeoProperty"
+            value:
+              type: "Point"
+              coordinates: [-121.49, 47.33]
+
+        intakeStructureType:
+          type: object
+          description: Design or configuration of the intake
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Gated"
+
+        waterFlowRate:
+          type: object
+          description: Rate at which water is drawn into the intake
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M3S
+          example:
+            type: "Property"
+            value:
+              value: 120
+              unitCode: "M3S"
+
+        filtrationOrDebrisControl:
+          type: object
+          description: Mechanisms used to prevent debris entry
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Trash rack with 10 mm spacing"
+
+        isPartOfDam:
+          type: object
+          description: Relationship to the Dam entity this intake is part of
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Dam:dam1"
+
+        isPartOfHydroPowerPlant:
+          type: object
+          description: Relationship to the HydropowerPlant entity this intake serves
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+
+        leadsToPenstocks:
+          type: object
+          description: Relationship to Penstock entities receiving water from this intake
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Penstock:pen1"

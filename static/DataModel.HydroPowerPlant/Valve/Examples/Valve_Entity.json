@@ -1,0 +1,45 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:Valve:valve1",
+  "type": "Valve",
+  "name": {
+    "type": "Property",
+    "value": "Main Penstock Gate Valve"
+  },
+  "geographicalLocation": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -121.496,
+        47.335
+      ]
+    }
+  },
+  "valveType": {
+    "type": "Property",
+    "value": "Gate Valve"
+  },
+  "material": {
+    "type": "Property",
+    "value": "Stainless Steel"
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  },
+  "isPartOfValveHouse": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:ValveHouse:vh1"
+    ]
+  },
+  "isConnectedToPenstock": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Penstock:pen1"
+    ]
+  }
+}

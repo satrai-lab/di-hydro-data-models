@@ -4,17 +4,15 @@
   "type": "CatchmentArea",
   "area": {
     "type": "Property",
-    "value": {
-      "value": 1250,
-      "unitCode": "KM2"
-    }
+    "value": 1250,
+    "unitCode": "KM2"
   },
   "annualPrecipitationVolume": {
     "type": "Property",
-    "value": {
-      "value": 3500000000,
-      "unitCode": "M3"
-    }
+
+    "value": 3500000000,
+    "unitCode": "M3"
+
   },
   "seasonalRainfallDistribution": {
     "type": "Property",
@@ -52,10 +50,8 @@
   },
   "averageWaterFlow": {
     "type": "Property",
-    "value": {
-      "value": 75,
-      "unitCode": "M3S"
-    }
+    "value": 75,
+    "unitCode": "M3S"
   },
   "suppliesWaterToWaterBody": {
     "type": "Relationship",

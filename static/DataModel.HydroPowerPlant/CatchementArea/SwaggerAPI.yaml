@@ -22,14 +22,12 @@ paths:
               type: "CatchmentArea"
               area:
                 type: "Property"
-                value:
-                  value: 1250
-                  unitCode: "KM2"
+                value: 1250
+                unitCode: "KM2"
               annualPrecipitationVolume:
                 type: "Property"
-                value:
-                  value: 3500000000
-                  unitCode: "M3"
+                value: 3500000000
+                unitCode: "M3"
               seasonalRainfallDistribution:
                 type: "Property"
                 value:
@@ -60,9 +58,8 @@ paths:
                   dec: 50
               averageWaterFlow:
                 type: "Property"
-                value:
-                  value: 75
-                  unitCode: "M3S"
+                value: 75
+                unitCode: "M3S"
               suppliesWaterToWaterBody:
                 type: "Relationship"
                 object:
@@ -84,7 +81,6 @@ components:
         - id
         - type
       properties:
-
         id:
           type: string
           format: uri
@@ -95,35 +91,48 @@ components:
           type: string
           enum:
             - CatchmentArea
-          description: Fixed entity type identifier
+          description: Fixed entity type
           example: "CatchmentArea"
 
         area:
           type: object
-          description: Total area of the catchment
+          description: Total area of the catchment (km²)
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - KM2
-          example:
-            type: "Property"
-            value:
-              value: 1250
-              unitCode: "KM2"
+              type: number
+              description: Area value
+            unitCode:
+              type: string
+              enum:
+                - KM2
+              description: UN/CEFACT unit code for square kilometers
+          required: [type, value, unitCode]
 
         annualPrecipitationVolume:
           type: object
-          description: Annual rainfall volume collected
+          description: Annual rainfall volume collected (m³)
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+              description: Annual precipitation volume value
+            unitCode:
+              type: string
+              enum:
+                - M3
+              description: UN/CEFACT unit code for cubic meters
+          required: [type, value, unitCode]
+
+        seasonalRainfallDistribution:
+          type: object
+          description: Seasonal breakdown of precipitation (fractions summing to 1.0)
           properties:
             type:
               type: string
@@ -132,36 +141,19 @@ components:
             value:
               type: object
               properties:
-                value:
+                spring:
                   type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M3
-          example:
-            type: "Property"
-            value:
-              value: 3500000000
-              unitCode: "M3"
-
-        seasonalRainfallDistribution:
-          type: object
-          description: Seasonal breakdown of precipitation (fractions)
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: object
-              description: Ratios for each season summing to 1.0
-          example:
-            type: "Property"
-            value:
-              spring: 0.30
-              summer: 0.25
-              autumn: 0.20
-              winter: 0.25
+                  description: Percentage of annual precipitation in spring
+                summer:
+                  type: number
+                  description: Percentage of annual precipitation in summer
+                autumn:
+                  type: number
+                  description: Percentage of annual precipitation in autumn
+                winter:
+                  type: number
+                  description: Percentage of annual precipitation in winter
+          required: [type, value]
 
         soilType:
           type: object
@@ -173,9 +165,8 @@ components:
                 - Property
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Loam"
+              description: Soil type
+          required: [type, value]
 
         vegetationCover:
           type: object
@@ -187,9 +178,8 @@ components:
                 - Property
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Mixed forest and grassland"
+              description: Vegetation cover description
+          required: [type, value]
 
         flowVariationProfile:
           type: object
@@ -201,50 +191,42 @@ components:
                 - Property
             value:
               type: object
-              description: Map of month abbreviations to average flow values
-          example:
-            type: "Property"
-            value:
-              jan: 50
-              feb: 45
-              mar: 60
-              apr: 80
-              may: 120
-              jun: 150
-              jul: 140
-              aug: 130
-              sep: 100
-              oct: 70
-              nov: 55
-              dec: 50
+              properties:
+                jan: { type: number, description: "Flow in January" }
+                feb: { type: number, description: "Flow in February" }
+                mar: { type: number, description: "Flow in March" }
+                apr: { type: number, description: "Flow in April" }
+                may: { type: number, description: "Flow in May" }
+                jun: { type: number, description: "Flow in June" }
+                jul: { type: number, description: "Flow in July" }
+                aug: { type: number, description: "Flow in August" }
+                sep: { type: number, description: "Flow in September" }
+                oct: { type: number, description: "Flow in October" }
+                nov: { type: number, description: "Flow in November" }
+                dec: { type: number, description: "Flow in December" }
+          required: [type, value]
 
         averageWaterFlow:
           type: object
-          description: Average historical water flow rate
+          description: Average historical water flow rate (m³/s)
           properties:
             type:
               type: string
               enum:
                 - Property
-              example: "Property"
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M3S
-          example:
-            type: "Property"
-            value:
-              value: 75
-              unitCode: "M3S"
+              type: number
+              description: Average water flow value
+            unitCode:
+              type: string
+              enum:
+                - M3S
+              description: UN/CEFACT unit code for cubic meters per second
+          required: [type, value, unitCode]
 
         suppliesWaterToWaterBody:
           type: object
-          description: Downstream WaterBody entities receiving flow
+          description: References to WaterBody entities supplied by this catchment
           properties:
             type:
               type: string
@@ -255,26 +237,3 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:WaterBody:river1"
-              - "urn:ngsi-ld:WaterBody:Res1"
-
-        suppliesWaterToHydroPowerPlant:
-          type: object
-          description: HydropowerPlant entities supplied by this catchment
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"

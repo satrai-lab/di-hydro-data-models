@@ -162,7 +162,8 @@
   "hasWaterBody": {
     "type": "Relationship",
     "object": [
-      "urn:ngsi-ld:WaterBody:river1"
+      "urn:ngsi-ld:WaterBody:river1",
+      "urn:ngsi-ld:WaterBody:Res1"
     ]
   },
   "hasSurgeTank": {

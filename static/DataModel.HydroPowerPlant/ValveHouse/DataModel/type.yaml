@@ -1,0 +1,94 @@
+---
+components:
+  schemas:
+
+    ValveHouse:
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          anyOf: &anyof
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              type: string
+          format: uri
+          type: string
+          description: "Unique identifier of the ValveHouse"
+          x-ngsi:
+            type: Property
+        type:
+          type: string
+          enum:
+            - ValveHouse
+          description: "NGSI Entity type. It has to be ValveHouse"
+          x-ngsi:
+            type: Property
+        name:
+          type: string
+          description: "The official or common name of the ValveHouse"
+          x-ngsi:
+            type: Property
+        geographicalLocation:
+          type: object
+          description: "GeoJSON property of type 'Point' representing the location of the ValveHouse. The first element in coordinates is longitude and the second is latitude."
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+              minItems: 2
+          x-ngsi:
+            type: GeoProperty
+
+        isPartOfHydroPowerPlant:
+          type: array
+          description: "Array of references to the HydropowerPlant entity that this ValveHouse is part of"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        containsValves:
+          type: array
+          description: "Array of references to Valve entities contained within this ValveHouse"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+    
+        isConnectedToPenstock:
+          type: array
+          description: "Array of references to the Penstock entity connected to this ValveHouse"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+
+info:
+  description: "Data Model of ValveHouse for Hydropower Plant Modeling"
+  title: HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

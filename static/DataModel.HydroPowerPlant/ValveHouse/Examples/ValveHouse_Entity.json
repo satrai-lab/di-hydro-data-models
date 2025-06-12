@@ -1,0 +1,38 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:ValveHouse:vh1",
+  "type": "ValveHouse",
+  "name": {
+    "type": "Property",
+    "value": "Main Penstock ValveHouse"
+  },
+  "geographicalLocation": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -121.497,
+        47.336
+      ]
+    }
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  },
+  "containsValves": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Valve:valve1",
+      "urn:ngsi-ld:Valve:valve2"
+    ]
+  },
+  "isConnectedToPenstock": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Penstock:pen1"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:PressureTunnel:pt1",
+  "type": "PressureTunnel",
+  "length": {
+    "type": "Property",
+    "value": {
+      "value": 3500,
+      "unitCode": "M"
+    }
+  },
+  "fromReservoir": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Reservoir:res1"
+    ]
+  },
+  "toPenstock": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Penstock:pen1"
+    ]
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  }
+}

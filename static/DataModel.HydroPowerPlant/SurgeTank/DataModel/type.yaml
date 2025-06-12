@@ -1,0 +1,112 @@
+---
+components:
+  schemas:
+
+    SurgeTank:
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          anyOf: &anyof
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              type: string
+          format: uri
+          type: string
+          description: "Unique identifier of the SurgeTank"
+          x-ngsi:
+            type: Property
+        type:
+          type: string
+          enum:
+            - SurgeTank
+          description: "NGSI Entity type. It has to be SurgeTank"
+          x-ngsi:
+            type: Property
+        name:
+          type: string
+          description: "The official or common name of the SurgeTank"
+          x-ngsi:
+            type: Property
+        geographicalLocation:
+          type: object
+          description: "GeoJSON property of type 'Point' representing the surge tank’s location. The first element in coordinates is longitude, and the second is latitude."
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+              minItems: 2
+          x-ngsi:
+            type: GeoProperty
+        volumeCapacity:
+          type: object
+          description: "The total volume that the surge tank can accommodate (in cubic meters)"
+          properties:
+            value:
+              type: number
+              description: "Volume capacity value"
+            unitCode:
+              type: string
+              enum:
+                - "M3"
+              description: "UN/CEFACT unit code for cubic meter"
+          x-ngsi:
+            type: Property
+        responseTime:
+          type: object
+          description: "The time it takes for the surge tank to respond to a pressure surge (in seconds)"
+          properties:
+            value:
+              type: number
+              description: "Response time value"
+            unitCode:
+              type: string
+              enum:
+                - "S"
+              description: "UN/CEFACT unit code for seconds"
+          x-ngsi:
+            type: Property
+      
+        isPartOfHydroPowerPlant:
+          type: array
+          description: "Array of references to the HydropowerPlant entities of which this water body is a part"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+        relievesPressureForPenstock:
+          type: array
+          description: "Array of references to the Penstock entity that the surge tank relieves pressure for"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"      
+
+info:
+  description: "Data Model of SurgeTank for Hydropower Plant Modeling"
+  title: HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

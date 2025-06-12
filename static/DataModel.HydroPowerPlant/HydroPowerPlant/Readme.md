@@ -42,7 +42,8 @@ A **HydropowerPlant** represents a physical facility that converts the energy of
 | **`hasValve`**          | Relationship  | URI[]         | No       | Control valves. Regulates water flow to turbines.                                                                     | Array of URIs                  |  
 | **`hasValveHouse`**     | Relationship  | URI[]         | No       | Valve housing structures. Protects critical flow controls.                                                            | Array of URIs                  |  
 | **`hasWaterBody`**      | Relationship  | URI[]         | No       | Connected water sources (rivers/reservoirs). Maps water rights and sources.                                           | Array of URIs                  |  
-| **`hasSurgeTank`**      | Relationship  | URI[]         | No       | Surge suppression tanks. Prevents water hammer damage.                                                                | Array of URIs                  |  
+| **`hasSurgeTank`**      | Relationship  | URI[]         | No       | Surge suppression tanks. Prevents water hammer damage.                                                                | Array of URIs                  |    
+| **`hasSpillway`**      | Relationship  | URI[]         | No       |  safely pass excess water from a reservoir or dam to downstream channels.                                                                | Array of URIs                  |  
 
 
 

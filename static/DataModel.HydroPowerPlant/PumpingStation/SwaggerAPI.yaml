@@ -1,0 +1,210 @@
+openapi: 3.0.3
+info:
+  title: PumpingStation Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for PumpingStation entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a PumpingStation entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/PumpingStation'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:PumpingStation:ps1"
+              type: "PumpingStation"
+              name:
+                type: "Property"
+                value: "Alpine Peak Pumping Station"
+              totalPower:
+                type: "Property"
+                value:
+                  value: 300
+                  unitCode: "MW"
+              unitCount:
+                type: "Property"
+                value: 4
+              yearlyEnergyConsumption:
+                type: "Property"
+                value:
+                  value: 1200000000
+                  unitCode: "KWH"
+              estimatedAnnualContribution:
+                type: "Property"
+                value:
+                  value: 8000000
+                  unitCode: "MWH"
+              feedsReservoir:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Reservoir:res1"
+              increasesProductionAt:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    PumpingStation:
+      type: object
+      required:
+        - id
+        - type
+        - name
+      properties:
+
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the PumpingStation
+          example: "urn:ngsi-ld:PumpingStation:ps1"
+
+        type:
+          type: string
+          enum:
+            - PumpingStation
+          description: Fixed entity type identifier
+          example: "PumpingStation"
+
+        name:
+          type: object
+          description: Official name of the pumping station
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          example:
+            type: "Property"
+            value: "Alpine Peak Pumping Station"
+
+        totalPower:
+          type: object
+          description: Total installed motor power capacity
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MW
+          example:
+            type: "Property"
+            value:
+              value: 300
+              unitCode: "MW"
+
+        unitCount:
+          type: object
+          description: Number of individual pump units
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: integer
+          example:
+            type: "Property"
+            value: 4
+
+        yearlyEnergyConsumption:
+          type: object
+          description: Annual electricity consumed by all pumps
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - KWH
+          example:
+            type: "Property"
+            value:
+              value: 1200000000
+              unitCode: "KWH"
+
+        estimatedAnnualContribution:
+          type: object
+          description: Estimated additional hydropower generation enabled by pumping
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MWH
+          example:
+            type: "Property"
+            value:
+              value: 8000000
+              unitCode: "MWH"
+
+        feedsReservoir:
+          type: object
+          description: References to Reservoir entities this station pumps into
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Reservoir:res1"
+
+        increasesProductionAt:
+          type: object
+          description: References to HydropowerPlant entities whose generation is boosted by this station
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"

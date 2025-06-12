@@ -1,0 +1,81 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:Penstock:pen1",
+  "type": "Penstock",
+  "name": {
+    "type": "Property",
+    "value": "Main Alpine Penstock"
+  },
+  "geographicalLocation": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -121.495,
+        47.34
+      ]
+    }
+  },
+  "length": {
+    "type": "Property",
+    "value": {
+      "value": 1200,
+      "unitCode": "M"
+    }
+  },
+  "diameter": {
+    "type": "Property",
+    "value": {
+      "value": 4.5,
+      "unitCode": "M"
+    }
+  },
+  "material": {
+    "type": "Property",
+    "value": "Steel"
+  },
+  "designPressure": {
+    "type": "Property",
+    "value": {
+      "value": 50,
+      "unitCode": "BAR"
+    }
+  },
+  "flowCapacity": {
+    "type": "Property",
+    "value": {
+      "value": 200,
+      "unitCode": "M3S"
+    }
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  },
+  "isConnectedToIntake": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Intake:int1"
+    ]
+  },
+  "isConnectedToSurgeTank": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:SurgeTank:st1"
+    ]
+  },
+  "isConnectedToValve": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Valve:valve1"
+    ]
+  },
+  "isConnectedToValveHouse": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:ValveHouse:vh1"
+    ]
+  }
+}

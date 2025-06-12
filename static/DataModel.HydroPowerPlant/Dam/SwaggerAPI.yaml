@@ -30,14 +30,12 @@ paths:
                   coordinates: [-121.48, 47.32]
               damHeight:
                 type: "Property"
-                value:
-                  value: 85
-                  unitCode: "M"
+                value: 85
+                unitCode: "M"
               damLength:
                 type: "Property"
-                value:
-                  value: 320
-                  unitCode: "M"
+                value: 320
+                unitCode: "M"
               constructionMaterials:
                 type: "Property"
                 value: "Concrete"
@@ -49,9 +47,8 @@ paths:
                 value: 1978
               damCrestElevation:
                 type: "Property"
-                value:
-                  value: 400
-                  unitCode: "M"
+                value: 400
+                unitCode: "M"
               hasSpillway:
                 type: "Relationship"
                 object:
@@ -81,19 +78,16 @@ components:
         - type
         - name
       properties:
-
         id:
           type: string
           format: uri
           description: Unique URI identifier for the Dam
-          example: "urn:ngsi-ld:Dam:dam1"
 
         type:
           type: string
           enum:
             - Dam
           description: Fixed entity type identifier
-          example: "Dam"
 
         name:
           type: object
@@ -105,9 +99,8 @@ components:
                 - Property
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Alpine Valley Dam"
+              description: Dam name
+          required: [type, value]
 
         geographicalLocation:
           type: object
@@ -130,57 +123,43 @@ components:
                     type: number
                   minItems: 2
                   maxItems: 2
-          example:
-            type: "GeoProperty"
-            value:
-              type: "Point"
-              coordinates: [-121.48, 47.32]
+          required: [type, value]
 
         damHeight:
           type: object
-          description: Vertical height from foundation to crest
+          description: Vertical height from foundation to crest (m)
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M
-          example:
-            type: "Property"
-            value:
-              value: 85
-              unitCode: "M"
+              type: number
+              description: Dam height value
+            unitCode:
+              type: string
+              enum:
+                - M
+              description: UN/CEFACT unit code for meters
+          required: [type, value, unitCode]
 
         damLength:
           type: object
-          description: Horizontal span or width of the dam
+          description: Horizontal span or width of the dam (m)
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M
-          example:
-            type: "Property"
-            value:
-              value: 320
-              unitCode: "M"
+              type: number
+              description: Dam length value
+            unitCode:
+              type: string
+              enum:
+                - M
+              description: UN/CEFACT unit code for meters
+          required: [type, value, unitCode]
 
         constructionMaterials:
           type: object
@@ -192,9 +171,8 @@ components:
                 - Property
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Concrete"
+              description: Material specification
+          required: [type, value]
 
         damType:
           type: object
@@ -210,9 +188,7 @@ components:
                 - "Concrete Gravity"
                 - "Arch Dam"
                 - "Embankment Dam"
-          example:
-            type: "Property"
-            value: "Concrete Gravity"
+          required: [type, value]
 
         yearOfConstruction:
           type: object
@@ -224,32 +200,26 @@ components:
                 - Property
             value:
               type: integer
-          example:
-            type: "Property"
-            value: 1978
+              description: Year of construction
+          required: [type, value]
 
         damCrestElevation:
           type: object
-          description: Elevation of the dam crest above mean sea level
+          description: Elevation of the dam crest above mean sea level (m)
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M
-          example:
-            type: "Property"
-            value:
-              value: 400
-              unitCode: "M"
+              type: number
+              description: Crest elevation value
+            unitCode:
+              type: string
+              enum:
+                - M
+              description: UN/CEFACT unit code for meters
+          required: [type, value, unitCode]
 
         hasSpillway:
           type: object
@@ -264,10 +234,7 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Spillway:sw1"
+          required: [type, object]
 
         hasintakes:
           type: object
@@ -282,10 +249,7 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Intake:int1"
+          required: [type, object]
 
         isPartOfReservoir:
           type: object
@@ -300,10 +264,7 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Reservoir:res1"
+          required: [type, object]
 
         isPartOfHydroPlant:
           type: object
@@ -318,7 +279,4 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+          required: [type, object]

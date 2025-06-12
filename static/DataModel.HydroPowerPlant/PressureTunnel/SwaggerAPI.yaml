@@ -1,0 +1,142 @@
+openapi: 3.0.3
+info:
+  title: PressureTunnel Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for PressureTunnel entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a PressureTunnel entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/PressureTunnel'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
+              id: "urn:ngsi-ld:PressureTunnel:pt1"
+              type: "PressureTunnel"
+              length:
+                type: "Property"
+                value:
+                  value: 3500
+                  unitCode: "M"
+              fromReservoir:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Reservoir:res1"
+                  - "urn:ngsi-ld:Reservoir:res2"
+              toPenstock:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Penstock:pen1"
+              isPartOfHydroPowerPlant:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    PressureTunnel:
+      type: object
+      required:
+        - id
+        - type
+      properties:
+
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the PressureTunnel
+          example: "urn:ngsi-ld:PressureTunnel:pt1"
+
+        type:
+          type: string
+          enum:
+            - PressureTunnel
+          description: Fixed entity type identifier
+          example: "PressureTunnel"
+
+        length:
+          type: object
+          description: Length of the pressure tunnel between reservoir and penstock
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M
+          example:
+            type: "Property"
+            value:
+              value: 3500
+              unitCode: "M"
+
+        fromReservoir:
+          type: object
+          description: References to upstream Reservoir entities feeding this tunnel
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Reservoir:res1"
+
+        toPenstock:
+          type: object
+          description: References to downstream Penstock entities receiving flow from this tunnel
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:Penstock:pen1"
+
+        isPartOfHydroPowerPlant:
+          type: object
+          description: References to the HydropowerPlant entity this tunnel is part of
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object:
+              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"

@@ -315,6 +315,14 @@ components:
             format: uri
           x-ngsi:
             type: Relationship
+        hasSpillway:
+          type: array
+          description: "Array of SurgeTank entity identifiers"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
         x-ngsi:
         uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
         

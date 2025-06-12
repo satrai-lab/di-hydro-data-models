@@ -1,0 +1,250 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json",
+  "id": "urn:ngsi-ld:WaterBody:res1",
+  "type": "WaterBody",
+  "name": {
+    "type": "Property",
+    "value": "Alpine Storage Reservoir"
+  },
+  "waterBodyCategory": {
+    "type": "Property",
+    "value": "Reservoir"
+  },
+  "geographicalLocation": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [
+        -121.52,
+        47.36
+      ]
+    }
+  },
+  "dimensions": {
+    "type": "Property",
+    "value": {
+      "surfaceArea": {
+        "value": 25.4,
+        "unitCode": "KM2"
+      },
+      "length": {
+        "value": 15,
+        "unitCode": "KM"
+      },
+      "averageDepth": {
+        "value": 45,
+        "unitCode": "M"
+      }
+    }
+  },
+  "waterFlowCharacteristics": {
+    "type": "Property",
+    "value": {
+      "averageFlowRate": {
+        "value": 350,
+        "unitCode": "M3S"
+      },
+      "peakFlow": {
+        "value": 620,
+        "unitCode": "M3S"
+      },
+      "seasonalVariation": {
+        "winter": {
+          "value": 300,
+          "unitCode": "M3S"
+        },
+        "spring": {
+          "value": 550,
+          "unitCode": "M3S"
+        },
+        "summer": {
+          "value": 480,
+          "unitCode": "M3S"
+        },
+        "autumn": {
+          "value": 400,
+          "unitCode": "M3S"
+        }
+      }
+    }
+  },
+  "waterLevel": {
+    "type": "Property",
+    "value": {
+      "averageLevel": {
+        "value": 400,
+        "unitCode": "M"
+      }
+    }
+  },
+  "waterQuality": {
+    "type": "Property",
+    "value": {
+      "temperature": {
+        "value": 7.5,
+        "unitCode": "C"
+      },
+      "pH": 7.8,
+      "dissolvedOxygen": {
+        "value": 9.1,
+        "unitCode": "MG/L"
+      },
+      "sedimentLoad": {
+        "value": 45,
+        "unitCode": "MG/L"
+      }
+    }
+  },
+  "environmentalIndicators": {
+    "type": "Property",
+    "value": {
+      "biodiversityIndex": 0.82,
+      "invasiveSpeciesPresent": false
+    }
+  },
+  "operationalData": {
+    "type": "Property",
+    "value": {
+      "floodRisk": "Medium",
+      "waterRights": "Mixed"
+    }
+  },
+  "isFedBy": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:CatchmentArea:ca1"
+    ]
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  },
+  "storageCapacity": {
+    "type": "Property",
+    "value": {
+      "value": 180000000,
+      "unitCode": "M3"
+    }
+  },
+  "inflowCharacteristics": {
+    "type": "Property",
+    "value": {
+      "averageInflowRate": {
+        "value": 350,
+        "unitCode": "M3S"
+      },
+      "retentionTime": {
+        "value": 120,
+        "unitCode": "H"
+      }
+    }
+  },
+  "outflowControl": {
+    "type": "Property",
+    "value": {
+      "gateStatus": "Open",
+      "averageOutflowRate": {
+        "value": 320,
+        "unitCode": "M3S"
+      }
+    }
+  },
+  "historicalLevels": {
+    "type": "Property",
+    "value": {
+      "historicalMaxLevel": {
+        "value": 412,
+        "unitCode": "M"
+      },
+      "historicalMinLevel": {
+        "value": 392,
+        "unitCode": "M"
+      }
+    }
+  },
+  "hasDams": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Dam:dam1"
+    ]
+  },
+  "feedsIntakes": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Intake:int1"
+    ]
+  },
+  "hasPressureTunnel": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:PressureTunnel:pt1"
+    ]
+  },
+  "fedByPumpingStation": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:PumpingStation:ps1"
+    ]
+  },
+  "maxReservoirLevel": {
+    "type": "Property",
+    "value": {
+      "value": 420,
+      "unitCode": "M"
+    }
+  },
+  "normalReservoirLevel": {
+    "type": "Property",
+    "value": {
+      "value": 400,
+      "unitCode": "M"
+    }
+  },
+  "reservoirLength": {
+    "type": "Property",
+    "value": {
+      "value": 15,
+      "unitCode": "KM"
+    }
+  },
+  "maximumEnergeticVolume": {
+    "type": "Property",
+    "value": {
+      "value": 2.8,
+      "unitCode": "GWH"
+    }
+  },
+  "reservoirType": {
+    "type": "Property",
+    "value": "seasonal"
+  },
+  "reservoirVolumes": {
+    "type": "Property",
+    "value": [
+      {
+        "year": 2020,
+        "grossVolume": {
+          "value": 180000000,
+          "unitCode": "M3"
+        },
+        "usefulVolume": {
+          "value": 160000000,
+          "unitCode": "M3"
+        }
+      },
+      {
+        "year": 2021,
+        "grossVolume": {
+          "value": 185000000,
+          "unitCode": "M3"
+        },
+        "usefulVolume": {
+          "value": 165000000,
+          "unitCode": "M3"
+        }
+      }
+    ]
+  }
+}

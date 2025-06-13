@@ -219,7 +219,7 @@ components:
         uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
 
 info:
-  description: "Data Model of HydroPowerCommunity"
+  description: "Data Model of Turbine"
   title: HydropowerPlantModeling
   version: "1.0.2"
 openapi: "3.0.3"

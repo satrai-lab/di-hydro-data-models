@@ -20,87 +20,44 @@
       ]
     }
   },
-  "dimensions": {
+  "surfaceArea": {
     "type": "Property",
-    "value": {
-      "surfaceArea": {
-        "value": 15.2,
-        "unitCode": "KM2"
-      },
-      "length": {
-        "value": 120,
-        "unitCode": "KM"
-      },
-      "averageDepth": {
-        "value": 8.5,
-        "unitCode": "M"
-      }
+    "value": 15.2,
+    "unitCode": "KM2"
+  },
+  "length": {
+    "type": "Property",
+    "value": 120,
+    "unitCode": "KM"
+  },
+  "averageDepth": {
+    "type": "Property",
+    "value": 8.5,
+    "unitCode": "M"
+  },
+  "averageFlowRate": {
+    "type": "Property",
+    "value": 200,
+    "unitCode": "M3S"
+  },
+  "peakFlow": {
+    "type": "Property",
+    "value": 450,
+    "unitCode": "M3S"
+  },
+  "seasonalVariation": {
+    "type": "Property",
+    "value": { 
+      "winter":120,
+      "spring":250,
+      "summer":180,
+      "autumn":160
     }
   },
-  "waterFlowCharacteristics": {
+  "averagewaterLevel": {
     "type": "Property",
-    "value": {
-      "averageFlowRate": {
-        "value": 200,
-        "unitCode": "M3S"
-      },
-      "peakFlow": {
-        "value": 450,
-        "unitCode": "M3S"
-      },
-      "seasonalVariation": {
-        "winter": {
-          "value": 120,
-          "unitCode": "M3S"
-        },
-        "spring": {
-          "value": 250,
-          "unitCode": "M3S"
-        },
-        "summer": {
-          "value": 180,
-          "unitCode": "M3S"
-        },
-        "autumn": {
-          "value": 160,
-          "unitCode": "M3S"
-        }
-      }
-    }
-  },
-  "waterLevel": {
-    "type": "Property",
-    "value": {
-      "averageLevel": {
         "value": 3.2,
         "unitCode": "M"
-      }
-    }
-  },
-  "waterQuality": {
-    "type": "Property",
-    "value": {
-      "temperature": {
-        "value": 7.5,
-        "unitCode": "C"
-      },
-      "pH": 7.8,
-      "dissolvedOxygen": {
-        "value": 9.1,
-        "unitCode": "MG/L"
-      },
-      "sedimentLoad": {
-        "value": 45,
-        "unitCode": "MG/L"
-      }
-    }
-  },
-  "environmentalIndicators": {
-    "type": "Property",
-    "value": {
-      "biodiversityIndex": 0.82,
-      "invasiveSpeciesPresent": false
-    }
   },
   "operationalData": {
     "type": "Property",

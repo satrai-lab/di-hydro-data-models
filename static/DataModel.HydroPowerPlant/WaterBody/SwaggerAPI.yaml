@@ -30,65 +30,40 @@ paths:
                 type: "GeoProperty"
                 value:
                   type: "Point"
-                  coordinates: [-121.51, 47.34]
-              dimensions:
+                  coordinates:
+                    - -121.51
+                    - 47.34
+              surfaceArea:
+                type: "Property"
+                value: 15.2
+                unitCode: "KM2"
+              length:
+                type: "Property"
+                value: 120
+                unitCode: "KM"
+              averageDepth:
+                type: "Property"
+                value: 8.5
+                unitCode: "M"
+              averageFlowRate:
+                type: "Property"
+                value: 200
+                unitCode: "M3S"
+              peakFlow:
+                type: "Property"
+                value: 450
+                unitCode: "M3S"
+              seasonalVariation:
                 type: "Property"
                 value:
-                  surfaceArea:
-                    value: 15.2
-                    unitCode: "KM2"
-                  length:
-                    value: 120
-                    unitCode: "KM"
-                  averageDepth:
-                    value: 8.5
-                    unitCode: "M"
-              waterFlowCharacteristics:
+                  winter: 120
+                  spring: 250
+                  summer: 180
+                  autumn: 160
+              averageWaterLevel:
                 type: "Property"
-                value:
-                  averageFlowRate:
-                    value: 200
-                    unitCode: "M3S"
-                  peakFlow:
-                    value: 450
-                    unitCode: "M3S"
-                  seasonalVariation:
-                    winter:
-                      value: 120
-                      unitCode: "M3S"
-                    spring:
-                      value: 250
-                      unitCode: "M3S"
-                    summer:
-                      value: 180
-                      unitCode: "M3S"
-                    autumn:
-                      value: 160
-                      unitCode: "M3S"
-              waterLevel:
-                type: "Property"
-                value:
-                  averageLevel:
-                    value: 3.2
-                    unitCode: "M"
-              waterQuality:
-                type: "Property"
-                value:
-                  temperature:
-                    value: 7.5
-                    unitCode: "C"
-                  pH: 7.8
-                  dissolvedOxygen:
-                    value: 9.1
-                    unitCode: "MG/L"
-                  sedimentLoad:
-                    value: 45
-                    unitCode: "MG/L"
-              environmentalIndicators:
-                type: "Property"
-                value:
-                  biodiversityIndex: 0.82
-                  invasiveSpeciesPresent: false
+                value: 3.2
+                unitCode: "M"
               operationalData:
                 type: "Property"
                 value:
@@ -115,6 +90,10 @@ components:
         - type
         - name
       properties:
+        "@context":
+          type: string
+          description: Context file defining vocabulary
+          example: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
 
         id:
           type: string
@@ -182,67 +161,110 @@ components:
                   items:
                     type: number
                   minItems: 2
-                  maxItems: 2
           example:
             type: "GeoProperty"
             value:
               type: "Point"
               coordinates: [-121.51, 47.34]
 
-        dimensions:
+        surfaceArea:
           type: object
-          description: Physical size parameters of the water body
+          description: Surface area of the water body
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                surfaceArea:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - KM2
-                length:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - KM
-                averageDepth:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - KM2
           example:
             type: "Property"
-            value:
-              surfaceArea:
-                value: 15.2
-                unitCode: "KM2"
-              length:
-                value: 120
-                unitCode: "KM"
-              averageDepth:
-                value: 8.5
-                unitCode: "M"
+            value: 15.2
+            unitCode: "KM2"
 
-        waterFlowCharacteristics:
+        length:
           type: object
-          description: Flow metrics including average, peak, and seasonal variation
+          description: Length of the water body (rivers or elongated lakes)
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - KM
+          example:
+            type: "Property"
+            value: 120
+            unitCode: "KM"
+
+        averageDepth:
+          type: object
+          description: Average depth of the water body
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M
+          example:
+            type: "Property"
+            value: 8.5
+            unitCode: "M"
+
+        averageFlowRate:
+          type: object
+          description: Average flow rate of the water body
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3S
+          example:
+            type: "Property"
+            value: 200
+            unitCode: "M3S"
+
+        peakFlow:
+          type: object
+          description: Peak flow rate of the water body
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3S
+          example:
+            type: "Property"
+            value: 450
+            unitCode: "M3S"
+
+        seasonalVariation:
+          type: object
+          description: Seasonal flow variation details
           properties:
             type:
               type: string
@@ -251,192 +273,44 @@ components:
             value:
               type: object
               properties:
-                averageFlowRate:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M3S
-                peakFlow:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M3S
-                seasonalVariation:
-                  type: object
-                  properties:
-                    winter:
-                      type: object
-                      properties:
-                        value:
-                          type: number
-                        unitCode:
-                          type: string
-                          enum:
-                            - M3S
-                    spring:
-                      type: object
-                      properties:
-                        value:
-                          type: number
-                        unitCode:
-                          type: string
-                          enum:
-                            - M3S
-                    summer:
-                      type: object
-                      properties:
-                        value:
-                          type: number
-                        unitCode:
-                          type: string
-                          enum:
-                            - M3S
-                    autumn:
-                      type: object
-                      properties:
-                        value:
-                          type: number
-                        unitCode:
-                          type: string
-                          enum:
-                            - M3S
-          example:
-            type: "Property"
-            value:
-              averageFlowRate:
-                value: 200
-                unitCode: "M3S"
-              peakFlow:
-                value: 450
-                unitCode: "M3S"
-              seasonalVariation:
                 winter:
-                  value: 120
-                  unitCode: "M3S"
+                  type: number
                 spring:
-                  value: 250
-                  unitCode: "M3S"
+                  type: number
                 summer:
-                  value: 180
-                  unitCode: "M3S"
+                  type: number
                 autumn:
-                  value: 160
-                  unitCode: "M3S"
-
-        waterLevel:
-          type: object
-          description: Water level statistics
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: object
-              properties:
-                averageLevel:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M
-          example:
-            type: "Property"
-            value:
-              averageLevel:
-                value: 3.2
-                unitCode: "M"
-
-        waterQuality:
-          type: object
-          description: Key water quality parameters
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: object
-              properties:
-                temperature:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - C
-                pH:
                   type: number
-                  example: 7.8
-                dissolvedOxygen:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - MG/L
-                sedimentLoad:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - MG/L
           example:
             type: "Property"
             value:
-              temperature:
-                value: 7.5
-                unitCode: "C"
-              pH: 7.8
-              dissolvedOxygen:
-                value: 9.1
-                unitCode: "MG/L"
-              sedimentLoad:
-                value: 45
-                unitCode: "MG/L"
+              winter: 120
+              spring: 250
+              summer: 180
+              autumn: 160
 
-        environmentalIndicators:
+        averageWaterLevel:
           type: object
-          description: Ecological indicators and presence of invasive species
+          description: Average water‐surface elevation
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                biodiversityIndex:
-                  type: number
-                invasiveSpeciesPresent:
-                  type: boolean
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M
           example:
             type: "Property"
-            value:
-              biodiversityIndex: 0.82
-              invasiveSpeciesPresent: false
+            value: 3.2
+            unitCode: "M"
 
         operationalData:
           type: object
-          description: Management data including flood risk and water rights
+          description: Management data such as flood risk and water rights
           properties:
             type:
               type: string
@@ -483,7 +357,7 @@ components:
 
         isPartOfHydroPowerPlant:
           type: object
-          description: References to HydropowerPlant entities that utilize this water body
+          description: References to HydropowerPlant entities using this water body
           properties:
             type:
               type: string

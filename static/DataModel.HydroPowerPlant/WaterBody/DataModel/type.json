@@ -39,233 +39,92 @@
             }
           }
         },
-        "dimensions": {
-          "anyOf": [
-            {
-              "type": "object",
-              "properties": {
-                "surfaceArea": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    },
-                    "unitCode": {
-                      "type": "string",
-                      "enum": ["KM2"]
-                    }
-                  }
-                },
-                "length": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    },
-                    "unitCode": {
-                      "type": "string",
-                      "enum": ["KM"]
-                    }
-                  }
-                },
-                "averageDepth": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    },
-                    "unitCode": {
-                      "type": "string",
-                      "enum": ["M"]
-                    }
-                  }
-                }
-              },
-              "required": ["surfaceArea", "length", "averageDepth"]
-            },
-            {
-              "type": "object",
-              "properties": {
-                "surfaceArea": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    },
-                    "unitCode": {
-                      "type": "string",
-                      "enum": ["KM2"]
-                    }
-                  }
-                },
-                "averageDepth": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    },
-                    "unitCode": {
-                      "type": "string",
-                      "enum": ["M"]
-                    }
-                  }
-                }
-              },
-              "required": ["surfaceArea", "averageDepth"]
-            }
-          ]
-        },
-        "waterFlowCharacteristics": {
+        "surfaceArea": {
           "type": "object",
           "properties": {
-            "averageFlowRate": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["M3S"]
-                }
-              }
+            "value": {
+              "type": "number"
             },
-            "peakFlow": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["M3S"]
-                }
-              }
+            "unitCode": {
+              "type": "string",
+              "enum": ["KM2"]
+            }
+          }
+        },
+        "length": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
             },
-            "seasonalVariation": {
+            "unitCode": {
+              "type": "string",
+              "enum": ["KM"]
+            }
+          }
+        },
+        "averageDepth": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["M"]
+            }
+          }
+        },
+        "averageFlowRate": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["M3S"]
+            }
+          }
+        },
+        "peakFlow": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unitCode": {
+                "type": "string",
+                "enum": ["M3S"]
+              }
+            }
+        },
+        "seasonalVariation": {
               "type": "object",
               "properties": {
                 "winter": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    },
-                    "unitCode": {
-                      "type": "string",
-                      "enum": ["M3S"]
-                    }
-                  }
+                  "type": "number"
                 },
                 "spring": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    },
-                    "unitCode": {
-                      "type": "string",
-                      "enum": ["M3S"]
-                    }
-                  }
+                  "type": "number"
                 },
                 "summer": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    },
-                    "unitCode": {
-                      "type": "string",
-                      "enum": ["M3S"]
-                    }
-                  }
+                  "type": "number"
                 },
                 "autumn": {
-                  "type": "object",
-                  "properties": {
-                    "value": {
-                      "type": "number"
-                    },
-                    "unitCode": {
-                      "type": "string",
-                      "enum": ["M3S"]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "waterLevel": {
-          "type": "object",
-          "properties": {
-            "averageLevel": {
-              "type": "object",
-              "properties": {
-                "value": {
                   "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["M"]
-                }
-              }
-            }
-          }
-        },
-        "waterQuality": {
-          "type": "object",
-          "properties": {
-            "temperature": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["C"]
                 }
               }
             },
-            "pH": {
+        "averageWaterLevel": {
+          "type": "object",
+          "properties": {
+            "value": {
               "type": "number"
             },
-            "dissolvedOxygen": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["MG/L"]
-                }
-              }
-            },
-            "sedimentLoad": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["MG/L"]
-                }
-              }
-            }
-          }
-        },
-        "environmentalIndicators": {
-          "type": "object",
-          "properties": {
-            "biodiversityIndex": {
-              "type": "number"
-            },
-            "invasiveSpeciesPresent": {
-              "type": "boolean"
+            "unitCode": {
+              "type": "string",
+              "enum": ["M"]
             }
           }
         },

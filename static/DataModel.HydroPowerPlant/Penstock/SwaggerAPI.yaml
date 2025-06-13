@@ -30,27 +30,23 @@ paths:
                   coordinates: [-121.495, 47.34]
               length:
                 type: "Property"
-                value:
-                  value: 1200
-                  unitCode: "M"
+                value: 1200
+                unitCode: "M"
               diameter:
                 type: "Property"
-                value:
-                  value: 4.5
-                  unitCode: "M"
+                value: 4.5
+                unitCode: "M"
               material:
                 type: "Property"
                 value: "Steel"
               designPressure:
                 type: "Property"
-                value:
-                  value: 50
-                  unitCode: "BAR"
+                value: 50
+                unitCode: "BAR"
               flowCapacity:
                 type: "Property"
-                value:
-                  value: 200
-                  unitCode: "M3S"
+                value: 200
+                unitCode: "M3S"
               isPartOfHydroPowerPlant:
                 type: "Relationship"
                 object:
@@ -148,19 +144,15 @@ components:
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
+                type: number
+            unitCode:
+                type: string
+                enum:
                     - M
           example:
             type: "Property"
-            value:
-              value: 1200
-              unitCode: "M"
+            value: 1200
+            unitCode: "M"
 
         diameter:
           type: object
@@ -171,19 +163,15 @@ components:
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M
           example:
             type: "Property"
-            value:
-              value: 4.5
-              unitCode: "M"
+            value: 4.5
+            unitCode: "M"
 
         material:
           type: object
@@ -212,19 +200,15 @@ components:
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - BAR
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - BAR
           example:
             type: "Property"
-            value:
-              value: 50
-              unitCode: "BAR"
+            value: 50
+            unitCode: "BAR"
 
         flowCapacity:
           type: object
@@ -235,19 +219,15 @@ components:
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M3S
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3S
           example:
             type: "Property"
-            value:
-              value: 200
-              unitCode: "M3S"
+            value: 200
+            unitCode: "M3S"
 
         isPartOfHydroPowerPlant:
           type: object

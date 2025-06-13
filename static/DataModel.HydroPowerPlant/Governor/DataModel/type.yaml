@@ -32,47 +32,46 @@ components:
           description: "The official or common name of the Governor"
           x-ngsi:
             type: Property
-        controlParameters:
+        droopSetting:
           type: object
-          description: "Key control settings that determine how the governor regulates the turbine. At least one parameter should be provided."
-          minProperties: 1
+          description: "Droop setting percentage indicating how much the turbine speed drops as load increases."
           properties:
-            droopSetting:
-              type: object
-              description: "Droop setting percentage indicating how much the turbine speed drops as load increases."
-              properties:
-                value:
-                  type: number
-                  description: "Droop setting value (in percentage)"
-                unitCode:
-                  type: string
-                  enum:
-                    - "PCT"
-                  description: "UN/CEFACT unit code for percentage"
-            speedSetPoint:
-              type: object
-              description: "Target operating speed of the turbine."
-              properties:
-                value:
-                  type: number
-                  description: "Speed set point value (in RPM)"
-                unitCode:
-                  type: string
-                  enum:
-                    - "RPM"
-                  description: "Unit code for revolutions per minute"
-            regulationRange:
-              type: object
-              description: "Range over which the governor can adjust the turbine’s input, reflecting load regulation capability."
-              properties:
-                value:
-                  type: number
-                  description: "Regulation range value (in percentage)"
-                unitCode:
-                  type: string
-                  enum:
-                    - "PCT"
-                  description: "UN/CEFACT unit code for percentage"
+            value:
+              type: number
+              description: "Droop setting value (in percentage)"
+            unitCode:
+              type: string
+              enum:
+                - "PCT"
+              description: "UN/CEFACT unit code for percentage"
+          x-ngsi:
+            type: Property
+        speedSetPoint:
+          type: object
+          description: "Target operating speed of the turbine."
+          properties:
+            value:
+              type: number
+              description: "Speed set point value (in RPM)"
+            unitCode:
+              type: string
+              enum:
+                - "RPM"
+              description: "Unit code for revolutions per minute"
+          x-ngsi:
+            type: Property
+        regulationRange:
+          type: object
+          description: "Range over which the governor can adjust the turbine’s input, reflecting load regulation capability."
+          properties:
+            value:
+              type: number
+              description: "Regulation range value (in percentage)"
+            unitCode:
+              type: string
+              enum:
+                - "PCT"
+              description: "UN/CEFACT unit code for percentage"
           x-ngsi:
             type: Property
         responseTime:

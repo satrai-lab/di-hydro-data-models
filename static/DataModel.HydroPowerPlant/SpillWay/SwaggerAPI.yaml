@@ -30,22 +30,19 @@ paths:
                   coordinates: [-121.49, 47.33]
               dischargeCapacity:
                 type: "Property"
-                value:
-                  value: 2000
-                  unitCode: "M3S"
+                value: 2000
+                unitCode: "M3S"
               designFlowRate:
                 type: "Property"
-                value:
-                  value: 1800
-                  unitCode: "M3S"
+                value: 1800
+                unitCode: "M3S"
               spillwayType:
                 type: "Property"
                 value: "Chute Spillway"
               crestElevation:
                 type: "Property"
-                value:
-                  value: 385
-                  unitCode: "M"
+                value: 385
+                unitCode: "M"
               spillwayClassification:
                 type: "Property"
                 value: "Principal"
@@ -130,19 +127,15 @@ components:
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M3S
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3S
           example:
             type: "Property"
-            value:
-              value: 2000
-              unitCode: "M3S"
+            value: 2000
+            unitCode: "M3S"
 
         designFlowRate:
           type: object
@@ -153,19 +146,15 @@ components:
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M3S
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3S
           example:
             type: "Property"
-            value:
-              value: 1800
-              unitCode: "M3S"
+            value: 1800
+            unitCode: "M3S"
 
         spillwayType:
           type: object
@@ -194,19 +183,15 @@ components:
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M
           example:
             type: "Property"
-            value:
-              value: 385
-              unitCode: "M"
+            value: 385
+            unitCode: "M"
 
         spillwayClassification:
           type: object

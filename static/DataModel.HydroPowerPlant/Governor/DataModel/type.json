@@ -19,48 +19,44 @@
         "name": {
           "type": "string"
         },
-        "controlParameters": {
+        
+        "droopSetting": {
           "type": "object",
-          "minProperties": 1,
           "properties": {
-            "droopSetting": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["PCT"]
-                }
-              }
+            "value": {
+              "type": "number"
             },
-            "speedSetPoint": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["RPM"]
-                }
-              }
-            },
-            "regulationRange": {
-              "type": "object",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["PCT"]
-                }
-              }
+            "unitCode": {
+              "type": "string",
+              "enum": ["PCT"]
             }
           }
         },
+        "speedSetPoint": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["RPM"]
+            }
+          }
+        },
+        "regulationRange": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": ["PCT"]
+            }
+          }
+        },
+        
         "responseTime": {
           "type": "object",
           "properties": {

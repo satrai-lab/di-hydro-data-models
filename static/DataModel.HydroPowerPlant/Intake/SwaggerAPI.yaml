@@ -141,11 +141,8 @@ components:
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
+                type: number
+            unitCode:
                   type: string
                   enum:
                     - M3S

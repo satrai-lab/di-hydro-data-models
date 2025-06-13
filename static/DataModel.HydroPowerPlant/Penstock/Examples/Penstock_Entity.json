@@ -18,17 +18,13 @@
   },
   "length": {
     "type": "Property",
-    "value": {
-      "value": 1200,
-      "unitCode": "M"
-    }
+    "value": 1200,
+    "unitCode": "M"
   },
   "diameter": {
     "type": "Property",
-    "value": {
-      "value": 4.5,
-      "unitCode": "M"
-    }
+    "value": 4.5,
+    "unitCode": "M"
   },
   "material": {
     "type": "Property",
@@ -36,17 +32,13 @@
   },
   "designPressure": {
     "type": "Property",
-    "value": {
-      "value": 50,
-      "unitCode": "BAR"
-    }
+    "value": 50,
+    "unitCode": "BAR"
   },
   "flowCapacity": {
     "type": "Property",
-    "value": {
-      "value": 200,
-      "unitCode": "M3S"
-    }
+    "value": 200,
+    "unitCode": "M3S"
   },
   "isPartOfHydroPowerPlant": {
     "type": "Relationship",

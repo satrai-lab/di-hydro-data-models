@@ -6,22 +6,21 @@
     "type": "Property",
     "value": "Main Speed Governor"
   },
-  "controlParameters": {
+ 
+  "droopSetting": {
     "type": "Property",
-    "value": {
-      "droopSetting": {
-        "value": 5,
-        "unitCode": "PCT"
-      },
-      "speedSetPoint": {
-        "value": 500,
-        "unitCode": "RPM"
-      },
-      "regulationRange": {
-        "value": 10,
-        "unitCode": "PCT"
-      }
-    }
+    "value": 5,
+    "unitCode": "PCT"
+  },
+  "speedSetPoint": {
+    "type": "Property",
+    "value": 500,
+    "unitCode": "RPM"
+  },
+  "regulationRange": {
+    "type": "Property",
+    "value": 10,
+    "unitCode": "PCT"
   },
   "responseTime": {
     "type": "Property",

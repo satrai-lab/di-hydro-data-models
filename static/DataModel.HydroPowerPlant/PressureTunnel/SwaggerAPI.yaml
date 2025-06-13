@@ -22,9 +22,8 @@ paths:
               type: "PressureTunnel"
               length:
                 type: "Property"
-                value:
-                  value: 3500
-                  unitCode: "M"
+                value: 3500
+                unitCode: "M"
               fromReservoir:
                 type: "Relationship"
                 object:
@@ -73,19 +72,15 @@ components:
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M
           example:
             type: "Property"
-            value:
-              value: 3500
-              unitCode: "M"
+            value: 3500
+            unitCode: "M"
 
         fromReservoir:
           type: object

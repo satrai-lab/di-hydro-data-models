@@ -54,7 +54,7 @@
       "autumn":160
     }
   },
-  "averagewaterLevel": {
+  "averageWaterLevel": {
     "type": "Property",
         "value": 3.2,
         "unitCode": "M"

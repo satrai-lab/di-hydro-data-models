@@ -22,10 +22,8 @@
   },
   "waterFlowRate": {
     "type": "Property",
-    "value": {
-      "value": 120,
-      "unitCode": "M3S"
-    }
+    "value": 120,
+    "unitCode": "M3S"
   },
   "filtrationOrDebrisControl": {
     "type": "Property",

@@ -23,18 +23,18 @@ paths:
               name:
                 type: "Property"
                 value: "Main Speed Governor"
-              controlParameters:
+              droopSetting:
                 type: "Property"
-                value:
-                  droopSetting:
-                    value: 5
-                    unitCode: "PCT"
-                  speedSetPoint:
-                    value: 500
-                    unitCode: "RPM"
-                  regulationRange:
-                    value: 10
-                    unitCode: "PCT"
+                value: 5
+                unitCode: "PCT"
+              speedSetPoint:
+                type: "Property"
+                value: 500
+                unitCode: "RPM"
+              regulationRange:
+                type: "Property"
+                value: 10
+                unitCode: "PCT"
               responseTime:
                 type: "Property"
                 value: 0.5
@@ -102,71 +102,70 @@ components:
           example:
             type: "Property"
             value: "Main Speed Governor"
-
-        controlParameters:
+        droopSetting:
           type: object
-          description: Key control settings (at least one of droopSetting, speedSetPoint, regulationRange)
-          minProperties: 1
+          description: Droop setting percentage indicating speed drop as load increases
           properties:
-            droopSetting:
-              type: object
-              description: Droop setting percentage indicating speed drop as load increases
-              properties:
-                value:
-                  type: number
-                  example: 5
-                unitCode:
-                  type: string
-                  enum:
-                    - PCT
-                  example: "PCT"
-            speedSetPoint:
-              type: object
-              description: Target operating speed of the turbine
-              properties:
-                value:
-                  type: number
-                  example: 500
-                unitCode:
-                  type: string
-                  enum:
-                    - RPM
-                  example: "RPM"
-            regulationRange:
-              type: object
-              description: Range over which the governor can adjust turbine input
-              properties:
-                value:
-                  type: number
-                  example: 10
-                unitCode:
-                  type: string
-                  enum:
-                    - PCT
-                  example: "PCT"
-          example:
-            droopSetting:
-              value: 5
-              unitCode: "PCT"
-            speedSetPoint:
-              value: 500
-              unitCode: "RPM"
-            regulationRange:
-              value: 10
-              unitCode: "PCT"
-
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - PCT
+          example: 
+            type: "Property"
+            value: 5
+            unitCode: "PCT"
+        speedSetPoint:
+          type: object
+          description: Target operating speed of the turbine
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - RPM
+          example: 
+            type: "Property"
+            value: 500
+            unitCode: "RPM"
+        regulationRange:
+          type: object
+          description: Range over which the governor can adjust turbine input
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - PCT
+          example: 
+            type: "Property"
+            value: 10
+            unitCode: "PCT"
         responseTime:
           type: object
           description: Time it takes for the governor to react to changes (in seconds)
           properties:
             value:
               type: number
-              example: 0.5
             unitCode:
               type: string
               enum:
                 - S
-              example: "S"
           example:
             value: 0.5
             unitCode: "S"
@@ -181,7 +180,6 @@ components:
                 - Property
             value:
               type: string
-              example: "ControlTech Ltd"
           example:
             type: "Property"
             value: "ControlTech Ltd"
@@ -196,7 +194,6 @@ components:
                 - Property
             value:
               type: integer
-              example: 2017
           example:
             type: "Property"
             value: 2017
@@ -209,13 +206,14 @@ components:
               type: string
               enum:
                 - Relationship
-              example: "Relationship"
             object:
               type: array
               items:
                 type: string
                 format: uri
-              example:
+          example:
+            type: "Relationship"
+            object:
                 - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
 
         controlsTurbine:
@@ -226,13 +224,14 @@ components:
               type: string
               enum:
                 - Relationship
-              example: "Relationship"
             object:
               type: array
               items:
                 type: string
                 format: uri
-              example:
+          example:
+            type: "Relationship"
+            object:
                 - "urn:ngsi-ld:Turbine:turb1"
 
         isPartOfPowerHouse:
@@ -243,12 +242,12 @@ components:
               type: string
               enum:
                 - Relationship
-              example: "Relationship"
             object:
               type: array
               items:
                 type: string
                 format: uri
-              example:
+          example:
+            type: "Relationship"
+            object:
                 - "urn:ngsi-ld:PowerHouse:ph1"
-

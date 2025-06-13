@@ -30,14 +30,12 @@ paths:
                   coordinates: [-121.50, 47.35]
               volumeCapacity:
                 type: "Property"
-                value:
-                  value: 5000
-                  unitCode: "M3"
+                value: 5000
+                unitCode: "M3"
               responseTime:
                 type: "Property"
-                value:
-                  value: 2
-                  unitCode: "S"
+                value: 2
+                unitCode: "S"
               isPartOfHydroPowerPlant:
                 type: "Relationship"
                 object:
@@ -123,19 +121,15 @@ components:
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M3
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3
           example:
             type: "Property"
-            value:
-              value: 5000
-              unitCode: "M3"
+            value: 5000
+            unitCode: "M3"
 
         responseTime:
           type: object
@@ -146,19 +140,15 @@ components:
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - S
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - S
           example:
             type: "Property"
-            value:
-              value: 2
-              unitCode: "S"
+            value: 2
+            unitCode: "S"
 
         isPartOfHydroPowerPlant:
           type: object

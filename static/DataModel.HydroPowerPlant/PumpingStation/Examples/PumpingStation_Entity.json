@@ -8,10 +8,8 @@
   },
   "totalPower": {
     "type": "Property",
-    "value": {
-      "value": 300,
-      "unitCode": "MW"
-    }
+    "value": 300,
+    "unitCode": "MW"
   },
   "unitCount": {
     "type": "Property",
@@ -19,17 +17,13 @@
   },
   "yearlyEnergyConsumption": {
     "type": "Property",
-    "value": {
-      "value": 1200000000,
-      "unitCode": "KWH"
-    }
+    "value": 1200000000,
+    "unitCode": "KWH"
   },
   "estimatedAnnualContribution": {
     "type": "Property",
-    "value": {
-      "value": 8000000,
-      "unitCode": "MWH"
-    }
+    "value": 8000000,
+    "unitCode": "MWH"
   },
   "feedsReservoir": {
     "type": "Relationship",

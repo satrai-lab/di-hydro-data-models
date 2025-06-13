@@ -18,17 +18,13 @@
   },
   "volumeCapacity": {
     "type": "Property",
-    "value": {
-      "value": 5000,
-      "unitCode": "M3"
-    }
+    "value": 5000,
+    "unitCode": "M3"
   },
   "responseTime": {
     "type": "Property",
-    "value": {
-      "value": 2,
-      "unitCode": "S"
-    }
+    "value": 2,
+    "unitCode": "S"
   },
   "isPartOfHydroPowerPlant": {
     "type": "Relationship",

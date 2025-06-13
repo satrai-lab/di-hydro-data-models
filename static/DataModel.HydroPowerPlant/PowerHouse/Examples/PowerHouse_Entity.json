@@ -22,10 +22,8 @@
   },
   "buildingArea": {
     "type": "Property",
-    "value": {
-      "value": 1200,
-      "unitCode": "M2"
-    }
+    "value": 1200,
+    "unitCode": "M2"
   },
   "numberOfFloors": {
     "type": "Property",

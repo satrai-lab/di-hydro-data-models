@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Reservoir Interactive API
   version: 1.0.0
-  description: Interactive NGSI-LD API with attribute-level documentation for Reservoir entities (expanded WaterBody)
+  description: Interactive NGSI-LD API with attribute-level documentation for Reservoir (a specialized WaterBody) entities
 servers:
   - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
 
@@ -31,163 +31,107 @@ paths:
                 value:
                   type: "Point"
                   coordinates: [-121.52, 47.36]
-              dimensions:
+              surfaceArea:
+                type: "Property"
+                value: 25.4
+                unitCode: "KM2"
+              length:
+                type: "Property"
+                value: 12
+                unitCode: "KM"
+              averageDepth:
+                type: "Property"
+                value: 45
+                unitCode: "M"
+              averageFlowRate:
+                type: "Property"
+                value: 350
+                unitCode: "M3S"
+              peakFlow:
+                type: "Property"
+                value: 620
+                unitCode: "M3S"
+              seasonalVariation:
                 type: "Property"
                 value:
-                  surfaceArea:
-                    value: 25.4
-                    unitCode: "KM2"
-                  length:
-                    value: 15
-                    unitCode: "KM"
-                  averageDepth:
-                    value: 45
-                    unitCode: "M"
-              waterFlowCharacteristics:
+                  winter: 300
+                  spring: 550
+                  summer: 480
+                  autumn: 400
+              averageWaterLevel:
                 type: "Property"
-                value:
-                  averageFlowRate:
-                    value: 350
-                    unitCode: "M3S"
-                  peakFlow:
-                    value: 620
-                    unitCode: "M3S"
-                  seasonalVariation:
-                    winter:
-                      value: 300
-                      unitCode: "M3S"
-                    spring:
-                      value: 550
-                      unitCode: "M3S"
-                    summer:
-                      value: 480
-                      unitCode: "M3S"
-                    autumn:
-                      value: 400
-                      unitCode: "M3S"
-              waterLevel:
-                type: "Property"
-                value:
-                  averageLevel:
-                    value: 400
-                    unitCode: "M"
-              waterQuality:
-                type: "Property"
-                value:
-                  temperature:
-                    value: 7.5
-                    unitCode: "C"
-                  pH: 7.8
-                  dissolvedOxygen:
-                    value: 9.1
-                    unitCode: "MG/L"
-                  sedimentLoad:
-                    value: 45
-                    unitCode: "MG/L"
-              environmentalIndicators:
-                type: "Property"
-                value:
-                  biodiversityIndex: 0.82
-                  invasiveSpeciesPresent: false
+                value: 400
+                unitCode: "M"
               operationalData:
                 type: "Property"
                 value:
                   floodRisk: "Medium"
                   waterRights: "Mixed"
-              isFedBy:
-                type: "Relationship"
-                object:
-                  - "urn:ngsi-ld:CatchmentArea:ca1"
-              isPartOfHydroPowerPlant:
-                type: "Relationship"
-                object:
-                  - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
               storageCapacity:
                 type: "Property"
-                value:
-                  value: 180000000
-                  unitCode: "M3"
-              inflowCharacteristics:
+                value: 180000000
+                unitCode: "M3"
+              averageInflowRate:
                 type: "Property"
-                value:
-                  averageInflowRate:
-                    value: 350
-                    unitCode: "M3S"
-                  retentionTime:
-                    value: 120
-                    unitCode: "H"
-              outflowControl:
+                value: 350
+                unitCode: "M3S"
+              averageOutflowRate:
                 type: "Property"
-                value:
-                  gateStatus: "Open"
-                  averageOutflowRate:
-                    value: 320
-                    unitCode: "M3S"
-              historicalLevels:
+                value: 300
+                unitCode: "M3S"
+              historicalMaxLevel:
                 type: "Property"
-                value:
-                  historicalMaxLevel:
-                    value: 412
-                    unitCode: "M"
-                  historicalMinLevel:
-                    value: 392
-                    unitCode: "M"
-              hasDams:
-                type: "Relationship"
-                object:
-                  - "urn:ngsi-ld:Dam:dam1"
-              feedsIntakes:
-                type: "Relationship"
-                object:
-                  - "urn:ngsi-ld:Intake:int1"
-              hasPressureTunnel:
-                type: "Relationship"
-                object:
-                  - "urn:ngsi-ld:PressureTunnel:pt1"
-              fedByPumpingStation:
-                type: "Relationship"
-                object:
-                  - "urn:ngsi-ld:PumpingStation:ps1"
+                value: 412
+                unitCode: "M"
+              historicalMinLevel:
+                type: "Property"
+                value: 392
+                unitCode: "M"
               maxReservoirLevel:
                 type: "Property"
-                value:
-                  value: 420
-                  unitCode: "M"
+                value: 420
+                unitCode: "M"
               normalReservoirLevel:
                 type: "Property"
-                value:
-                  value: 400
-                  unitCode: "M"
+                value: 400
+                unitCode: "M"
               reservoirLength:
                 type: "Property"
-                value:
-                  value: 15
-                  unitCode: "KM"
+                value: 15
+                unitCode: "KM"
               maximumEnergeticVolume:
                 type: "Property"
-                value:
-                  value: 2.8
-                  unitCode: "GWH"
+                value: 2.8
+                unitCode: "GWH"
               reservoirType:
                 type: "Property"
                 value: "seasonal"
-              reservoirVolumes:
+              grossVolume:
                 type: "Property"
-                value:
-                  - year: 2020
-                    grossVolume:
-                      value: 180000000
-                      unitCode: "M3"
-                    usefulVolume:
-                      value: 160000000
-                      unitCode: "M3"
-                  - year: 2021
-                    grossVolume:
-                      value: 185000000
-                      unitCode: "M3"
-                    usefulVolume:
-                      value: 165000000
-                      unitCode: "M3"
+                value: 180000000
+                unitCode: "M3"
+              usefulVolume:
+                type: "Property"
+                value: 160000000
+                unitCode: "M3"
+              isFedBy:
+                type: "Relationship"
+                object: ["urn:ngsi-ld:CatchmentArea:ca1"]
+              isPartOfHydroPowerPlant:
+                type: "Relationship"
+                object: ["urn:ngsi-ld:HydropowerPlant:plant-alpine-001"]
+              hasDams:
+                type: "Relationship"
+                object: ["urn:ngsi-ld:Dam:dam1"]
+              feedsIntakes:
+                type: "Relationship"
+                object: ["urn:ngsi-ld:Intake:int1"]
+              hasPressureTunnel:
+                type: "Relationship"
+                object: ["urn:ngsi-ld:PressureTunnel:pt1"]
+              fedByPumpingStation:
+                type: "Relationship"
+                object: ["urn:ngsi-ld:PumpingStation:ps1"]
       responses:
         '201':
           description: Entity created successfully
@@ -205,7 +149,7 @@ components:
         id:
           type: string
           format: uri
-          description: Unique URI identifier for the water body
+          description: Unique URI identifier for the reservoir
           example: "urn:ngsi-ld:WaterBody:res1"
         type:
           type: string
@@ -215,7 +159,7 @@ components:
           example: "WaterBody"
         name:
           type: object
-          description: Official or common name
+          description: Official name of the reservoir
           properties:
             type:
               type: string
@@ -246,7 +190,7 @@ components:
             value: "Reservoir"
         geographicalLocation:
           type: object
-          description: GeoJSON Point (longitude, latitude)
+          description: GeoJSON point for reservoir location
           properties:
             type:
               type: string
@@ -264,15 +208,104 @@ components:
                   items:
                     type: number
                   minItems: 2
-                  maxItems: 2
           example:
             type: "GeoProperty"
             value:
               type: "Point"
               coordinates: [-121.52, 47.36]
-        dimensions:
+        surfaceArea:
           type: object
-          description: Surface area, length, average depth
+          description: Reservoir surface area
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - KM2
+          example:
+            type: "Property"
+            value: 25.4
+            unitCode: "KM2"
+        length:
+          type: object
+          description: Upstream length from dam
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - KM
+          example:
+            type: "Property"
+            value: 12
+            unitCode: "KM"
+        averageDepth:
+          type: object
+          description: Mean reservoir depth
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M
+          example:
+            type: "Property"
+            value: 45
+            unitCode: "M"
+        averageFlowRate:
+          type: object
+          description: Mean inflow/outflow rate
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3S
+          example:
+            type: "Property"
+            value: 350
+            unitCode: "M3S"
+        peakFlow:
+          type: object
+          description: Maximum flow rate
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3S
+          example:
+            type: "Property"
+            value: 620
+            unitCode: "M3S"
+        seasonalVariation:
+          type: object
+          description: Seasonal flow variation
           properties:
             type:
               type: string
@@ -281,237 +314,42 @@ components:
             value:
               type: object
               properties:
-                surfaceArea:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - KM2
-                length:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - KM
-                averageDepth:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M
-          example:
-            type: "Property"
-            value:
-              surfaceArea:
-                value: 25.4
-                unitCode: "KM2"
-              length:
-                value: 15
-                unitCode: "KM"
-              averageDepth:
-                value: 45
-                unitCode: "M"
-        waterFlowCharacteristics:
-          type: object
-          description: Flow metrics (average, peak, seasonal)
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: object
-              properties:
-                averageFlowRate:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M3S
-                peakFlow:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M3S
-                seasonalVariation:
-                  type: object
-                  properties:
-                    winter:
-                      type: object
-                      properties:
-                        value:
-                          type: number
-                        unitCode:
-                          type: string
-                          enum:
-                            - M3S
-                    spring:
-                      type: object
-                      properties:
-                        value:
-                          type: number
-                        unitCode:
-                          type: string
-                          enum:
-                            - M3S
-                    summer:
-                      type: object
-                      properties:
-                        value:
-                          type: number
-                        unitCode:
-                          type: string
-                          enum:
-                            - M3S
-                    autumn:
-                      type: object
-                      properties:
-                        value:
-                          type: number
-                        unitCode:
-                          type: string
-                          enum:
-                            - M3S
-          example:
-            type: "Property"
-            value:
-              averageFlowRate:
-                value: 350
-                unitCode: "M3S"
-              peakFlow:
-                value: 620
-                unitCode: "M3S"
-              seasonalVariation:
                 winter:
-                  value: 300
-                  unitCode: "M3S"
+                  type: number
                 spring:
-                  value: 550
-                  unitCode: "M3S"
+                  type: number
                 summer:
-                  value: 480
-                  unitCode: "M3S"
+                  type: number
                 autumn:
-                  value: 400
-                  unitCode: "M3S"
-        waterLevel:
-          type: object
-          description: Average water level
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: object
-              properties:
-                averageLevel:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M
-          example:
-            type: "Property"
-            value:
-              averageLevel:
-                value: 400
-                unitCode: "M"
-        waterQuality:
-          type: object
-          description: Key water quality parameters
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: object
-              properties:
-                temperature:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - C
-                pH:
                   type: number
-                dissolvedOxygen:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - MG/L
-                sedimentLoad:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - MG/L
           example:
             type: "Property"
             value:
-              temperature:
-                value: 7.5
-                unitCode: "C"
-              pH: 7.8
-              dissolvedOxygen:
-                value: 9.1
-                unitCode: "MG/L"
-              sedimentLoad:
-                value: 45
-                unitCode: "MG/L"
-        environmentalIndicators:
+              winter: 300
+              spring: 550
+              summer: 480
+              autumn: 400
+        averageWaterLevel:
           type: object
-          description: Ecological indicators
+          description: Mean water‐surface elevation
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                biodiversityIndex:
-                  type: number
-                invasiveSpeciesPresent:
-                  type: boolean
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M
           example:
             type: "Property"
-            value:
-              biodiversityIndex: 0.82
-              invasiveSpeciesPresent: false
+            value: 400
+            unitCode: "M"
         operationalData:
           type: object
-          description: Management data
+          description: Flood risk and water rights
           properties:
             type:
               type: string
@@ -537,323 +375,168 @@ components:
             value:
               floodRisk: "Medium"
               waterRights: "Mixed"
-        isFedBy:
-          type: object
-          description: Upstream CatchmentArea references
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:CatchmentArea:ca1"
-        isPartOfHydroPowerPlant:
-          type: object
-          description: HydropowerPlant references
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
         storageCapacity:
           type: object
-          description: Total stored volume
+          description: Total volume stored
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M3
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3
           example:
             type: "Property"
-            value:
-              value: 180000000
-              unitCode: "M3"
-        inflowCharacteristics:
+            value: 180000000
+            unitCode: "M3"
+        averageInflowRate:
           type: object
-          description: Inflow regulation details
+          description: Mean inflow rate
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                averageInflowRate:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M3S
-                retentionTime:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - H
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3S
           example:
             type: "Property"
-            value:
-              averageInflowRate:
-                value: 350
-                unitCode: "M3S"
-              retentionTime:
-                value: 120
-                unitCode: "H"
-        outflowControl:
+            value: 350
+            unitCode: "M3S"
+        averageOutflowRate:
           type: object
-          description: Controlled release data
+          description: Mean outflow rate
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                gateStatus:
-                  type: string
-                averageOutflowRate:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M3S
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3S
           example:
             type: "Property"
-            value:
-              gateStatus: "Open"
-              averageOutflowRate:
-                value: 320
-                unitCode: "M3S"
-        historicalLevels:
+            value: 300
+            unitCode: "M3S"
+        historicalMaxLevel:
           type: object
-          description: Historical water levels
+          description: Historical maximum level
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                historicalMaxLevel:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M
-                historicalMinLevel:
-                  type: object
-                  properties:
-                    value:
-                      type: number
-                    unitCode:
-                      type: string
-                      enum:
-                        - M
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M
           example:
             type: "Property"
+            value: 412
+            unitCode: "M"
+        historicalMinLevel:
+          type: object
+          description: Historical minimum level
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
             value:
-              historicalMaxLevel:
-                value: 412
-                unitCode: "M"
-              historicalMinLevel:
-                value: 392
-                unitCode: "M"
-        hasDams:
-          type: object
-          description: Dams references
-          properties:
-            type:
+              type: number
+            unitCode:
               type: string
               enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri          
+                - M
           example:
-            type: Relationship
-            object:
-              - "urn:ngsi-ld:Dam:dam1"
-        feedsIntakes:
-          type: object
-          description: Intakes references
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri 
-          example:
-            type: Relationship
-            obeject:
-             - "urn:ngsi-ld:Intake:int1"
-        hasPressureTunnel:
-          type: object
-          description: PressureTunnels references
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri 
-          example:
-            type: Relationship
-            object:
-              - "urn:ngsi-ld:PressureTunnel:pt1"
-        fedByPumpingStation:
-          type: object
-          description: PressureTunnels references
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri 
-          example:
-            type: Relationship
-            object: 
-              - "urn:ngsi-ld:PumpingStation:ps1"
+            type: "Property"
+            value: 392
+            unitCode: "M"
         maxReservoirLevel:
           type: object
-          description: Highest permitted water surface elevation
+          description: Maximum allowed elevation
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M
           example:
             type: "Property"
-            value:
-              value: 420
-              unitCode: "M"
+            value: 420
+            unitCode: "M"
         normalReservoirLevel:
           type: object
-          description: Typical operating water surface elevation
+          description: Typical operating elevation
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - M
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M
           example:
             type: "Property"
-            value:
-              value: 400
-              unitCode: "M"
+            value: 400
+            unitCode: "M"
         reservoirLength:
           type: object
-          description: Upstream extent length at normal level
+          description: Upstream extent length
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - KM
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - KM
           example:
             type: "Property"
-            value:
-              value: 15
-              unitCode: "KM"
+            value: 15
+            unitCode: "KM"
         maximumEnergeticVolume:
           type: object
-          description: Potential energy content when full
+          description: Potential energy at full pool
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: object
-              properties:
-                value:
-                  type: number
-                unitCode:
-                  type: string
-                  enum:
-                    - GWH
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - GWH
           example:
             type: "Property"
-            value:
-              value: 2.8
-              unitCode: "GWH"
+            value: 2.8
+            unitCode: "GWH"
         reservoirType:
           type: object
           description: Operation classification
@@ -871,53 +554,135 @@ components:
           example:
             type: "Property"
             value: "seasonal"
-        reservoirVolumes:
+        grossVolume:
           type: object
-          description: Historical storage capacity records
+          description: Annual gross storage capacity
           properties:
             type:
               type: string
               enum:
                 - Property
             value:
-              type: array
-              items:
-                type: object
-                properties:
-                  year:
-                    type: integer
-                  grossVolume:
-                    type: object
-                    properties:
-                      value:
-                        type: number
-                      unitCode:
-                        type: string
-                        enum:
-                          - M3
-                  usefulVolume:
-                    type: object
-                    properties:
-                      value:
-                        type: number
-                      unitCode:
-                        type: string
-                        enum:
-                          - M3
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3
           example:
             type: "Property"
+            value: 180000000
+            unitCode: "M3"
+        usefulVolume:
+          type: object
+          description: Annual usable storage capacity
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
             value:
-              - year: 2020
-                grossVolume:
-                  value: 180000000
-                  unitCode: "M3"
-                usefulVolume:
-                  value: 160000000
-                  unitCode: "M3"
-              - year: 2021
-                grossVolume:
-                  value: 185000000
-                  unitCode: "M3"
-                usefulVolume:
-                  value: 165000000
-                  unitCode: "M3"
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - M3
+          example:
+            type: "Property"
+            value: 160000000
+            unitCode: "M3"
+        isFedBy:
+          type: object
+          description: Upstream catchment references
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object: ["urn:ngsi-ld:CatchmentArea:ca1"]
+        isPartOfHydroPowerPlant:
+          type: object
+          description: HydropowerPlant references
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object: ["urn:ngsi-ld:HydropowerPlant:plant-alpine-001"]
+        hasDams:
+          type: object
+          description: Dam references
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object: ["urn:ngsi-ld:Dam:dam1"]
+        feedsIntakes:
+          type: object
+          description: Intake references
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object: ["urn:ngsi-ld:Intake:int1"]
+        hasPressureTunnel:
+          type: object
+          description: PressureTunnel references
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object: ["urn:ngsi-ld:PressureTunnel:pt1"]
+        fedByPumpingStation:
+          type: object
+          description: PumpingStation references
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          example:
+            type: "Relationship"
+            object: ["urn:ngsi-ld:PumpingStation:ps1"]

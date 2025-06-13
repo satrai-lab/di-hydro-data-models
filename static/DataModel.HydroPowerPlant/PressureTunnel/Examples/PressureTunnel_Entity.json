@@ -4,10 +4,8 @@
   "type": "PressureTunnel",
   "length": {
     "type": "Property",
-    "value": {
-      "value": 3500,
-      "unitCode": "M"
-    }
+    "value": 3500,
+    "unitCode": "M"
   },
   "fromReservoir": {
     "type": "Relationship",

@@ -41,14 +41,11 @@
       "size": {
         "type": "object",
         "properties": {
-          "category": {
+          "value": {
             "type": "string",
             "enum": ["Pico", "Micro", "Mini", "Small", "Medium", "Large"]
           },
-          "interval": {
-            "type": "object",
-            "properties": {
-              "min": {
+          "min": {
                 "type": "object",
                 "properties": {
                   "value": {
@@ -59,8 +56,8 @@
                     "enum": ["MW"]
                   }
                 }
-              },
-              "max": {
+          },
+          "max": {
                 "type": "object",
                 "properties": {
                   "value": {
@@ -71,8 +68,6 @@
                     "enum": ["MW"]
                   }
                 }
-              }
-            }
           },
           "standard": {
             "type": "string"
@@ -250,7 +245,7 @@
           "type": "string",
           "format": "uri"
         }
-      }
+      },
       "hasSpillway": {
         "type": "array",
         "items": {

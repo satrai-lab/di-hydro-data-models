@@ -9,7 +9,7 @@ servers:
 paths:
   /entities:
     post:
-      summary: Create a HydropowerPlant (Full Attributes)
+      summary: Create a HydropowerPlant
       requestBody:
         required: true
         content:
@@ -33,16 +33,18 @@ paths:
                 value: "123 Dam Road, Alpine Valley"
               size:
                 type: "Property"
-                value:
-                  category: "Large"
-                  interval:
-                    min:
-                      value: 300
-                      unitCode: "MW"
-                    max:
-                      value: 1000
-                      unitCode: "MW"
-                  standard: "IEC"
+                value: "Large"
+                min:
+                  type : "Property"
+                  value: 300
+                  unitCode: "MW"
+                max:
+                  type: "Property"
+                  value: 1000
+                  unitCode: "MW"
+                standard: 
+                  type: "Property"
+                  value: "IEC"
               installedCapacity:
                 type: "Property"
                 value: 750
@@ -167,184 +169,382 @@ components:
 
         # Core Properties
         name:
-          $ref: '#/components/schemas/PropertyString'
+          type : object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: string
         geographicalLocation:
-          $ref: '#/components/schemas/GeoPropertyPoint'
-        address:
-          $ref: '#/components/schemas/PropertyString'
-
-        # Capacity
-        size:
-          $ref: '#/components/schemas/PropertySizeInterval'
-        installedCapacity:
-          $ref: '#/components/schemas/PropertyNumberWithUnit'
-        powerPlantCapacity:
-          $ref: '#/components/schemas/PropertyNumberWithUnit'
-
-        # Operational
-        powerplantType:
-          $ref: '#/components/schemas/PropertyString'
-        conversionEfficiency:
-          $ref: '#/components/schemas/PropertyNumber'
-
-        # Lifecycle
-        commissioningYear:
-          $ref: '#/components/schemas/PropertyNumber'
-        rehabilitationYear:
-          $ref: '#/components/schemas/PropertyNumber'
-
-        # Performance
-        annualEnergyOutput:
-          $ref: '#/components/schemas/PropertyNumberWithUnit'
-        ecologicalDischarge:
-          $ref: '#/components/schemas/PropertyNumberWithUnit'
-        maxTailwaterLevel:
-          $ref: '#/components/schemas/PropertyNumberWithUnit'
-        grossHead:
-          $ref: '#/components/schemas/PropertyNumberWithUnit'
-
-        # Relationships
-        partOfCommunity:
-          $ref: '#/components/schemas/RelationshipSingle'
-        hasPressureTunnel:
-          $ref: '#/components/schemas/RelationshipArray'
-        boostedByPumpingStation:
-          $ref: '#/components/schemas/RelationshipArray'
-        hasHydroPumps:
-          $ref: '#/components/schemas/RelationshipArray'
-        hasDams:
-          $ref: '#/components/schemas/RelationshipArray'
-        containsGenerators:
-          $ref: '#/components/schemas/RelationshipArray'
-        hasGovernors:
-          $ref: '#/components/schemas/RelationshipArray'
-        containsTurbines:
-          $ref: '#/components/schemas/RelationshipArray'
-        hasIntakes:
-          $ref: '#/components/schemas/RelationshipArray'
-        hasPowerHouses:
-          $ref: '#/components/schemas/RelationshipArray'
-        hasPenstocks:
-          $ref: '#/components/schemas/RelationshipArray'
-        hasValve:
-          $ref: '#/components/schemas/RelationshipArray'
-        hasValveHouse:
-          $ref: '#/components/schemas/RelationshipArray'
-        hasWaterBody:
-          $ref: '#/components/schemas/RelationshipArray'
-        hasSurgeTank:
-          $ref: '#/components/schemas/RelationshipArray'
-        hasSpillway:
-          $ref: '#/components/schemas/RelationshipArray'
-
-    # Reusable property schemas
-    PropertyString:
-      type: object
-      properties:
-        type:
-          type: string
-          enum: ["Property"]
-        value:
-          type: string
-      required: [type, value]
-
-    PropertyNumber:
-      type: object
-      properties:
-        type:
-          type: string
-          enum: ["Property"]
-        value:
-          type: number
-      required: [type, value]
-
-    PropertyNumberWithUnit:
-      type: object
-      properties:
-        type:
-          type: string
-          enum: ["Property"]
-        value:
-          type: number
-        unitCode:
-          type: string
-      required: [type, value, unitCode]
-
-    GeoPropertyPoint:
-      type: object
-      properties:
-        type:
-          type: string
-          enum: ["GeoProperty"]
-        value:
           type: object
           properties:
             type:
               type: string
-              enum: ["Point"]
-            coordinates:
-              type: array
-              items:
-                type: number
-              minItems: 2
-              maxItems: 2
-          required: [type, coordinates]
-      required: [type, value]
-
-    PropertySizeInterval:
-      type: object
-      properties:
-        type:
-          type: string
-          enum: ["Property"]
-        value:
-          type: object
-          properties:
-            category:
-              type: string
-              enum: ["Pico","Micro","Mini","Small","Medium","Large"]
-            interval:
+              enum: ["GeoProperty"]
+            value:
               type: object
               properties:
-                min:
-                  $ref: '#/components/schemas/SubInterval'
-                max:
-                  $ref: '#/components/schemas/SubInterval'
+                type:
+                  type: string
+                  enum: ["Point"]
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+                  minItems: 2
+                  maxItems: 2
+          required: [type, value]
+        address:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: string
+          required: [type, value]
+
+        # Capacity
+        size:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: string
+            min:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: ["Property"]
+                value:
+                  type: number
+                  description: Minimum capacity value
+                unitCode:
+                  type: string
+                  enum: ["MW"]
+            max:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: ["Property"]
+                value:
+                  type: number
+                  description: Maximum capacity value
+                unitCode:
+                  type: string
+                  enum: ["MW"]
             standard:
               type: string
-          required: [category, interval, standard]
-      required: [type, value]
+              description: Standard classification for size
+        installedCapacity:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum: ["MW"]
+        powerPlantCapacity:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum: ["MW"]
+        powerplantType:
+          type: object
+          description: Type of hydropower plant (e.g., run-of-river, storage/reservoir)
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+              enum:
+                - run-of-river
+                - storage/reservoir
+                - pumped-storage
+                - Other
+        conversionEfficiency:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: number
+              description: Conversion efficiency percentage
+            unitCode:
+              type: string
+              enum: ["%"]
+        commissioningYear:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: number
+              description: Year of initial commissioning
+        rehabilitationYear:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: number
+              description: Year of last rehabilitation or major upgrade
+        annualEnergyOutput:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum: ["KWH"]
+          description: Annual energy output in kilowatt-hours
+        ecologicalDischarge:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum: ["M3/S"]
+          description: Ecological discharge in cubic meters per second
+        maxTailwaterLevel:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum: ["M"]
+          description: Maximum tailwater level in meters
+        grossHead:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Property"]
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum: ["M"]
+          description: Gross head in meters
+        # Relationships
+        partOfCommunity:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: string
+              format: uri
+        hasPressureTunnel:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of pressure tunnels associated with the plant
+        boostedByPumpingStation:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of pumping stations boosting the plant's operation
+        hasHydroPumps:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of hydro pumps associated with the plant
+        hasDams:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of dams associated with the plant
+        containsGenerators:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of generators contained within the plant
+        hasGovernors:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of governors controlling the plant's operation
+        containsTurbines:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of turbines contained within the plant
+        hasIntakes:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of intakes associated with the plant
+        hasPowerHouses:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of power houses associated with the plant
+        hasPenstocks:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of penstocks associated with the plant
+        hasValve:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of valves associated with the plant
+        hasValveHouse:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of valve houses associated with the plant
+        hasWaterBody:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of water bodies associated with the plant
+        hasSurgeTank:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of surge tanks associated with the plant
+        hasSpillway:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of spillways associated with the plant
 
-    SubInterval:
-      type: object
-      properties:
-        value:
-          type: number
-        unitCode:
-          type: string
-          enum: ["MW"]
-      required: [value, unitCode]
-
-    RelationshipSingle:
-      type: object
-      properties:
-        type:
-          type: string
-          enum: ["Relationship"]
-        object:
-          type: string
-          format: uri
-      required: [type, object]
-
-    RelationshipArray:
-      type: object
-      properties:
-        type:
-          type: string
-          enum: ["Relationship"]
-        object:
-          type: array
-          items:
-            type: string
-            format: uri
-      required: [type, object]
+ 

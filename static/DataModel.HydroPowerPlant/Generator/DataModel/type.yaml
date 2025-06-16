@@ -170,7 +170,7 @@ components:
             format: uri
           x-ngsi:
             type: Relationship
-         hasTransformers:
+        hasTransformers:
           type: array
           description: "Array of Transformer entity identifiers"
           items:

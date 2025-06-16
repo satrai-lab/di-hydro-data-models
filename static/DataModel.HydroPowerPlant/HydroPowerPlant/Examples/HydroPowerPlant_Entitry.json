@@ -22,19 +22,20 @@
   },
   "size": {
     "type": "Property",
-    "value": {
-      "category": "Large",
-      "interval": {
-        "min": {
-          "value": 300,
-          "unitCode": "MW"
-        },
-        "max": {
-          "value": 1000,
-          "unitCode": "MW"
-        }
-      },
-      "standard": "IEC"
+    "value": "Large",
+    "min": {
+      "type": "Property",
+      "value": 300,
+      "unitCode": "MW"
+    },
+    "max": {
+      "type": "Property",
+      "value": 1000,
+      "unitCode": "MW"
+    },
+    "standard": {
+      "type": "Property",
+      "value": "IEC 60041"
     }
   },
   "installedCapacity": {

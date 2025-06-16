@@ -56,7 +56,7 @@ components:
           type: object
           description: "Electric capacity category with range interval and standard information."
           properties:
-            category:
+            value:
               type: string
               enum:
                 - Pico
@@ -66,11 +66,7 @@ components:
                 - Medium
                 - Large
               description: "Capacity category (e.g., Pico, Micro, Mini, Small, Medium, Large)."
-            interval:
-              type: object
-              description: "The capacity range for the category (in MW)."
-              properties:
-                min:
+              min:
                   type: object
                   description: "Minimum capacity value in MW."
                   properties:
@@ -84,7 +80,7 @@ components:
                       description: "UN/CEFACT unit code for megawatt"
                   x-ngsi:
                     type: Property
-                max:
+              max:
                   type: object
                   description: "Maximum capacity value in MW."
                   properties:
@@ -129,8 +125,6 @@ components:
           description: "Conversion efficiency percentage (typically 90-95%)"
           x-ngsi:
             type: Property
-
-        # New properties to add
         commissioningYear:
           type: integer
           description: "The year when the plant first began operation"
@@ -191,8 +185,6 @@ components:
             enum:
               - "M"
             description: "UN/CEFACT unit code for meters"
-
-        # Relationships to be added
         partOfCommunity:
           type: array
           items:
@@ -217,8 +209,6 @@ components:
             format: uri
           x-ngsi:
             type: Relationship
-
-        # Existing relationships (remained unchanged)
         hasHydroPumps:
           type: array
           description: "Array of HydroPump entity identifiers"
@@ -324,7 +314,7 @@ components:
           x-ngsi:
             type: Relationship
         x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/HydroPowerPlant/DataModel/type.json"
         
 info:
   description: "Data Model of HydroPowerCommunity"

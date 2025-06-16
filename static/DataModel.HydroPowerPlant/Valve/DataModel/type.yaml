@@ -94,7 +94,7 @@ components:
           x-ngsi:
             type: Relationship
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/types-defenitions.json#"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/Valve/DataModel/type.json"
 
 info:
   description: "Data Model of Valve for Hydropower Plant Modeling"

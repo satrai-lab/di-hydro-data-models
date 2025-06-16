@@ -1,7 +1,7 @@
 # Hydro Power Plant
 <div style="display: flex; justify-content: center; margin: 20px 0">
   <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/static/Diagrams/HydroPowerPlant.png" 
-       alt="HydroPowerPlantCommunity Diagram" 
+       alt="HydroPowerPlant Diagram" 
        style="max-width: 100%; height: auto; width: 100%">
 </div>
 
@@ -17,7 +17,7 @@ A **HydropowerPlant** represents a physical facility that converts the energy of
 | **`name`**              | Property      | String        | Yes      | Official name of the facility. Used in operational and regulatory contexts.                                            | -                              |  
 | **`geographicalLocation`** | GeoProperty | GeoJSON Point | No       | Plant's geospatial coordinates. Essential for environmental impact analysis and grid connectivity.                    | `{"type":"Point","coordinates":[lon,lat]}` |  
 | **`address`**           | Property      | String        | No       | Physical address. Supports maintenance and regulatory reporting.                                                       | -                              |  
-| **`size`**              | Property      | Object        | No       | Capacity category with min/max ranges. Classifies plant scale for regulatory purposes.                                 | `{category, interval:{min, max}, standard}` |  
+| **`size`**              | Property      | Object        | No       | Capacity category with min/max ranges. Classifies plant scale for regulatory purposes.                                 | `{value(large,medium..), min, max, standard}` |  
 | **`powerPlantCapacity`**| Property      | Object        | No       | Rated electrical output. Key metric for grid contribution and revenue calculation.                                     | `{value, unitCode:"MW"}`       |  
 | **`powerplantType`**    | Property      | String        | No       | Operational design (e.g., reservoir, run-of-river). Determines control strategies and environmental impact.           | -                              |  
 | **`conversionEfficiency`**| Property    | Number        | No       | Energy conversion rate (%). Indicates turbine-generator performance.                                                  | % (e.g., `92.5`)               |  

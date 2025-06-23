@@ -1,0 +1,433 @@
+openapi: 3.0.3
+info:
+  title: AESystem Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for AE system entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create an AESystem entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/AESystem'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
+              id: "urn:ngsi-ld:AESystem:01"
+              type: "AESystem"
+              frequencyBandwidthMin:
+                type: "Property"
+                value: 10
+                unitCode: "kHz"
+              frequencyBandwidthMax:
+                type: "Property"
+                value: 400
+                unitCode: "kHz"
+              acquisitionMode:
+                type: "Property"
+                value: "Timed and Continuous"
+              samplingRate:
+                type: "Property"
+                value: 2000000
+                unitCode: "1/s"
+              systemNoise:
+                type: "Property"
+                value: 30
+                unitCode: "dB"
+              samplingLength:
+                type: "Property"
+                value: 15000
+                unitCode: "count"
+              analogueFilterMin:
+                type: "Property"
+                value: 30
+                unitCode: "kHz"
+              analogueFilterMax:
+                type: "Property"
+                value: 175
+                unitCode: "kHz"
+              digitalFilterMin:
+                type: "Property"
+                value: 80
+                unitCode: "kHz"
+              digitalFilterMax:
+                type: "Property"
+                value: 400
+                unitCode: "kHz"
+              dataOutput:
+                type: "Property"
+                value: "Amplitude,RMS,Energy,ASL"
+              temperatureMin:
+                type: "Property"
+                value: -20
+                unitCode: "CEL"
+              temperatureMax:
+                type: "Property"
+                value: 60
+                unitCode: "CEL"
+              powerSupply:
+                type: "Property"
+                value: 8.4
+                unitCode: "V"
+              powerMode:
+                type: "Property"
+                value: "External or Battery"
+              chargingVoltage:
+                type: "Property"
+                value: 8.4
+                unitCode: "V"
+              operatingVoltage:
+                type: "Property"
+                value: 7.2
+                unitCode: "V"
+              sleepModeCurrent:
+                type: "Property"
+                value: 0.2
+                unitCode: "mA"
+              hasComponent:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:AEPZTSensor:001"
+              hasObservation:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Observation:obsAE001"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    AESystem:
+      type: object
+      required:
+        - id
+        - type
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the AE system
+          example: "urn:ngsi-ld:AESystem:01"
+
+        type:
+          type: string
+          enum:
+            - AESystem
+          description: Fixed entity type
+          example: "AESystem"
+
+        frequencyBandwidthMin:
+          type: object
+          description: Minimum frequency bandwidth
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - kHz
+          required: [type, value, unitCode]
+
+        frequencyBandwidthMax:
+          type: object
+          description: Maximum frequency bandwidth
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - kHz
+          required: [type, value, unitCode]
+
+        acquisitionMode:
+          type: object
+          description: Data acquisition mode
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+              enum:
+                - Timed
+                - Continuous
+                - Timed and Continuous
+          required: [type, value]
+
+        samplingRate:
+          type: object
+          description: Maximum sampling rate
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - "1/s"
+          required: [type, value, unitCode]
+
+        systemNoise:
+          type: object
+          description: System self-noise level
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - dB
+          required: [type, value, unitCode]
+
+        samplingLength:
+          type: object
+          description: Max points per hit
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: integer
+            unitCode:
+              type: string
+              enum:
+                - count
+          required: [type, value, unitCode]
+
+        analogueFilterMin:
+          type: object
+          description: Lower cutoff of analogue filter
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - kHz
+          required: [type, value, unitCode]
+
+        analogueFilterMax:
+          type: object
+          description: Upper cutoff of analogue filter
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - kHz
+          required: [type, value, unitCode]
+
+        digitalFilterMin:
+          type: object
+          description: Lower cutoff of digital filter
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - kHz
+          required: [type, value, unitCode]
+
+        digitalFilterMax:
+          type: object
+          description: Upper cutoff of digital filter
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - kHz
+          required: [type, value, unitCode]
+
+        dataOutput:
+          type: object
+          description: AE parameters delivered by the system
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          required: [type, value]
+
+        temperatureMin:
+          type: object
+          description: Minimum operating temperature
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - CEL
+          required: [type, value, unitCode]
+
+        temperatureMax:
+          type: object
+          description: Maximum operating temperature
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - CEL
+          required: [type, value, unitCode]
+
+        powerSupply:
+          type: object
+          description: Nominal power supply voltage
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - V
+          required: [type, value, unitCode]
+
+        powerMode:
+          type: object
+          description: Power source mode
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+          required: [type, value]
+
+        chargingVoltage:
+          type: object
+          description: Charging voltage of internal battery
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - V
+          required: [type, value, unitCode]
+
+        operatingVoltage:
+          type: object
+          description: Operating voltage of the system
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - V
+          required: [type, value, unitCode]
+
+        sleepModeCurrent:
+          type: object
+          description: Sleep-mode current draw
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - mA
+          required: [type, value, unitCode]
+
+        hasComponent:
+          type: object
+          description: References to AEPZTSensor entities this system includes
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          required: [type, object]
+
+        hasObservation:
+          type: object
+          description: References to Observation entities produced by this system
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          required: [type, object]

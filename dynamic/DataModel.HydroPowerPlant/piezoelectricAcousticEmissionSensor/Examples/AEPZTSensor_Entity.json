@@ -49,7 +49,7 @@
       "unitCode": "MMT"
     },
     "isComponentOf": [
-      "urn:ngsi-ld:AE:System:01"
+      "urn:ngsi-ld:AESystem:01"
     ],
     "hasObservation": [
       "urn:ngsi-ld:Observation:obs001",

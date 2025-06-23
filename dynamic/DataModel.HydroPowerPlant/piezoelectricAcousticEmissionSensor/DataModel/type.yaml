@@ -207,7 +207,7 @@ components:
             type: Relationship
 
       x-ngsi:
-        uri-prefix: "https://example.org/ngsi-ld/AEPZTSensor"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/piezoelectricAcousticEmissionSensor/DataModel/type.json"
 info:
   description: "Data Model of AE PZT Sensor of Hydropower Plant Modeling"
   title: Dynamic HydropowerPlantModeling

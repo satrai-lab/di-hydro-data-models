@@ -1,4 +1,5 @@
-{
+{   
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
     "id": "urn:ngsi-ld:AEPZTSensor:001",
     "type": "AEPZTSensor",
     "monitoringType": "StructuralHealthAndConditionMonitoring",

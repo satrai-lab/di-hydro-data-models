@@ -279,7 +279,7 @@ components:
             type: Relationship
 
       x-ngsi:
-        uri-prefix: "https://example.org/ngsi-ld/AESystem"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/AESystem/DataModel/type.json"
 
 info:
   description: "Data Model of AE System of Hydropower Plant Modeling"

@@ -1,0 +1,240 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "AEPZTSensorModel",
+  "definitions": {
+    "AEPZTSensor": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "monitoringType"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+          "description": "Unique identifier of this AE PZT sensor"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "AEPZTSensor"
+          ],
+          "description": "NGSI Entity type. Must be AEPZTSensor"
+        },
+        "monitoringType": {
+          "type": "string",
+          "enum": [
+            "StructuralHealthAndConditionMonitoring",
+            "EnvironmentalMonitoring",
+            "BiodiversityMonitoring"
+          ],
+          "description": "Category of monitoring application for this sensor"
+        },
+        "resonantFrequency": {
+          "type": "object",
+          "description": "Sensor resonant frequency",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": [
+                "kHz"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "frequencyMin": {
+          "type": "object",
+          "description": "Minimum operational frequency",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": [
+                "kHz"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "frequencyMax": {
+          "type": "object",
+          "description": "Maximum operational frequency",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": [
+                "kHz"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "peakSensitivity": {
+          "type": "object",
+          "description": "Peak sensitivity level",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": [
+                "dB"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "temperatureMin": {
+          "type": "object",
+          "description": "Minimum operating temperature",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": [
+                "CEL"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "temperatureMax": {
+          "type": "object",
+          "description": "Maximum operating temperature",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": [
+                "CEL"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "preAmplifierImpedance": {
+          "type": "object",
+          "description": "Input impedance of the pre-amplifier",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": [
+                "OHM"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "integralPreAmplifierGain": {
+          "type": "object",
+          "description": "Gain of the built-in pre-amplifier",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": [
+                "dB"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "integralPreAmplifierSupplyVoltage": {
+          "type": "object",
+          "description": "Supply voltage of the built-in pre-amplifier",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": [
+                "V"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "caseMaterial": {
+          "type": "string",
+          "description": "Material of the sensor housing"
+        },
+        "faceMaterial": {
+          "type": "string",
+          "description": "Material of the sensor contact face"
+        },
+        "length": {
+          "type": "object",
+          "description": "Physical length of the sensor",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": [
+                "MMT"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "width": {
+          "type": "object",
+          "description": "Physical width of the sensor",
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "unitCode": {
+              "type": "string",
+              "enum": [
+                "MMT"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "isComponentOf": {
+          "type": "array",
+          "description": "Reference(s) to the AE system entity that this sensor is part of",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "hasObservation": {
+          "type": "array",
+          "description": "References to Observation entities produced by this sensor",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

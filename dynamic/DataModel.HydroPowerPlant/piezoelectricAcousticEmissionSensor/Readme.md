@@ -32,8 +32,8 @@ An **AE PZT Sensor** is a piezoelectric transducer used for **Acoustic Emission 
 | **`faceMaterial`**                      | Property     | No       | Material of the contact face that couples the transducer to the structure                   | String (e.g. `"ceramic"`, `"PZT ceramic"`)                                                        |
 | **`length`**                            | Property     | No       | Physical length of the sensor                                                               | Object with:<br>• `value`: number<br>• `unitCode`: `"MMT"`                                        |
 | **`width`**                             | Property     | No       | Physical width of the sensor                                                                | Object with:<br>• `value`: number<br>• `unitCode`: `"MMT"`                                        |
-| **`isComponentOf`**                     | Relationship | No       | Reference to the AE system entity that this sensor is part of                               | Array of URIs (e.g. `["urn:ngsi-ld:AESystem:01"]`)                                                |
-| **`hasObservation`**                    | Relationship | No       | References to Observation entities (AE events or waveform captures) produced by this sensor | Array of URIs (e.g. `["urn:ngsi-ld:Observation:obs001", "urn:ngsi-ld:Observation:obs002"]`)       |
+| **`isComponentOf`**                     | Relationship | No       | Reference to the AE system entity that this sensor is part of                               | Array of URIs                                             |
+| **`hasObservation`**                    | Relationship | No       | References to Observation entities (AE events or waveform captures) produced by this sensor | Array of URIs       |
 
 ---
 

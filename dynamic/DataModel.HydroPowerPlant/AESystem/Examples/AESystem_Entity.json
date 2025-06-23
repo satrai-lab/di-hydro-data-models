@@ -1,0 +1,108 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:AESystem:01",
+  "type": "AESystem",
+
+  "frequencyBandwidthMin": {
+    "type": "Property",
+    "value": 10,
+    "unitCode": "kHz"
+  },
+  "frequencyBandwidthMax": {
+    "type": "Property",
+    "value": 400,
+    "unitCode": "kHz"
+  },
+  "acquisitionMode": {
+    "type": "Property",
+    "value": "Timed and Continuous"
+  },
+  "samplingRate": {
+    "type": "Property",
+    "value": 2000000,
+    "unitCode": "1/s"
+  },
+  "systemNoise": {
+    "type": "Property",
+    "value": 30,
+    "unitCode": "dB"
+  },
+  "samplingLength": {
+    "type": "Property",
+    "value": 15000,
+    "unitCode": "count"
+  },
+  "analogueFilterMin": {
+    "type": "Property",
+    "value": 30,
+    "unitCode": "kHz"
+  },
+  "analogueFilterMax": {
+    "type": "Property",
+    "value": 175,
+    "unitCode": "kHz"
+  },
+  "digitalFilterMin": {
+    "type": "Property",
+    "value": 80,
+    "unitCode": "kHz"
+  },
+  "digitalFilterMax": {
+    "type": "Property",
+    "value": 400,
+    "unitCode": "kHz"
+  },
+  "dataOutput": {
+    "type": "Property",
+    "value": "Amplitude,RMS,Energy,ASL"
+  },
+  "temperatureMin": {
+    "type": "Property",
+    "value": -20,
+    "unitCode": "CEL"
+  },
+  "temperatureMax": {
+    "type": "Property",
+    "value": 60,
+    "unitCode": "CEL"
+  },
+  "powerSupply": {
+    "type": "Property",
+    "value": 8.4,
+    "unitCode": "V"
+  },
+  "powerMode": {
+    "type": "Property",
+    "value": "External or Battery"
+  },
+  "chargingVoltage": {
+    "type": "Property",
+    "value": 8.4,
+    "unitCode": "V"
+  },
+  "operatingVoltage": {
+    "type": "Property",
+    "value": 7.2,
+    "unitCode": "V"
+  },
+  "sleepModeCurrent": {
+    "type": "Property",
+    "value": 0.2,
+    "unitCode": "mA"
+  },
+
+  "hasComponent": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:AEPZTSensor:001",
+      "urn:ngsi-ld:AEPZTSensor:002"
+    ]
+  },
+  "hasObservation": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:obsAE001",
+      "urn:ngsi-ld:Observation:obsAE002"
+    ]
+  }
+}

@@ -4,333 +4,297 @@
   "title": "AESystemModel",
   "definitions": {
     "AESystem": {
-      "type": "object",
-      "required": [
-        "id",
-        "type"
-      ],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
-          "description": "Unique identifier of this AE system"
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
         },
-        "type": {
-          "type": "string",
-          "enum": [
-            "AESystem"
-          ],
-          "description": "NGSI-LD entity type. Must be AESystem"
-        },
-        "frequencyBandwidthMin": {
+
+        {
           "type": "object",
-          "description": "Minimum frequency bandwidth",
+
           "properties": {
-            "value": {
-              "type": "number",
-              "description": "Lower bound of system bandwidth"
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this AE system"
             },
-            "unitCode": {
+            "type": {
               "type": "string",
-              "enum": [
-                "kHz"
-              ],
-              "description": "Unit code for kilohertz"
-            }
-          },
-          "additionalProperties": false
-        },
-        "frequencyBandwidthMax": {
-          "type": "object",
-          "description": "Maximum frequency bandwidth",
-          "properties": {
-            "value": {
-              "type": "number",
-              "description": "Upper bound of system bandwidth"
+              "enum": ["AESystem"],
+              "description": "NGSI-LD entity type. Must be AESystem"
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "kHz"
-              ],
-              "description": "Unit code for kilohertz"
-            }
-          },
-          "additionalProperties": false
-        },
-        "acquisitionMode": {
-          "type": "object",
-          "description": "Data acquisition mode",
-          "properties": {
-            "value": {
-              "type": "string",
-              "enum": [
-                "Timed",
-                "Continuous",
-                "Timed and Continuous"
-              ],
-              "description": "Which mode(s) the system supports"
-            }
-          },
-          "additionalProperties": false
-        },
-        "samplingRate": {
-          "type": "object",
-          "description": "Maximum sampling rate",
-          "properties": {
-            "value": {
-              "type": "number",
-              "description": "Samples per second"
+            "frequencyBandwidthMin": {
+              "type": "object",
+              "description": "Minimum frequency bandwidth",
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Lower bound of system bandwidth"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["kHz"],
+                  "description": "Unit code for kilohertz"
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "1/s"
-              ],
-              "description": "Unit code for per second"
-            }
-          },
-          "additionalProperties": false
-        },
-        "systemNoise": {
-          "type": "object",
-          "description": "System self-noise level",
-          "properties": {
-            "value": {
-              "type": "number"
+            "frequencyBandwidthMax": {
+              "type": "object",
+              "description": "Maximum frequency bandwidth",
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Upper bound of system bandwidth"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["kHz"],
+                  "description": "Unit code for kilohertz"
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "dB"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "samplingLength": {
-          "type": "object",
-          "description": "Max points per hit",
-          "properties": {
-            "value": {
-              "type": "integer",
-              "description": "Number of samples captured per event"
+            "acquisitionMode": {
+              "type": "object",
+              "description": "Data acquisition mode",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": ["Timed", "Continuous", "Timed and Continuous"],
+                  "description": "Which mode(s) the system supports"
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "count"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "analogueFilterMin": {
-          "type": "object",
-          "description": "Lower cutoff frequency of analogue filter",
-          "properties": {
-            "value": {
-              "type": "number"
+            "samplingRate": {
+              "type": "object",
+              "description": "Maximum sampling rate",
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Samples per second"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["1/s"],
+                  "description": "Unit code for per second"
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "kHz"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "analogueFilterMax": {
-          "type": "object",
-          "description": "Upper cutoff frequency of analogue filter",
-          "properties": {
-            "value": {
-              "type": "number"
+            "systemNoise": {
+              "type": "object",
+              "description": "System self-noise level",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["dB"]
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "kHz"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "digitalFilterMin": {
-          "type": "object",
-          "description": "Lower cutoff frequency of digital filter",
-          "properties": {
-            "value": {
-              "type": "number"
+            "samplingLength": {
+              "type": "object",
+              "description": "Max points per hit",
+              "properties": {
+                "value": {
+                  "type": "integer",
+                  "description": "Number of samples captured per event"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["count"]
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "kHz"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "digitalFilterMax": {
-          "type": "object",
-          "description": "Upper cutoff frequency of digital filter",
-          "properties": {
-            "value": {
-              "type": "number"
+            "analogueFilterMin": {
+              "type": "object",
+              "description": "Lower cutoff frequency of analogue filter",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["kHz"]
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "kHz"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "dataOutput": {
-          "type": "object",
-          "description": "AE parameters delivered by the system",
-          "properties": {
-            "value": {
-              "type": "string",
-              "description": "Comma-separated list of output metrics (Amplitude, RMS, Energy, ASL)"
-            }
-          },
-          "additionalProperties": false
-        },
-        "temperatureMin": {
-          "type": "object",
-          "description": "Minimum operating temperature",
-          "properties": {
-            "value": {
-              "type": "number"
+            "analogueFilterMax": {
+              "type": "object",
+              "description": "Upper cutoff frequency of analogue filter",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["kHz"]
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "CEL"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "temperatureMax": {
-          "type": "object",
-          "description": "Maximum operating temperature",
-          "properties": {
-            "value": {
-              "type": "number"
+            "digitalFilterMin": {
+              "type": "object",
+              "description": "Lower cutoff frequency of digital filter",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["kHz"]
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "CEL"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "powerSupply": {
-          "type": "object",
-          "description": "Nominal power supply voltage",
-          "properties": {
-            "value": {
-              "type": "number"
+            "digitalFilterMax": {
+              "type": "object",
+              "description": "Upper cutoff frequency of digital filter",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["kHz"]
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "V"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "powerMode": {
-          "type": "object",
-          "description": "Power source mode",
-          "properties": {
-            "value": {
-              "type": "string",
-              "enum": [
-                "External",
-                "Battery",
-                "External or Battery"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "chargingVoltage": {
-          "type": "object",
-          "description": "Battery charging voltage",
-          "properties": {
-            "value": {
-              "type": "number"
+            "dataOutput": {
+              "type": "object",
+              "description": "AE parameters delivered by the system",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "description": "Comma-separated list of output metrics (Amplitude, RMS, Energy, ASL)"
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "V"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "operatingVoltage": {
-          "type": "object",
-          "description": "Operating voltage of the electronics",
-          "properties": {
-            "value": {
-              "type": "number"
+            "temperatureMin": {
+              "type": "object",
+              "description": "Minimum operating temperature",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["CEL"]
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "V"
-              ]
-            }
-          },
-          "additionalProperties": false
-        },
-        "sleepModeCurrent": {
-          "type": "object",
-          "description": "Current draw in sleep mode",
-          "properties": {
-            "value": {
-              "type": "number"
+            "temperatureMax": {
+              "type": "object",
+              "description": "Maximum operating temperature",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["CEL"]
+                }
+              },
+              "additionalProperties": false
             },
-            "unitCode": {
-              "type": "string",
-              "enum": [
-                "mA"
-              ]
+            "powerSupply": {
+              "type": "object",
+              "description": "Nominal power supply voltage",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["V"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "powerMode": {
+              "type": "object",
+              "description": "Power source mode",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": ["External", "Battery", "External or Battery"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "chargingVoltage": {
+              "type": "object",
+              "description": "Battery charging voltage",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["V"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "operatingVoltage": {
+              "type": "object",
+              "description": "Operating voltage of the electronics",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["V"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "sleepModeCurrent": {
+              "type": "object",
+              "description": "Current draw in sleep mode",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["mA"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "hasComponent": {
+              "type": "array",
+              "description": "References to AEPZTSensor entities included in this AE system",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "hasObservation": {
+              "type": "array",
+              "description": "References to Observation entities produced by this AE system",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             }
           },
           "additionalProperties": false
-        },
-        "hasComponent": {
-          "type": "array",
-          "description": "References to AEPZTSensor entities included in this AE system",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasObservation": {
-          "type": "array",
-          "description": "References to Observation entities produced by this AE system",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
         }
-      },
-      "additionalProperties": false
+      ]
     }
   }
 }
-

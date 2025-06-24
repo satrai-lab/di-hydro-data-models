@@ -1,0 +1,69 @@
+components:
+  schemas:
+
+    CrackGrowthSensor:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/CrackGrowthSensor/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+
+          properties:
+    
+            monitoringType:
+              type: string
+              description: "Category of monitoring application for this sensor"
+              enum:
+                - StructuralHealthAndConditionMonitoring
+                - EnvironmentalMonitoring
+                - BiodiversityMonitoring
+              x-ngsi:
+                type: Property
+    
+            adcResolution:
+              type: object
+              description: "Resolution of the ADC used for strain readings"
+              properties:
+                value:
+                  type: integer
+                  description: "Number of bits of ADC resolution"
+                unitCode:
+                  type: string
+                  enum:
+                    - bit
+                  description: "Unit code for bits"
+              x-ngsi:
+                type: Property
+    
+            leadConfiguration:
+              type: object
+              description: "Type of lead wiring configuration to minimize errors"
+              properties:
+                value:
+                  type: string
+                  description: "Lead wiring method"
+                unitCode:
+                  type: string
+                  enum:
+                    - ""
+                  description: "Unit code (none)"
+              x-ngsi:
+                type: Property
+        
+          additionalProperties: false          
+
+info:
+  description: "Data Model of CrackGrowthSensor of Hydropower Plant Modeling"
+  title: Dynamic HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

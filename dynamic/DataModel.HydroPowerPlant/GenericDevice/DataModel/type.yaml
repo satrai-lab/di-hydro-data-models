@@ -159,4 +159,4 @@ components:
             type: Property
 
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/data-models/main/device-models/context.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json"

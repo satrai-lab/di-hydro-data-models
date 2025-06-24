@@ -148,7 +148,8 @@
             "sensor",
             "actuator",
             "sensorActuator",
-            "Device"
+            "Device",
+            "System"
           ],
           "description": "Indicates the type of the device: sensor, actuator, or both"
         },

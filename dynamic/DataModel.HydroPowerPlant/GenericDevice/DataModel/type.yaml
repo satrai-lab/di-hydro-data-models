@@ -1,0 +1,162 @@
+components:
+  schemas:
+
+    Device:
+      required:
+        - id
+        - type
+      properties:
+
+        id:
+          anyOf: &anyof
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              type: string
+          format: uri
+          description: "Unique identifier of the entity"
+          x-ngsi:
+            type: Property
+
+        type:
+          type: string
+          enum:
+            - Device
+          description: "NGSI Entity type. It has to be Device"
+          x-ngsi:
+            type: Property
+
+        name:
+          type: string
+          description: "The name of the Device."
+          x-ngsi:
+            type: Property
+
+        onObject:
+          type: object
+          description: "The component(s) of the HPP that this device is installed on"
+          properties:
+            type:
+              type: string
+              enum: [ Relationship ]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          x-ngsi:
+            type: Relationship
+
+        inHPP:
+          type: object
+          description: "The HydropowerPlant that this device belongs to"
+          properties:
+            type:
+              type: string
+              enum: [ Relationship ]
+            object:
+              type: string
+              format: uri
+          x-ngsi:
+            type: Relationship
+
+        controlledObservation:
+          type: object
+          description: "The observation types this device can control"
+          properties:
+            type:
+              type: string
+              enum: [ Property ]
+            value:
+              type: array
+              items:
+                type: string
+          x-ngsi:
+            type: Property
+
+        observations:
+          type: object
+          description: "List of IDs of the observations produced by or connected to the device"
+          properties:
+            type:
+              type: string
+              enum: [ Relationship ]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          x-ngsi:
+            type: Relationship
+
+        controlledActuation:
+          type: object
+          description: "The actuation types this device can control"
+          properties:
+            type:
+              type: string
+              enum: [ Property ]
+            value:
+              type: array
+              items:
+                type: string
+          x-ngsi:
+            type: Property
+
+        actuations:
+          type: object
+          description: "List of IDs of the actuations produced by or connected to the device"
+          properties:
+            type:
+              type: string
+              enum: [ Relationship ]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          x-ngsi:
+            type: Relationship
+
+        deviceType:
+          type: string
+          enum:
+            - sensor
+            - actuator
+            - sensorActuator
+            - Device
+          description: "Indicates the type of the device: sensor, actuator, or both"
+          x-ngsi:
+            type: Property
+
+        relativePosition:
+          type: object
+          description: "Relative position of the device in 2D/3D space"
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+                - LineString
+                - MultiLineString
+                - Polygon
+                - Trimesh
+            measurementUnit:
+              type: string
+            dimensions:
+              type: string
+              enum:
+                - "2D"
+                - "3D"
+            coordinates:
+              type: array
+              items: {}
+            faces:
+              type: array
+              items: {}
+          x-ngsi:
+            type: Property
+
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/data-models/main/device-models/context.json"

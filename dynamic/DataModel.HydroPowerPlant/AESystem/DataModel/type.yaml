@@ -1,285 +1,247 @@
 components:
   schemas:
+
     AESystem:
-      required:
-        - id
-        - type
-      properties:
-
-        id:
-          type: string
-          format: uri
-          description: Unique identifier of this AE system
-          x-ngsi:
-            type: Property
-          
-        type:
-          type: string
-          enum:
-            - AESystem
-          description: NGSI-LD entity type (fixed)
-          x-ngsi:
-            type: Property
-
-        frequencyBandwidthMin:
-          type: object
-          description: Minimum frequency bandwidth
-          properties:
-            value:
-              type: number
-              description: Lower bound of system bandwidth
-            unitCode:
-              type: string
-              enum:
-                - kHz
-              description: Unit code for kilohertz
-          x-ngsi:
-            type: Property
-
-        frequencyBandwidthMax:
-          type: object
-          description: Maximum frequency bandwidth
-          properties:
-            value:
-              type: number
-              description: Upper bound of system bandwidth
-            unitCode:
-              type: string
-              enum:
-                - kHz
-              description: Unit code for kilohertz
-          x-ngsi:
-            type: Property
-
-        acquisitionMode:
-          type: object
-          description: Data acquisition mode
-          properties:
-            value:
-              type: string
-              enum:
-                - Timed
-                - Continuous
-                - Timed and Continuous
-              description: Which mode(s) the system supports
-          x-ngsi:
-            type: Property
-
-        samplingRate:
-          type: object
-          description: Maximum sampling rate
-          properties:
-            value:
-              type: number
-              description: Samples per second
-            unitCode:
-              type: string
-              enum:
-                - "1/s"
-              description: Unit code for per second
-          x-ngsi:
-            type: Property
-
-        systemNoise:
-          type: object
-          description: System self-noise level
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - dB
-          x-ngsi:
-            type: Property
-
-        samplingLength:
-          type: object
-          description: Max points per hit
-          properties:
-            value:
-              type: integer
-              description: Number of samples captured per event
-            unitCode:
-              type: string
-              enum:
-                - count
-          x-ngsi:
-            type: Property
-
-        analogueFilterMin:
-          type: object
-          description: Lower cutoff frequency of analogue filter
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - kHz
-          x-ngsi:
-            type: Property
-
-        analogueFilterMax:
-          type: object
-          description: Upper cutoff frequency of analogue filter
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - kHz
-          x-ngsi:
-            type: Property
-
-        digitalFilterMin:
-          type: object
-          description: Lower cutoff frequency of digital filter
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - kHz
-          x-ngsi:
-            type: Property
-
-        digitalFilterMax:
-          type: object
-          description: Upper cutoff frequency of digital filter
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - kHz
-          x-ngsi:
-            type: Property
-
-        dataOutput:
-          type: object
-          description: AE parameters delivered by the system
-          properties:
-            value:
-              type: string
-              description: Comma-separated list of output metrics (Amplitude, RMS, Energy, ASL)
-          x-ngsi:
-            type: Property
-
-        temperatureMin:
-          type: object
-          description: Minimum operating temperature
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - CEL
-          x-ngsi:
-            type: Property
-
-        temperatureMax:
-          type: object
-          description: Maximum operating temperature
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - CEL
-          x-ngsi:
-            type: Property
-
-        powerSupply:
-          type: object
-          description: Nominal power supply voltage
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - V
-          x-ngsi:
-            type: Property
-
-        powerMode:
-          type: object
-          description: Power source mode
-          properties:
-            value:
-              type: string
-              enum:
-                - External
-                - Battery
-                - External or Battery
-          x-ngsi:
-            type: Property
-
-        chargingVoltage:
-          type: object
-          description: Battery charging voltage
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - V
-          x-ngsi:
-            type: Property
-
-        operatingVoltage:
-          type: object
-          description: Operating voltage of the electronics
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - V
-          x-ngsi:
-            type: Property
-
-        sleepModeCurrent:
-          type: object
-          description: Current draw in sleep mode
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - mA
-          x-ngsi:
-            type: Property
-
-        hasComponent:
-          type: array
-          description: References to AEPZTSensor entities included in this AE system
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
-
-        hasObservation:
-          type: array
-          description: References to Observation entities produced by this AE system
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
-
       x-ngsi:
         uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/AESystem/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          
+          properties:
+
+            frequencyBandwidthMin:
+              type: object
+              description: Minimum frequency bandwidth
+              properties:
+                value:
+                  type: number
+                  description: Lower bound of system bandwidth
+                unitCode:
+                  type: string
+                  enum: [ kHz ]
+                  description: Unit code for kilohertz
+              x-ngsi:
+                type: Property
+
+            frequencyBandwidthMax:
+              type: object
+              description: Maximum frequency bandwidth
+              properties:
+                value:
+                  type: number
+                  description: Upper bound of system bandwidth
+                unitCode:
+                  type: string
+                  enum: [ kHz ]
+                  description: Unit code for kilohertz
+              x-ngsi:
+                type: Property
+
+            acquisitionMode:
+              type: object
+              description: Data acquisition mode
+              properties:
+                value:
+                  type: string
+                  enum:
+                    - Timed
+                    - Continuous
+                    - Timed and Continuous
+                  description: Which mode(s) the system supports
+              x-ngsi:
+                type: Property
+
+            samplingRate:
+              type: object
+              description: Maximum sampling rate
+              properties:
+                value:
+                  type: number
+                  description: Samples per second
+                unitCode:
+                  type: string
+                  enum: [ "1/s" ]
+                  description: Unit code for per second
+              x-ngsi:
+                type: Property
+
+            systemNoise:
+              type: object
+              description: System self-noise level
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [ dB ]
+              x-ngsi:
+                type: Property
+
+            samplingLength:
+              type: object
+              description: Max points per hit
+              properties:
+                value:
+                  type: integer
+                  description: Number of samples captured per event
+                unitCode:
+                  type: string
+                  enum: [ count ]
+              x-ngsi:
+                type: Property
+
+            analogueFilterMin:
+              type: object
+              description: Lower cutoff frequency of analogue filter
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [ kHz ]
+              x-ngsi:
+                type: Property
+
+            analogueFilterMax:
+              type: object
+              description: Upper cutoff frequency of analogue filter
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [ kHz ]
+              x-ngsi:
+                type: Property
+
+            digitalFilterMin:
+              type: object
+              description: Lower cutoff frequency of digital filter
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [ kHz ]
+              x-ngsi:
+                type: Property
+
+            digitalFilterMax:
+              type: object
+              description: Upper cutoff frequency of digital filter
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [ kHz ]
+              x-ngsi:
+                type: Property
+
+            dataOutput:
+              type: object
+              description: AE parameters delivered by the system
+              properties:
+                value:
+                  type: string
+                  description: Comma-separated list of output metrics (Amplitude, RMS, Energy, ASL)
+              x-ngsi:
+                type: Property
+
+            temperatureMin:
+              type: object
+              description: Minimum operating temperature
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [ CEL ]
+              x-ngsi:
+                type: Property
+
+            temperatureMax:
+              type: object
+              description: Maximum operating temperature
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [ CEL ]
+              x-ngsi:
+                type: Property
+
+            powerSupply:
+              type: object
+              description: Nominal power supply voltage
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [ V ]
+              x-ngsi:
+                type: Property
+
+            powerMode:
+              type: object
+              description: Power source mode
+              properties:
+                value:
+                  type: string
+                  enum:
+                    - External
+                    - Battery
+                    - External or Battery
+              x-ngsi:
+                type: Property
+
+            chargingVoltage:
+              type: object
+              description: Battery charging voltage
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [ V ]
+              x-ngsi:
+                type: Property
+
+            operatingVoltage:
+              type: object
+              description: Operating voltage of the electronics
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [ V ]
+              x-ngsi:
+                type: Property
+
+            sleepModeCurrent:
+              type: object
+              description: Current draw in sleep mode
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [ mA ]
+              x-ngsi:
+                type: Property
+
+            hasComponent:
+              type: array
+              description: References to AEPZTSensor entities included in this AE system
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
 
 info:
   description: "Data Model of AE System of Hydropower Plant Modeling"

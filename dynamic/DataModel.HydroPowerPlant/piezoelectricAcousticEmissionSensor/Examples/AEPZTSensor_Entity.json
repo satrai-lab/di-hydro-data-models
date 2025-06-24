@@ -52,7 +52,7 @@
     "isComponentOf": [
       "urn:ngsi-ld:AESystem:01"
     ],
-    "hasObservation": [
+    "observations": [
       "urn:ngsi-ld:Observation:obs001",
       "urn:ngsi-ld:Observation:obs002"
     ]

@@ -98,7 +98,7 @@
       "urn:ngsi-ld:AEPZTSensor:002"
     ]
   },
-  "hasObservation": {
+  "observations": {
     "type": "Relationship",
     "object": [
       "urn:ngsi-ld:Observation:obsAE001",

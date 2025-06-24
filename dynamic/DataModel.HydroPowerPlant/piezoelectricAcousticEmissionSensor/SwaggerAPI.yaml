@@ -77,7 +77,7 @@ paths:
                 type: "Relationship"
                 object:
                   - "urn:ngsi-ld:AESystem:01"
-              hasObservation:
+              observations:
                 type: "Relationship"
                 object:
                   - "urn:ngsi-ld:Observation:obs001"
@@ -338,7 +338,7 @@ components:
                 format: uri
           required: [type, object]
 
-        hasObservation:
+        observations:
           type: object
           description: References to Observation entities produced by this sensor
           properties:

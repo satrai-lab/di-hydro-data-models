@@ -1,202 +1,204 @@
 components:
   schemas:
     AEPZTSensor:
-      required:
-        - id
-        - type
-      properties:
-
-        id:
-          type: string
-          format: uri
-          description: "Unique identifier of this AE PZT sensor"
-          x-ngsi:
-            type: Property
-
-        type:
-          type: string
-          enum:
-            - AEPZTSensor
-          description: "NGSI Entity type. Must be AEPZTSensor"
-          x-ngsi:
-            type: Property
-
-        monitoringType:
-          type: string
-          description: "Category of monitoring application for this sensor"
-          enum:
-            - StructuralHealthAndConditionMonitoring
-            - EnvironmentalMonitoring
-            - BiodiversityMonitoring
-          x-ngsi:
-            type: Property
-
-        resonantFrequency:
-          type: object
-          description: "Sensor resonant frequency"
+      allOf: # Combines the main `Pet` schema with `Cat`-specific properties
+        - $ref: "#/components/schemas/Pet"
+        - type: object
           properties:
-            value:
-              type: number
-              description: "Resonant frequency"
-            unitCode:
+    
+            id:
+              type: string
+              format: uri
+              description: "Unique identifier of this AE PZT sensor"
+              x-ngsi:
+                type: Property
+    
+            type:
               type: string
               enum:
-                - "kHz"
-          x-ngsi:
-            type: Property
-
-        frequencyMin:
-          type: object
-          description: "Minimum operational frequency"
-          properties:
-            value:
-              type: number
-            unitCode:
+                - AEPZTSensor
+              description: "NGSI Entity type. Must be AEPZTSensor"
+              x-ngsi:
+                type: Property
+    
+            monitoringType:
               type: string
+              description: "Category of monitoring application for this sensor"
               enum:
-                - "kHz"
-          x-ngsi:
-            type: Property
-
-        frequencyMax:
-          type: object
-          description: "Maximum operational frequency"
-          properties:
-            value:
-              type: number
-            unitCode:
+                - StructuralHealthAndConditionMonitoring
+                - EnvironmentalMonitoring
+                - BiodiversityMonitoring
+              x-ngsi:
+                type: Property
+    
+            resonantFrequency:
+              type: object
+              description: "Sensor resonant frequency"
+              properties:
+                value:
+                  type: number
+                  description: "Resonant frequency"
+                unitCode:
+                  type: string
+                  enum:
+                    - "kHz"
+              x-ngsi:
+                type: Property
+    
+            frequencyMin:
+              type: object
+              description: "Minimum operational frequency"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "kHz"
+              x-ngsi:
+                type: Property
+    
+            frequencyMax:
+              type: object
+              description: "Maximum operational frequency"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "kHz"
+              x-ngsi:
+                type: Property
+    
+            peakSensitivity:
+              type: object
+              description: "Peak sensitivity level"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "dB"
+              x-ngsi:
+                type: Property
+    
+            temperatureMin:
+              type: object
+              description: "Minimum operating temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "CEL"
+              x-ngsi:
+                type: Property
+    
+            temperatureMax:
+              type: object
+              description: "Maximum operating temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "CEL"
+              x-ngsi:
+                type: Property
+    
+            preAmplifierImpedance:
+              type: object
+              description: "Input impedance of the pre-amplifier"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "OHM"
+              x-ngsi:
+                type: Property
+    
+            integralPreAmplifierGain:
+              type: object
+              description: "Gain of the built-in pre-amplifier"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "dB"
+              x-ngsi:
+                type: Property
+    
+            integralPreAmplifierSupplyVoltage:
+              type: object
+              description: "Supply voltage of the built-in pre-amplifier"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "V"
+              x-ngsi:
+                type: Property
+    
+            caseMaterial:
               type: string
-              enum:
-                - "kHz"
-          x-ngsi:
-            type: Property
-
-        peakSensitivity:
-          type: object
-          description: "Peak sensitivity level"
-          properties:
-            value:
-              type: number
-            unitCode:
+              description: "Material of the sensor housing"
+              x-ngsi:
+                type: Property
+    
+            faceMaterial:
               type: string
-              enum:
-                - "dB"
-          x-ngsi:
-            type: Property
-
-        temperatureMin:
-          type: object
-          description: "Minimum operating temperature"
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - "CEL"
-          x-ngsi:
-            type: Property
-
-        temperatureMax:
-          type: object
-          description: "Maximum operating temperature"
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - "CEL"
-          x-ngsi:
-            type: Property
-
-        preAmplifierImpedance:
-          type: object
-          description: "Input impedance of the pre-amplifier"
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - "OHM"
-          x-ngsi:
-            type: Property
-
-        integralPreAmplifierGain:
-          type: object
-          description: "Gain of the built-in pre-amplifier"
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - "dB"
-          x-ngsi:
-            type: Property
-
-        integralPreAmplifierSupplyVoltage:
-          type: object
-          description: "Supply voltage of the built-in pre-amplifier"
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - "V"
-          x-ngsi:
-            type: Property
-
-        caseMaterial:
-          type: string
-          description: "Material of the sensor housing"
-          x-ngsi:
-            type: Property
-
-        faceMaterial:
-          type: string
-          description: "Material of the sensor contact face"
-          x-ngsi:
-            type: Property
-
-        length:
-          type: object
-          description: "Physical length of the sensor"
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - "MMT"
-          x-ngsi:
-            type: Property
-
-        width:
-          type: object
-          description: "Physical width of the sensor"
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - "MMT"
-          x-ngsi:
-            type: Property
-
-        isComponentOf:
-          type: array
-          description: "Reference to the AE system entity that this sensor is part of"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
+              description: "Material of the sensor contact face"
+              x-ngsi:
+                type: Property
+    
+            length:
+              type: object
+              description: "Physical length of the sensor"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "MMT"
+              x-ngsi:
+                type: Property
+    
+            width:
+              type: object
+              description: "Physical width of the sensor"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "MMT"
+              x-ngsi:
+                type: Property
+    
+            isComponentOf:
+              type: array
+              description: "Reference to the AE system entity that this sensor is part of"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
       x-ngsi:
         uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/piezoelectricAcousticEmissionSensor/DataModel/type.json"
+
+
 info:
   description: "Data Model of AE PZT Sensor of Hydropower Plant Modeling"
   title: Dynamic HydropowerPlantModeling

@@ -4,7 +4,6 @@ components:
       required:
         - id
         - type
-        - monitoringType
       properties:
 
         id:
@@ -196,16 +195,6 @@ components:
             format: uri
           x-ngsi:
             type: Relationship
-
-        hasObservation:
-          type: array
-          description: "References to Observation entities produced by this sensor"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
-
       x-ngsi:
         uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/piezoelectricAcousticEmissionSensor/DataModel/type.json"
 info:

@@ -93,7 +93,7 @@ paths:
                 type: "Relationship"
                 object:
                   - "urn:ngsi-ld:AEPZTSensor:001"
-              hasObservation:
+              observations:
                 type: "Relationship"
                 object:
                   - "urn:ngsi-ld:Observation:obsAE001"
@@ -417,7 +417,7 @@ components:
                 format: uri
           required: [type, object]
 
-        hasObservation:
+        observations:
           type: object
           description: References to Observation entities produced by this system
           properties:

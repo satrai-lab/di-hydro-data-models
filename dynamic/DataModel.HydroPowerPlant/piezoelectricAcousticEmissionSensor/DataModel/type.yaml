@@ -1,8 +1,8 @@
 components:
   schemas:
     AEPZTSensor:
-      allOf: # Combines the main `Pet` schema with `Cat`-specific properties
-        - $ref: "#/components/schemas/Pet"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
         - type: object
           properties:
     

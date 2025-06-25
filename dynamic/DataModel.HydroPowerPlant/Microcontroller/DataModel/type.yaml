@@ -1,0 +1,187 @@
+components:
+  schemas:
+
+    Microcontroller:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/Microcontroller/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+            
+            microcontrollerType:
+              type: string
+              description: "Role or family of this controller (what kind of board/CPU it is)"
+              x-ngsi:
+                type: Property
+
+            processor:
+              type: string
+              description: "Name/model of the CPU or System-on-Chip"
+              x-ngsi:
+                type: Property
+
+            memory:
+              type: object
+              description: "Installed RAM capacity"
+              properties:
+                value:
+                  type: number
+                  description: "Amount of RAM"
+                unitCode:
+                  type: string
+                  enum:
+                    - GBA
+                  description: "Unit code for gigabytes of memory"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            storage:
+              type: object
+              description: "Local non-volatile storage size"
+              properties:
+                value:
+                  type: number
+                  description: "Storage capacity"
+                unitCode:
+                  type: string
+                  enum:
+                    - GBA
+                  description: "Unit code for gigabytes of storage"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            adcResolution:
+              type: object
+              description: "Resolution of the on-board ADC used for analog sensor inputs"
+              properties:
+                value:
+                  type: integer
+                  description: "ADC resolution in bits"
+                unitCode:
+                  type: string
+                  enum:
+                    - bit
+                  description: "Unit code for bits"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            adcChannels:
+              type: object
+              description: "Number of independent ADC input channels available"
+              properties:
+                value:
+                  type: integer
+                  description: "Count of ADC channels"
+                unitCode:
+                  type: string
+                  enum:
+                    - ""
+                  description: "No unit"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            interfaces:
+              type: array
+              description: "List of I/O and communication buses exposed by this controller"
+              items:
+                type: string
+              x-ngsi:
+                type: Property
+
+            powerInternal:
+              type: object
+              description: "Capacity of the internal battery pack"
+              properties:
+                value:
+                  type: number
+                  description: "Battery capacity"
+                unitCode:
+                  type: string
+                  enum:
+                    - Wh
+                  description: "Unit code for watt-hours"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            powerExternalVoltage:
+              type: object
+              description: "Nominal voltage of the external DC power input"
+              properties:
+                value:
+                  type: number
+                  description: "External power voltage"
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+                  description: "Unit code for volts"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            operatingTemperatureMin:
+              type: object
+              description: "Minimum ambient temperature at which the controller is rated to operate"
+              properties:
+                value:
+                  type: number
+                  description: "Lower operating temperature"
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+                  description: "Unit code for degrees Celsius"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            operatingTemperatureMax:
+              type: object
+              description: "Maximum ambient temperature at which the controller is rated to operate"
+              properties:
+                value:
+                  type: number
+                  description: "Upper operating temperature"
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+                  description: "Unit code for degrees Celsius"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            hasDevices:
+              type: array
+              description: "References to all Device entities directly connected to this microcontroller"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            hasComponents:
+              type: array
+              description: "References to component modules or sub-devices that this microcontroller hosts"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            isComponentOf:
+              type: array
+              description: "References to higher-level systems or platforms that this microcontroller is part of"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

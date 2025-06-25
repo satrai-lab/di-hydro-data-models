@@ -1,0 +1,54 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:Magnetometer:m1",
+  "type": "Magnetometer",
+
+  "name": {
+    "type": "Property",
+    "value": "Sense HAT B 3-Axis Magnetometer"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+
+  "axes": {
+    "type": "Property",
+    "value": {
+      "value": 3,
+      "unitCode": ""
+    }
+  },
+  "measuringRangeMin": {
+    "type": "Property",
+    "value": {
+      "value": -49.12,
+      "unitCode": "GAU"
+    }
+  },
+  "measuringRangeMax": {
+    "type": "Property",
+    "value": {
+      "value": 49.12,
+      "unitCode": "GAU"
+    }
+  },
+  "resolution": {
+    "type": "Property",
+    "value": {
+      "value": 16,
+      "unitCode": "bit"
+    }
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": ["urn:ngsi-ld:SenseHATB:01"]
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:Mag:4001",
+      "urn:ngsi-ld:Observation:Mag:4002"
+    ]
+  }
+}

@@ -1,0 +1,271 @@
+openapi: 3.0.3
+info:
+  title: CrackGrowthSensor Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for CrackGrowthSensor entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a CrackGrowthSensor entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/CrackGrowthSensor'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
+              id: "urn:ngsi-ld:CrackGrowthSensor:0001"
+              type: "CrackGrowthSensor"
+
+              # — Generic Device properties —
+              name:
+                type: "Property"
+                value: "Crack Growth Sensor #1"
+              onObject:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydroTurbine:HT-123"
+              inHPP:
+                type: "Relationship"
+                object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+              deviceType:
+                type: "Property"
+                value: "sensor"
+              observations:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Observation:CrackGrowth:0001"
+                  - "urn:ngsi-ld:Observation:Strain:0002"
+
+              # — Sensor-specific properties —
+              monitoringType:
+                type: "Property"
+                value: "StructuralHealthAndConditionMonitoring"
+              adcResolution:
+                type: "Property"
+                value:
+                  value: 16
+                  unitCode: "bit"
+              leadConfiguration:
+                type: "Property"
+                value:
+                  value: "Four-wire (Kelvin)"
+                  unitCode: ""
+
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+
+    Device:
+      type: object
+      required:
+        - id
+        - type
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique identifier of the entity
+        type:
+          type: string
+          enum: [ Device ]
+          description: NGSI-LD entity type. Must be Device
+        name:
+          type: object
+          description: The name of the Device.
+          properties:
+            type:
+              type: string
+              enum: [ Property ]
+            value:
+              type: string
+          required: [ type, value ]
+        onObject:
+          type: object
+          description: The component(s) of the HPP that this device is installed on
+          properties:
+            type:
+              type: string
+              enum: [ Relationship ]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          required: [ type, object ]
+          additionalProperties: false
+        inHPP:
+          type: object
+          description: The HydropowerPlant that this device belongs to
+          properties:
+            type:
+              type: string
+              enum: [ Relationship ]
+            object:
+              type: string
+              format: uri
+          required: [ type, object ]
+          additionalProperties: false
+        controlledObservation:
+          type: object
+          description: The observation types this device can control
+          properties:
+            type:
+              type: string
+              enum: [ Property ]
+            value:
+              type: array
+              items:
+                type: string
+          required: [ type, value ]
+          additionalProperties: false
+        observations:
+          type: object
+          description: List of IDs of the observations produced by or connected to the device
+          properties:
+            type:
+              type: string
+              enum: [ Relationship ]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          required: [ type, object ]
+          additionalProperties: false
+        controlledActuation:
+          type: object
+          description: The actuation types this device can control
+          properties:
+            type:
+              type: string
+              enum: [ Property ]
+            value:
+              type: array
+              items:
+                type: string
+          required: [ type, value ]
+          additionalProperties: false
+        actuations:
+          type: object
+          description: List of IDs of the actuations produced by or connected to the device
+          properties:
+            type:
+              type: string
+              enum: [ Relationship ]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          required: [ type, object ]
+          additionalProperties: false
+        deviceType:
+          type: object
+          description: "Indicates the type of the device: sensor, actuator, or both"
+          properties:
+            type:
+              type: string
+              enum: [ Property ]
+            value:
+              type: string
+              enum:
+                - sensor
+                - actuator
+                - sensorActuator
+                - Device
+                - System
+          required: [ type, value ]
+        relativePosition:
+          type: object
+          description: Relative position of the device in 2D/3D space
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+                - LineString
+                - MultiLineString
+                - Polygon
+                - Trimesh
+            measurementUnit:
+              type: string
+            dimensions:
+              type: string
+              enum: [ 2D, 3D ]
+            coordinates:
+              type: array
+              items: {}
+            faces:
+              type: array
+              items: {}
+          additionalProperties: false
+      additionalProperties: false
+
+    CrackGrowthSensor:
+      allOf:
+        - $ref: '#/components/schemas/Device'
+        - type: object
+          required:
+            - monitoringType
+            - adcResolution
+            - leadConfiguration
+          properties:
+            type:
+              type: string
+              enum: [ CrackGrowthSensor ]
+              description: NGSI-LD entity type. Must be CrackGrowthSensor
+            monitoringType:
+              type: object
+              description: Category of monitoring application for this sensor
+              properties:
+                type:
+                  type: string
+                  enum: [ Property ]
+                value:
+                  type: string
+                  enum:
+                    - StructuralHealthAndConditionMonitoring
+                    - EnvironmentalMonitoring
+                    - BiodiversityMonitoring
+              required: [ type, value ]
+            adcResolution:
+              type: object
+              description: Resolution of the ADC used for strain readings
+              properties:
+                type:
+                  type: string
+                  enum: [ Property ]
+                value:
+                  type: integer
+                  description: Number of bits of ADC resolution
+                unitCode:
+                  type: string
+                  enum: [ bit ]
+                  description: Unit code for bits
+              required: [ type, value, unitCode ]
+              additionalProperties: false
+            leadConfiguration:
+              type: object
+              description: Type of lead wiring configuration to minimize errors
+              properties:
+                type:
+                  type: string
+                  enum: [ Property ]
+                value:
+                  type: string
+                  description: Lead wiring method
+                unitCode:
+                  type: string
+                  enum: [ "" ]
+                  description: Unit code (none)
+              required: [ type, value, unitCode ]
+              additionalProperties: false
+      description: Data Model of CrackGrowthSensor of Hydropower Plant Modeling

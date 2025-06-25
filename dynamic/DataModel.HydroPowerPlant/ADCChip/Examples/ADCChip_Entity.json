@@ -1,0 +1,28 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:ADCChip:adc1",
+  "type": "ADCChip",
+
+  "name": {
+    "type": "Property",
+    "value": "Sense HAT B ADC Conversion Chip"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+
+  "resolution": {
+    "type": "Property",
+    "value": {
+      "value": 16,
+      "unitCode": "bit"
+    }
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:SenseHATB:01"
+    ]
+  }
+}

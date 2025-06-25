@@ -1,0 +1,60 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:Device:0001",
+  "type": "Device",
+  "name": {
+    "type": "Property",
+    "value": "Generic Hydropower Device #1"
+  },
+  "onObject": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydroTurbine:HT-123"
+    ]
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "controlledObservation": {
+    "type": "Property",
+    "value": [
+      "Temperature",
+      "Vibration"
+    ]
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:Temp:1001",
+      "urn:ngsi-ld:Observation:Vib:1002"
+    ]
+  },
+  "controlledActuation": {
+    "type": "Property",
+    "value": [
+      "ValveOpen",
+      "ValveClose"
+    ]
+  },
+  "actuations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Actuation:Valve:2001"
+    ]
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensorActuator"
+  },
+  "relativePosition": {
+    "type": "Point",
+    "measurementUnit": "m",
+    "dimensions": "2D",
+    "coordinates": [
+      12.3456,
+      78.9012
+    ],
+    "faces": []
+  }
+}

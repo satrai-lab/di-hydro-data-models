@@ -20,6 +20,23 @@ paths:
               "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
               id: "urn:ngsi-ld:AEPZTSensor:001"
               type: "AEPZTSensor"
+              name:
+                type: "Property"
+                value: "AE PZT Sensor #1"
+              onObject:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:AESystem:01"
+              inHPP:
+                type: "Relationship"
+                object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+              deviceType:
+                type: "Property"
+                value: "sensor"
+              observations:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Observation:obs001"
               monitoringType:
                 type: "Property"
                 value: "StructuralHealthAndConditionMonitoring"
@@ -77,278 +94,295 @@ paths:
                 type: "Relationship"
                 object:
                   - "urn:ngsi-ld:AESystem:01"
-              observations:
-                type: "Relationship"
-                object:
-                  - "urn:ngsi-ld:Observation:obs001"
       responses:
         '201':
           description: Entity created successfully
 
 components:
   schemas:
-    AEPZTSensor:
+
+    Device:
       type: object
-      required:
-        - id
-        - type
-        - monitoringType
       properties:
         id:
           type: string
           format: uri
-          description: Unique URI identifier for the AE PZT sensor
-          example: "urn:ngsi-ld:AEPZTSensor:001"
-
+          description: Unique URI identifier of the entity
         type:
           type: string
-          enum:
-            - AEPZTSensor
-          description: Fixed entity type
-          example: "AEPZTSensor"
-
-        monitoringType:
+          description: NGSI-LD entity type
+        name:
           type: object
-          description: Category of monitoring application
+          description: The human-readable name of the device
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-              enum:
-                - StructuralHealthAndConditionMonitoring
-                - EnvironmentalMonitoring
-                - BiodiversityMonitoring
-          required: [type, value]
-
-        resonantFrequency:
+        onObject:
           type: object
-          description: Sensor resonant frequency
+          description: Components of the HPP on which this device is installed
           properties:
             type:
               type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - kHz
-          required: [type, value, unitCode]
-
-        frequencyMin:
-          type: object
-          description: Minimum operational frequency
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - kHz
-          required: [type, value, unitCode]
-
-        frequencyMax:
-          type: object
-          description: Maximum operational frequency
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - kHz
-          required: [type, value, unitCode]
-
-        peakSensitivity:
-          type: object
-          description: Peak sensitivity level
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - dB
-          required: [type, value, unitCode]
-
-        temperatureMin:
-          type: object
-          description: Minimum operating temperature
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - CEL
-          required: [type, value, unitCode]
-
-        temperatureMax:
-          type: object
-          description: Maximum operating temperature
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - CEL
-          required: [type, value, unitCode]
-
-        preAmplifierImpedance:
-          type: object
-          description: Input impedance of the pre-amplifier
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - OHM
-          required: [type, value, unitCode]
-
-        integralPreAmplifierGain:
-          type: object
-          description: Gain of the built-in pre-amplifier
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - dB
-          required: [type, value, unitCode]
-
-        integralPreAmplifierSupplyVoltage:
-          type: object
-          description: Supply voltage of the built-in pre-amplifier
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - V
-          required: [type, value, unitCode]
-
-        caseMaterial:
-          type: object
-          description: Material of the sensor housing
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-          required: [type, value]
-
-        faceMaterial:
-          type: object
-          description: Material of the sensor contact face
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-          required: [type, value]
-
-        length:
-          type: object
-          description: Physical length of the sensor
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - MMT
-          required: [type, value, unitCode]
-
-        width:
-          type: object
-          description: Physical width of the sensor
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - MMT
-          required: [type, value, unitCode]
-
-        isComponentOf:
-          type: object
-          description: Reference to the AE system entity that this sensor is part of
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
                 format: uri
-          required: [type, object]
-
+          additionalProperties: false
+        inHPP:
+          type: object
+          description: HydropowerPlant that this device belongs to
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: string
+              format: uri
+          additionalProperties: false
         observations:
           type: object
-          description: References to Observation entities produced by this sensor
+          description: Observation entities produced by or connected to the device
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
                 format: uri
-          required: [type, object]
+          additionalProperties: false
+        deviceType:
+          type: object
+          description: "Type of the device: sensor, actuator, or both"
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+              enum: [sensor, actuator, sensorActuator, Device, System]
+          additionalProperties: false
+        relativePosition:
+          type: object
+          description: Relative position in 2D/3D space
+          properties:
+            type:
+              type: string
+              enum: [Point, LineString, MultiLineString, Polygon, Trimesh]
+            measurementUnit:
+              type: string
+            dimensions:
+              type: string
+              enum: [2D, 3D]
+            coordinates:
+              type: array
+              items: {}
+            faces:
+              type: array
+              items: {}
+          additionalProperties: false
+
+    AEPZTSensor:
+      allOf:
+        - $ref: '#/components/schemas/Device'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - AEPZTSensor
+              description: Must be AEPZTSensor
+            monitoringType:
+              type: object
+              description: Category of monitoring application
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+                  enum:
+                    - StructuralHealthAndConditionMonitoring
+                    - EnvironmentalMonitoring
+                    - BiodiversityMonitoring
+            resonantFrequency:
+              type: object
+              description: Sensor resonant frequency
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [kHz]
+              additionalProperties: false
+            frequencyMin:
+              type: object
+              description: Minimum operational frequency
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [kHz]
+              additionalProperties: false
+            frequencyMax:
+              type: object
+              description: Maximum operational frequency
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [kHz]
+              additionalProperties: false
+            peakSensitivity:
+              type: object
+              description: Peak sensitivity level
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [dB]
+              additionalProperties: false
+            temperatureMin:
+              type: object
+              description: Minimum operating temperature
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [CEL]
+              additionalProperties: false
+            temperatureMax:
+              type: object
+              description: Maximum operating temperature
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [CEL]
+              additionalProperties: false
+            preAmplifierImpedance:
+              type: object
+              description: Input impedance of the pre-amplifier
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [OHM]
+              additionalProperties: false
+            integralPreAmplifierGain:
+              type: object
+              description: Gain of the built-in pre-amplifier
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [dB]
+              additionalProperties: false
+            integralPreAmplifierSupplyVoltage:
+              type: object
+              description: Supply voltage of the built-in pre-amplifier
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [V]
+              additionalProperties: false
+            caseMaterial:
+              type: object
+              description: Material of the sensor housing
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+            faceMaterial:
+              type: object
+              description: Material of the sensor contact face
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+            length:
+              type: object
+              description: Physical length of the sensor
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MMT]
+              additionalProperties: false
+            width:
+              type: object
+              description: Physical width of the sensor
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MMT]
+              additionalProperties: false
+            isComponentOf:
+              type: object
+              description: Reference(s) to the AE system entity that this sensor is part of
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              additionalProperties: false
+      description: Data Model of AEPZTSensor of Hydropower Plant Modeling

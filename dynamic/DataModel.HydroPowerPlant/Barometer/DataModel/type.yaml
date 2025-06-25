@@ -1,0 +1,101 @@
+components:
+  schemas:
+
+    Barometer:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/BarometerSensor/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique identifier of this barometric pressure sensor"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - Barometer
+              description: "NGSI-LD entity type. Must be Barometer"
+              x-ngsi:
+                type: Property
+
+            measuringRangeMin:
+              type: object
+              description: "Minimum pressure this sensor can measure"
+              properties:
+                value:
+                  type: number
+                  description: "Minimum pressure value"
+                unitCode:
+                  type: string
+                  enum:
+                    - hPa
+                  description: "Unit code for hectopascals"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            measuringRangeMax:
+              type: object
+              description: "Maximum pressure this sensor can measure"
+              properties:
+                value:
+                  type: number
+                  description: "Maximum pressure value"
+                unitCode:
+                  type: string
+                  enum:
+                    - hPa
+                  description: "Unit code for hectopascals"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            accuracy:
+              type: object
+              description: "Maximum pressure error"
+              properties:
+                value:
+                  type: number
+                  description: "Error magnitude"
+                unitCode:
+                  type: string
+                  enum:
+                    - hPa
+                  description: "Unit code for hectopascals"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            resolution:
+              type: object
+              description: "ADC conversion resolution"
+              properties:
+                value:
+                  type: integer
+                  description: "Resolution in bits"
+                unitCode:
+                  type: string
+                  enum:
+                    - bit
+                  description: "Unit code for bits"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            isComponentOf:
+              type: array
+              description: "The Sense HAT B board that this sensor is part of"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

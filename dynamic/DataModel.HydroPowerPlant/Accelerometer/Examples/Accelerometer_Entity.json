@@ -1,0 +1,47 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:Accelerometer:acc1",
+  "type": "Accelerometer",
+
+  "name": {
+    "type": "Property",
+    "value": "Sense HAT B 3-Axis Accelerometer"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+
+  "axes": {
+    "type": "Property",
+    "value": {
+      "value": 3,
+      "unitCode": ""
+    }
+  },
+  "measurementRanges": {
+    "type": "Property",
+    "value": {
+      "value": [2, 4, 8, 16],
+      "unitCode": "G"
+    }
+  },
+  "resolution": {
+    "type": "Property",
+    "value": {
+      "value": 16,
+      "unitCode": "bit"
+    }
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": ["urn:ngsi-ld:SenseHATB:01"]
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:Acc:6001",
+      "urn:ngsi-ld:Observation:Acc:6002"
+    ]
+  }
+}

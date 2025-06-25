@@ -1,0 +1,41 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:BarometerSensor:b1",
+  "type": "Barometer",
+
+  "name": {
+    "type": "Property",
+    "value": "Sense HAT B Barometric Pressure Sensor"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+
+  "measuringRangeMin": {
+    "type": "Property",
+    "value": 260,
+    "unitCode": "hPa"
+  },
+  "measuringRangeMax": {
+    "type": "Property",
+    "value": 1260,
+    "unitCode": "hPa"
+  },
+  "accuracy": {
+    "type": "Property",
+    "value": 0.025,
+    "unitCode": "hPa"
+  },
+  "resolution": {
+    "type": "Property",
+    "value": 24,
+    "unitCode": "bit"
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:SenseHATB:01"
+    ]
+  }
+}

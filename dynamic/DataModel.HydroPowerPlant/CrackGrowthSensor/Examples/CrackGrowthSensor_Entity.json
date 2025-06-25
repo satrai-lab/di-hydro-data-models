@@ -1,0 +1,44 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:CrackGrowthSensor:0001",
+  "type": "CrackGrowthSensor",
+
+  /* Generic Device properties */
+  "name": {
+    "type": "Property",
+    "value": "Crack Growth Sensor #1"
+  },
+  "onObject": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:HydroTurbine:HT-123" ]
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:CrackGrowth:0001",
+      "urn:ngsi-ld:Observation:Strain:0002"
+    ]
+  },
+
+  /* Sensor-specific properties */
+  "monitoringType": {
+    "type": "Property",
+    "value": "StructuralHealthAndConditionMonitoring"
+  },
+  "adcResolution": {
+    "type": "Property",
+    "value": { "value": 16, "unitCode": "bit" }
+  },
+  "leadConfiguration": {
+    "type": "Property",
+    "value": { "value": "Four-wire (Kelvin)", "unitCode": "" }
+  }
+}

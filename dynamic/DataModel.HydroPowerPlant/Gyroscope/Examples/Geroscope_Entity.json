@@ -1,0 +1,49 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:Geroscope:g1",
+  "type": "Geroscope",
+
+  "name": {
+    "type": "Property",
+    "value": "Sense HAT B 3-Axis Gyroscope"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+
+  "axes": {
+    "type": "Property",
+    "value": {
+      "value": 3,
+      "unitCode": ""
+    }
+  },
+  "measurementRanges": {
+    "type": "Property",
+    "value": {
+      "value": [16, 32, 64, 128, 512, 1024, 2048],
+      "unitCode": "DEG/S"
+    }
+  },
+  "resolution": {
+    "type": "Property",
+    "value": {
+      "value": 16,
+      "unitCode": "bit"
+    }
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:SenseHATB:01"
+    ]
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:Gyro:3001",
+      "urn:ngsi-ld:Observation:Gyro:3002"
+    ]
+  }
+}

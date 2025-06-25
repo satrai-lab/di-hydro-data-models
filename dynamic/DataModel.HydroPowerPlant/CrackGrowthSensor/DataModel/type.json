@@ -56,6 +56,14 @@
                 }
               },
               "additionalProperties": false
+            },
+            "hasMicrocontroller": {
+              "type": "array",
+              "description": "Reference(s) to the microcontroller that this sensor is connected to",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             }
           },
           "additionalProperties": false
@@ -64,5 +72,4 @@
     }
   }
 }
-
 

@@ -1,0 +1,170 @@
+components:
+  schemas:
+
+    SenseHATB:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/SenseHATB/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique identifier of this Sense HAT B board"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - SenseHATB
+              description: "NGSI-LD entity type. Must be SenseHATB"
+              x-ngsi:
+                type: Property
+
+            operatingVoltage:
+              type: object
+              description: "Supply voltage required by the Sense HAT B board"
+              properties:
+                value:
+                  type: number
+                  description: "Voltage value"
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+                  description: "Unit code for volts"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            communicationInterface:
+              type: string
+              description: "Bus used to communicate with the host microcontroller"
+              x-ngsi:
+                type: Property
+
+            length:
+              type: object
+              description: "Physical length of the board"
+              properties:
+                value:
+                  type: number
+                  description: "Length value"
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+                  description: "Unit code for millimeters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            width:
+              type: object
+              description: "Physical width of the board"
+              properties:
+                value:
+                  type: number
+                  description: "Width value"
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+                  description: "Unit code for millimeters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            adcConversionResolution:
+              type: object
+              description: "Resolution of the analogue-to-digital conversion chip"
+              properties:
+                value:
+                  type: integer
+                  description: "Resolution in bits"
+                unitCode:
+                  type: string
+                  enum:
+                    - bit
+                  description: "Unit code for bits"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            isComponentOf:
+              type: array
+              description: "Host microcontroller that this board plugs into"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            hasHumiditySensor:
+              type: array
+              description: "Reference to the onboard humidity sensor module"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            hasGyroscope:
+              type: array
+              description: "Reference to the onboard gyroscope module"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            hasMagnetometer:
+              type: array
+              description: "Reference to the onboard magnetometer module"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            hasTemperatureSensor:
+              type: array
+              description: "Reference to the onboard temperature sensor module"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            hasConversion:
+              type: array
+              description: "Reference to the onboard ADC conversion chip"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            hasBarometer:
+              type: array
+              description: "Reference to the onboard barometric pressure sensor module"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            hasAccelerometer:
+              type: array
+              description: "Reference to the onboard accelerometer module"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

@@ -7,9 +7,8 @@ components:
       allOf:
         - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
         - type: object
-
           properties:
-    
+
             monitoringType:
               type: string
               description: "Category of monitoring application for this sensor"
@@ -19,7 +18,7 @@ components:
                 - BiodiversityMonitoring
               x-ngsi:
                 type: Property
-    
+
             adcResolution:
               type: object
               description: "Resolution of the ADC used for strain readings"
@@ -34,7 +33,7 @@ components:
                   description: "Unit code for bits"
               x-ngsi:
                 type: Property
-    
+
             leadConfiguration:
               type: object
               description: "Type of lead wiring configuration to minimize errors"
@@ -49,8 +48,17 @@ components:
                   description: "Unit code (none)"
               x-ngsi:
                 type: Property
-        
-          additionalProperties: false          
+
+            hasMicrocontroller:
+              type: array
+              description: "Reference to the microcontroller that this sensor is connected to"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false
 
 info:
   description: "Data Model of CrackGrowthSensor of Hydropower Plant Modeling"

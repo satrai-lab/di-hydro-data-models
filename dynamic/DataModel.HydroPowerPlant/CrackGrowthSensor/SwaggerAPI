@@ -41,7 +41,7 @@ paths:
                   - "urn:ngsi-ld:Observation:CrackGrowth:0001"
                   - "urn:ngsi-ld:Observation:Strain:0002"
 
-              # — Sensor-specific properties —
+              # — CrackGrowthSensor-specific properties —
               monitoringType:
                 type: "Property"
                 value: "StructuralHealthAndConditionMonitoring"
@@ -55,6 +55,10 @@ paths:
                 value:
                   value: "Four-wire (Kelvin)"
                   unitCode: ""
+              hasMicrocontroller:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Microcontroller:MCU-01"
 
       responses:
         '201':
@@ -65,9 +69,6 @@ components:
 
     Device:
       type: object
-      required:
-        - id
-        - type
       properties:
         id:
           type: string
@@ -75,7 +76,8 @@ components:
           description: Unique identifier of the entity
         type:
           type: string
-          enum: [ Device ]
+          enum:
+            - Device
           description: NGSI-LD entity type. Must be Device
         name:
           type: object
@@ -83,23 +85,23 @@ components:
           properties:
             type:
               type: string
-              enum: [ Property ]
+              enum:
+                - Property
             value:
               type: string
-          required: [ type, value ]
         onObject:
           type: object
           description: The component(s) of the HPP that this device is installed on
           properties:
             type:
               type: string
-              enum: [ Relationship ]
+              enum:
+                - Relationship
             object:
               type: array
               items:
                 type: string
                 format: uri
-          required: [ type, object ]
           additionalProperties: false
         inHPP:
           type: object
@@ -107,11 +109,11 @@ components:
           properties:
             type:
               type: string
-              enum: [ Relationship ]
+              enum:
+                - Relationship
             object:
               type: string
               format: uri
-          required: [ type, object ]
           additionalProperties: false
         controlledObservation:
           type: object
@@ -119,12 +121,12 @@ components:
           properties:
             type:
               type: string
-              enum: [ Property ]
+              enum:
+                - Property
             value:
               type: array
               items:
                 type: string
-          required: [ type, value ]
           additionalProperties: false
         observations:
           type: object
@@ -132,13 +134,13 @@ components:
           properties:
             type:
               type: string
-              enum: [ Relationship ]
+              enum:
+                - Relationship
             object:
               type: array
               items:
                 type: string
                 format: uri
-          required: [ type, object ]
           additionalProperties: false
         controlledActuation:
           type: object
@@ -146,12 +148,12 @@ components:
           properties:
             type:
               type: string
-              enum: [ Property ]
+              enum:
+                - Property
             value:
               type: array
               items:
                 type: string
-          required: [ type, value ]
           additionalProperties: false
         actuations:
           type: object
@@ -159,13 +161,13 @@ components:
           properties:
             type:
               type: string
-              enum: [ Relationship ]
+              enum:
+                - Relationship
             object:
               type: array
               items:
                 type: string
                 format: uri
-          required: [ type, object ]
           additionalProperties: false
         deviceType:
           type: object
@@ -173,7 +175,8 @@ components:
           properties:
             type:
               type: string
-              enum: [ Property ]
+              enum:
+                - Property
             value:
               type: string
               enum:
@@ -182,7 +185,7 @@ components:
                 - sensorActuator
                 - Device
                 - System
-          required: [ type, value ]
+          additionalProperties: false
         relativePosition:
           type: object
           description: Relative position of the device in 2D/3D space
@@ -199,7 +202,9 @@ components:
               type: string
             dimensions:
               type: string
-              enum: [ 2D, 3D ]
+              enum:
+                - "2D"
+                - "3D"
             coordinates:
               type: array
               items: {}
@@ -207,20 +212,16 @@ components:
               type: array
               items: {}
           additionalProperties: false
-      additionalProperties: false
 
     CrackGrowthSensor:
       allOf:
         - $ref: '#/components/schemas/Device'
         - type: object
-          required:
-            - monitoringType
-            - adcResolution
-            - leadConfiguration
           properties:
             type:
               type: string
-              enum: [ CrackGrowthSensor ]
+              enum:
+                - CrackGrowthSensor
               description: NGSI-LD entity type. Must be CrackGrowthSensor
             monitoringType:
               type: object
@@ -228,29 +229,30 @@ components:
               properties:
                 type:
                   type: string
-                  enum: [ Property ]
+                  enum:
+                    - Property
                 value:
                   type: string
                   enum:
                     - StructuralHealthAndConditionMonitoring
                     - EnvironmentalMonitoring
                     - BiodiversityMonitoring
-              required: [ type, value ]
             adcResolution:
               type: object
               description: Resolution of the ADC used for strain readings
               properties:
                 type:
                   type: string
-                  enum: [ Property ]
+                  enum:
+                    - Property
                 value:
                   type: integer
                   description: Number of bits of ADC resolution
                 unitCode:
                   type: string
-                  enum: [ bit ]
+                  enum:
+                    - bit
                   description: Unit code for bits
-              required: [ type, value, unitCode ]
               additionalProperties: false
             leadConfiguration:
               type: object
@@ -258,14 +260,29 @@ components:
               properties:
                 type:
                   type: string
-                  enum: [ Property ]
+                  enum:
+                    - Property
                 value:
                   type: string
                   description: Lead wiring method
                 unitCode:
                   type: string
-                  enum: [ "" ]
+                  enum:
+                    - ""
                   description: Unit code (none)
-              required: [ type, value, unitCode ]
+              additionalProperties: false
+            hasMicrocontroller:
+              type: object
+              description: Reference to the microcontroller that this sensor is connected to
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
               additionalProperties: false
       description: Data Model of CrackGrowthSensor of Hydropower Plant Modeling

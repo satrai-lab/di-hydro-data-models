@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of Barometer of Hydropower Plant Modeling",
+  "definitions": {
+    "Barometer": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\\\w\\\\-\\\\.\\\\{\\\\}\\\\$\\\\+\\\\*\\\\[\\\\]`|~^@!,:\\\\\\\\]+$",
+              "description": "Unique identifier of this barometric pressure sensor"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "Barometer"
+              ],
+              "description": "NGSI-LD entity type. Must be Barometer"
+            },
+            "measuringRangeMin": {
+              "type": "object",
+              "description": "Minimum pressure this sensor can measure",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "hPa"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "measuringRangeMax": {
+              "type": "object",
+              "description": "Maximum pressure this sensor can measure",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "hPa"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "accuracy": {
+              "type": "object",
+              "description": "Maximum pressure error",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "hPa"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "resolution": {
+              "type": "object",
+              "description": "ADC conversion resolution",
+              "properties": {
+                "value": {
+                  "type": "integer"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "bit"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "The Sense HAT B board that this sensor is part of",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

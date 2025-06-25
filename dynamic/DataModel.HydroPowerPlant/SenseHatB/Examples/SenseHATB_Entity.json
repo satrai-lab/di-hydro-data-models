@@ -1,0 +1,83 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:SenseHATB:01",
+  "type": "SenseHATB",
+
+  /* Inherited from Device: name, inHPP, etc. */
+  "name": {
+    "type": "Property",
+    "value": "Sense HAT B Multi-Sensor Board"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+
+  /* Board-specific properties */
+  "operatingVoltage": {
+    "type": "Property",
+    "value": {
+      "value": 3.3,
+      "unitCode": "V"
+    }
+  },
+  "communicationInterface": {
+    "type": "Property",
+    "value": "I2C"
+  },
+  "length": {
+    "type": "Property",
+    "value": {
+      "value": 65,
+      "unitCode": "MMT"
+    }
+  },
+  "width": {
+    "type": "Property",
+    "value": {
+      "value": 36.5,
+      "unitCode": "MMT"
+    }
+  },
+  "adcConversionResolution": {
+    "type": "Property",
+    "value": {
+      "value": 16,
+      "unitCode": "bit"
+    }
+  },
+
+  /* Relationships to sensor modules and components */
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:Microcontroller:pi1" ]
+  },
+  "hasHumiditySensor": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:HumiditySensor:hs1" ]
+  },
+  "hasGyroscope": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:GyroscopeSensor:g1" ]
+  },
+  "hasMagnetometer": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:MagnetometerSensor:m1" ]
+  },
+  "hasTemperatureSensor": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:TemperatureSensor:t1" ]
+  },
+  "hasConversion": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:ADCChip:adc1" ]
+  },
+  "hasBarometer": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:BarometerSensor:b1" ]
+  },
+  "hasAccelerometer": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:AccelerometerSensor:a1" ]
+  }
+}

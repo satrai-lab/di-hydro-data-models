@@ -1,0 +1,49 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:TemperatureSensor:t1",
+  "type": "TemperatureSensor",
+
+  "name": {
+    "type": "Property",
+    "value": "Sense HAT B Band-Gap Diode Temperature Sensor"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+
+  "measuringRangeMin": {
+    "type": "Property",
+    "value": -40,
+    "unitCode": "CEL"
+  },
+  "measuringRangeMax": {
+    "type": "Property",
+    "value": 85,
+    "unitCode": "CEL"
+  },
+  "accuracy": {
+    "type": "Property",
+    "value": 0.5,
+    "unitCode": "CEL"
+  },
+  "resolution": {
+    "type": "Property",
+    "value": 16,
+    "unitCode": "bit"
+  },
+
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:SenseHATB:01"
+    ]
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:Temp:5001",
+      "urn:ngsi-ld:Observation:Temp:5002"
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of Accelerometer of Hydropower Plant Modeling",
+  "definitions": {
+    "Accelerometer": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this accelerometer entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "Accelerometer"
+              ],
+              "description": "NGSI-LD entity type. Must be Accelerometer"
+            },
+            "axes": {
+              "type": "object",
+              "description": "Number of measurement axes",
+              "properties": {
+                "value": { "type": "integer" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "measurementRanges": {
+              "type": "object",
+              "description": "Supported acceleration measurement ranges",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": { "type": "number" }
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "G" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "resolution": {
+              "type": "object",
+              "description": "ADC conversion resolution",
+              "properties": {
+                "value": { "type": "integer" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "bit" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "The Sense HAT B board this sensor belongs to",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

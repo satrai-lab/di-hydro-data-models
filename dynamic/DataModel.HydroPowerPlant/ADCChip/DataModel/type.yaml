@@ -1,0 +1,53 @@
+components:
+  schemas:
+
+    ADCChip:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/ADCChip/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique identifier of this ADC conversion chip"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - ADCChip
+              description: "NGSI-LD entity type. Must be ADCChip"
+              x-ngsi:
+                type: Property
+
+            resolution:
+              type: object
+              description: "Bit-depth of the analog-to-digital conversion"
+              properties:
+                value:
+                  type: integer
+                  description: "Resolution in bits"
+                unitCode:
+                  type: string
+                  enum:
+                    - bit
+                  description: "Unit code for bits"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            isComponentOf:
+              type: array
+              description: "The Sense HAT B board this ADC chip belongs to"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

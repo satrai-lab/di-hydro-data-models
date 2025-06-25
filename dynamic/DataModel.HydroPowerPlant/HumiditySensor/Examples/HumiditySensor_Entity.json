@@ -1,0 +1,46 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:HumiditySensor:hs1",
+  "type": "HumiditySensor",
+
+  "name": {
+    "type": "Property",
+    "value": "Sense HAT B Capacitive Humidity Sensor"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+
+  "measuringRangeMin": {
+    "type": "Property",
+    "value": 0,
+    "unitCode": "%RH"
+  },
+  "measuringRangeMax": {
+    "type": "Property",
+    "value": 100,
+    "unitCode": "%RH"
+  },
+  "accuracy": {
+    "type": "Property",
+    "value": 2,
+    "unitCode": "%RH"
+  },
+  "resolution": {
+    "type": "Property",
+    "value": 16,
+    "unitCode": "bit"
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": ["urn:ngsi-ld:SenseHATB:01"]
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:Hum:1002",
+      "urn:ngsi-ld:Observation:Hum:1003"
+    ]
+  }
+}

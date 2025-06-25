@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "definitions": {
+    "SenseHATB": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this Sense HAT B board"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "SenseHATB"
+              ],
+              "description": "NGSI-LD entity type. Must be SenseHATB"
+            },
+            "operatingVoltage": {
+              "type": "object",
+              "description": "Supply voltage required by the Sense HAT B board",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "V" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "communicationInterface": {
+              "type": "string",
+              "description": "Bus used to communicate with the host microcontroller"
+            },
+            "length": {
+              "type": "object",
+              "description": "Physical length of the board",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MMT" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "width": {
+              "type": "object",
+              "description": "Physical width of the board",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MMT" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "adcConversionResolution": {
+              "type": "object",
+              "description": "Resolution of the analogue-to-digital conversion chip",
+              "properties": {
+                "value": { "type": "integer" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "bit" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "Host microcontroller that this board plugs into",
+              "items": { "type": "string", "format": "uri" }
+            },
+            "hasHumiditySensor": {
+              "type": "array",
+              "description": "Reference to the onboard humidity sensor module",
+              "items": { "type": "string", "format": "uri" }
+            },
+            "hasGyroscope": {
+              "type": "array",
+              "description": "Reference to the onboard gyroscope module",
+              "items": { "type": "string", "format": "uri" }
+            },
+            "hasMagnetometer": {
+              "type": "array",
+              "description": "Reference to the onboard magnetometer module",
+              "items": { "type": "string", "format": "uri" }
+            },
+            "hasTemperatureSensor": {
+              "type": "array",
+              "description": "Reference to the onboard temperature sensor module",
+              "items": { "type": "string", "format": "uri" }
+            },
+            "hasConversion": {
+              "type": "array",
+              "description": "Reference to the onboard ADC conversion chip",
+              "items": { "type": "string", "format": "uri" }
+            },
+            "hasBarometer": {
+              "type": "array",
+              "description": "Reference to the onboard barometric pressure sensor module",
+              "items": { "type": "string", "format": "uri" }
+            },
+            "hasAccelerometer": {
+              "type": "array",
+              "description": "Reference to the onboard accelerometer module",
+              "items": { "type": "string", "format": "uri" }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

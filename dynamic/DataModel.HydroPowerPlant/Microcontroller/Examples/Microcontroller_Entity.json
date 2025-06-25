@@ -1,1 +1,103 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:Microcontroller:pi1",
+  "type": "Microcontroller",
+
+  "name": {
+    "type": "Property",
+    "value": "Raspberry Pi 3B+ Controller"
+  },
+  "onObject": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:HydroTurbine:PenstockValve-01" ]
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+
+  "microcontrollerType": {
+    "type": "Property",
+    "value": "RaspberryPi"
+  },
+  "processor": {
+    "type": "Property",
+    "value": "Broadcom BCM2837"
+  },
+  "memory": {
+    "type": "Property",
+    "value": {
+      "value": 1,
+      "unitCode": "GBA"
+    }
+  },
+  "storage": {
+    "type": "Property",
+    "value": {
+      "value": 16,
+      "unitCode": "GBA"
+    }
+  },
+  "adcResolution": {
+    "type": "Property",
+    "value": {
+      "value": 10,
+      "unitCode": "bit"
+    }
+  },
+  "adcChannels": {
+    "type": "Property",
+    "value": {
+      "value": 6,
+      "unitCode": ""
+    }
+  },
+  "interfaces": {
+    "type": "Property",
+    "value": [ "GPIO", "I2C", "SPI", "USB3.0", "Ethernet", "WiFi" ]
+  },
+  "powerInternal": {
+    "type": "Property",
+    "value": {
+      "value": 48,
+      "unitCode": "Wh"
+    }
+  },
+  "powerExternalVoltage": {
+    "type": "Property",
+    "value": {
+      "value": 24,
+      "unitCode": "V"
+    }
+  },
+  "operatingTemperatureMin": {
+    "type": "Property",
+    "value": {
+      "value": 0,
+      "unitCode": "CEL"
+    }
+  },
+  "operatingTemperatureMax": {
+    "type": "Property",
+    "value": {
+      "value": 40,
+      "unitCode": "CEL"
+    }
+  },
+  "hasDevices": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:AEPZTSensor:001",
+      "urn:ngsi-ld:CrackGrowthSensor:0001"
+    ]
+  },
+  "hasComponents": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:SensorModule:shb1" ]
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:Platform:PortableDAQ-01" ]
+  }
+}
 

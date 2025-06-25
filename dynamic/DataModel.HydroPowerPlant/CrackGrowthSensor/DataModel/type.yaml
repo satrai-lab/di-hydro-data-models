@@ -3,7 +3,7 @@ components:
 
     CrackGrowthSensor:
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/CrackGrowthSensor/DataModel/type.json"
+        uri-prefix: "http://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/CrackGrowthSensor/DataModel/type.json"
       allOf:
         - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
         - type: object

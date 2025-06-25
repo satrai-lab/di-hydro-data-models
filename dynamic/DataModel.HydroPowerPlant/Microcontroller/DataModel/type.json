@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of Microcontroller of Hydropower Plant Modeling",
+  "definitions": {
+    "Microcontroller": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "microcontrollerType": {
+              "type": "string",
+              "description": "Role or family of this controller (what kind of board/CPU it is)"
+            },
+            "processor": {
+              "type": "string",
+              "description": "Name/model of the CPU or System-on-Chip"
+            },
+            "memory": {
+              "type": "object",
+              "description": "Installed RAM capacity",
+              "properties": {
+                "value": { "type": "number", "description": "Amount of RAM" },
+                "unitCode": { "type": "string", "enum": ["GBA"], "description": "Unit code for gigabytes of memory" }
+              },
+              "additionalProperties": false
+            },
+            "storage": {
+              "type": "object",
+              "description": "Local non-volatile storage size",
+              "properties": {
+                "value": { "type": "number", "description": "Storage capacity" },
+                "unitCode": { "type": "string", "enum": ["GBA"], "description": "Unit code for gigabytes of storage" }
+              },
+              "additionalProperties": false
+            },
+            "adcResolution": {
+              "type": "object",
+              "description": "Resolution of the on-board ADC used for analog sensor inputs",
+              "properties": {
+                "value": { "type": "integer", "description": "ADC resolution in bits" },
+                "unitCode": { "type": "string", "enum": ["bit"], "description": "Unit code for bits" }
+              },
+              "additionalProperties": false
+            },
+            "adcChannels": {
+              "type": "object",
+              "description": "Number of independent ADC input channels available",
+              "properties": {
+                "value": { "type": "integer", "description": "Count of ADC channels" },
+                "unitCode": { "type": "string", "enum": [""], "description": "No unit" }
+              },
+              "additionalProperties": false
+            },
+            "interfaces": {
+              "type": "array",
+              "description": "List of I/O and communication buses exposed by this controller",
+              "items": { "type": "string" }
+            },
+            "powerInternal": {
+              "type": "object",
+              "description": "Capacity of the internal battery pack",
+              "properties": {
+                "value": { "type": "number", "description": "Battery capacity" },
+                "unitCode": { "type": "string", "enum": ["Wh"], "description": "Unit code for watt-hours" }
+              },
+              "additionalProperties": false
+            },
+            "powerExternalVoltage": {
+              "type": "object",
+              "description": "Nominal voltage of the external DC power input",
+              "properties": {
+                "value": { "type": "number", "description": "External power voltage" },
+                "unitCode": { "type": "string", "enum": ["V"], "description": "Unit code for volts" }
+              },
+              "additionalProperties": false
+            },
+            "operatingTemperatureMin": {
+              "type": "object",
+              "description": "Minimum ambient temperature at which the controller is rated to operate",
+              "properties": {
+                "value": { "type": "number", "description": "Lower operating temperature" },
+                "unitCode": { "type": "string", "enum": ["CEL"], "description": "Unit code for degrees Celsius" }
+              },
+              "additionalProperties": false
+            },
+            "operatingTemperatureMax": {
+              "type": "object",
+              "description": "Maximum ambient temperature at which the controller is rated to operate",
+              "properties": {
+                "value": { "type": "number", "description": "Upper operating temperature" },
+                "unitCode": { "type": "string", "enum": ["CEL"], "description": "Unit code for degrees Celsius" }
+              },
+              "additionalProperties": false
+            },
+            "hasDevices": {
+              "type": "array",
+              "description": "References to all Device entities directly connected to this microcontroller",
+              "items": { "type": "string", "format": "uri" }
+            },
+            "hasComponents": {
+              "type": "array",
+              "description": "References to component modules or sub-devices that this microcontroller hosts",
+              "items": { "type": "string", "format": "uri" }
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "References to higher-level systems or platforms that this microcontroller is part of",
+              "items": { "type": "string", "format": "uri" }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

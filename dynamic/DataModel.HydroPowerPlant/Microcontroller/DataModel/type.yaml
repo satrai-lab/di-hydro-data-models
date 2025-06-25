@@ -8,7 +8,21 @@ components:
         - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
         - type: object
           properties:
-            
+            id:
+              type: string
+              format: uri
+              description: "Unique URI identifier for this microcontroller"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - Microcontroller
+              description: "NGSI-LD entity type. Must be Microcontroller"
+              x-ngsi:
+                type: Property
+
             microcontrollerType:
               type: string
               description: "Role or family of this controller (what kind of board/CPU it is)"

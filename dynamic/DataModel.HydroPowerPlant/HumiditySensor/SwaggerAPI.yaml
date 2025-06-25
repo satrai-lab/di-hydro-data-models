@@ -1,0 +1,294 @@
+openapi: 3.0.3
+info:
+  title: Humidity Sensor Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for capacitive humidity sensor entities  
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a HumiditySensor entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/HumiditySensor'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
+              id: "urn:ngsi-ld:HumiditySensor:hs1"
+              type: "HumiditySensor"
+              name:
+                type: "Property"
+                value: "Sense HAT B Capacitive Humidity Sensor"
+              inHPP:
+                type: "Relationship"
+                object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+              measuringRangeMin:
+                type: "Property"
+                value: 0
+                unitCode: "%RH"
+              measuringRangeMax:
+                type: "Property"
+                value: 100
+                unitCode: "%RH"
+              accuracy:
+                type: "Property"
+                value: 2
+                unitCode: "%RH"
+              resolution:
+                type: "Property"
+                value: 16
+                unitCode: "bit"
+              isComponentOf:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:SenseHATB:01"
+              observations:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Observation:Hum:1002"
+                  - "urn:ngsi-ld:Observation:Hum:1003"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier of the entity
+        type:
+          type: string
+          enum:
+            - Device
+          description: NGSI-LD entity type. Must be Device
+        name:
+          type: object
+          description: Human-readable name of the device
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+        onObject:
+          type: object
+          description: Component(s) of the HPP this device is installed on
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          additionalProperties: false
+        inHPP:
+          type: object
+          description: HydropowerPlant this device belongs to
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: string
+              format: uri
+          additionalProperties: false
+        controlledObservation:
+          type: object
+          description: Observation types this device can control
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: array
+              items:
+                type: string
+          additionalProperties: false
+        observations:
+          type: object
+          description: Observations produced by or connected to this device
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          additionalProperties: false
+        controlledActuation:
+          type: object
+          description: Actuation types this device can control
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: array
+              items:
+                type: string
+          additionalProperties: false
+        actuations:
+          type: object
+          description: Actuations produced by or connected to this device
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          additionalProperties: false
+        deviceType:
+          type: object
+          description: Indicates sensor, actuator, or both
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+              enum:
+                - sensor
+                - actuator
+                - sensorActuator
+                - Device
+                - System
+          additionalProperties: false
+        relativePosition:
+          type: object
+          description: Relative 2D/3D position of the device
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+                - LineString
+                - MultiLineString
+                - Polygon
+                - Trimesh
+            measurementUnit:
+              type: string
+            dimensions:
+              type: string
+              enum:
+                - 2D
+                - 3D
+            coordinates:
+              type: array
+              items: {}
+            faces:
+              type: array
+              items: {}
+          additionalProperties: false
+
+    HumiditySensor:
+      allOf:
+        - $ref: '#/components/schemas/Device'
+        - type: object
+          properties:
+            id:
+              type: string
+              format: uri
+              pattern: '^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$'
+              description: Unique URI identifier of this humidity sensor
+            type:
+              type: string
+              enum:
+                - HumiditySensor
+              description: NGSI-LD entity type. Must be HumiditySensor
+            measuringRangeMin:
+              type: object
+              description: Minimum relative-humidity reading
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "%RH"
+              additionalProperties: false
+            measuringRangeMax:
+              type: object
+              description: Maximum relative-humidity reading
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "%RH"
+              additionalProperties: false
+            accuracy:
+              type: object
+              description: Maximum deviation from actual humidity
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "%RH"
+              additionalProperties: false
+            resolution:
+              type: object
+              description: ADC conversion granularity
+              properties:
+                value:
+                  type: integer
+                unitCode:
+                  type: string
+                  enum:
+                    - bit
+              additionalProperties: false
+            isComponentOf:
+              type: object
+              description: The Sense HAT B board this sensor belongs to
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              additionalProperties: false
+            observations:
+              type: object
+              description: Observations produced by this sensor
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              additionalProperties: false
+      description: Data Model of HumiditySensor of Hydropower Plant Modeling

@@ -12,6 +12,8 @@
 
 An **AE System** (Acoustic Emission System) is a data acquisition and processing platform for structural health and condition monitoring. It interfaces with piezoelectric PZT sensors mounted on a structure, digitizes their high-frequency voltage signals, applies configurable analog and digital filtering, and extracts key features (e.g., amplitude, RMS, energy, average signal level) in real time. It supports both timed and continuous acquisition modes, and can operate on external power or internal battery.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [Device](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device) base type (e.g. `id`, `type`, `name`, `onObject`, `inHPP`, `deviceType`, `observations`, etc.), and adds the following specific attributes.
 ---
 
 ## Attributes Specifications

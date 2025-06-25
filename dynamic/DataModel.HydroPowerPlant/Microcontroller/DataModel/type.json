@@ -12,6 +12,18 @@
         {
           "type": "object",
           "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "description": "Unique URI identifier for this microcontroller"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "Microcontroller"
+              ],
+              "description": "NGSI-LD entity type. Must be Microcontroller"
+            },
             "microcontrollerType": {
               "type": "string",
               "description": "Role or family of this controller (what kind of board/CPU it is)"

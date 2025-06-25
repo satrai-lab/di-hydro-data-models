@@ -1,0 +1,224 @@
+openapi: 3.0.3
+info:
+  title: ADC Conversion Chip Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for ADC conversion chip entities  
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create an ADCChip entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/ADCChip'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
+              id: "urn:ngsi-ld:ADCChip:adc1"
+              type: "ADCChip"
+              name:
+                type: "Property"
+                value: "Sense HAT B ADC Conversion Chip"
+              inHPP:
+                type: "Relationship"
+                object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+              resolution:
+                type: "Property"
+                value:
+                  value: 16
+                  unitCode: "bit"
+              isComponentOf:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:SenseHATB:01"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier of the entity
+        type:
+          type: string
+          enum:
+            - Device
+          description: NGSI-LD entity type. Must be Device
+        name:
+          type: object
+          description: Human-readable name of the device
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+        onObject:
+          type: object
+          description: Component(s) of the HPP this device is installed on
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+        inHPP:
+          type: object
+          description: The HydropowerPlant this device belongs to
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: string
+              format: uri
+        controlledObservation:
+          type: object
+          description: Observation types this device can control
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: array
+              items:
+                type: string
+        observations:
+          type: object
+          description: Observations produced by or connected to this device
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+        controlledActuation:
+          type: object
+          description: Actuation types this device can control
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          description: Actuations produced by or connected to this device
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+        deviceType:
+          type: object
+          description: Indicates sensor, actuator, or both
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+              enum:
+                - sensor
+                - actuator
+                - sensorActuator
+                - Device
+                - System
+        relativePosition:
+          type: object
+          description: Relative 2D/3D position of the device
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+                - LineString
+                - MultiLineString
+                - Polygon
+                - Trimesh
+            measurementUnit:
+              type: string
+            dimensions:
+              type: string
+              enum:
+                - 2D
+                - 3D
+            coordinates:
+              type: array
+              items: {}
+            faces:
+              type: array
+              items: {}
+      additionalProperties: false
+
+    ADCChip:
+      allOf:
+        - $ref: '#/components/schemas/Device'
+        - type: object
+          properties:
+            id:
+              type: string
+              format: uri
+              pattern: '^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$'
+              description: Unique identifier of this ADC conversion chip
+            type:
+              type: string
+              enum:
+                - ADCChip
+              description: NGSI-LD entity type. Must be ADCChip
+            resolution:
+              type: object
+              description: Bit-depth of the analog-to-digital conversion
+              properties:
+                value:
+                  type: integer
+                unitCode:
+                  type: string
+                  enum:
+                    - bit
+              additionalProperties: false
+            isComponentOf:
+              type: object
+              description: The Sense HAT B board this ADC chip belongs to
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              additionalProperties: false
+      description: Data Model of ADCChip of Hydropower Plant Modeling

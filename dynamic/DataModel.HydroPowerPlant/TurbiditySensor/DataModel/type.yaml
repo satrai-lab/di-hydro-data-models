@@ -1,0 +1,295 @@
+components:
+  schemas:
+
+    TurbiditySensor:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/TurbiditySensor/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique identifier of this turbidity sensor entity"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - TurbiditySensor
+              description: "NGSI-LD entity type. Must be TurbiditySensor"
+              x-ngsi:
+                type: Property
+
+            model:
+              type: string
+              description: "Manufacturer’s model number"
+              x-ngsi:
+                type: Property
+
+            measureRangeMin:
+              type: object
+              description: "Minimum turbidity this sensor can measure"
+              properties:
+                value:
+                  type: number
+                  description: "Lower end of turbidity range"
+                unitCode:
+                  type: string
+                  enum:
+                    - NTU
+                  description: "Unit code for Nephelometric Turbidity Units"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            measureRangeMax:
+              type: object
+              description: "Maximum turbidity this sensor can measure"
+              properties:
+                value:
+                  type: number
+                  description: "Upper end of turbidity range"
+                unitCode:
+                  type: string
+                  enum:
+                    - NTU
+                  description: "Unit code for Nephelometric Turbidity Units"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            accuracy:
+              type: string
+              description: "Maximum relative error (< ±1% of reading)"
+              x-ngsi:
+                type: Property
+
+            pressureRangeMin:
+              type: object
+              description: "Minimum process pressure"
+              properties:
+                value:
+                  type: number
+                  description: "Lower end of pressure range"
+                unitCode:
+                  type: string
+                  enum:
+                    - MPA
+                  description: "Unit code for megapascals"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            pressureRangeMax:
+              type: object
+              description: "Maximum process pressure"
+              properties:
+                value:
+                  type: number
+                  description: "Upper end of pressure range"
+                unitCode:
+                  type: string
+                  enum:
+                    - MPA
+                  description: "Unit code for megapascals"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            calibration:
+              type: array
+              description: "Supported calibration methods"
+              items:
+                type: string
+              x-ngsi:
+                type: Property
+
+            sensorMaterial:
+              type: string
+              description: "Wetted-part construction material"
+              x-ngsi:
+                type: Property
+
+            cableMaterial:
+              type: string
+              description: "Exterior cable jacket material"
+              x-ngsi:
+                type: Property
+
+            powerSupply:
+              type: object
+              description: "Required DC supply voltage"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+                  description: "Unit code for volts"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            communicationMode:
+              type: string
+              description: "Field-bus interface"
+              x-ngsi:
+                type: Property
+
+            storageTemperatureMin:
+              type: object
+              description: "Minimum long-term storage temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+                  description: "Unit code for degrees Celsius"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            storageTemperatureMax:
+              type: object
+              description: "Maximum long-term storage temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+                  description: "Unit code for degrees Celsius"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            operatingTemperatureMin:
+              type: object
+              description: "Minimum ambient operating temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+                  description: "Unit code for degrees Celsius"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            operatingTemperatureMax:
+              type: object
+              description: "Maximum ambient operating temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+                  description: "Unit code for degrees Celsius"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            length:
+              type: object
+              description: "Housing length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+                  description: "Unit code for millimeters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            diameter:
+              type: object
+              description: "Housing diameter"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+                  description: "Unit code for millimeters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            weight:
+              type: object
+              description: "Total device mass"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - KGM
+                  description: "Unit code for kilograms"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            protectionGrade:
+              type: string
+              description: "Environmental ingress rating"
+              x-ngsi:
+                type: Property
+
+            cableLengthStandard:
+              type: object
+              description: "Standard cable length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MTR
+                  description: "Unit code for meters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            cableLengthMax:
+              type: object
+              description: "Maximum extendable cable length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MTR
+                  description: "Unit code for meters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            isComponentOf:
+              type: array
+              description: "Reference to the host MPG-6099 multiparameter node"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

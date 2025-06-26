@@ -1,0 +1,224 @@
+components:
+  schemas:
+
+    ConductivityTemperatureSensor:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/ConductivityTemperatureSensor/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique identifier of this conductivity-temperature sensor entity"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - ConductivityTemperatureSensor
+              description: "NGSI-LD entity type. Must be ConductivityTemperatureSensor"
+              x-ngsi:
+                type: Property
+
+            model:
+              type: string
+              description: "Manufacturer’s model number"
+              x-ngsi:
+                type: Property
+
+            conductivityRangeMin:
+              type: object
+              description: "Minimum electrical conductivity measurable"
+              properties:
+                value:
+                  type: number
+                  description: "Lower end of conductivity range"
+                unitCode:
+                  type: string
+                  enum:
+                    - USC
+                  description: "Unit code for microsiemens per centimeter"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            conductivityRangeMax:
+              type: object
+              description: "Maximum electrical conductivity measurable"
+              properties:
+                value:
+                  type: number
+                  description: "Upper end of conductivity range"
+                unitCode:
+                  type: string
+                  enum:
+                    - USC
+                  description: "Unit code for microsiemens per centimeter"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            temperatureRangeMin:
+              type: object
+              description: "Minimum temperature measurable"
+              properties:
+                value:
+                  type: number
+                  description: "Lower end of temperature range"
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+                  description: "Unit code for degrees Celsius"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            temperatureRangeMax:
+              type: object
+              description: "Maximum temperature measurable"
+              properties:
+                value:
+                  type: number
+                  description: "Upper end of temperature range"
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+                  description: "Unit code for degrees Celsius"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            accuracyConductivity:
+              type: string
+              description: "Conductivity measurement accuracy (e.g. ±% of reading)"
+              x-ngsi:
+                type: Property
+
+            accuracyTemperature:
+              type: string
+              description: "Temperature measurement accuracy (e.g. ±°C)"
+              x-ngsi:
+                type: Property
+
+            reactionTime:
+              type: string
+              description: "Time to reach 90% of final reading"
+              x-ngsi:
+                type: Property
+
+            resolutionConductivity:
+              type: string
+              description: "Granularity of conductivity reading"
+              x-ngsi:
+                type: Property
+
+            resolutionTemperature:
+              type: string
+              description: "Granularity of temperature reading"
+              x-ngsi:
+                type: Property
+
+            powerSupplyMin:
+              type: object
+              description: "Minimum DC supply voltage"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+                  description: "Unit code for volts"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            powerSupplyMax:
+              type: object
+              description: "Maximum DC supply voltage"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+                  description: "Unit code for volts"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            communicationMode:
+              type: string
+              description: "Digital communication protocol"
+              x-ngsi:
+                type: Property
+
+            cableLength:
+              type: object
+              description: "Standard cable length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MTR
+                  description: "Unit code for meters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            sizeLength:
+              type: object
+              description: "Probe body length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+                  description: "Unit code for millimeters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            sizeDiameter:
+              type: object
+              description: "Probe body diameter"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+                  description: "Unit code for millimeters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            housingMaterial:
+              type: string
+              description: "Wetted-part construction material"
+              x-ngsi:
+                type: Property
+
+            isComponentOf:
+              type: array
+              description: "Reference to the host multi-parameter node"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

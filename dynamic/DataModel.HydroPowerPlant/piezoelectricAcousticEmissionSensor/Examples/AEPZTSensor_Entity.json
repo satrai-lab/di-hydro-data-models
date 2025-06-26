@@ -1,59 +1,119 @@
-{   
-    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
-    "id": "urn:ngsi-ld:AEPZTSensor:001",
-    "type": "AEPZTSensor",
-    "monitoringType": "StructuralHealthAndConditionMonitoring",
-    "resonantFrequency": {
-      "value": 150,
-      "unitCode": "kHz"
-    },
-    "frequencyMin": {
-      "value": 100,
-      "unitCode": "kHz"
-    },
-    "frequencyMax": {
-      "value": 200,
-      "unitCode": "kHz"
-    },
-    "peakSensitivity": {
-      "value": 120,
-      "unitCode": "dB"
-    },
-    "temperatureMin": {
-      "value": -20,
-      "unitCode": "CEL"
-    },
-    "temperatureMax": {
-      "value": 80,
-      "unitCode": "CEL"
-    },
-    "preAmplifierImpedance": {
-      "value": 1000,
-      "unitCode": "OHM"
-    },
-    "integralPreAmplifierGain": {
-      "value": 40,
-      "unitCode": "dB"
-    },
-    "integralPreAmplifierSupplyVoltage": {
-      "value": 28,
-      "unitCode": "V"
-    },
-    "caseMaterial": "stainless steel",
-    "faceMaterial": "ceramic",
-    "length": {
-      "value": 20,
-      "unitCode": "MMT"
-    },
-    "width": {
-      "value": 20,
-      "unitCode": "MMT"
-    },
-    "isComponentOf": [
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:AEPZTSensor:001",
+  "type": "AEPZTSensor",
+
+  "monitoringType": {
+    "type": "Property",
+    "value": "StructuralHealthAndConditionMonitoring"
+  },
+  "resonantFrequency": {
+    "type": "Property",
+    "value": 150,
+    "unitCode": {
+      "type": "Property",
+      "value": "kHz"
+    }
+  },
+  "frequencyMin": {
+    "type": "Property",
+    "value": 100,
+    "unitCode": {
+      "type": "Property",
+      "value": "kHz"
+    }
+  },
+  "frequencyMax": {
+    "type": "Property",
+    "value": 200,
+    "unitCode": {
+      "type": "Property",
+      "value": "kHz"
+    }
+  },
+  "peakSensitivity": {
+    "type": "Property",
+    "value": 120,
+    "unitCode": {
+      "type": "Property",
+      "value": "dB"
+    }
+  },
+  "temperatureMin": {
+    "type": "Property",
+    "value": -20,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "temperatureMax": {
+    "type": "Property",
+    "value": 80,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "preAmplifierImpedance": {
+    "type": "Property",
+    "value": 1000,
+    "unitCode": {
+      "type": "Property",
+      "value": "OHM"
+    }
+  },
+  "integralPreAmplifierGain": {
+    "type": "Property",
+    "value": 40,
+    "unitCode": {
+      "type": "Property",
+      "value": "dB"
+    }
+  },
+  "integralPreAmplifierSupplyVoltage": {
+    "type": "Property",
+    "value": 28,
+    "unitCode": {
+      "type": "Property",
+      "value": "V"
+    }
+  },
+  "caseMaterial": {
+    "type": "Property",
+    "value": "stainless steel"
+  },
+  "faceMaterial": {
+    "type": "Property",
+    "value": "ceramic"
+  },
+  "length": {
+    "type": "Property",
+    "value": 20,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "width": {
+    "type": "Property",
+    "value": 20,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
       "urn:ngsi-ld:AESystem:01"
-    ],
-    "observations": [
+    ]
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
       "urn:ngsi-ld:Observation:obs001",
       "urn:ngsi-ld:Observation:obs002"
     ]
   }
+}

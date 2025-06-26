@@ -15,22 +15,34 @@
   "measuringRangeMin": {
     "type": "Property",
     "value": -40,
-    "unitCode": "CEL"
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
   },
   "measuringRangeMax": {
     "type": "Property",
     "value": 85,
-    "unitCode": "CEL"
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
   },
   "accuracy": {
     "type": "Property",
     "value": 0.5,
-    "unitCode": "CEL"
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
   },
   "resolution": {
     "type": "Property",
     "value": 16,
-    "unitCode": "bit"
+    "unitCode": {
+      "type": "Property",
+      "value": "bit"
+    }
   },
 
   "isComponentOf": {

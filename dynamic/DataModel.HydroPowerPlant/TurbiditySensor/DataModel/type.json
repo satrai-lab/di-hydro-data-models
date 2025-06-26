@@ -1,0 +1,239 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of TurbiditySensor of Hydropower Plant Modeling",
+  "definitions": {
+    "TurbiditySensor": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this turbidity sensor entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "TurbiditySensor"
+              ],
+              "description": "NGSI-LD entity type. Must be TurbiditySensor"
+            },
+            "model": {
+              "type": "string",
+              "description": "Manufacturer’s model number"
+            },
+            "measureRangeMin": {
+              "type": "object",
+              "description": "Minimum turbidity this sensor can measure",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "NTU" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "measureRangeMax": {
+              "type": "object",
+              "description": "Maximum turbidity this sensor can measure",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "NTU" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "accuracy": {
+              "type": "string",
+              "description": "Maximum relative error (e.g. ±1% of reading)"
+            },
+            "pressureRangeMin": {
+              "type": "object",
+              "description": "Minimum process pressure",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MPA" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "pressureRangeMax": {
+              "type": "object",
+              "description": "Maximum process pressure",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MPA" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "calibration": {
+              "type": "array",
+              "description": "Supported calibration methods",
+              "items": { "type": "string" }
+            },
+            "sensorMaterial": {
+              "type": "string",
+              "description": "Wetted-part construction material"
+            },
+            "cableMaterial": {
+              "type": "string",
+              "description": "Exterior cable jacket material"
+            },
+            "powerSupply": {
+              "type": "object",
+              "description": "Required DC supply voltage",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "V" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "communicationMode": {
+              "type": "string",
+              "description": "Field-bus interface"
+            },
+            "storageTemperatureMin": {
+              "type": "object",
+              "description": "Minimum long-term storage temperature",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "CEL" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "storageTemperatureMax": {
+              "type": "object",
+              "description": "Maximum long-term storage temperature",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "CEL" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "operatingTemperatureMin": {
+              "type": "object",
+              "description": "Minimum ambient operating temperature",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "CEL" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "operatingTemperatureMax": {
+              "type": "object",
+              "description": "Maximum ambient operating temperature",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "CEL" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "length": {
+              "type": "object",
+              "description": "Housing length",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MMT" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "diameter": {
+              "type": "object",
+              "description": "Housing diameter",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MMT" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "weight": {
+              "type": "object",
+              "description": "Total device mass",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "KGM" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "protectionGrade": {
+              "type": "string",
+              "description": "Environmental ingress rating"
+            },
+            "cableLengthStandard": {
+              "type": "object",
+              "description": "Standard cable length",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MTR" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "cableLengthMax": {
+              "type": "object",
+              "description": "Maximum extendable cable length",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MTR" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "Reference to the host MPG-6099 multiparameter node",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

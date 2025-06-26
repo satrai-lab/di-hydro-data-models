@@ -14,23 +14,30 @@
 
   "axes": {
     "type": "Property",
-    "value": {
-      "value": 3,
-      "unitCode": ""
-    }
+    "value": 3
   },
   "measurementRanges": {
     "type": "Property",
-    "value": {
-      "value": [16, 32, 64, 128, 512, 1024, 2048],
-      "unitCode": "DEG/S"
+    "value": [
+      16,
+      32,
+      64,
+      128,
+      512,
+      1024,
+      2048
+    ],
+    "unitCode": {
+      "type": "Property",
+      "value": "DEG/S"
     }
   },
   "resolution": {
     "type": "Property",
-    "value": {
-      "value": 16,
-      "unitCode": "bit"
+    "value": 16,
+    "unitCode": {
+      "type": "Property",
+      "value": "bit"
     }
   },
   "isComponentOf": {

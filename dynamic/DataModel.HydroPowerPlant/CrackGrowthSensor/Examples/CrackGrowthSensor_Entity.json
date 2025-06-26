@@ -2,6 +2,7 @@
   "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
   "id": "urn:ngsi-ld:CrackGrowthSensor:0001",
   "type": "CrackGrowthSensor",
+
   "name": {
     "type": "Property",
     "value": "Crack Growth Sensor #1"
@@ -37,16 +38,14 @@
   },
   "adcResolution": {
     "type": "Property",
-    "value": {
-      "value": 16,
-      "unitCode": "bit"
+    "value": 16,
+    "unitCode": {
+      "type": "Property",
+      "value": "bit"
     }
   },
   "leadConfiguration": {
     "type": "Property",
-    "value": {
-      "value": "Four-wire (Kelvin)",
-      "unitCode": ""
-    }
+    "value": "Four-wire (Kelvin)"
   }
 }

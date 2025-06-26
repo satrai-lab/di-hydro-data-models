@@ -37,19 +37,26 @@ paths:
                   - "urn:ngsi-ld:Observation:Gyro:3002"
               axes:
                 type: "Property"
-                value:
-                  value: 3
-                  unitCode: ""
+                value: 3
               measurementRanges:
                 type: "Property"
                 value:
-                  value: [16, 32, 64, 128, 512, 1024, 2048]
-                  unitCode: "DEG/S"
+                  - 16
+                  - 32
+                  - 64
+                  - 128
+                  - 512
+                  - 1024
+                  - 2048
+                unitCode:
+                  type: "Property"
+                  value: "DEG/S"
               resolution:
                 type: "Property"
-                value:
-                  value: 16
-                  unitCode: "bit"
+                value: 16
+                unitCode:
+                  type: "Property"
+                  value: "bit"
               isComponentOf:
                 type: "Relationship"
                 object:
@@ -188,7 +195,9 @@ components:
               type: string
             dimensions:
               type: string
-              enum: [2D, 3D]
+              enum:
+                - "2D"
+                - "3D"
             coordinates:
               type: array
               items: {}
@@ -216,17 +225,21 @@ components:
               type: object
               description: Number of rotation axes
               properties:
-                value:
-                  type: integer
-                unitCode:
+                type:
                   type: string
                   enum:
-                    - ""
+                    - Property
+                value:
+                  type: integer
               additionalProperties: false
             measurementRanges:
               type: object
               description: Supported angular-rate measurement ranges
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: array
                   items:
@@ -234,12 +247,16 @@ components:
                 unitCode:
                   type: string
                   enum:
-                    - DEG/S
+                    - "DEG/S"
               additionalProperties: false
             resolution:
               type: object
               description: ADC conversion resolution
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: integer
                 unitCode:

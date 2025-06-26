@@ -23,40 +23,39 @@ paths:
 
               # — Generic Device properties —
               name:
-                type: "Property"
+                type: Property
                 value: "Crack Growth Sensor #1"
               onObject:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:HydroTurbine:HT-123"
               inHPP:
-                type: "Relationship"
+                type: Relationship
                 object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
               deviceType:
-                type: "Property"
+                type: Property
                 value: "sensor"
               observations:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:Observation:CrackGrowth:0001"
                   - "urn:ngsi-ld:Observation:Strain:0002"
 
               # — CrackGrowthSensor-specific properties —
               monitoringType:
-                type: "Property"
+                type: Property
                 value: "StructuralHealthAndConditionMonitoring"
               adcResolution:
-                type: "Property"
-                value:
-                  value: 16
-                  unitCode: "bit"
+                type: Property
+                value: 16
+                unitCode:
+                  type: Property
+                  value: "bit"
               leadConfiguration:
-                type: "Property"
-                value:
-                  value: "Four-wire (Kelvin)"
-                  unitCode: ""
+                type: Property
+                value: "Four-wire (Kelvin)"
               hasMicrocontroller:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:Microcontroller:MCU-01"
 
@@ -265,11 +264,6 @@ components:
                 value:
                   type: string
                   description: Lead wiring method
-                unitCode:
-                  type: string
-                  enum:
-                    - ""
-                  description: Unit code (none)
               additionalProperties: false
             hasMicrocontroller:
               type: object

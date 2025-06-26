@@ -21,29 +21,37 @@ paths:
               id: "urn:ngsi-ld:BarometerSensor:b1"
               type: "Barometer"
               name:
-                type: "Property"
+                type: Property
                 value: "Sense HAT B Barometric Pressure Sensor"
               inHPP:
-                type: "Relationship"
+                type: Relationship
                 object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
               measuringRangeMin:
-                type: "Property"
+                type: Property
                 value: 260
-                unitCode: "hPa"
+                unitCode:
+                  type: Property
+                  value: "hPa"
               measuringRangeMax:
-                type: "Property"
+                type: Property
                 value: 1260
-                unitCode: "hPa"
+                unitCode:
+                  type: Property
+                  value: "hPa"
               accuracy:
-                type: "Property"
+                type: Property
                 value: 0.025
-                unitCode: "hPa"
+                unitCode:
+                  type: Property
+                  value: "hPa"
               resolution:
-                type: "Property"
+                type: Property
                 value: 24
-                unitCode: "bit"
+                unitCode:
+                  type: Property
+                  value: "bit"
               isComponentOf:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:SenseHATB:01"
       responses:
@@ -218,6 +226,10 @@ components:
               type: object
               description: Minimum pressure this sensor can measure
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:
@@ -229,6 +241,10 @@ components:
               type: object
               description: Maximum pressure this sensor can measure
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:
@@ -240,6 +256,10 @@ components:
               type: object
               description: Maximum pressure error
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:
@@ -251,6 +271,10 @@ components:
               type: object
               description: ADC conversion resolution
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: integer
                 unitCode:

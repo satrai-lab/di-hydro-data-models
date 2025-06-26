@@ -1,0 +1,142 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:DigitalPHTempSensor:001",
+  "type": "DigitalPHTempSensor",
+
+  "name": {
+    "type": "Property",
+    "value": "BH-485 pH–Temp Probe #1"
+  },
+  "onObject": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:Pipe:pipeA1" ]
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:pH:7001",
+      "urn:ngsi-ld:Observation:Temp:7002"
+    ]
+  },
+
+  "model": {
+    "type": "Property",
+    "value": "IOT-485-PH"
+  },
+  "pHRangeMin": {
+    "type": "Property",
+    "value": 0.0,
+    "unitCode": {
+      "type": "Property",
+      "value": ""
+    }
+  },
+  "pHRangeMax": {
+    "type": "Property",
+    "value": 14.0,
+    "unitCode": {
+      "type": "Property",
+      "value": ""
+    }
+  },
+  "temperatureRangeMin": {
+    "type": "Property",
+    "value": 0.0,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "temperatureRangeMax": {
+    "type": "Property",
+    "value": 50.0,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "accuracyPH": {
+    "type": "Property",
+    "value": "±0.1 pH"
+  },
+  "accuracyTemperature": {
+    "type": "Property",
+    "value": "±0.5 °C"
+  },
+  "resolutionPH": {
+    "type": "Property",
+    "value": "0.01 pH"
+  },
+  "resolutionTemperature": {
+    "type": "Property",
+    "value": "0.1 °C"
+  },
+  "powerSupplyMin": {
+    "type": "Property",
+    "value": 9,
+    "unitCode": {
+      "type": "Property",
+      "value": "V"
+    }
+  },
+  "powerSupplyMax": {
+    "type": "Property",
+    "value": 36,
+    "unitCode": {
+      "type": "Property",
+      "value": "V"
+    }
+  },
+  "powerDissipation": {
+    "type": "Property",
+    "value": "1 W"
+  },
+  "communicationMode": {
+    "type": "Property",
+    "value": "RS485 (Modbus RTU)"
+  },
+  "cableLength": {
+    "type": "Property",
+    "value": 10,
+    "unitCode": {
+      "type": "Property",
+      "value": "MTR"
+    }
+  },
+  "dimensionsLength": {
+    "type": "Property",
+    "value": 230,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "dimensionsDiameter": {
+    "type": "Property",
+    "value": 30,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "housingMaterial": {
+    "type": "Property",
+    "value": "Stainless Steel + ABS"
+  },
+  "protectionGrade": {
+    "type": "Property",
+    "value": "IP68"
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:Device:MPG-6099" ]
+  }
+}

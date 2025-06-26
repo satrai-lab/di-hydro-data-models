@@ -14,9 +14,10 @@
 
   "resolution": {
     "type": "Property",
-    "value": {
-      "value": 16,
-      "unitCode": "bit"
+    "value": 16,
+    "unitCode": {
+      "type": "Property",
+      "value": "bit"
     }
   },
   "isComponentOf": {

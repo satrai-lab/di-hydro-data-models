@@ -15,26 +15,40 @@
   "measuringRangeMin": {
     "type": "Property",
     "value": 0,
-    "unitCode": "%RH"
+    "unitCode": {
+      "type": "Property",
+      "value": "%RH"
+    }
   },
   "measuringRangeMax": {
     "type": "Property",
     "value": 100,
-    "unitCode": "%RH"
+    "unitCode": {
+      "type": "Property",
+      "value": "%RH"
+    }
   },
   "accuracy": {
     "type": "Property",
     "value": 2,
-    "unitCode": "%RH"
+    "unitCode": {
+      "type": "Property",
+      "value": "%RH"
+    }
   },
   "resolution": {
     "type": "Property",
     "value": 16,
-    "unitCode": "bit"
+    "unitCode": {
+      "type": "Property",
+      "value": "bit"
+    }
   },
   "isComponentOf": {
     "type": "Relationship",
-    "object": ["urn:ngsi-ld:SenseHATB:01"]
+    "object": [
+      "urn:ngsi-ld:SenseHATB:01"
+    ]
   },
   "observations": {
     "type": "Relationship",

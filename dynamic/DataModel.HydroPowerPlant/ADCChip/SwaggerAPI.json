@@ -21,18 +21,19 @@ paths:
               id: "urn:ngsi-ld:ADCChip:adc1"
               type: "ADCChip"
               name:
-                type: "Property"
+                type: Property
                 value: "Sense HAT B ADC Conversion Chip"
               inHPP:
-                type: "Relationship"
+                type: Relationship
                 object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
               resolution:
-                type: "Property"
-                value:
-                  value: 16
-                  unitCode: "bit"
+                type: Property
+                value: 16
+                unitCode:
+                  type: Property
+                  value: "bit"
               isComponentOf:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:SenseHATB:01"
       responses:
@@ -200,12 +201,23 @@ components:
               type: object
               description: Bit-depth of the analog-to-digital conversion
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: integer
                 unitCode:
-                  type: string
-                  enum:
-                    - bit
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                        - Property
+                    value:
+                      type: string
+                      enum:
+                        - bit
               additionalProperties: false
             isComponentOf:
               type: object

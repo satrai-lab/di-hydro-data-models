@@ -1,0 +1,186 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of DigitalPHTempSensor of Hydropower Plant Modeling",
+  "definitions": {
+    "DigitalPHTempSensor": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this digital pH–temperature sensor entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "DigitalPHTempSensor"
+              ],
+              "description": "NGSI-LD entity type. Must be DigitalPHTempSensor"
+            },
+            "model": {
+              "type": "string",
+              "description": "Manufacturer’s model number"
+            },
+            "pHRangeMin": {
+              "type": "object",
+              "description": "Minimum pH measurable",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "pHRangeMax": {
+              "type": "object",
+              "description": "Maximum pH measurable",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "temperatureRangeMin": {
+              "type": "object",
+              "description": "Minimum temperature measurable",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "CEL" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "temperatureRangeMax": {
+              "type": "object",
+              "description": "Maximum temperature measurable",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "CEL" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "accuracyPH": {
+              "type": "string",
+              "description": "pH measurement accuracy (e.g., ±0.1 pH)"
+            },
+            "accuracyTemperature": {
+              "type": "string",
+              "description": "Temperature measurement accuracy (e.g., ±0.5 °C)"
+            },
+            "resolutionPH": {
+              "type": "string",
+              "description": "pH reading granularity (e.g., 0.01 pH)"
+            },
+            "resolutionTemperature": {
+              "type": "string",
+              "description": "Temperature reading granularity (e.g., 0.1 °C)"
+            },
+            "powerSupplyMin": {
+              "type": "object",
+              "description": "Minimum DC supply voltage",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "V" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "powerSupplyMax": {
+              "type": "object",
+              "description": "Maximum DC supply voltage",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "V" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "powerDissipation": {
+              "type": "string",
+              "description": "Typical power draw"
+            },
+            "communicationMode": {
+              "type": "string",
+              "description": "Digital communication protocol"
+            },
+            "cableLength": {
+              "type": "object",
+              "description": "Standard cable length",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MTR" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "dimensionsLength": {
+              "type": "object",
+              "description": "Probe body length",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MMT" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "dimensionsDiameter": {
+              "type": "object",
+              "description": "Probe body diameter",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MMT" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "housingMaterial": {
+              "type": "string",
+              "description": "Wetted-part construction material"
+            },
+            "protectionGrade": {
+              "type": "string",
+              "description": "Ingress protection rating"
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "Reference to the host MPG-6099 multi-parameter node",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

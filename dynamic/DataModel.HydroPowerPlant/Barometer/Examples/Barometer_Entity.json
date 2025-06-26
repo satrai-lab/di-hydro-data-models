@@ -15,22 +15,34 @@
   "measuringRangeMin": {
     "type": "Property",
     "value": 260,
-    "unitCode": "hPa"
+    "unitCode": {
+      "type": "Property",
+      "value": "hPa"
+    }
   },
   "measuringRangeMax": {
     "type": "Property",
     "value": 1260,
-    "unitCode": "hPa"
+    "unitCode": {
+      "type": "Property",
+      "value": "hPa"
+    }
   },
   "accuracy": {
     "type": "Property",
     "value": 0.025,
-    "unitCode": "hPa"
+    "unitCode": {
+      "type": "Property",
+      "value": "hPa"
+    }
   },
   "resolution": {
     "type": "Property",
     "value": 24,
-    "unitCode": "bit"
+    "unitCode": {
+      "type": "Property",
+      "value": "bit"
+    }
   },
   "isComponentOf": {
     "type": "Relationship",

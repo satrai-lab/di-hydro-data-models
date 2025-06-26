@@ -1,0 +1,305 @@
+components:
+  schemas:
+
+    MPG6099:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/MPG6099/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique URI identifier of this MPG-6099 node"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - MPG6099
+              description: "NGSI-LD entity type. Must be MPG6099"
+              x-ngsi:
+                type: Property
+
+            display:
+              type: object
+              description: "Local display specification"
+              x-ngsi:
+                type: Property
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                  description: "Display type (e.g. LCD)"
+                width:
+                  type: object
+                  description: "Display diagonal size"
+                  properties:
+                    value:
+                      type: number
+                      description: "Diagonal length"
+                    unitCode:
+                      type: string
+                      enum:
+                        - inch
+                      description: "Unit code for inches"
+                  additionalProperties: false
+              additionalProperties: false
+
+            powerDC:
+              type: object
+              description: "Supported DC power supply"
+              x-ngsi:
+                type: Property
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                  description: "DC supply voltage"
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+                  description: "Unit code for volts"
+              additionalProperties: false
+
+            powerAC:
+              type: object
+              description: "Supported AC power supply"
+              x-ngsi:
+                type: Property
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                  description: "AC supply voltage"
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+                  description: "Unit code for volts"
+              additionalProperties: false
+
+            protection:
+              type: object
+              description: "Enclosure protection rating"
+              x-ngsi:
+                type: Property
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              additionalProperties: false
+
+            inputs:
+              type: object
+              description: "Input communication interface"
+              x-ngsi:
+                type: Property
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              additionalProperties: false
+
+            output:
+              type: object
+              description: "Output communication interface"
+              x-ngsi:
+                type: Property
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              additionalProperties: false
+
+            dataLogger:
+              type: object
+              description: "Local data-logging capability"
+              x-ngsi:
+                type: Property
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: boolean
+              additionalProperties: false
+
+            downloadInterface:
+              type: object
+              description: "Interface for data export and firmware updates"
+              x-ngsi:
+                type: Property
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              additionalProperties: false
+
+            wirelessOption:
+              type: object
+              description: "Optional wireless modem availability"
+              x-ngsi:
+                type: Property
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: boolean
+              additionalProperties: false
+
+            dimensions:
+              type: object
+              description: "Physical dimensions [length, width, height]"
+              x-ngsi:
+                type: Property
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: array
+                  items:
+                    type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              additionalProperties: false
+
+            hasConductivityTempSensor:
+              type: object
+              description: "Reference to the conductivity/temperature sensor module"
+              x-ngsi:
+                type: Relationship
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              additionalProperties: false
+
+            hasPhTempSensor:
+              type: object
+              description: "Reference to the pH/temperature sensor module"
+              x-ngsi:
+                type: Relationship
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              additionalProperties: false
+
+            hasAmmoniaSensor:
+              type: object
+              description: "Reference to the ammonia sensor module"
+              x-ngsi:
+                type: string
+                enum:
+                  - Relationship
+              x-ngsi:
+                type: Relationship
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              additionalProperties: false
+
+            hasTurbiditySensor:
+              type: object
+              description: "Reference to the turbidity sensor module"
+              x-ngsi:
+                type: Relationship
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              additionalProperties: false
+
+            hasAlgaeSensor:
+              type: object
+              description: "Reference to the algae sensor module"
+              x-ngsi:
+                type: Relationship
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              additionalProperties: false
+
+            hasDissolvedO2Sensor:
+              type: object
+              description: "Reference to the dissolved oxygen sensor module"
+              x-ngsi:
+                type: Relationship
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              additionalProperties: false
+
+          additionalProperties: false

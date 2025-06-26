@@ -1,0 +1,116 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:MPG6099:01",
+  "type": "MPG6099",
+
+  "name": {
+    "type": "Property",
+    "value": "MPG-6099 Multi-Parameter Analyser Node"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+
+  "display": {
+    "type": "Property",
+    "value": "LCD",
+    "width": {
+      "type": "Property",
+      "value": 7,
+      "unitCode": {
+        "type": "Property",
+        "value": "inch"
+      }
+    }
+  },
+
+  "powerDC": {
+    "type": "Property",
+    "value": 24,
+    "unitCode": {
+      "type": "Property",
+      "value": "V"
+    }
+  },
+  "powerAC": {
+    "type": "Property",
+    "value": 220,
+    "unitCode": {
+      "type": "Property",
+      "value": "V"
+    }
+  },
+
+  "protection": {
+    "type": "Property",
+    "value": "IP65"
+  },
+  "inputs": {
+    "type": "Property",
+    "value": "RS-485 (Modbus RTU)"
+  },
+  "output": {
+    "type": "Property",
+    "value": "RS-485 (Modbus RTU)"
+  },
+
+  "dataLogger": {
+    "type": "Property",
+    "value": true
+  },
+  "downloadInterface": {
+    "type": "Property",
+    "value": "USB"
+  },
+  "wirelessOption": {
+    "type": "Property",
+    "value": true
+  },
+
+  "dimensions": {
+    "type": "Property",
+    "value": [320, 270, 121],
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+
+  "hasConductivityTempSensor": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:ConductivityTempSensor:ct1"
+    ]
+  },
+  "hasPhTempSensor": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:PhTempSensor:ph1"
+    ]
+  },
+  "hasAmmoniaSensor": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:AmmoniaSensor:am1"
+    ]
+  },
+  "hasTurbiditySensor": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:TurbiditySensor:tb1"
+    ]
+  },
+  "hasAlgaeSensor": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:AlgaeSensor:al1"
+    ]
+  },
+  "hasDissolvedO2Sensor": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:DissolvedO2Sensor:do1"
+    ]
+  }
+}

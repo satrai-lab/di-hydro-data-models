@@ -1,0 +1,182 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of ConductivityTemperatureSensor of Hydropower Plant Modeling",
+  "definitions": {
+    "ConductivityTemperatureSensor": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this conductivity-temperature sensor entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "ConductivityTemperatureSensor"
+              ],
+              "description": "NGSI-LD entity type. Must be ConductivityTemperatureSensor"
+            },
+            "model": {
+              "type": "string",
+              "description": "Manufacturer’s model number"
+            },
+            "conductivityRangeMin": {
+              "type": "object",
+              "description": "Minimum electrical conductivity measurable",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "USC" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "conductivityRangeMax": {
+              "type": "object",
+              "description": "Maximum electrical conductivity measurable",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "USC" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "temperatureRangeMin": {
+              "type": "object",
+              "description": "Minimum temperature measurable",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "CEL" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "temperatureRangeMax": {
+              "type": "object",
+              "description": "Maximum temperature measurable",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "CEL" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "accuracyConductivity": {
+              "type": "string",
+              "description": "Conductivity measurement accuracy (e.g. ±% of reading)"
+            },
+            "accuracyTemperature": {
+              "type": "string",
+              "description": "Temperature measurement accuracy (e.g. ±°C)"
+            },
+            "reactionTime": {
+              "type": "string",
+              "description": "Time to reach 90% of final reading"
+            },
+            "resolutionConductivity": {
+              "type": "string",
+              "description": "Granularity of conductivity reading"
+            },
+            "resolutionTemperature": {
+              "type": "string",
+              "description": "Granularity of temperature reading"
+            },
+            "powerSupplyMin": {
+              "type": "object",
+              "description": "Minimum DC supply voltage",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "V" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "powerSupplyMax": {
+              "type": "object",
+              "description": "Maximum DC supply voltage",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "V" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "communicationMode": {
+              "type": "string",
+              "description": "Digital communication protocol"
+            },
+            "cableLength": {
+              "type": "object",
+              "description": "Standard cable length",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MTR" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "sizeLength": {
+              "type": "object",
+              "description": "Probe body length",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MMT" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "sizeDiameter": {
+              "type": "object",
+              "description": "Probe body diameter",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "MMT" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "housingMaterial": {
+              "type": "string",
+              "description": "Wetted-part construction material"
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "Reference to the host multi-parameter node",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

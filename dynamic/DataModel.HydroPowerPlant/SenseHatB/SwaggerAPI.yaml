@@ -21,40 +21,36 @@ paths:
               id: "urn:ngsi-ld:SenseHATB:01"
               type: "SenseHATB"
               name:
-                type: "Property"
+                type: Property
                 value: "Sense HAT B Multi-Sensor Board"
-              onObject:
-                type: "Relationship"
-                object:
-                  - "urn:ngsi-ld:Microcontroller:pi1"
               inHPP:
-                type: "Relationship"
+                type: Relationship
                 object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
               controlledObservation:
-                type: "Property"
+                type: Property
                 value:
                   - "Temperature"
                   - "Humidity"
                   - "Pressure"
               observations:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:Observation:Temp:1001"
                   - "urn:ngsi-ld:Observation:Hum:1002"
                   - "urn:ngsi-ld:Observation:Pres:1003"
               controlledActuation:
-                type: "Property"
+                type: Property
                 value:
                   - "LED"
               actuations:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:Actuation:LED:2001"
               deviceType:
-                type: "Property"
+                type: Property
                 value: "sensor"
               relativePosition:
-                type: "Point"
+                type: Point
                 measurementUnit: "m"
                 dimensions: "2D"
                 coordinates:
@@ -63,60 +59,64 @@ paths:
                 faces: []
 
               operatingVoltage:
-                type: "Property"
-                value:
-                  value: 3.3
-                  unitCode: "V"
+                type: Property
+                value: 3.3
+                unitCode:
+                  type: Property
+                  value: "V"
               communicationInterface:
-                type: "Property"
+                type: Property
                 value: "I2C"
               length:
-                type: "Property"
-                value:
-                  value: 65
-                  unitCode: "MMT"
+                type: Property
+                value: 65
+                unitCode:
+                  type: Property
+                  value: "MMT"
               width:
-                type: "Property"
-                value:
-                  value: 36.5
-                  unitCode: "MMT"
+                type: Property
+                value: 36.5
+                unitCode:
+                  type: Property
+                  value: "MMT"
               adcConversionResolution:
-                type: "Property"
-                value:
-                  value: 16
-                  unitCode: "bit"
+                type: Property
+                value: 16
+                unitCode:
+                  type: Property
+                  value: "bit"
               isComponentOf:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:Microcontroller:pi1"
               hasHumiditySensor:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:HumiditySensor:hs1"
               hasGyroscope:
-                type: "Relationship"
+                type: Relationship
                 object:
-                  - "urn:ngsi-ld:GyroscopeSensor:g1"
+                  - "urn:ngsi-ld:Geroscope:g1"
               hasMagnetometer:
-                type: "Relationship"
+                type: Relationship
                 object:
-                  - "urn:ngsi-ld:MagnetometerSensor:m1"
+                  - "urn:ngsi-ld:Magnetometer:m1"
               hasTemperatureSensor:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:TemperatureSensor:t1"
               hasConversion:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:ADCChip:adc1"
               hasBarometer:
-                type: "Relationship"
+                type: Relationship
                 object:
-                  - "urn:ngsi-ld:BarometerSensor:b1"
+                  - "urn:ngsi-ld:Barometer:b1"
               hasAccelerometer:
-                type: "Relationship"
+                type: Relationship
                 object:
-                  - "urn:ngsi-ld:AccelerometerSensor:a1"
+                  - "urn:ngsi-ld:Accelerometer:acc1"
       responses:
         "201":
           description: Entity created successfully
@@ -289,6 +289,10 @@ components:
               type: object
               description: Supply voltage required by the board
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:

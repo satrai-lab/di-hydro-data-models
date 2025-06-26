@@ -1,0 +1,181 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:TurbiditySensor:ts1",
+  "type": "TurbiditySensor",
+
+  "name": {
+    "type": "Property",
+    "value": "ZDYG-2088-01QX Turbidity Sensor"
+  },
+  "onObject": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Pipe:pipe1"
+    ]
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:Turbidity:7001",
+      "urn:ngsi-ld:Observation:Turbidity:7002"
+    ]
+  },
+
+  "model": {
+    "type": "Property",
+    "value": "ZDYG-2088-01QX"
+  },
+  "measureRangeMin": {
+    "type": "Property",
+    "value": 0.01,
+    "unitCode": {
+      "type": "Property",
+      "value": "NTU"
+    }
+  },
+  "measureRangeMax": {
+    "type": "Property",
+    "value": 1000,
+    "unitCode": {
+      "type": "Property",
+      "value": "NTU"
+    }
+  },
+  "accuracy": {
+    "type": "Property",
+    "value": "< ±1% of reading"
+  },
+  "pressureRangeMin": {
+    "type": "Property",
+    "value": 0,
+    "unitCode": {
+      "type": "Property",
+      "value": "MPA"
+    }
+  },
+  "pressureRangeMax": {
+    "type": "Property",
+    "value": 0.4,
+    "unitCode": {
+      "type": "Property",
+      "value": "MPA"
+    }
+  },
+  "calibration": {
+    "type": "Property",
+    "value": [
+      "sample",
+      "slope"
+    ]
+  },
+  "sensorMaterial": {
+    "type": "Property",
+    "value": "SUS316L + PVC"
+  },
+  "cableMaterial": {
+    "type": "Property",
+    "value": "PVC"
+  },
+  "powerSupply": {
+    "type": "Property",
+    "value": 12,
+    "unitCode": {
+      "type": "Property",
+      "value": "V"
+    }
+  },
+  "communicationMode": {
+    "type": "Property",
+    "value": "RS485 (Modbus RTU)"
+  },
+  "storageTemperatureMin": {
+    "type": "Property",
+    "value": -15,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "storageTemperatureMax": {
+    "type": "Property",
+    "value": 65,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "operatingTemperatureMin": {
+    "type": "Property",
+    "value": 0,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "operatingTemperatureMax": {
+    "type": "Property",
+    "value": 45,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "length": {
+    "type": "Property",
+    "value": 60,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "diameter": {
+    "type": "Property",
+    "value": 25.6,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "weight": {
+    "type": "Property",
+    "value": 1.6,
+    "unitCode": {
+      "type": "Property",
+      "value": "KGM"
+    }
+  },
+  "protectionGrade": {
+    "type": "Property",
+    "value": "IP68 / NEMA6P"
+  },
+  "cableLengthStandard": {
+    "type": "Property",
+    "value": 10,
+    "unitCode": {
+      "type": "Property",
+      "value": "MTR"
+    }
+  },
+  "cableLengthMax": {
+    "type": "Property",
+    "value": 100,
+    "unitCode": {
+      "type": "Property",
+      "value": "MTR"
+    }
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Device:MPG-6099"
+    ]
+  }
+}

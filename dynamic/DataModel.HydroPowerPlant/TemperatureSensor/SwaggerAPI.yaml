@@ -21,33 +21,41 @@ paths:
               id: "urn:ngsi-ld:TemperatureSensor:t1"
               type: "TemperatureSensor"
               name:
-                type: "Property"
+                type: Property
                 value: "Sense HAT B Band-Gap Diode Temperature Sensor"
               inHPP:
-                type: "Relationship"
+                type: Relationship
                 object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
               measuringRangeMin:
-                type: "Property"
+                type: Property
                 value: -40
-                unitCode: "CEL"
+                unitCode:
+                  type: Property
+                  value: "CEL"
               measuringRangeMax:
-                type: "Property"
+                type: Property
                 value: 85
-                unitCode: "CEL"
+                unitCode:
+                  type: Property
+                  value: "CEL"
               accuracy:
-                type: "Property"
+                type: Property
                 value: 0.5
-                unitCode: "CEL"
+                unitCode:
+                  type: Property
+                  value: "CEL"
               resolution:
-                type: "Property"
+                type: Property
                 value: 16
-                unitCode: "bit"
+                unitCode:
+                  type: Property
+                  value: "bit"
               isComponentOf:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:SenseHATB:01"
               observations:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:Observation:Temp:5001"
                   - "urn:ngsi-ld:Observation:Temp:5002"
@@ -82,7 +90,7 @@ components:
               type: string
         onObject:
           type: object
-          description: Component(s) of the HPP that this device is installed on
+          description: Component(s) of the HPP this device is installed on
           properties:
             type:
               type: string
@@ -216,6 +224,10 @@ components:
               type: object
               description: Minimum temperature this sensor can report
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:
@@ -227,6 +239,10 @@ components:
               type: object
               description: Maximum temperature this sensor can report
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:
@@ -238,6 +254,10 @@ components:
               type: object
               description: Maximum deviation from true temperature
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:
@@ -249,6 +269,10 @@ components:
               type: object
               description: ADC conversion resolution
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: integer
                 unitCode:

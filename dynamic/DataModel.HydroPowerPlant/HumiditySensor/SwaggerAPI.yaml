@@ -21,33 +21,41 @@ paths:
               id: "urn:ngsi-ld:HumiditySensor:hs1"
               type: "HumiditySensor"
               name:
-                type: "Property"
+                type: Property
                 value: "Sense HAT B Capacitive Humidity Sensor"
               inHPP:
-                type: "Relationship"
+                type: Relationship
                 object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
               measuringRangeMin:
-                type: "Property"
+                type: Property
                 value: 0
-                unitCode: "%RH"
+                unitCode:
+                  type: Property
+                  value: "%RH"
               measuringRangeMax:
-                type: "Property"
+                type: Property
                 value: 100
-                unitCode: "%RH"
+                unitCode:
+                  type: Property
+                  value: "%RH"
               accuracy:
-                type: "Property"
+                type: Property
                 value: 2
-                unitCode: "%RH"
+                unitCode:
+                  type: Property
+                  value: "%RH"
               resolution:
-                type: "Property"
+                type: Property
                 value: 16
-                unitCode: "bit"
+                unitCode:
+                  type: Property
+                  value: "bit"
               isComponentOf:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:SenseHATB:01"
               observations:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:Observation:Hum:1002"
                   - "urn:ngsi-ld:Observation:Hum:1003"
@@ -80,6 +88,7 @@ components:
                 - Property
             value:
               type: string
+          additionalProperties: false
         onObject:
           type: object
           description: Component(s) of the HPP this device is installed on
@@ -223,6 +232,10 @@ components:
               type: object
               description: Minimum relative-humidity reading
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:
@@ -234,6 +247,10 @@ components:
               type: object
               description: Maximum relative-humidity reading
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:
@@ -245,6 +262,10 @@ components:
               type: object
               description: Maximum deviation from actual humidity
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:
@@ -256,6 +277,10 @@ components:
               type: object
               description: ADC conversion granularity
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: integer
                 unitCode:

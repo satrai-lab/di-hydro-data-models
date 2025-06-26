@@ -3,7 +3,6 @@
   "id": "urn:ngsi-ld:SenseHATB:01",
   "type": "SenseHATB",
 
-  /* Inherited from Device: name, inHPP, etc. */
   "name": {
     "type": "Property",
     "value": "Sense HAT B Multi-Sensor Board"
@@ -13,12 +12,12 @@
     "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
   },
 
-  /* Board-specific properties */
   "operatingVoltage": {
     "type": "Property",
-    "value": {
-      "value": 3.3,
-      "unitCode": "V"
+    "value": 3.3,
+    "unitCode": {
+      "type": "Property",
+      "value": "V"
     }
   },
   "communicationInterface": {
@@ -27,57 +26,75 @@
   },
   "length": {
     "type": "Property",
-    "value": {
-      "value": 65,
-      "unitCode": "MMT"
+    "value": 65,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
     }
   },
   "width": {
     "type": "Property",
-    "value": {
-      "value": 36.5,
-      "unitCode": "MMT"
+    "value": 36.5,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
     }
   },
   "adcConversionResolution": {
     "type": "Property",
-    "value": {
-      "value": 16,
-      "unitCode": "bit"
+    "value": 16,
+    "unitCode": {
+      "type": "Property",
+      "value": "bit"
     }
   },
 
-  /* Relationships to sensor modules and components */
   "isComponentOf": {
     "type": "Relationship",
-    "object": [ "urn:ngsi-ld:Microcontroller:pi1" ]
+    "object": [
+      "urn:ngsi-ld:Microcontroller:pi1"
+    ]
   },
   "hasHumiditySensor": {
     "type": "Relationship",
-    "object": [ "urn:ngsi-ld:HumiditySensor:hs1" ]
+    "object": [
+      "urn:ngsi-ld:HumiditySensor:hs1"
+    ]
   },
   "hasGyroscope": {
     "type": "Relationship",
-    "object": [ "urn:ngsi-ld:GyroscopeSensor:g1" ]
+    "object": [
+      "urn:ngsi-ld:Geroscope:g1"
+    ]
   },
   "hasMagnetometer": {
     "type": "Relationship",
-    "object": [ "urn:ngsi-ld:MagnetometerSensor:m1" ]
+    "object": [
+      "urn:ngsi-ld:Magnetometer:m1"
+    ]
   },
   "hasTemperatureSensor": {
     "type": "Relationship",
-    "object": [ "urn:ngsi-ld:TemperatureSensor:t1" ]
+    "object": [
+      "urn:ngsi-ld:TemperatureSensor:t1"
+    ]
   },
   "hasConversion": {
     "type": "Relationship",
-    "object": [ "urn:ngsi-ld:ADCChip:adc1" ]
+    "object": [
+      "urn:ngsi-ld:ADCChip:adc1"
+    ]
   },
   "hasBarometer": {
     "type": "Relationship",
-    "object": [ "urn:ngsi-ld:BarometerSensor:b1" ]
+    "object": [
+      "urn:ngsi-ld:BarometerSensor:b1"
+    ]
   },
   "hasAccelerometer": {
     "type": "Relationship",
-    "object": [ "urn:ngsi-ld:AccelerometerSensor:a1" ]
+    "object": [
+      "urn:ngsi-ld:Accelerometer:acc1"
+    ]
   }
 }

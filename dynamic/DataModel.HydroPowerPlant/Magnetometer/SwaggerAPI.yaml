@@ -21,37 +21,38 @@ paths:
               id: "urn:ngsi-ld:Magnetometer:m1"
               type: "Magnetometer"
               name:
-                type: "Property"
+                type: Property
                 value: "Sense HAT B 3-Axis Magnetometer"
               inHPP:
-                type: "Relationship"
+                type: Relationship
                 object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
               axes:
-                type: "Property"
-                value:
-                  value: 3
-                  unitCode: ""
+                type: Property
+                value: 3
               measuringRangeMin:
-                type: "Property"
-                value:
-                  value: -49.12
-                  unitCode: "GAU"
+                type: Property
+                value: -49.12
+                unitCode:
+                  type: Property
+                  value: "GAU"
               measuringRangeMax:
-                type: "Property"
-                value:
-                  value: 49.12
-                  unitCode: "GAU"
+                type: Property
+                value: 49.12
+                unitCode:
+                  type: Property
+                  value: "GAU"
               resolution:
-                type: "Property"
-                value:
-                  value: 16
-                  unitCode: "bit"
+                type: Property
+                value: 16
+                unitCode:
+                  type: Property
+                  value: "bit"
               isComponentOf:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:SenseHATB:01"
               observations:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:Observation:Mag:4001"
                   - "urn:ngsi-ld:Observation:Mag:4002"
@@ -228,17 +229,21 @@ components:
               type: object
               description: Number of measurement axes
               properties:
-                value:
-                  type: integer
-                unitCode:
+                type:
                   type: string
                   enum:
-                    - ""
+                    - Property
+                value:
+                  type: integer
               additionalProperties: false
             measuringRangeMin:
               type: object
               description: Minimum magnetic flux density measurable
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:
@@ -250,6 +255,10 @@ components:
               type: object
               description: Maximum magnetic flux density measurable
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: number
                 unitCode:
@@ -261,6 +270,10 @@ components:
               type: object
               description: ADC conversion resolution
               properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
                 value:
                   type: integer
                 unitCode:

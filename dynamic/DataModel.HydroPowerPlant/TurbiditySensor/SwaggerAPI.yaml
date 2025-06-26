@@ -1,0 +1,543 @@
+openapi: 3.0.3
+info:
+  title: Turbidity Sensor Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for TurbiditySensor entities  
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a TurbiditySensor entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/TurbiditySensor'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
+              id: "urn:ngsi-ld:TurbiditySensor:ts1"
+              type: "TurbiditySensor"
+              name:
+                type: Property
+                value: "ZDYG-2088-01QX Turbidity Sensor"
+              onObject:
+                type: Relationship
+                object:
+                  - "urn:ngsi-ld:Pipe:pipe1"
+              inHPP:
+                type: Relationship
+                object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+              deviceType:
+                type: Property
+                value: sensor
+              observations:
+                type: Relationship
+                object:
+                  - "urn:ngsi-ld:Observation:Turbidity:7001"
+                  - "urn:ngsi-ld:Observation:Turbidity:7002"
+              model:
+                type: Property
+                value: "ZDYG-2088-01QX"
+              measureRangeMin:
+                type: Property
+                value: 0.01
+                unitCode:
+                  type: Property
+                  value: "NTU"
+              measureRangeMax:
+                type: Property
+                value: 1000
+                unitCode:
+                  type: Property
+                  value: "NTU"
+              accuracy:
+                type: Property
+                value: "< ±1% of reading"
+              pressureRangeMin:
+                type: Property
+                value: 0
+                unitCode:
+                  type: Property
+                  value: "MPA"
+              pressureRangeMax:
+                type: Property
+                value: 0.4
+                unitCode:
+                  type: Property
+                  value: "MPA"
+              calibration:
+                type: Property
+                value:
+                  - sample
+                  - slope
+              sensorMaterial:
+                type: Property
+                value: "SUS316L + PVC"
+              cableMaterial:
+                type: Property
+                value: "PVC"
+              powerSupply:
+                type: Property
+                value: 12
+                unitCode:
+                  type: Property
+                  value: "V"
+              communicationMode:
+                type: Property
+                value: "RS485 (Modbus RTU)"
+              storageTemperatureMin:
+                type: Property
+                value: -15
+                unitCode:
+                  type: Property
+                  value: "CEL"
+              storageTemperatureMax:
+                type: Property
+                value: 65
+                unitCode:
+                  type: Property
+                  value: "CEL"
+              operatingTemperatureMin:
+                type: Property
+                value: 0
+                unitCode:
+                  type: Property
+                  value: "CEL"
+              operatingTemperatureMax:
+                type: Property
+                value: 45
+                unitCode:
+                  type: Property
+                  value: "CEL"
+              length:
+                type: Property
+                value: 60
+                unitCode:
+                  type: Property
+                  value: "MMT"
+              diameter:
+                type: Property
+                value: 25.6
+                unitCode:
+                  type: Property
+                  value: "MMT"
+              weight:
+                type: Property
+                value: 1.6
+                unitCode:
+                  type: Property
+                  value: "KGM"
+              protectionGrade:
+                type: Property
+                value: "IP68 / NEMA6P"
+              cableLengthStandard:
+                type: Property
+                value: 10
+                unitCode:
+                  type: Property
+                  value: "MTR"
+              cableLengthMax:
+                type: Property
+                value: 100
+                unitCode:
+                  type: Property
+                  value: "MTR"
+              isComponentOf:
+                type: Relationship
+                object:
+                  - "urn:ngsi-ld:Device:MPG-6099"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier of the entity
+        type:
+          type: string
+          enum:
+            - Device
+          description: NGSI-LD entity type. Must be Device
+        name:
+          type: object
+          description: Human-readable name of the device
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+        onObject:
+          type: object
+          description: Components of the HPP on which this device is installed
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+        inHPP:
+          type: object
+          description: HydropowerPlant this device belongs to
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: string
+              format: uri
+        controlledObservation:
+          type: object
+          description: Observation types this device can control
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: array
+              items:
+                type: string
+        observations:
+          type: object
+          description: Observations produced by or connected to this device
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+        controlledActuation:
+          type: object
+          description: Actuation types this device can control
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          description: Actuations produced by or connected to this device
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+        deviceType:
+          type: object
+          description: "Type of the device: sensor, actuator, or both"
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+              enum: [sensor, actuator, sensorActuator, Device, System]
+        relativePosition:
+          type: object
+          description: Relative position in 2D/3D space
+          properties:
+            type:
+              type: string
+              enum: [Point, LineString, MultiLineString, Polygon, Trimesh]
+            measurementUnit:
+              type: string
+            dimensions:
+              type: string
+              enum: [2D, 3D]
+            coordinates:
+              type: array
+              items: {}
+            faces:
+              type: array
+              items: {}
+      additionalProperties: false
+
+    TurbiditySensor:
+      allOf:
+        - $ref: '#/components/schemas/Device'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum: [TurbiditySensor]
+              description: Must be TurbiditySensor
+            model:
+              type: string
+              description: Manufacturer’s model number
+            measureRangeMin:
+              type: object
+              description: Minimum turbidity this sensor can measure
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [NTU]
+              additionalProperties: false
+            measureRangeMax:
+              type: object
+              description: Maximum turbidity this sensor can measure
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [NTU]
+              additionalProperties: false
+            accuracy:
+              type: object
+              description: Maximum relative error
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              additionalProperties: false
+            pressureRangeMin:
+              type: object
+              description: Minimum process pressure
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MPA]
+              additionalProperties: false
+            pressureRangeMax:
+              type: object
+              description: Maximum process pressure
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MPA]
+              additionalProperties: false
+            calibration:
+              type: object
+              description: Supported calibration methods
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: array
+                  items:
+                    type: string
+              additionalProperties: false
+            sensorMaterial:
+              type: object
+              description: Wetted-part construction material
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+            cableMaterial:
+              type: object
+              description: Exterior cable jacket material
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+            powerSupply:
+              type: object
+              description: Required DC supply voltage
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [V]
+              additionalProperties: false
+            communicationMode:
+              type: object
+              description: Field-bus interface
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              additionalProperties: false
+            storageTemperatureMin:
+              type: object
+              description: Minimum long-term storage temperature
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [CEL]
+              additionalProperties: false
+            storageTemperatureMax:
+              type: object
+              description: Maximum long-term storage temperature
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [CEL]
+              additionalProperties: false
+            operatingTemperatureMin:
+              type: object
+              description: Minimum ambient operating temperature
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [CEL]
+              additionalProperties: false
+            operatingTemperatureMax:
+              type: object
+              description: Maximum ambient operating temperature
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [CEL]
+              additionalProperties: false
+            length:
+              type: object
+              description: Housing length
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MMT]
+              additionalProperties: false
+            diameter:
+              type: object
+              description: Housing diameter
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MMT]
+              additionalProperties: false
+            weight:
+              type: object
+              description: Total device mass
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [KGM]
+              additionalProperties: false
+            protectionGrade:
+              type: object
+              description: Environmental ingress rating
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+            cableLengthStandard:
+              type: object
+              description: Standard cable length
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MTR]
+              additionalProperties: false
+            cableLengthMax:
+              type: object
+              description: Maximum extendable cable length
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MTR]
+              additionalProperties: false
+            isComponentOf:
+              type: object
+              description: Reference to the host MPG-6099 multiparameter node
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+      description: Data Model of TurbiditySensor of Hydropower Plant Modeling

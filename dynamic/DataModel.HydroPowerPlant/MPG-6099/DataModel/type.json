@@ -1,0 +1,278 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of MPG6099 of Hydropower Plant Modeling",
+  "definitions": {
+    "MPG6099": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\\\w\\\\-\\\\.\\\\{\\\\}\\\\$\\\\+\\\\*\\\\[\\\\]`|~^@!,:\\\\\\\\]+$",
+              "description": "Unique URI identifier of this MPG-6099 node"
+            },
+            "type": {
+              "type": "string",
+              "enum": ["MPG6099"],
+              "description": "NGSI-LD entity type. Must be MPG6099"
+            },
+            "display": {
+              "type": "object",
+              "description": "Local display specification",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Display type (e.g. LCD)"
+                },
+                "width": {
+                  "type": "object",
+                  "description": "Display diagonal size",
+                  "properties": {
+                    "value": {
+                      "type": "number",
+                      "description": "Diagonal length"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["inch"],
+                      "description": "Unit code for inches"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "powerDC": {
+              "type": "object",
+              "description": "Supported DC power supply",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "number",
+                  "description": "DC supply voltage"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["V"],
+                  "description": "Unit code for volts"
+                }
+              },
+              "additionalProperties": false
+            },
+            "powerAC": {
+              "type": "object",
+              "description": "Supported AC power supply",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "number",
+                  "description": "AC supply voltage"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["V"],
+                  "description": "Unit code for volts"
+                }
+              },
+              "additionalProperties": false
+            },
+            "protection": {
+              "type": "object",
+              "description": "Enclosure protection rating",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "inputs": {
+              "type": "object",
+              "description": "Input communication interface",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "output": {
+              "type": "object",
+              "description": "Output communication interface",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "dataLogger": {
+              "type": "object",
+              "description": "Local data-logging capability",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "downloadInterface": {
+              "type": "object",
+              "description": "Interface for data export and firmware updates",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "wirelessOption": {
+              "type": "object",
+              "description": "Optional wireless modem availability",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              "additionalProperties": false
+            },
+            "dimensions": {
+              "type": "object",
+              "description": "Physical dimensions [length, width, height]",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "array",
+                  "items": { "type": "number" }
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MMT"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "hasConductivityTempSensor": {
+              "type": "object",
+              "description": "Reference to the conductivity/temperature sensor module",
+              "properties": {
+                "type": { "type": "string", "enum": ["Relationship"] },
+                "object": {
+                  "type": "array",
+                  "items": { "type": "string", "format": "uri" }
+                }
+              },
+              "additionalProperties": false
+            },
+            "hasPhTempSensor": {
+              "type": "object",
+              "description": "Reference to the pH/temperature sensor module",
+              "properties": {
+                "type": { "type": "string", "enum": ["Relationship"] },
+                "object": {
+                  "type": "array",
+                  "items": { "type": "string", "format": "uri" }
+                }
+              },
+              "additionalProperties": false
+            },
+            "hasAmmoniaSensor": {
+              "type": "object",
+              "description": "Reference to the ammonia sensor module",
+              "properties": {
+                "type": { "type": "string", "enum": ["Relationship"] },
+                "object": {
+                  "type": "array",
+                  "items": { "type": "string", "format": "uri" }
+                }
+              },
+              "additionalProperties": false
+            },
+            "hasTurbiditySensor": {
+              "type": "object",
+              "description": "Reference to the turbidity sensor module",
+              "properties": {
+                "type": { "type": "string", "enum": ["Relationship"] },
+                "object": {
+                  "type": "array",
+                  "items": { "type": "string", "format": "uri" }
+                }
+              },
+              "additionalProperties": false
+            },
+            "hasAlgaeSensor": {
+              "type": "object",
+              "description": "Reference to the algae sensor module",
+              "properties": {
+                "type": { "type": "string", "enum": ["Relationship"] },
+                "object": {
+                  "type": "array",
+                  "items": { "type": "string", "format": "uri" }
+                }
+              },
+              "additionalProperties": false
+            },
+            "hasDissolvedO2Sensor": {
+              "type": "object",
+              "description": "Reference to the dissolved oxygen sensor module",
+              "properties": {
+                "type": { "type": "string", "enum": ["Relationship"] },
+                "object": {
+                  "type": "array",
+                  "items": { "type": "string", "format": "uri" }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

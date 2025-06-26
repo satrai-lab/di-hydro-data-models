@@ -1,0 +1,149 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:ConductivityTemperatureSensor:ct1",
+  "type": "ConductivityTemperatureSensor",
+
+  "name": {
+    "type": "Property",
+    "value": "CT-Probe #1"
+  },
+  "onObject": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Pipe:pipe1"
+    ]
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+  "controlledObservation": {
+    "type": "Property",
+    "value": [
+      "Temperature",
+      "Conductivity"
+    ]
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:CondTemp:8001",
+      "urn:ngsi-ld:Observation:CondTemp:8002"
+    ]
+  },
+
+  "model": {
+    "type": "Property",
+    "value": "BH-485-DD"
+  },
+  "conductivityRangeMin": {
+    "type": "Property",
+    "value": 0,
+    "unitCode": {
+      "type": "Property",
+      "value": "USC"
+    }
+  },
+  "conductivityRangeMax": {
+    "type": "Property",
+    "value": 2000,
+    "unitCode": {
+      "type": "Property",
+      "value": "USC"
+    }
+  },
+  "temperatureRangeMin": {
+    "type": "Property",
+    "value": 0,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "temperatureRangeMax": {
+    "type": "Property",
+    "value": 50,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "accuracyConductivity": {
+    "type": "Property",
+    "value": "±20 USC"
+  },
+  "accuracyTemperature": {
+    "type": "Property",
+    "value": "±0.5 CEL"
+  },
+  "reactionTime": {
+    "type": "Property",
+    "value": "< 60 s"
+  },
+  "resolutionConductivity": {
+    "type": "Property",
+    "value": "1 USC"
+  },
+  "resolutionTemperature": {
+    "type": "Property",
+    "value": "0.1 CEL"
+  },
+  "powerSupplyMin": {
+    "type": "Property",
+    "value": 9,
+    "unitCode": {
+      "type": "Property",
+      "value": "V"
+    }
+  },
+  "powerSupplyMax": {
+    "type": "Property",
+    "value": 36,
+    "unitCode": {
+      "type": "Property",
+      "value": "V"
+    }
+  },
+  "communicationMode": {
+    "type": "Property",
+    "value": "RS485 (Modbus RTU)"
+  },
+  "cableLength": {
+    "type": "Property",
+    "value": 5,
+    "unitCode": {
+      "type": "Property",
+      "value": "MTR"
+    }
+  },
+  "sizeLength": {
+    "type": "Property",
+    "value": 230,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "sizeDiameter": {
+    "type": "Property",
+    "value": 30,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "housingMaterial": {
+    "type": "Property",
+    "value": "Stainless Steel + PVC"
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Device:MPG-6099"
+    ]
+  }
+}

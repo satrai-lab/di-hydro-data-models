@@ -1,0 +1,230 @@
+components:
+  schemas:
+
+    DigitalPHTempSensor:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/DigitalPHTempSensor/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique URI identifier of this digital pH–temperature sensor entity"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - DigitalPHTempSensor
+              description: "NGSI-LD entity type. Must be DigitalPHTempSensor"
+              x-ngsi:
+                type: Property
+
+            model:
+              type: string
+              description: "Manufacturer’s model number"
+              x-ngsi:
+                type: Property
+
+            pHRangeMin:
+              type: object
+              description: "Minimum pH measurable"
+              properties:
+                value:
+                  type: number
+                  description: "Lower end of pH range"
+                unitCode:
+                  type: string
+                  enum:
+                    - ""
+                  description: "Unit code for pH (unitless)"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            pHRangeMax:
+              type: object
+              description: "Maximum pH measurable"
+              properties:
+                value:
+                  type: number
+                  description: "Upper end of pH range"
+                unitCode:
+                  type: string
+                  enum:
+                    - ""
+                  description: "Unit code for pH (unitless)"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            temperatureRangeMin:
+              type: object
+              description: "Minimum temperature measurable"
+              properties:
+                value:
+                  type: number
+                  description: "Lower end of temperature range"
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+                  description: "Unit code for degrees Celsius"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            temperatureRangeMax:
+              type: object
+              description: "Maximum temperature measurable"
+              properties:
+                value:
+                  type: number
+                  description: "Upper end of temperature range"
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+                  description: "Unit code for degrees Celsius"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            accuracyPH:
+              type: string
+              description: "pH measurement accuracy (e.g., ±0.1 pH)"
+              x-ngsi:
+                type: Property
+
+            accuracyTemperature:
+              type: string
+              description: "Temperature measurement accuracy (e.g., ±0.5 °C)"
+              x-ngsi:
+                type: Property
+
+            resolutionPH:
+              type: string
+              description: "pH reading granularity (e.g., 0.01 pH)"
+              x-ngsi:
+                type: Property
+
+            resolutionTemperature:
+              type: string
+              description: "Temperature reading granularity (e.g., 0.1 °C)"
+              x-ngsi:
+                type: Property
+
+            powerSupplyMin:
+              type: object
+              description: "Minimum DC supply voltage"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+                  description: "Unit code for volts"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            powerSupplyMax:
+              type: object
+              description: "Maximum DC supply voltage"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+                  description: "Unit code for volts"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            powerDissipation:
+              type: string
+              description: "Typical power draw"
+              x-ngsi:
+                type: Property
+
+            communicationMode:
+              type: string
+              description: "Digital communication protocol"
+              x-ngsi:
+                type: Property
+
+            cableLength:
+              type: object
+              description: "Standard cable length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MTR
+                  description: "Unit code for meters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            dimensionsLength:
+              type: object
+              description: "Probe body length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+                  description: "Unit code for millimeters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            dimensionsDiameter:
+              type: object
+              description: "Probe body diameter"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+                  description: "Unit code for millimeters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            housingMaterial:
+              type: string
+              description: "Wetted-part construction material"
+              x-ngsi:
+                type: Property
+
+            protectionGrade:
+              type: string
+              description: "Ingress protection rating"
+              x-ngsi:
+                type: Property
+
+            isComponentOf:
+              type: array
+              description: "Reference to the host MPG-6099 multi-parameter node"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

@@ -21,32 +21,39 @@ paths:
               id: "urn:ngsi-ld:Accelerometer:acc1"
               type: "Accelerometer"
               name:
-                type: "Property"
+                type: Property
                 value: "Sense HAT B 3-Axis Accelerometer"
               inHPP:
-                type: "Relationship"
+                type: Relationship
                 object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
               axes:
-                type: "Property"
-                value:
-                  value: 3
-                  unitCode: ""
+                type: Property
+                value: 3
+                unitCode:
+                  type: Property
+                  value: ""
               measurementRanges:
-                type: "Property"
+                type: Property
                 value:
-                  value: [2, 4, 8, 16]
-                  unitCode: "G"
+                  - 2
+                  - 4
+                  - 8
+                  - 16
+                unitCode:
+                  type: Property
+                  value: "G"
               resolution:
-                type: "Property"
-                value:
-                  value: 16
-                  unitCode: "bit"
+                type: Property
+                value: 16
+                unitCode:
+                  type: Property
+                  value: "bit"
               isComponentOf:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:SenseHATB:01"
               observations:
-                type: "Relationship"
+                type: Relationship
                 object:
                   - "urn:ngsi-ld:Observation:Acc:6001"
                   - "urn:ngsi-ld:Observation:Acc:6002"

@@ -1,0 +1,145 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:AlgaeSensor:001",
+  "type": "AlgaeSensor",
+
+  "name": {
+    "type": "Property",
+    "value": "Reservoir Algae Monitor #1"
+  },
+  "onObject": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:HydroTurbine:HT-123" ]
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:Algae:9001"
+    ]
+  },
+
+  "model": {
+    "type": "Property",
+    "value": "Modified ion selective membrane"
+  },
+  "linearRangeMin": {
+    "type": "Property",
+    "value": 5,
+    "unitCode": {
+      "type": "Property",
+      "value": "UG_L"
+    }
+  },
+  "linearRangeMax": {
+    "type": "Property",
+    "value": 300,
+    "unitCode": {
+      "type": "Property",
+      "value": "UG_L"
+    }
+  },
+  "totalRangeMin": {
+    "type": "Property",
+    "value": 2,
+    "unitCode": {
+      "type": "Property",
+      "value": "UG_L"
+    }
+  },
+  "totalRangeMax": {
+    "type": "Property",
+    "value": 500,
+    "unitCode": {
+      "type": "Property",
+      "value": "UG_L"
+    }
+  },
+  "resolution": {
+    "type": "Property",
+    "value": 2,
+    "unitCode": {
+      "type": "Property",
+      "value": "UG_L"
+    }
+  },
+  "reactionTime": {
+    "type": "Property",
+    "value": "<1 s"
+  },
+  "accuracy": {
+    "type": "Property",
+    "value": "<±5 %",
+    "atTemperature": {
+      "type": "Property",
+      "value": 20,
+      "unitCode": {
+        "type": "Property",
+        "value": "CEL"
+      }
+    }
+  },
+  "communicationMode": {
+    "type": "Property",
+    "value": "RS485 (Modbus RTU)"
+  },
+  "cableLength": {
+    "type": "Property",
+    "value": 5,
+    "unitCode": {
+      "type": "Property",
+      "value": "MTR"
+    }
+  },
+  "operationalTempMin": {
+    "type": "Property",
+    "value": 0,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "operationalTempMax": {
+    "type": "Property",
+    "value": 25,
+    "unitCode": {
+      "type": "Property",
+      "value": "CEL"
+    }
+  },
+  "dimensionsLength": {
+    "type": "Property",
+    "value": 395,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "dimensionsDiameter": {
+    "type": "Property",
+    "value": 25,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "protectionClass": {
+    "type": "Property",
+    "value": "IP68"
+  },
+  "housingMaterial": {
+    "type": "Property",
+    "value": "Stainless Steel + PVC"
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:Device:MPG-6099" ]
+  }
+}

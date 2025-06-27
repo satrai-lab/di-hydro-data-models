@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of Suitcase of Hydropower Plant Modeling",
+  "definitions": {
+    "Suitcase": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this Suitcase entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "Suitcase"
+              ],
+              "description": "NGSI-LD entity type. Must be Suitcase"
+            },
+            "dimensions": {
+              "type": "object",
+              "description": "External case dimensions [length, width, height]",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MMT"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "weight": {
+              "type": "object",
+              "description": "Total system mass",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "KGM"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "powerSupply": {
+              "type": "object",
+              "description": "On-board battery capacity",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "AHT"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "operatingTime": {
+              "type": "string",
+              "description": "Maximum autonomous runtime"
+            },
+            "connectivity": {
+              "type": "array",
+              "description": "Data communication interfaces",
+              "items": {
+                "type": "string"
+              }
+            },
+            "display": {
+              "type": "string",
+              "description": "Integrated human–machine interface"
+            },
+            "protection": {
+              "type": "string",
+              "description": "Environmental rating of the enclosure"
+            },
+            "dataStorage": {
+              "type": "string",
+              "description": "On-board data logging capacity"
+            },
+            "hasTurbiditySensor": {
+              "type": "array",
+              "description": "References to connected Turbidity Sensor modules",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "hasDhm": {
+              "type": "array",
+              "description": "Reference to the onboard Digital Holographic Microscope (DHM) module",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "hasMicrocontroller": {
+              "type": "array",
+              "description": "References to host microcontroller(s)",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "hasTlfSensor": {
+              "type": "array",
+              "description": "References to connected Turbulence Flow Sensor(s)",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

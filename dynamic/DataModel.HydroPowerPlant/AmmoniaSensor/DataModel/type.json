@@ -1,0 +1,229 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of AmmoniaSensor of Hydropower Plant Modeling",
+  "definitions": {
+    "AmmoniaSensor": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this ammonia sensor entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "AmmoniaSensor"
+              ],
+              "description": "NGSI-LD entity type. Must be AmmoniaSensor"
+            },
+            "model": {
+              "type": "string",
+              "description": "Sensor model or sensing principle"
+            },
+            "ionsType": {
+              "type": "string",
+              "description": "Target ion species"
+            },
+            "rangeMin": {
+              "type": "object",
+              "description": "Lower bound of the measurement range",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "PPB"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "rangeMax": {
+              "type": "object",
+              "description": "Upper bound of the measurement range",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "PPM"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "resolution": {
+              "type": "object",
+              "description": "Smallest detectable concentration increment",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "PPB"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "reactionTime": {
+              "type": "string",
+              "description": "Time to reach 90% of final reading"
+            },
+            "accuracy": {
+              "type": "object",
+              "description": "Maximum deviation under standard conditions",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "description": "Accuracy value (e.g., \"<±3 %\")"
+                },
+                "atTemperature": {
+                  "type": "object",
+                  "description": "Temperature at which accuracy is specified",
+                  "properties": {
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": [
+                        "CEL"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "powerSupply": {
+              "type": "object",
+              "description": "Nominal DC supply voltage",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "V"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "powerDissipation": {
+              "type": "object",
+              "description": "Maximum power consumption",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "W"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "communicationMode": {
+              "type": "string",
+              "description": "Digital interface protocol"
+            },
+            "cableLength": {
+              "type": "object",
+              "description": "Standard probe cable length",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MTR"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "dimensionsLength": {
+              "type": "object",
+              "description": "Probe body length",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MMT"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "dimensionsDiameter": {
+              "type": "object",
+              "description": "Probe body diameter",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MMT"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "housingMaterial": {
+              "type": "string",
+              "description": "Wetted-part construction material"
+            },
+            "isComponentOf": {
+              "type": "object",
+              "description": "Reference to the host MPG-6099 multi-parameter node",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "Relationship"
+                  ]
+                },
+                "object": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

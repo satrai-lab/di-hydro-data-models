@@ -64,7 +64,7 @@ components:
                 unitCode:
                   type: string
                   enum:
-                    - AHT
+                    - V
               x-ngsi:
                 type: Property
               additionalProperties: false

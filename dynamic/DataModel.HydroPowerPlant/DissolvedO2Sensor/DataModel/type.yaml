@@ -1,0 +1,224 @@
+components:
+  schemas:
+
+    DissolvedO2Sensor:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/DissolvedO2Sensor/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique identifier of this dissolved oxygen sensor entity"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - DissolvedO2Sensor
+              description: "NGSI-LD entity type. Must be DissolvedO2Sensor"
+              x-ngsi:
+                type: Property
+
+            rangeO2Min:
+              type: object
+              description: "Minimum dissolved-O₂ concentration"
+              properties:
+                value:
+                  type: number
+                  description: "Lower bound of O₂ range"
+                unitCode:
+                  type: string
+                  enum:
+                    - MG_L
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            rangeO2Max:
+              type: object
+              description: "Maximum dissolved-O₂ concentration"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MG_L
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            rangeTempMin:
+              type: object
+              description: "Minimum temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            rangeTempMax:
+              type: object
+              description: "Maximum temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            basicError:
+              type: object
+              description: "Maximum measurement error for dissolved oxygen"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MG_L
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            reactionTime:
+              type: string
+              description: "Time to reach 90% of final reading"
+              x-ngsi:
+                type: Property
+
+            resolutionO2:
+              type: object
+              description: "Smallest detectable change in dissolved oxygen"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MG_L
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            resolutionTemp:
+              type: object
+              description: "Smallest detectable change in temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            powerSupply:
+              type: object
+              description: "Nominal DC supply voltage"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            powerDissipation:
+              type: object
+              description: "Maximum power consumption"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - W
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            communicationMode:
+              type: string
+              description: "Digital interface protocol"
+              x-ngsi:
+                type: Property
+
+            cableLength:
+              type: object
+              description: "Standard probe cable length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MTR
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            dimensionsLength:
+              type: object
+              description: "Probe body length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            dimensionsDiameter:
+              type: object
+              description: "Probe body diameter"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            housingMaterial:
+              type: string
+              description: "Wetted-part construction material"
+              x-ngsi:
+                type: Property
+
+            isComponentOf:
+              type: array
+              description: "Reference to the host MPG-6099 multi-parameter node"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

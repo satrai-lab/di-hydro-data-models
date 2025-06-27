@@ -1,0 +1,125 @@
+components:
+  schemas:
+
+    EcoliBioSensor:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/EcoliBioSensor/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique identifier of this E.coli biosensor entity"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - EcoliBioSensor
+              description: "NGSI-LD entity type. Must be EcoliBioSensor"
+              x-ngsi:
+                type: Property
+
+            measureRangeMin:
+              type: object
+              description: "Lower bound of detection range"
+              properties:
+                value:
+                  type: number
+                  description: "Minimum CFU/ml detectable"
+                unitCode:
+                  type: string
+                  enum:
+                    - CFU_ML
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            measureRangeMax:
+              type: object
+              description: "Upper bound of detection range"
+              properties:
+                value:
+                  type: number
+                  description: "Maximum CFU/ml detectable"
+                unitCode:
+                  type: string
+                  enum:
+                    - CFU_ML
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            measurementTime:
+              type: string
+              description: "Time required to obtain a reading"
+              x-ngsi:
+                type: Property
+
+            accuracy:
+              type: string
+              description: "Maximum deviation from true count"
+              x-ngsi:
+                type: Property
+
+            sizeLength:
+              type: object
+              description: "Overall sensor length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            sizeWidth:
+              type: object
+              description: "Overall sensor width"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            material:
+              type: string
+              description: "Wetted-part construction material"
+              x-ngsi:
+                type: Property
+
+            limitOfDetection:
+              type: string
+              description: "Smallest reliably detectable concentration"
+              x-ngsi:
+                type: Property
+
+            specificity:
+              type: string
+              description: "Describes false-positive behavior"
+              x-ngsi:
+                type: Property
+
+            isComponentOf:
+              type: array
+              description: "Reference to the host multi-parameter analyser node (MPG-6099)"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

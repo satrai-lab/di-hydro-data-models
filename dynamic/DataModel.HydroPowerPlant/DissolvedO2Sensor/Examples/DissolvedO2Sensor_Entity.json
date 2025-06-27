@@ -1,0 +1,127 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:DissolvedO2Sensor:001",
+  "type": "DissolvedO2Sensor",
+
+  "name": {
+    "type": "Property",
+    "value": "River DO Probe #1"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:DO:9001"
+    ]
+  },
+
+  "rangeO2Min": {
+    "type": "Property",
+    "value": {
+      "value": 0,
+      "unitCode": "MG_L"
+    }
+  },
+  "rangeO2Max": {
+    "type": "Property",
+    "value": {
+      "value": 20.0,
+      "unitCode": "MG_L"
+    }
+  },
+  "rangeTempMin": {
+    "type": "Property",
+    "value": {
+      "value": 0,
+      "unitCode": "CEL"
+    }
+  },
+  "rangeTempMax": {
+    "type": "Property",
+    "value": {
+      "value": 50,
+      "unitCode": "CEL"
+    }
+  },
+  "basicError": {
+    "type": "Property",
+    "value": {
+      "value": 0.30,
+      "unitCode": "MG_L"
+    }
+  },
+  "reactionTime": {
+    "type": "Property",
+    "value": "<60 s"
+  },
+  "resolutionO2": {
+    "type": "Property",
+    "value": {
+      "value": 0.01,
+      "unitCode": "MG_L"
+    }
+  },
+  "resolutionTemp": {
+    "type": "Property",
+    "value": {
+      "value": 0.1,
+      "unitCode": "CEL"
+    }
+  },
+  "powerSupply": {
+    "type": "Property",
+    "value": {
+      "value": 24,
+      "unitCode": "V"
+    }
+  },
+  "powerDissipation": {
+    "type": "Property",
+    "value": {
+      "value": 1,
+      "unitCode": "W"
+    }
+  },
+  "communicationMode": {
+    "type": "Property",
+    "value": "RS485 (Modbus RTU)"
+  },
+  "cableLength": {
+    "type": "Property",
+    "value": {
+      "value": 5,
+      "unitCode": "MTR"
+    }
+  },
+  "dimensionsLength": {
+    "type": "Property",
+    "value": {
+      "value": 230,
+      "unitCode": "MMT"
+    }
+  },
+  "dimensionsDiameter": {
+    "type": "Property",
+    "value": {
+      "value": 30,
+      "unitCode": "MMT"
+    }
+  },
+  "housingMaterial": {
+    "type": "Property",
+    "value": "Stainless Steel + PVC"
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Device:MPG-6099"
+    ]
+  }
+}

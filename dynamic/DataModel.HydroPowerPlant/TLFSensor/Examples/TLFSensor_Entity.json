@@ -1,0 +1,36 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:TlfSensor:01",
+  "type": "TlfSensor",
+
+  "name": {
+    "type": "Property",
+    "value": "TLF Pathogen Sensor #1"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:TLF:9001"
+    ]
+  },
+  "hasMicrocontroller": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Microcontroller:pi1"
+    ]
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Suitcase:01"
+    ]
+  }
+}

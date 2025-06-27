@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of EcoliBioSensor of Hydropower Plant Modeling",
+  "definitions": {
+    "EcoliBioSensor": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this E.coli biosensor entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "EcoliBioSensor"
+              ],
+              "description": "NGSI-LD entity type. Must be EcoliBioSensor"
+            },
+            "measureRangeMin": {
+              "type": "object",
+              "description": "Lower bound of detection range",
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Minimum CFU/ml detectable"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "CFU_ML"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "measureRangeMax": {
+              "type": "object",
+              "description": "Upper bound of detection range",
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Maximum CFU/ml detectable"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "CFU_ML"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "measurementTime": {
+              "type": "string",
+              "description": "Time required to obtain a reading"
+            },
+            "accuracy": {
+              "type": "string",
+              "description": "Maximum deviation from true count"
+            },
+            "sizeLength": {
+              "type": "object",
+              "description": "Overall sensor length",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MMT"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "sizeWidth": {
+              "type": "object",
+              "description": "Overall sensor width",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MMT"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "material": {
+              "type": "string",
+              "description": "Wetted-part construction material"
+            },
+            "limitOfDetection": {
+              "type": "string",
+              "description": "Smallest reliably detectable concentration"
+            },
+            "specificity": {
+              "type": "string",
+              "description": "Describes false-positive behavior"
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "Reference to the host multi-parameter analyser node (MPG-6099)",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

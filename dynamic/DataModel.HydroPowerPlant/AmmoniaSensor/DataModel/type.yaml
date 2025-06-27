@@ -1,0 +1,205 @@
+components:
+  schemas:
+
+    AmmoniaSensor:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/AmmoniaSensor/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique identifier of this ammonia sensor entity"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - AmmoniaSensor
+              description: "NGSI-LD entity type. Must be AmmoniaSensor"
+              x-ngsi:
+                type: Property
+
+            model:
+              type: string
+              description: "Sensor model or sensing principle"
+              x-ngsi:
+                type: Property
+
+            ionsType:
+              type: string
+              description: "Target ion species"
+              x-ngsi:
+                type: Property
+
+            rangeMin:
+              type: object
+              description: "Lower bound of the measurement range"
+              properties:
+                value:
+                  type: number
+                  description: "Minimum detectable concentration"
+                unitCode:
+                  type: string
+                  enum:
+                    - PPB
+                  description: "Unit code for parts per billion"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            rangeMax:
+              type: object
+              description: "Upper bound of the measurement range"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - PPM
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            resolution:
+              type: object
+              description: "Smallest detectable concentration increment"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - PPB
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            reactionTime:
+              type: string
+              description: "Time to reach 90% of final reading"
+              x-ngsi:
+                type: Property
+
+            accuracy:
+              type: object
+              description: "Maximum deviation under standard conditions"
+              properties:
+                value:
+                  type: string
+                  description: "Accuracy value (e.g. '<±3 %')"
+                atTemperature:
+                  type: object
+                  description: "Temperature at which accuracy is specified"
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - CEL
+                  x-ngsi:
+                    type: Property
+                  additionalProperties: false
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            powerSupply:
+              type: object
+              description: "Nominal DC supply voltage"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            powerDissipation:
+              type: object
+              description: "Maximum power consumption"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - W
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            communicationMode:
+              type: string
+              description: "Digital interface protocol"
+              x-ngsi:
+                type: Property
+
+            cableLength:
+              type: object
+              description: "Standard probe cable length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MTR
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            dimensionsLength:
+              type: object
+              description: "Probe body length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            dimensionsDiameter:
+              type: object
+              description: "Probe body diameter"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            housingMaterial:
+              type: string
+              description: "Wetted-part construction material"
+              x-ngsi:
+                type: Property
+
+            isComponentOf:
+              type: array
+              description: "Reference to the host MPG-6099 multi-parameter node"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

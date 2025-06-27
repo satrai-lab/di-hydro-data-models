@@ -13,7 +13,7 @@ components:
               type: string
               format: uri
               pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
-              description: "Unique identifier of this portable platform (Suitcase)"
+              description: "Unique identifier of this Suitcase entity"
               x-ngsi:
                 type: Property
 
@@ -33,7 +33,6 @@ components:
                   type: array
                   items:
                     type: number
-                  description: "[length, width, height]"
                 unitCode:
                   type: string
                   enum:
@@ -48,7 +47,6 @@ components:
               properties:
                 value:
                   type: number
-                  description: "Approximate weight"
                 unitCode:
                   type: string
                   enum:
@@ -63,7 +61,6 @@ components:
               properties:
                 value:
                   type: number
-                  description: "Battery capacity in Ah"
                 unitCode:
                   type: string
                   enum:
@@ -79,64 +76,30 @@ components:
                 type: Property
 
             connectivity:
-              type: object
+              type: array
               description: "Data communication interfaces"
-              properties:
-                type:
-                  type: string
-                  enum:
-                    - Property
-                value:
-                  type: array
-                  items:
-                    type: string
-                  description: "List of supported interfaces"
+              items:
+                type: string
               x-ngsi:
                 type: Property
-              additionalProperties: false
 
             display:
-              type: object
+              type: string
               description: "Integrated human–machine interface"
-              properties:
-                type:
-                  type: string
-                  enum:
-                    - Property
-                value:
-                  type: string
               x-ngsi:
                 type: Property
-              additionalProperties: false
 
             protection:
-              type: object
+              type: string
               description: "Environmental rating of the enclosure"
-              properties:
-                type:
-                  type: string
-                  enum:
-                    - Property
-                value:
-                  type: string
-                  description: "Ingress protection rating"
               x-ngsi:
                 type: Property
-              additionalProperties: false
 
             dataStorage:
-              type: object
+              type: string
               description: "On-board data logging capacity"
-              properties:
-                type:
-                  type: string
-                  enum:
-                    - Property
-                value:
-                  type: string
               x-ngsi:
                 type: Property
-              additionalProperties: false
 
             hasTurbiditySensor:
               type: array

@@ -1,0 +1,233 @@
+components:
+  schemas:
+
+    AlgaeSensor:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/AlgaeSensor/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique URI identifier of this algae sensor entity"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - AlgaeSensor
+              description: "NGSI-LD entity type. Must be AlgaeSensor"
+              x-ngsi:
+                type: Property
+
+            model:
+              type: string
+              description: "Sensor model or sensing principle"
+              x-ngsi:
+                type: Property
+
+            linearRangeMin:
+              type: object
+              description: "Lower bound of the linear chlorophyll-a range"
+              properties:
+                value:
+                  type: number
+                  description: "Lower end of linear range"
+                unitCode:
+                  type: string
+                  enum:
+                    - "UG_L"
+                  description: "Unit code for micrograms per liter"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            linearRangeMax:
+              type: object
+              description: "Upper bound of the linear chlorophyll-a range"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "UG_L"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            totalRangeMin:
+              type: object
+              description: "Lower bound of the total chlorophyll-a range"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "UG_L"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            totalRangeMax:
+              type: object
+              description: "Upper bound of the total chlorophyll-a range"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "UG_L"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            resolution:
+              type: object
+              description: "Measurement granularity"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "UG_L"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            reactionTime:
+              type: string
+              description: "Time to 90 % response"
+              x-ngsi:
+                type: Property
+
+            accuracy:
+              type: object
+              description: "Maximum deviation under standard conditions"
+              properties:
+                value:
+                  type: string
+                  description: "Accuracy value"
+                atTemperature:
+                  type: object
+                  description: "Temperature at which accuracy is specified"
+                  properties:
+                    value:
+                      type: number
+                    unitCode:
+                      type: string
+                      enum:
+                        - CEL
+                  x-ngsi:
+                    type: Property
+                  additionalProperties: false
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            communicationMode:
+              type: string
+              description: "Digital interface protocol"
+              x-ngsi:
+                type: Property
+
+            cableLength:
+              type: object
+              description: "Standard probe cable length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MTR
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            operationalTempMin:
+              type: object
+              description: "Minimum operating temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            operationalTempMax:
+              type: object
+              description: "Maximum operating temperature"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - CEL
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            dimensionsLength:
+              type: object
+              description: "Probe body length"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            dimensionsDiameter:
+              type: object
+              description: "Probe body diameter"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            protectionClass:
+              type: string
+              description: "Ingress protection rating"
+              x-ngsi:
+                type: Property
+
+            housingMaterial:
+              type: string
+              description: "Wetted-part construction material"
+              x-ngsi:
+                type: Property
+
+            isComponentOf:
+              type: array
+              description: "Reference to the host MPG-6099 multi-parameter node"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

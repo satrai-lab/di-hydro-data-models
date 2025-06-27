@@ -3,7 +3,7 @@ components:
 
     EcoliBioSensor:
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/EcoliBioSensor/DataModel/type.json"
+        uri-prefix: "https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/DataModel.HydroPowerPlant/EcoliBioSensor/DataModel/type.json"
       allOf:
         - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
         - type: object

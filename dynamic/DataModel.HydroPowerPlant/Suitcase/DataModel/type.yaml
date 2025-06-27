@@ -1,0 +1,177 @@
+components:
+  schemas:
+
+    Suitcase:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/Suitcase/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique identifier of this portable platform (Suitcase)"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - Suitcase
+              description: "NGSI-LD entity type. Must be Suitcase"
+              x-ngsi:
+                type: Property
+
+            dimensions:
+              type: object
+              description: "External case dimensions [length, width, height]"
+              properties:
+                value:
+                  type: array
+                  items:
+                    type: number
+                  description: "[length, width, height]"
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            weight:
+              type: object
+              description: "Total system mass"
+              properties:
+                value:
+                  type: number
+                  description: "Approximate weight"
+                unitCode:
+                  type: string
+                  enum:
+                    - KGM
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            powerSupply:
+              type: object
+              description: "On-board battery capacity"
+              properties:
+                value:
+                  type: number
+                  description: "Battery capacity in Ah"
+                unitCode:
+                  type: string
+                  enum:
+                    - AHT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            operatingTime:
+              type: string
+              description: "Maximum autonomous runtime"
+              x-ngsi:
+                type: Property
+
+            connectivity:
+              type: object
+              description: "Data communication interfaces"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: array
+                  items:
+                    type: string
+                  description: "List of supported interfaces"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            display:
+              type: object
+              description: "Integrated human–machine interface"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            protection:
+              type: object
+              description: "Environmental rating of the enclosure"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                  description: "Ingress protection rating"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            dataStorage:
+              type: object
+              description: "On-board data logging capacity"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            hasTurbiditySensor:
+              type: array
+              description: "References to connected Turbidity Sensor modules"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            hasDhm:
+              type: array
+              description: "Reference to the onboard Digital Holographic Microscope (DHM) module"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            hasMicrocontroller:
+              type: array
+              description: "References to host microcontroller(s)"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+            hasTlfSensor:
+              type: array
+              description: "References to connected Turbulence Flow Sensor(s)"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

@@ -1,6 +1,6 @@
 # Turbidity Sensor
 <div style="display: flex; justify-content: center; margin: 20px 0">
-  <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/Diagrams/AESystem.png" 
+  <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/Diagrams/TurbiditySensor.png" 
        alt="HydroPowerPlantCommunity Diagram" 
        style="max-width: 100%; height: auto; width: 650px">
 </div>

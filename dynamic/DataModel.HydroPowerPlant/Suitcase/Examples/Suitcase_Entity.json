@@ -1,0 +1,81 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:Suitcase:01",
+  "type": "Suitcase",
+
+  "name": {
+    "type": "Property",
+    "value": "Portable Multiparametric Platform"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "System"
+  },
+
+  "dimensions": {
+    "type": "Property",
+      "value": [500, 400, 200],
+      "unitCode": {
+        "type": "Property",
+        "value": "MMT"
+      }
+  },
+  "weight": {
+    "type": "Property",
+      "value": 7,
+      "unitCode": 
+      {
+        "type": "Property",
+        "value": "KGM"
+      }
+  },
+  "powerSupply": {
+    "type": "Property",
+      "value": 20,
+      "unitCode": {
+        "type": "Property",
+        "value": "V"
+      }
+  },
+  "operatingTime": {
+    "type": "Property",
+    "value": "10 hours"
+  },
+  "connectivity": {
+    "type": "Property",
+    "value": ["Wi-Fi", "Bluetooth", "USB", "RS485"]
+  },
+  "display": {
+    "type": "Property",
+    "value": "Touchscreen"
+  },
+  "protection": {
+    "type": "Property",
+    "value": "IP67"
+  },
+  "dataStorage": {
+    "type": "Property",
+    "value": "1 month continuous"
+  },
+
+  "hasTurbiditySensor": {
+    "type": "Relationship",
+    "object": ["urn:ngsi-ld:TurbiditySensor:01"]
+  },
+  "hasDhm": {
+    "type": "Relationship",
+    "object": ["urn:ngsi-ld:DHMModule:01"]
+  },
+  "hasMicrocontroller": {
+    "type": "Relationship",
+    "object": ["urn:ngsi-ld:Microcontroller:pi1"]
+  },
+  "hasTlfSensor": {
+    "type": "Relationship",
+    "object": ["urn:ngsi-ld:TlfSensor:01"]
+  }
+}

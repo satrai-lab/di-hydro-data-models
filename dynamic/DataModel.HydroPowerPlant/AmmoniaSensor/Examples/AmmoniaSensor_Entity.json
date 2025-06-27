@@ -1,0 +1,127 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:AmmoniaSensor:001",
+  "type": "AmmoniaSensor",
+
+  "name": {
+    "type": "Property",
+    "value": "River Ammonia Probe #1"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:Ammonia:7001"
+    ]
+  },
+
+  "model": {
+    "type": "Property",
+    "value": "Modified ion selective membrane"
+  },
+  "ionsType": {
+    "type": "Property",
+    "value": "NH4"
+  },
+  "rangeMin": {
+    "type": "Property",
+    "value": 15,
+    "unitCode": {
+      "type": "Property",
+      "value": "PPB"
+    }
+  },
+  "rangeMax": {
+    "type": "Property",
+    "value": 150,
+    "unitCode": {
+      "type": "Property",
+      "value": "PPM"
+    }
+  },
+  "resolution": {
+    "type": "Property",
+    "value": 1,
+    "unitCode": {
+      "type": "Property",
+      "value": "PPB"
+    }
+  },
+  "reactionTime": {
+    "type": "Property",
+    "value": "<1 min"
+  },
+  "accuracy": {
+    "type": "Property",
+    "value": "<±3 %",
+    "atTemperature": {
+      "type": "Property",
+      "value": 20,
+      "unitCode": {
+        "type": "Property",
+        "value": "CEL"
+      }
+    }
+  },
+  "powerSupply": {
+    "type": "Property",
+    "value": 24,
+    "unitCode": {
+      "type": "Property",
+      "value": "V"
+    }
+  },
+  "powerDissipation": {
+    "type": "Property",
+    "value": 1,
+    "unitCode": {
+      "type": "Property",
+      "value": "W"
+    }
+  },
+  "communicationMode": {
+    "type": "Property",
+    "value": "RS485 (Modbus RTU)"
+  },
+  "cableLength": {
+    "type": "Property",
+    "value": 5,
+    "unitCode": {
+      "type": "Property",
+      "value": "MTR"
+    }
+  },
+  "dimensionsLength": {
+    "type": "Property",
+    "value": 250,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "dimensionsDiameter": {
+    "type": "Property",
+    "value": 30,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "housingMaterial": {
+    "type": "Property",
+    "value": "Stainless Steel + PVC"
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Device:MPG-6099"
+    ]
+  }
+}

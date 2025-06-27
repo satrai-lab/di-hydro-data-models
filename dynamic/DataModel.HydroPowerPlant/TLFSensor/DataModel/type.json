@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of TlfSensor of Hydropower Plant Modeling",
+  "definitions": {
+    "TlfSensor": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique URI identifier of this TLF sensor entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "TlfSensor"
+              ],
+              "description": "NGSI-LD entity type. Must be TlfSensor"
+            },
+            "hasMicrocontroller": {
+              "type": "array",
+              "description": "Reference to the host microcontroller driving this sensor",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "Reference to the Suitcase platform that this sensor belongs to",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

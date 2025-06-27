@@ -1,0 +1,205 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of AlgaeSensor of Hydropower Plant Modeling",
+  "definitions": {
+    "AlgaeSensor": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this algae sensor entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "AlgaeSensor"
+              ],
+              "description": "NGSI-LD entity type. Must be AlgaeSensor"
+            },
+            "model": {
+              "type": "string",
+              "description": "Sensor model or sensing principle"
+            },
+            "linearRangeMin": {
+              "type": "object",
+              "description": "Lower bound of the linear chlorophyll-a range",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["UG_L"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "linearRangeMax": {
+              "type": "object",
+              "description": "Upper bound of the linear chlorophyll-a range",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["UG_L"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "totalRangeMin": {
+              "type": "object",
+              "description": "Lower bound of the total chlorophyll-a range",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["UG_L"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "totalRangeMax": {
+              "type": "object",
+              "description": "Upper bound of the total chlorophyll-a range",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["UG_L"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "resolution": {
+              "type": "object",
+              "description": "Measurement granularity",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["UG_L"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "reactionTime": {
+              "type": "string",
+              "description": "Time to 90 % response"
+            },
+            "accuracy": {
+              "type": "object",
+              "description": "Maximum deviation under standard conditions",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "description": "Accuracy value (e.g. \"<±5 %\")"
+                },
+                "atTemperature": {
+                  "type": "object",
+                  "description": "Temperature at which accuracy is specified",
+                  "properties": {
+                    "value": { "type": "number" },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["CEL"]
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            },
+            "communicationMode": {
+              "type": "string",
+              "description": "Digital interface protocol"
+            },
+            "cableLength": {
+              "type": "object",
+              "description": "Standard probe cable length",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MTR"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "operationalTempMin": {
+              "type": "object",
+              "description": "Minimum operating temperature",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["CEL"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "operationalTempMax": {
+              "type": "object",
+              "description": "Maximum operating temperature",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["CEL"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "dimensionsLength": {
+              "type": "object",
+              "description": "Probe body length",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MMT"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "dimensionsDiameter": {
+              "type": "object",
+              "description": "Probe body diameter",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MMT"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "protectionClass": {
+              "type": "string",
+              "description": "Ingress protection rating"
+            },
+            "housingMaterial": {
+              "type": "string",
+              "description": "Wetted-part construction material"
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "Reference to the host MPG-6099 multi-parameter node",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

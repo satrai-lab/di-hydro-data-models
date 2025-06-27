@@ -70,7 +70,7 @@
                 "unitCode": {
                   "type": "string",
                   "enum": [
-                    "AHT"
+                    "V"
                   ]
                 }
               },

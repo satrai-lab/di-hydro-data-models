@@ -1,0 +1,83 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:EcoliBioSensor:01",
+  "type": "EcoliBioSensor",
+
+  "name": {
+    "type": "Property",
+    "value": "E.coli Biosensor #1"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:Ecoli:7001"
+    ]
+  },
+
+  "measureRangeMin": {
+    "type": "Property",
+      "value": 1,
+      "unitCode": {
+        "type": "Property",
+        "value": "CFU_ML"
+      }
+  },
+  "measureRangeMax": {
+    "type": "Property",
+      "value": 5,
+      "unitCode": {
+        "type": "Property",
+        "value": "CFU_ML"
+      }
+  },
+  "measurementTime": {
+    "type": "Property",
+    "value": "20 min incubation"
+  },
+  "accuracy": {
+    "type": "Property",
+    "value": "< ±20 %"
+  },
+  "sizeLength": {
+    "type": "Property",
+      "value": 20,
+      "unitCode": {
+        "type": "Property",
+        "value": "MMT"
+      }
+  },
+  "sizeWidth": {
+    "type": "Property",
+      "value": 35,
+      "unitCode": {
+        "type": "Property",
+        "value": "MMT"
+      }
+  },
+  "material": {
+    "type": "Property",
+    "value": "Gold + PVC"
+  },
+  "limitOfDetection": {
+    "type": "Property",
+    "value": "1 CFU/mL"
+  },
+  "specificity": {
+    "type": "Property",
+    "value": "No positive response"
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Device:MPG-6099"
+    ]
+  }
+}

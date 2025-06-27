@@ -2,7 +2,7 @@
 <div style="display: flex; justify-content: center; margin: 20px 0">
   <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/Diagrams/TLFSensor.png" 
        alt="HydroPowerPlantCommunity Diagram" 
-       style="max-width: 100%; height: auto; width: 400px">
+       style="max-width: 100%; height: auto; width: 700px">
 </div>
 
 ## Definition

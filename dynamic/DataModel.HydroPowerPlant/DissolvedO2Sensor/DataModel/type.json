@@ -1,0 +1,246 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of DissolvedO2Sensor of Hydropower Plant Modeling",
+  "definitions": {
+    "DissolvedO2Sensor": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this dissolved oxygen sensor entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "DissolvedO2Sensor"
+              ],
+              "description": "NGSI-LD entity type. Must be DissolvedO2Sensor"
+            },
+            "rangeO2Min": {
+              "type": "object",
+              "description": "Minimum dissolved-O₂ concentration",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MG_L"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "rangeO2Max": {
+              "type": "object",
+              "description": "Maximum dissolved-O₂ concentration",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MG_L"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "rangeTempMin": {
+              "type": "object",
+              "description": "Minimum temperature",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "CEL"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "rangeTempMax": {
+              "type": "object",
+              "description": "Maximum temperature",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "CEL"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "basicError": {
+              "type": "object",
+              "description": "Maximum measurement error for dissolved oxygen",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MG_L"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "reactionTime": {
+              "type": "string",
+              "description": "Time to reach 90% of final reading"
+            },
+            "resolutionO2": {
+              "type": "object",
+              "description": "Smallest detectable change in dissolved oxygen",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MG_L"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "resolutionTemp": {
+              "type": "object",
+              "description": "Smallest detectable change in temperature",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "CEL"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "powerSupply": {
+              "type": "object",
+              "description": "Nominal DC supply voltage",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "V"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "powerDissipation": {
+              "type": "object",
+              "description": "Maximum power consumption",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "W"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "communicationMode": {
+              "type": "string",
+              "description": "Digital interface protocol"
+            },
+            "cableLength": {
+              "type": "object",
+              "description": "Standard probe cable length",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MTR"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "dimensionsLength": {
+              "type": "object",
+              "description": "Probe body length",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MMT"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "dimensionsDiameter": {
+              "type": "object",
+              "description": "Probe body diameter",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "MMT"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "housingMaterial": {
+              "type": "string",
+              "description": "Wetted-part construction material"
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "Reference to the host MPG-6099 multi-parameter node",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

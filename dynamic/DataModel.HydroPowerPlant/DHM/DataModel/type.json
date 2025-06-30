@@ -1,0 +1,224 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of DHM of Hydropower Plant Modeling",
+  "definitions": {
+    "DHM": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique URI identifier of this DHM entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": ["DHM"],
+              "description": "NGSI-LD entity type. Must be DHM"
+            },
+            "laserSource": {
+              "type": "object",
+              "description": "Laser source details",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Laser model"
+                },
+                "waveLength": {
+                  "type": "object",
+                  "description": "Emitted wavelength",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": ["Property"]
+                    },
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["NM"]
+                    }
+                  },
+                  "x-ngsi": {
+                    "type": "Property"
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              },
+              "additionalProperties": false
+            },
+            "beamExpander": {
+              "type": "object",
+              "description": "Beam expander magnification factor",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["C62"]
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              },
+              "additionalProperties": false
+            },
+            "microscopeObjective": {
+              "type": "object",
+              "description": "Objective lens details",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Objective model"
+                },
+                "magnification": {
+                  "type": "object",
+                  "description": "Objective magnification",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": ["Property"]
+                    },
+                    "value": {
+                      "type": "number"
+                    },
+                    "unitCode": {
+                      "type": "string",
+                      "enum": ["C62"]
+                    }
+                  },
+                  "x-ngsi": {
+                    "type": "Property"
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              },
+              "additionalProperties": false
+            },
+            "resolutionAchieved": {
+              "type": "object",
+              "description": "Lateral resolution achieved",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MM"]
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              },
+              "additionalProperties": false
+            },
+            "interferencePattern": {
+              "type": "object",
+              "description": "Fringe spacing in interference pattern",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["UM"]
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              },
+              "additionalProperties": false
+            },
+            "status": {
+              "type": "object",
+              "description": "Operational status",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "string",
+                  "description": "e.g. operational, standby"
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              },
+              "additionalProperties": false
+            },
+            "hasCamera": {
+              "type": "array",
+              "description": "Reference to the associated camera module",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "x-ngsi": {
+                "type": "Relationship"
+              }
+            },
+            "hasMicrocontroller": {
+              "type": "array",
+              "description": "Reference to the host microcontroller driving this DHM",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "x-ngsi": {
+                "type": "Relationship"
+              }
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "Reference to the Suitcase platform this DHM belongs to",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "x-ngsi": {
+                "type": "Relationship"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

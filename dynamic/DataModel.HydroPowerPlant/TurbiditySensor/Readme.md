@@ -2,6 +2,14 @@
 <div style="display: flex; justify-content: center; margin: 20px 0">
   <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/Diagrams/TurbiditySensor.png" 
        alt="HydroPowerPlantCommunity Diagram" 
+       style="max-width: 100%; height: auto; width: 350px">
+</div>
+
+---
+
+<div style="display: flex; justify-content: center; margin: 20px 0">
+  <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/Diagrams/turbidity_sensor_suitcase.png" 
+       alt="HydroPowerPlantCommunity Diagram" 
        style="max-width: 100%; height: auto; width: 650px">
 </div>
 
@@ -39,6 +47,6 @@ A **Turbidity Sensor** on the platform uses an infrared LED and photodiode to de
 | **`cableLengthStandard`**     | Property     | Standard cable length                                  | `{ "value": 10, "unitCode": "MTR" }`   |
 | **`cableLengthMax`**          | Property     | Maximum extendable cable length                        | `{ "value": 100, "unitCode": "MTR" }`  |
 | **`isComponentOf`**           | Relationship | Reference to the host **MPG-6099** multiparameter node | `["urn:ngsi-ld:Device:MPG-6099"]`      |
-
+| **`hasMicrocontroller`** | Relationship | Reference to the host microcontroller driving this sensor          | Array of URIs (e.g. `["urn:ngsi-ld:Microcontroller:pi1"]`) |
 ---
 

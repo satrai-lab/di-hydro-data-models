@@ -20,6 +20,7 @@ paths:
               "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
               id: "urn:ngsi-ld:Microcontroller:pi1"
               type: "Microcontroller"
+
               name:
                 type: "Property"
                 value: "Raspberry Pi 3B+ Controller"
@@ -30,6 +31,7 @@ paths:
               inHPP:
                 type: "Relationship"
                 object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+
               microcontrollerType:
                 type: "Property"
                 value: "RaspberryPi"
@@ -38,53 +40,59 @@ paths:
                 value: "Broadcom BCM2837"
               memory:
                 type: "Property"
-                value:
-                  value: 1
-                  unitCode: "GBA"
+                value: 1
+                unitCode:
+                  type: "Property"
+                  value: "GBA"
               storage:
                 type: "Property"
-                value:
-                  value: 16
-                  unitCode: "GBA"
+                value: 16
+                unitCode:
+                  type: "Property"
+                  value: "GBA"
               adcResolution:
                 type: "Property"
-                value:
-                  value: 10
-                  unitCode: "bit"
+                value: 10
+                unitCode:
+                  type: "Property"
+                  value: "bit"
               adcChannels:
                 type: "Property"
-                value:
-                  value: 6
-                  unitCode: ""
+                value: 6
               interfaces:
                 type: "Property"
                 value:
-                  - GPIO
-                  - I2C
-                  - SPI
-                  - USB3.0
-                  - Ethernet
-                  - WiFi
+                  - "GPIO"
+                  - "I2C"
+                  - "SPI"
+                  - "USB3.0"
+                  - "Ethernet"
+                  - "WiFi"
               powerInternal:
                 type: "Property"
-                value:
-                  value: 48
-                  unitCode: "Wh"
+                value: 48
+                unitCode:
+                  type: "Property"
+                  value: "Wh"
               powerExternalVoltage:
                 type: "Property"
-                value:
-                  value: 24
-                  unitCode: "V"
+                value: 24
+                unitCode:
+                  type: "Property"
+                  value: "V"
               operatingTemperatureMin:
                 type: "Property"
-                value:
-                  value: 0
-                  unitCode: "CEL"
+                value: 0
+                unitCode:
+                  type: "Property"
+                  value: "CEL"
               operatingTemperatureMax:
                 type: "Property"
-                value:
-                  value: 40
-                  unitCode: "CEL"
+                value: 40
+                unitCode:
+                  type: "Property"
+                  value: "CEL"
+
               hasDevices:
                 type: "Relationship"
                 object:
@@ -107,6 +115,9 @@ components:
 
     Device:
       type: object
+      required:
+        - id
+        - type
       properties:
         id:
           type: string
@@ -116,105 +127,82 @@ components:
           type: string
           enum:
             - Device
-          description: NGSI-LD entity type. Must be Device
         name:
           type: object
-          description: The human-readable name of the device
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
         onObject:
           type: object
-          description: Component(s) of the HPP that this device is installed on
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
                 format: uri
-          additionalProperties: false
         inHPP:
           type: object
-          description: The HydropowerPlant that this device belongs to
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: string
               format: uri
-          additionalProperties: false
         controlledObservation:
           type: object
-          description: The observation types this device can control
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: array
               items:
                 type: string
-          additionalProperties: false
         observations:
           type: object
-          description: List of IDs of the observations produced by or connected to the device
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
                 format: uri
-          additionalProperties: false
         controlledActuation:
           type: object
-          description: The actuation types this device can control
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: array
               items:
                 type: string
-          additionalProperties: false
         actuations:
           type: object
-          description: List of IDs of the actuations produced by or connected to the device
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
                 format: uri
-          additionalProperties: false
         deviceType:
           type: object
-          description: "Indicates the type of the device: sensor, actuator, or both"
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
               enum:
@@ -223,10 +211,8 @@ components:
                 - sensorActuator
                 - Device
                 - System
-          additionalProperties: false
         relativePosition:
           type: object
-          description: Relative position of the device in 2D/3D space
           properties:
             type:
               type: string
@@ -240,16 +226,14 @@ components:
               type: string
             dimensions:
               type: string
-              enum:
-                - 2D
-                - 3D
+              enum: [2D, 3D]
             coordinates:
               type: array
               items: {}
             faces:
               type: array
               items: {}
-          additionalProperties: false
+      additionalProperties: false
 
     Microcontroller:
       allOf:
@@ -260,199 +244,155 @@ components:
               type: string
               enum:
                 - Microcontroller
-              description: NGSI-LD entity type. Must be Microcontroller
             microcontrollerType:
               type: object
-              description: Role or family of this controller (what kind of board/CPU it is)
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: string
             processor:
               type: object
-              description: Name/model of the CPU or System-on-Chip
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: string
             memory:
               type: object
-              description: Installed RAM capacity
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: number
                 unitCode:
                   type: string
-                  enum:
-                    - GBA
+                  enum: [GBA]
               additionalProperties: false
             storage:
               type: object
-              description: Local non-volatile storage size
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: number
                 unitCode:
                   type: string
-                  enum:
-                    - GBA
+                  enum: [GBA]
               additionalProperties: false
             adcResolution:
               type: object
-              description: Resolution of the on-board ADC used for analog sensor inputs
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: integer
                 unitCode:
                   type: string
-                  enum:
-                    - bit
+                  enum: [bit]
               additionalProperties: false
             adcChannels:
               type: object
-              description: Number of independent ADC input channels available
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: integer
-                unitCode:
-                  type: string
-                  enum:
-                    - ""
-              additionalProperties: false
             interfaces:
               type: object
-              description: List of I/O and communication buses exposed by this controller
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: array
                   items:
                     type: string
             powerInternal:
               type: object
-              description: Capacity of the internal battery pack
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: number
                 unitCode:
                   type: string
-                  enum:
-                    - Wh
+                  enum: [Wh]
               additionalProperties: false
             powerExternalVoltage:
               type: object
-              description: Nominal voltage of the external DC power input
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: number
                 unitCode:
                   type: string
-                  enum:
-                    - V
+                  enum: [V]
               additionalProperties: false
             operatingTemperatureMin:
               type: object
-              description: Minimum ambient temperature at which the controller is rated to operate
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: number
                 unitCode:
                   type: string
-                  enum:
-                    - CEL
+                  enum: [CEL]
               additionalProperties: false
             operatingTemperatureMax:
               type: object
-              description: Maximum ambient temperature at which the controller is rated to operate
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: number
                 unitCode:
                   type: string
-                  enum:
-                    - CEL
+                  enum: [CEL]
               additionalProperties: false
             hasDevices:
               type: object
-              description: References to all Device entities directly connected to this microcontroller
               properties:
                 type:
                   type: string
-                  enum:
-                    - Relationship
+                  enum: [Relationship]
                 object:
                   type: array
                   items:
                     type: string
                     format: uri
-              additionalProperties: false
             hasComponents:
               type: object
-              description: References to component modules or sub-devices that this microcontroller hosts
               properties:
                 type:
                   type: string
-                  enum:
-                    - Relationship
+                  enum: [Relationship]
                 object:
                   type: array
                   items:
                     type: string
                     format: uri
-              additionalProperties: false
             isComponentOf:
               type: object
-              description: References to higher-level systems or platforms that this microcontroller is part of
               properties:
                 type:
                   type: string
-                  enum:
-                    - Relationship
+                  enum: [Relationship]
                 object:
                   type: array
                   items:
                     type: string
                     format: uri
-              additionalProperties: false
       description: Data Model of Microcontroller of Hydropower Plant Modeling

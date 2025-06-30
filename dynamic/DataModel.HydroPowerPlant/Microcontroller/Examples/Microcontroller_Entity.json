@@ -26,31 +26,31 @@
   },
   "memory": {
     "type": "Property",
-    "value": {
       "value": 1,
-      "unitCode": "GBA"
-    }
+      "unitCode": {
+        "type": "Property",
+        "value": "GBA"
+      }
   },
   "storage": {
     "type": "Property",
-    "value": {
       "value": 16,
-      "unitCode": "GBA"
-    }
+      "unitCode": {
+        "type": "Property",
+        "value": "GBA"
+      }
   },
   "adcResolution": {
     "type": "Property",
-    "value": {
       "value": 10,
-      "unitCode": "bit"
-    }
+      "unitCode": {
+        "type": "Property",
+        "value": "bit"
+      }
   },
   "adcChannels": {
     "type": "Property",
-    "value": {
-      "value": 6,
-      "unitCode": ""
-    }
+      "value": 6
   },
   "interfaces": {
     "type": "Property",
@@ -58,31 +58,35 @@
   },
   "powerInternal": {
     "type": "Property",
-    "value": {
       "value": 48,
-      "unitCode": "Wh"
-    }
+      "unitCode": {
+        "type": "Property",
+        "value": "Wh"
+      }
   },
   "powerExternalVoltage": {
     "type": "Property",
-    "value": {
       "value": 24,
-      "unitCode": "V"
-    }
+      "unitCode": {
+        "type": "Property",
+        "value": "V"
+      }
   },
   "operatingTemperatureMin": {
     "type": "Property",
-    "value": {
       "value": 0,
-      "unitCode": "CEL"
-    }
+      "unitCode": {
+        "type": "Property",
+        "value": "CEL"
+      }
   },
   "operatingTemperatureMax": {
     "type": "Property",
-    "value": {
       "value": 40,
-      "unitCode": "CEL"
-    }
+      "unitCode": {
+        "type": "Property",
+        "value": "CEL"
+      }
   },
   "hasDevices": {
     "type": "Relationship",
@@ -100,4 +104,3 @@
     "object": [ "urn:ngsi-ld:Platform:PortableDAQ-01" ]
   }
 }
-

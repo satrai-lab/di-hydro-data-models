@@ -1,0 +1,50 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:Camera:001",
+  "type": "Camera",
+
+  "name": {
+    "type": "Property",
+    "value": "DHM Imaging Camera"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+
+  "model": {
+    "type": "Property",
+    "value": "IDS U3-3990CP-M-GL_Rev_2_2"
+  },
+  "sensorResolution": {
+    "type": "Property",
+    "value": [4512, 4512]
+  },
+  "pixelSize": {
+    "type": "Property",
+      "value": 2.74,
+      "unitCode": {
+        "type": "Property",
+        "value": "UM"
+      }
+  },
+  "acquisitionSoftware": {
+    "type": "Property",
+    "value": "IDS Peak"
+  },
+  "status": {
+    "type": "Property",
+    "value": "operational"
+  },
+
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:DHM:001"
+    ]
+  }
+}

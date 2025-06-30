@@ -1,0 +1,90 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:DHM:001",
+  "type": "DHM",
+
+  "name": {
+    "type": "Property",
+    "value": "Digital Holographic Microscope #1"
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:DHM:9001"
+    ]
+  },
+
+  "laserSource": {
+    "type": "Property",
+    "value": "Cobolt Samba™",
+    "waveLength": {
+      "type": "Property",
+      "value": 532,
+      "unitCode": {
+        "type": "Property",
+        "value": "NM"
+      }
+    }
+  },
+  "beamExpander": {
+    "type": "Property",
+    "value": 10,
+    "unitCode": {
+      "type": "Property",
+      "value": "C62"
+    }
+  },
+  "microscopeObjective": {
+    "type": "Property",
+    "value": "Olympus PLN10XCY",
+    "magnification": {
+      "type": "Property",
+      "value": 60,
+      "unitCode": {
+        "type": "Property",
+        "value": "C62"
+      }
+    }
+  },
+  "resolutionAchieved": {
+    "type": "Property",
+    "value": 228.1,
+    "unitCode": {
+      "type": "Property",
+      "value": "MM"
+    }
+  },
+  "interferencePattern": {
+    "type": "Property",
+    "value": 1.85,
+    "unitCode": {
+      "type": "Property",
+      "value": "UM"
+    }
+  },
+  "status": {
+    "type": "Property",
+    "value": "operational"
+  },
+
+  "hasCamera": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:Camera:cam1" ]
+  },
+  "hasMicrocontroller": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:Microcontroller:pi1" ]
+  },
+  "isComponentOf": {
+    "type": "Relationship",
+    "object": [ "urn:ngsi-ld:Suitcase:01" ]
+  }
+}

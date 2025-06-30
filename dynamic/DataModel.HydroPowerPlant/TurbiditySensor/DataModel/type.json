@@ -229,6 +229,14 @@
                 "type": "string",
                 "format": "uri"
               }
+            },
+            "hasMicrocontroller": {
+              "type": "array",
+              "description": "Reference to the host microcontroller driving this sensor",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             }
           },
           "additionalProperties": false

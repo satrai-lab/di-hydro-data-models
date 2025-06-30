@@ -528,6 +528,20 @@ components:
                   type: string
                   enum: [MTR]
               additionalProperties: false
+            hasMicrocontroller:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              description: References to host microcontroller(s)
+              additionalProperties: false
             isComponentOf:
               type: object
               description: Reference to the host MPG-6099 multiparameter node

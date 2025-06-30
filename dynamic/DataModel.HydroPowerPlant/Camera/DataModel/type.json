@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of Camera of Hydropower Plant Modeling",
+  "definitions": {
+    "Camera": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique URI identifier of this camera entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "Camera"
+              ],
+              "description": "NGSI-LD entity type. Must be Camera"
+            },
+            "model": {
+              "type": "string",
+              "description": "Camera model"
+            },
+            "sensorResolution": {
+              "type": "object",
+              "description": "Maximum image resolution as [width, height] in pixels",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  },
+                  "description": "Array [width, height]"
+                }
+              },
+              "additionalProperties": false
+            },
+            "pixelSize": {
+              "type": "object",
+              "description": "Size of each photosite",
+              "properties": {
+                "value": {
+                  "type": "number",
+                  "description": "Pixel size"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [
+                    "UM"
+                  ],
+                  "description": "Unit code for micrometers"
+                }
+              },
+              "additionalProperties": false
+            },
+            "acquisitionSoftware": {
+              "type": "string",
+              "description": "Software used for image capture"
+            },
+            "status": {
+              "type": "string",
+              "description": "Operational status of the camera"
+            },
+            "isComponentOf": {
+              "type": "array",
+              "description": "Reference to the DHM entity this camera feeds",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

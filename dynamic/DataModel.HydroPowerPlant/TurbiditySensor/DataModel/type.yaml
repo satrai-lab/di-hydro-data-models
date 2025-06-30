@@ -291,5 +291,13 @@ components:
                 format: uri
               x-ngsi:
                 type: Relationship
+            hasMicrocontroller:
+              type: array
+              description: "Reference to the host microcontroller driving this sensor"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship             
 
           additionalProperties: false

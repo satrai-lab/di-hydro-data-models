@@ -1,0 +1,84 @@
+components:
+  schemas:
+
+    Camera:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/Camera/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique URI identifier of this camera entity"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - Camera
+              description: "NGSI-LD entity type. Must be Camera"
+              x-ngsi:
+                type: Property
+
+            model:
+              type: string
+              description: "Camera model"
+              x-ngsi:
+                type: Property
+
+            sensorResolution:
+              type: object
+              description: "Maximum image resolution as [width, height] in pixels"
+              properties:
+                value:
+                  type: array
+                  items:
+                    type: integer
+                  description: "Array [width, height]"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            pixelSize:
+              type: object
+              description: "Size of each photosite"
+              properties:
+                value:
+                  type: number
+                  description: "Pixel size"
+                unitCode:
+                  type: string
+                  enum:
+                    - UM
+                  description: "Unit code for micrometers"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            acquisitionSoftware:
+              type: string
+              description: "Software used for image capture"
+              x-ngsi:
+                type: Property
+
+            status:
+              type: string
+              description: "Operational status of the camera"
+              x-ngsi:
+                type: Property
+
+            isComponentOf:
+              type: array
+              description: "Reference to the DHM entity this camera feeds"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

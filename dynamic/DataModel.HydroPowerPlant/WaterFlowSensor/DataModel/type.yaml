@@ -1,0 +1,128 @@
+components:
+  schemas:
+
+    WaterFlowSensor:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/WaterFlowSensor/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique identifier of this water flow sensor entity"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - WaterFlowSensor
+              description: "NGSI-LD entity type. Must be WaterFlowSensor"
+              x-ngsi:
+                type: Property
+
+            measurementType:
+              type: string
+              description: "Sensing modality"
+              enum:
+                - remote
+              x-ngsi:
+                type: Property
+
+            waterHeightAccuracy:
+              type: object
+              description: "Accuracy of surface-height measurement"
+              properties:
+                value:
+                  type: number
+                  description: "Accuracy magnitude"
+                unitCode:
+                  type: string
+                  enum:
+                    - CM
+                  description: "Unit code for centimeters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            imagingComponents:
+              type: array
+              description: "On-board imaging sensors"
+              items:
+                type: string
+                enum:
+                  - LiDAR
+                  - infrared
+                  - thermal
+                  - nightVision
+              x-ngsi:
+                type: Property
+
+            communication:
+              type: string
+              description: "Data transmission interface"
+              enum:
+                - "3G/4G mobile"
+              x-ngsi:
+                type: Property
+
+            powerSource:
+              type: array
+              description: "Energy supply types"
+              items:
+                type: string
+                enum:
+                  - battery
+                  - solarPanel
+              x-ngsi:
+                type: Property
+
+            realTimeAlerts:
+              type: string
+              description: "Threshold-triggered acquisition capability"
+              enum:
+                - yes
+                - no
+              x-ngsi:
+                type: Property
+
+            fieldOfView:
+              type: object
+              description: "Camera field of view"
+              properties:
+                value:
+                  type: number
+                  description: "Field of view angle"
+                unitCode:
+                  type: string
+                  enum:
+                    - DEG
+                  description: "Unit code for degrees"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            dataOutputs:
+              type: array
+              description: "Types of data produced"
+              items:
+                type: string
+                enum:
+                  - hydrology
+                  - images
+                  - videos
+              x-ngsi:
+                type: Property
+
+            installationRequirements:
+              type: string
+              description: "Mounting instructions"
+              example: "above water under bridge"
+              x-ngsi:
+                type: Property
+
+          additionalProperties: false

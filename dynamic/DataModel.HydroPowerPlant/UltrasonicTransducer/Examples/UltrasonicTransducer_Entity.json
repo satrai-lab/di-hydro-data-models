@@ -1,0 +1,88 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:UltrasonicTransducer:001",
+  "type": "UltrasonicTransducer",
+
+  "name": {
+    "type": "Property",
+    "value": "UTX-40PZ Ultrasonic Transducer"
+  },
+  "onObject": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydroTurbine:Penstock:01"
+    ]
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "sensor"
+  },
+
+  "status": {
+    "type": "Property",
+    "value": "receiving_signal"
+  },
+  "model": {
+    "type": "Property",
+    "value": "UTX-40PZ"
+  },
+  "manufacturer": {
+    "type": "Property",
+    "value": "PiezoWave Technologies"
+  },
+  "resonantFrequency": {
+    "type": "Property",
+    "value": 40,
+    "unitCode": {
+      "type": "Property",
+      "value": "KHZ"
+    }
+  },
+  "powerRating": {
+    "type": "Property",
+    "value": 50,
+    "unitCode": {
+      "type": "Property",
+      "value": "W"
+    }
+  },
+  "material": {
+    "type": "Property",
+    "value": "Piezoelectric ceramic"
+  },
+  "mountType": {
+    "type": "Property",
+    "value": "adhesive"
+  },
+  "diameter": {
+    "type": "Property",
+    "value": 25,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "thickness": {
+    "type": "Property",
+    "value": 5,
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "protectionGrade": {
+    "type": "Property",
+    "value": "IP68"
+  },
+
+  "controlledBy": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:UltrasonicGenerator:001"
+    ]
+  }
+}

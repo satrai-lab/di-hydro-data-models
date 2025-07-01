@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-xxxxxx",
+  "title": "WaterFlowSensorModel",
+  "description": "Data Model of Water Flow Sensor for Hydropower Plant Monitoring",
+  "definitions": {
+    "WaterFlowSensor": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this water flow sensor entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": [ "WaterFlowSensor" ],
+              "description": "NGSI-LD entity type. Must be WaterFlowSensor"
+            },
+            "measurementType": {
+              "type": "string",
+              "enum": [ "remote" ],
+              "description": "Sensing modality"
+            },
+            "waterHeightAccuracy": {
+              "type": "object",
+              "description": "Accuracy of surface-height measurement",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "CM" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "imagingComponents": {
+              "type": "array",
+              "description": "On-board imaging sensors",
+              "items": {
+                "type": "string",
+                "enum": [ "LiDAR", "infrared", "thermal", "nightVision" ]
+              }
+            },
+            "communication": {
+              "type": "string",
+              "enum": [ "3G/4G mobile" ],
+              "description": "Data transmission interface"
+            },
+            "powerSource": {
+              "type": "array",
+              "description": "Energy supply types",
+              "items": {
+                "type": "string",
+                "enum": [ "battery", "solarPanel" ]
+              }
+            },
+            "realTimeAlerts": {
+              "type": "string",
+              "enum": [ "yes", "no" ],
+              "description": "Threshold-triggered acquisition capability"
+            },
+            "fieldOfView": {
+              "type": "object",
+              "description": "Camera field of view",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": {
+                  "type": "string",
+                  "enum": [ "DEG" ]
+                }
+              },
+              "additionalProperties": false
+            },
+            "dataOutputs": {
+              "type": "array",
+              "description": "Types of data produced",
+              "items": {
+                "type": "string",
+                "enum": [ "hydrology", "images", "videos" ]
+              }
+            },
+            "installationRequirements": {
+              "type": "string",
+              "description": "Mounting instructions"
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

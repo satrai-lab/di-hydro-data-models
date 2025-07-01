@@ -13,19 +13,22 @@ An **Ultrasonic Generator** is an electronic device that produces controlled hig
 
 ### Attribute Specifications
 
-| **Attribute**            | **NGSI-LD Type** | **Description**                          | **Units / Values**                                               |
-| ------------------------ | ---------------- | ---------------------------------------- | ---------------------------------------------------------------- |
-| **`id`**                 | Identifier       | Unique URI identifier                    | e.g. `urn:ngsi-ld:UltrasonicGenerator:001`                       |
-| **`type`**               | Type             | Fixed entity type                        | `"UltrasonicGenerator"`                                          |
-| **`status`**             | Property         | Operational status                       | `"active"`, `"idle"`, etc.                                       |
-| **`model`**              | Property         | Device model                             | e.g. `"USG-4X2024"`                                              |
-| **`manufacturer`**       | Property         | Name of the manufacturing company        | e.g. `"SonicTech Instruments"`                                   |
-| **`numberOfChannels`**   | Property         | Number of independent output channels    | integer (e.g. `4`)                                               |
-| **`outputVoltage`**      | Property         | Peak output voltage of each channel      | Object `{ value: number, unitCode: "V" }` (e.g. `{12, "V"}`)     |
-| **`signalFrequencyMin`** | Property         | Minimum frequency generated              | Object `{ value: number, unitCode: "kHz" }` (e.g. `{20, "kHz"}`) |
-| **`signalFrequencyMax`** | Property         | Maximum frequency generated              | Object `{ value: number, unitCode: "kHz" }` (e.g. `{40, "kHz"}`) |
-| **`pulseControl`**       | Property         | Signal emission mode                     | `"modulated"` or `"continuous"`                                  |
-| **`powerSupply`**        | Property         | Input power source                       | e.g. `"220 V AC, 50 Hz"`                                         |
-| **`dimensions`**         | Property         | Physical size of the generator enclosure | string (e.g. `"300 x 200 x 100 mm"`)                             |
-| **`weight`**             | Property         | Mass of the generator                    | string (e.g. `"2.5 kg"`)                                         |
+| **Attribute**              | **NGSI-LD Type** | **Description**                          | **Units / Values**                                                |
+| -------------------------- | ---------------- | ---------------------------------------- | ----------------------------------------------------------------- |
+| **`id`**                   | Identifier       | Unique URI identifier                    | e.g. `urn:ngsi-ld:UltrasonicGenerator:001`                        |
+| **`type`**                 | Type             | Fixed entity type                        | `"UltrasonicGenerator"`                                           |
+| **`status`**               | Property         | Operational status                       | `"active"` / `"idle"`                                             |
+| **`model`**                | Property         | Device model                             | e.g. `"USG-4X2024"`                                               |
+| **`manufacturer`**         | Property         | Manufacturer name                        | e.g. `"SonicTech Instruments"`                                    |
+| **`numberOfChannels`**     | Property         | Number of independent output channels    | integer (e.g. `4`)                                                |
+| **`outputVoltage`**        | Property         | Peak output voltage of each channel      | Object `{ value: number, unitCode: "V" }` (e.g. `{12, "V"}`)      |
+| **`signalFrequencyMin`**   | Property         | Minimum generated frequency              | Object `{ value: number, unitCode: "kHz" }` (e.g. `{20, "kHz"}`)  |
+| **`signalFrequencyMax`**   | Property         | Maximum generated frequency              | Object `{ value: number, unitCode: "kHz" }` (e.g. `{40, "kHz"}`)  |
+| **`pulseControl`**         | Property         | Emission mode                            | `"modulated"` / `"continuous"`                                    |
+| **`powerSupplyVoltage`**   | Property         | AC input voltage                         | Object `{ value: number, unitCode: "V" }` (e.g. `{220, "V"}`)     |
+| **`powerSupplyFrequency`** | Property         | AC line frequency                        | Object `{ value: number, unitCode: "Hz" }` (e.g. `{50, "Hz"}`)    |
+| **`dimensions`**           | Property         | Physical size of the generator enclosure | Object `{ value: [number, number, number], unitCode: "MMT" }`     |
+| **`weight`**               | Property         | Mass of the generator                    | Object `{ value: number, unitCode: "KGM" }` (e.g. `{2.5, "KGM"}`) |
+
+
 

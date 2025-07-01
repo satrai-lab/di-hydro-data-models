@@ -1,0 +1,606 @@
+openapi: 3.0.3
+info:
+  title: BlueROV2 Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for BlueROV2 ROV entities  
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a BlueROV2 entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/BlueROV2'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
+              id: "urn:ngsi-ld:BlueROV2:brv1"
+              type: "BlueROV2"
+              name:
+                type: "Property"
+                value: "BlueROV2 Inspection ROV"
+              onObject:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Reservoir:Reservoir-XYZ"
+              inHPP:
+                type: "Relationship"
+                object: "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+              deviceType:
+                type: "Property"
+                value: "device"
+              observations:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Observation:surge:9001"
+                  - "urn:ngsi-ld:Observation:sway:9002"
+                  - "urn:ngsi-ld:Observation:heave:9003"
+                  - "urn:ngsi-ld:Observation:roll:9004"
+                  - "urn:ngsi-ld:Observation:pitch:9005"
+                  - "urn:ngsi-ld:Observation:yaw:9006"
+                  - "urn:ngsi-ld:Observation:depth:9007"
+              thrustersNumbers:
+                type: "Property"
+                value: 8
+              thrustersModel:
+                type: "Property"
+                value: "T200"
+              directions:
+                type: "Property"
+                value:
+                  - "surge"
+                  - "sway"
+                  - "heave"
+                  - "roll"
+                  - "pitch"
+                  - "yaw"
+              maxForwardThrust:
+                type: "Property"
+                value: 40
+                unitCode:
+                  type: "Property"
+                  value: "N"
+              topSpeed:
+                type: "Property"
+                value: 2.0
+                unitCode:
+                  type: "Property"
+                  value: "MTR/S"
+              weightInAir:
+                type: "Property"
+                value: 14.5
+                unitCode:
+                  type: "Property"
+                  value: "KGM"
+              batteryVoltage:
+                type: "Property"
+                value: 14.8
+                unitCode:
+                  type: "Property"
+                  value: "V"
+              batteryCapacity:
+                type: "Property"
+                value: 18
+                unitCode:
+                  type: "Property"
+                  value: "AH"
+              batteryConfiguration:
+                type: "Property"
+                value: "4S×6P"
+              runtimeMin:
+                type: "Property"
+                value: 1.5
+                unitCode:
+                  type: "Property"
+                  value: "h"
+              runtimeMax:
+                type: "Property"
+                value: 4.0
+                unitCode:
+                  type: "Property"
+                  value: "h"
+              numberOfLEDs:
+                type: "Property"
+                value: 2
+              LEDType:
+                type: "Property"
+                value: "1500-lumen"
+              cameraResolution:
+                type: "Property"
+                value: "1080p"
+              cameraFrameRate:
+                type: "Property"
+                value: 30
+                unitCode:
+                  type: "Property"
+                  value: "FPS"
+              cameraLowLightCapable:
+                type: "Property"
+                value: "yes"
+              cameraMount:
+                type: "Property"
+                value: "servo tilt"
+              cameraEncoding:
+                type: "Property"
+                value: "H.264"
+              depthPressureSensor:
+                type: "Property"
+                value: "Bar30"
+              imuComponents:
+                type: "Property"
+                value:
+                  - "gyro"
+                  - "accel"
+                  - "mag"
+              optionalGPS:
+                type: "Property"
+                value: "optional"
+              commLinkType:
+                type: "Property"
+                value: "Ethernet"
+              commBandwidth:
+                type: "Property"
+                value: 100
+                unitCode:
+                  type: "Property"
+                  value: "MBPS"
+              commRange:
+                type: "Property"
+                value: 300
+                unitCode:
+                  type: "Property"
+                  value: "MTR"
+              payloadCapacity:
+                type: "Property"
+                value: 1.5
+                unitCode:
+                  type: "Property"
+                  value: "KGM"
+              depthRating:
+                type: "Property"
+                value: 100
+                unitCode:
+                  type: "Property"
+                  value: "MTR"
+      responses:
+        "201":
+          description: Entity created successfully
+
+components:
+  schemas:
+    Device:
+      type: object
+      required:
+        - id
+        - type
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier of the entity
+        type:
+          type: string
+          description: NGSI-LD entity type
+        name:
+          type: object
+          description: The name of the Device
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+        onObject:
+          type: object
+          description: The component(s) of the HPP that this device is installed on
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          additionalProperties: false
+        inHPP:
+          type: object
+          description: The HydropowerPlant that this device belongs to
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: string
+              format: uri
+          additionalProperties: false
+        controlledObservation:
+          type: object
+          description: The observation types this device can control
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: array
+              items:
+                type: string
+          additionalProperties: false
+        observations:
+          type: object
+          description: List of IDs of the observations produced by or connected to the device
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          additionalProperties: false
+        controlledActuation:
+          type: object
+          description: The actuation types this device can control
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: array
+              items:
+                type: string
+          additionalProperties: false
+        actuations:
+          type: object
+          description: List of IDs of the actuations produced by or connected to the device
+          properties:
+            type:
+              type: string
+              enum:
+                - Relationship
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          additionalProperties: false
+        deviceType:
+          type: object
+          description: Indicates sensor, actuator, or both
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
+              enum:
+                - sensor
+                - actuator
+                - sensorActuator
+                - Device
+                - System
+          additionalProperties: false
+        relativePosition:
+          type: object
+          description: Relative position of the device in 2D/3D space
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+                - LineString
+                - MultiLineString
+                - Polygon
+                - Trimesh
+            measurementUnit:
+              type: string
+            dimensions:
+              type: string
+              enum:
+                - 2D
+                - 3D
+            coordinates:
+              type: array
+              items: {}
+            faces:
+              type: array
+              items: {}
+          additionalProperties: false
+
+    BlueROV2:
+      allOf:
+        - $ref: '#/components/schemas/Device'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - BlueROV2
+              description: NGSI-LD entity type. Must be BlueROV2
+            thrustersNumbers:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: integer
+              description: Number of thruster units installed
+            thrustersModel:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              description: Model identifier of each thruster
+            directions:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: array
+                  items:
+                    type: string
+              description: Degrees-of-freedom (motion axes)
+            maxForwardThrust:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [N]
+              description: Maximum continuous forward thrust
+            topSpeed:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MTR/S]
+              description: Maximum forward speed
+            weightInAir:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [KGM]
+              description: Vehicle weight (including battery)
+            batteryVoltage:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [V]
+              description: Nominal pack voltage
+            batteryCapacity:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [AH]
+              description: Pack capacity
+            batteryConfiguration:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              description: Cell arrangement
+            runtimeMin:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [h]
+              description: Minimum expected mission duration
+            runtimeMax:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [h]
+              description: Maximum expected mission duration
+            numberOfLEDs:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: integer
+              description: Number of onboard LED bars
+            LEDType:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              description: LED light bar output
+            cameraResolution:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              description: Main camera imaging resolution
+            cameraFrameRate:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: integer
+                unitCode:
+                  type: string
+                  enum: [FPS]
+              description: Main camera maximum frame rate
+            cameraLowLightCapable:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              description: Low-light capability of main camera
+            cameraMount:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              description: Mount mechanism of main camera
+            cameraEncoding:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              description: Live-stream encoding format
+            depthPressureSensor:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              description: Depth/pressure sensor model
+            imuComponents:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: array
+                  items:
+                    type: string
+              description: Built-in IMU components
+            optionalGPS:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              description: GPS/compass presence
+            commLinkType:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              description: Data/video tether medium
+            commBandwidth:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [Mb/s]
+              description: Tether bandwidth
+            commRange:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [m]
+              description: Maximum tether length
+            payloadCapacity:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [KGM]
+              description: Spare buoyancy payload capacity
+            depthRating:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MTR]
+              description: Maximum operational depth
+      description: Data Model of BlueROV2 of Hydropower Plant Modeling

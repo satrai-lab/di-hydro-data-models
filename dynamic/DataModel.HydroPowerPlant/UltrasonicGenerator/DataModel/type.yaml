@@ -9,22 +9,6 @@ components:
         - type: object
           properties:
 
-            id:
-              type: string
-              format: uri
-              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
-              description: "Unique identifier of this ultrasonic generator entity"
-              x-ngsi:
-                type: Property
-
-            type:
-              type: string
-              enum:
-                - UltrasonicGenerator
-              description: "NGSI-LD entity type. Must be UltrasonicGenerator"
-              x-ngsi:
-                type: Property
-
             status:
               type: string
               description: "Operational status"
@@ -39,36 +23,26 @@ components:
 
             manufacturer:
               type: string
-              description: "Manufacturer"
+              description: "Manufacturer name"
               x-ngsi:
                 type: Property
 
             numberOfChannels:
-              type: object
+              type: integer
               description: "Number of output channels"
-              properties:
-                type:
-                  type: string
-                  enum: [ Property ]
-                value:
-                  type: integer
               x-ngsi:
                 type: Property
-              additionalProperties: false
 
             outputVoltage:
               type: object
-              description: "Output voltage"
+              description: "Peak output voltage"
               properties:
-                type:
-                  type: string
-                  enum: [ Property ]
                 value:
                   type: number
+                  description: "Voltage magnitude"
                 unitCode:
                   type: string
                   enum: [ V ]
-                  description: "Volt"
               x-ngsi:
                 type: Property
               additionalProperties: false
@@ -77,15 +51,11 @@ components:
               type: object
               description: "Minimum generated frequency"
               properties:
-                type:
-                  type: string
-                  enum: [ Property ]
                 value:
                   type: number
                 unitCode:
                   type: string
                   enum: [ kHz ]
-                  description: "Kilohertz"
               x-ngsi:
                 type: Property
               additionalProperties: false
@@ -94,22 +64,18 @@ components:
               type: object
               description: "Maximum generated frequency"
               properties:
-                type:
-                  type: string
-                  enum: [ Property ]
                 value:
                   type: number
                 unitCode:
                   type: string
                   enum: [ kHz ]
-                  description: "Kilohertz"
               x-ngsi:
                 type: Property
               additionalProperties: false
 
             pulseControl:
               type: string
-              description: "Signal mode (e.g., 'modulated', 'continuous')"
+              description: "Signal emission mode"
               x-ngsi:
                 type: Property
 
@@ -117,15 +83,11 @@ components:
               type: object
               description: "AC input voltage"
               properties:
-                type:
-                  type: string
-                  enum: [ Property ]
                 value:
                   type: number
                 unitCode:
                   type: string
                   enum: [ V ]
-                  description: "Volt"
               x-ngsi:
                 type: Property
               additionalProperties: false
@@ -134,55 +96,57 @@ components:
               type: object
               description: "AC line frequency"
               properties:
-                type:
-                  type: string
-                  enum: [ Property ]
                 value:
                   type: number
                 unitCode:
                   type: string
                   enum: [ Hz ]
-                  description: "Hertz"
               x-ngsi:
                 type: Property
               additionalProperties: false
 
             dimensions:
               type: object
-              description: "Physical size [length, width, height]"
+              description: "Envelope dimensions [L,W,H]"
               properties:
-                type:
-                  type: string
-                  enum: [ Property ]
                 value:
                   type: array
                   items:
                     type: number
-                  minItems: 3
-                  maxItems: 3
                 unitCode:
                   type: string
                   enum: [ MMT ]
-                  description: "Millimeter"
               x-ngsi:
                 type: Property
               additionalProperties: false
 
             weight:
               type: object
-              description: "Weight of the generator"
+              description: "Mass of the generator"
               properties:
-                type:
-                  type: string
-                  enum: [ Property ]
                 value:
                   type: number
                 unitCode:
                   type: string
                   enum: [ KGM ]
-                  description: "Kilogram"
               x-ngsi:
                 type: Property
+              additionalProperties: false
+
+            controls:
+              type: object
+              description: "References to ultrasonic transducer entities driven by this generator"
+              properties:
+                type:
+                  type: string
+                  enum: [ Relationship ]
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+              x-ngsi:
+                type: Relationship
               additionalProperties: false
 
           additionalProperties: false

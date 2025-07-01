@@ -1,0 +1,284 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "DeviceModel",
+  "description": "Data Model of BlueROV2 of Hydropower Plant Modeling",
+  "definitions": {
+    "BlueROV2": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this BlueROV2 entity"
+            },
+            "type": {
+              "type": "string",
+              "enum": ["BlueROV2"],
+              "description": "NGSI-LD entity type. Must be BlueROV2"
+            },
+            "thrustersNumbers": {
+              "type": "object",
+              "description": "Number of thruster units installed",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "integer" }
+              },
+              "additionalProperties": false
+            },
+            "thrustersModel": {
+              "type": "object",
+              "description": "Model identifier of each thruster",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "string" }
+              },
+              "additionalProperties": false
+            },
+            "directions": {
+              "type": "object",
+              "description": "Degrees-of-freedom (motion axes)",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              },
+              "additionalProperties": false
+            },
+            "maxForwardThrust": {
+              "type": "object",
+              "description": "Maximum continuous forward thrust",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["N"] }
+              },
+              "additionalProperties": false
+            },
+            "topSpeed": {
+              "type": "object",
+              "description": "Maximum forward speed",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["MTR/S"] }
+              },
+              "additionalProperties": false
+            },
+            "weightInAir": {
+              "type": "object",
+              "description": "Vehicle weight in air (including battery)",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["KGM","LB"] }
+              },
+              "additionalProperties": false
+            },
+            "batteryVoltage": {
+              "type": "object",
+              "description": "Nominal pack voltage",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["V"] }
+              },
+              "additionalProperties": false
+            },
+            "batteryCapacity": {
+              "type": "object",
+              "description": "Pack capacity",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["AH"] }
+              },
+              "additionalProperties": false
+            },
+            "batteryConfiguration": {
+              "type": "object",
+              "description": "Cell arrangement",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "string" }
+              },
+              "additionalProperties": false
+            },
+            "runtimeMin": {
+              "type": "object",
+              "description": "Minimum expected mission duration",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["h"] }
+              },
+              "additionalProperties": false
+            },
+            "runtimeMax": {
+              "type": "object",
+              "description": "Maximum expected mission duration",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["h"] }
+              },
+              "additionalProperties": false
+            },
+            "numberOfLEDs": {
+              "type": "object",
+              "description": "Number of onboard LED light bars",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "integer" }
+              },
+              "additionalProperties": false
+            },
+            "LEDType": {
+              "type": "object",
+              "description": "LED light bar output brightness",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "string" }
+              },
+              "additionalProperties": false
+            },
+            "cameraResolution": {
+              "type": "object",
+              "description": "Main camera imaging resolution",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "string" }
+              },
+              "additionalProperties": false
+            },
+            "cameraFrameRate": {
+              "type": "object",
+              "description": "Main camera maximum frame rate",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["fps"] }
+              },
+              "additionalProperties": false
+            },
+            "cameraLowLightCapable": {
+              "type": "object",
+              "description": "Low-light capability of main camera",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "string", "enum": ["yes","no"] }
+              },
+              "additionalProperties": false
+            },
+            "cameraMount": {
+              "type": "object",
+              "description": "Mount mechanism for the main camera",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "string" }
+              },
+              "additionalProperties": false
+            },
+            "cameraEncoding": {
+              "type": "object",
+              "description": "Live-stream encoding format",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "string" }
+              },
+              "additionalProperties": false
+            },
+            "depthPressureSensor": {
+              "type": "object",
+              "description": "Depth/pressure sensor model",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "string" }
+              },
+              "additionalProperties": false
+            },
+            "imuComponents": {
+              "type": "object",
+              "description": "Built-in IMU components",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              },
+              "additionalProperties": false
+            },
+            "optionalGPS": {
+              "type": "object",
+              "description": "GPS/compass presence",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "string", "enum": ["optional","none"] }
+              },
+              "additionalProperties": false
+            },
+            "commLinkType": {
+              "type": "object",
+              "description": "Data/video tether medium",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "string" }
+              },
+              "additionalProperties": false
+            },
+            "commBandwidth": {
+              "type": "object",
+              "description": "Data/video tether bandwidth",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["Mb/s"] }
+              },
+              "additionalProperties": false
+            },
+            "commRange": {
+              "type": "object",
+              "description": "Maximum tether length",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["m"] }
+              },
+              "additionalProperties": false
+            },
+            "payloadCapacity": {
+              "type": "object",
+              "description": "Spare buoyancy payload capacity",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["KGM"] }
+              },
+              "additionalProperties": false
+            },
+            "depthRating": {
+              "type": "object",
+              "description": "Maximum safe operating depth",
+              "properties": {
+                "type": { "type": "string", "enum": ["Property"] },
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["MTR"] }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

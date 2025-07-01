@@ -5,6 +5,14 @@
        style="max-width: 100%; height: auto; width: 500px">
 </div>
 
+---
+
+<div style="display: flex; justify-content: center; margin: 20px 0">
+  <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/Diagrams/BiofoulingSystem.png" 
+       alt="HydroPowerPlantCommunity Diagram" 
+       style="max-width: 100%; height: auto; width: 600px">
+</div>
+
 ## Definition
 An **Ultrasonic Generator** is an electronic device that produces controlled high-frequency electrical waveforms—typically in the 20–40 kHz range—to drive ultrasonic transducers in antifouling systems. It offers multiple output channels, signal modulation modes, and precise timing controls to synchronize ultrasonic pulses, preventing biofouling on submerged surfaces.
 

@@ -1,0 +1,82 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:WaterFlowSensor:001",
+  "type": "WaterFlowSensor",
+
+  "name": {
+    "type": "Property",
+    "value": "River Flow Sensor 1"
+  },
+  "onObject": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Bridge:Bridge-01"
+    ]
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:Flow:1001"
+    ]
+  },
+
+  "measurementType": {
+    "type": "Property",
+    "value": "remote"
+  },
+  "waterHeightAccuracy": {
+    "type": "Property",
+      "value": 0.01,
+      "unitCode": {
+        "type": "Property",
+        "value": "CM"
+      }
+  },
+  "imagingComponents": {
+    "type": "Property",
+    "value": [
+      "LiDAR",
+      "infrared",
+      "thermal"
+    ]
+  },
+  "communication": {
+    "type": "Property",
+    "value": "3G/4G mobile"
+  },
+  "powerSource": {
+    "type": "Property",
+    "value": [
+      "battery",
+      "solarPanel"
+    ]
+  },
+  "realTimeAlerts": {
+    "type": "Property",
+    "value": "yes"
+  },
+  "fieldOfView": {
+    "type": "Property",
+      "value": 130,
+      "unitCode": {
+        "type": "Property",
+        "value": "DEG"
+      }
+  },
+  "dataOutputs": {
+    "type": "Property",
+    "value": [
+      "hydrology",
+      "images",
+      "videos"
+    ]
+  },
+  "installationRequirements": {
+    "type": "Property",
+    "value": "Mounted above water under a bridge"
+  }
+}

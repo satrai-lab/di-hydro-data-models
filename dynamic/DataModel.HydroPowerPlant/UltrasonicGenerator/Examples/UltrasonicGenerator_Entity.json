@@ -1,0 +1,114 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+  "id": "urn:ngsi-ld:UltrasonicGenerator:001",
+  "type": "UltrasonicGenerator",
+
+  "name": {
+    "type": "Property",
+    "value": "USG-4X2024 Ultrasonic Generator"
+  },
+  "onObject": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydroTurbine:Penstock:01"
+    ]
+  },
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HydropowerPlant:Plant-XYZ"
+  },
+  "deviceType": {
+    "type": "Property",
+    "value": "actuator"
+  },
+
+  "status": {
+    "type": "Property",
+    "value": "active"
+  },
+  "model": {
+    "type": "Property",
+    "value": "USG-4X2024"
+  },
+  "manufacturer": {
+    "type": "Property",
+    "value": "SonicTech Instruments"
+  },
+  "numberOfChannels": {
+    "type": "Property",
+    "value": 4
+  },
+  "outputVoltage": {
+    "type": "Property",
+      "value": 12,
+      "unitCode": {
+        "type": "Property",
+        "value": "V"
+      }
+  },
+  "signalFrequencyMin": {
+    "type": "Property",
+      "value": 20,
+      "unitCode": {
+        "type": "Property",
+        "value": "kHz"
+      }
+  },
+  "signalFrequencyMax": {
+    "type": "Property",
+      "value": 40,
+      "unitCode": {
+        "type": "Property",
+        "value": "kHz"
+      }
+  },
+  "pulseControl": {
+    "type": "Property",
+    "value": "modulated"
+  },
+  "powerSupplyVoltage": {
+    "type": "Property",
+      "value": 220,
+      "unitCode": {
+        "type": "Property",
+        "value": "V"
+      }
+  },
+  "powerSupplyFrequency": {
+    "type": "Property",
+      "value": 50,
+      "unitCode": {
+        "type": "Property",
+        "value": "Hz"
+      }
+  },
+  "dimensions": {
+    "type": "Property",
+    "value": [300, 200, 100],
+    "unitCode": {
+      "type": "Property",
+      "value": "MMT"
+    }
+  },
+  "weight": {
+    "type": "Property",
+      "value": 2.5,
+      "unitCode": {
+        "type": "Property",
+        "value": "KGM"
+      }
+  },
+  "controls": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:UltrasonicTransducer:TX-01",
+      "urn:ngsi-ld:UltrasonicTransducer:TX-02"
+    ]
+  },
+  "actuations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Actuation:UltrasonicWave:001"
+    ]
+  }
+}

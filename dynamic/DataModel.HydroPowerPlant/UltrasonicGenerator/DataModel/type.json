@@ -1,175 +1,102 @@
-{
+ {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
-  "title": "DeviceModel",
-  "description": "Data Model of UltrasonicGenerator of Hydropower Plant Modeling",
-  "definitions": {
-    "UltrasonicGenerator": {
-      "allOf": [
-        {
-          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+  "title": "UltrasonicGenerator",
+  "allOf": [
+    {
+      "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#/definitions/Device"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
         },
-        {
+        "model": {
+          "type": "string"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "numberOfChannels": {
+          "type": "integer"
+        },
+        "outputVoltage": {
           "type": "object",
           "properties": {
-            "id": {
-              "type": "string",
-              "format": "uri",
-              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
-              "description": "Unique identifier of this ultrasonic generator entity"
+            "value": { "type": "number" },
+            "unitCode": { "type": "string", "enum": ["V"] }
+          },
+          "additionalProperties": false
+        },
+        "signalFrequencyMin": {
+          "type": "object",
+          "properties": {
+            "value": { "type": "number" },
+            "unitCode": { "type": "string", "enum": ["kHz"] }
+          },
+          "additionalProperties": false
+        },
+        "signalFrequencyMax": {
+          "type": "object",
+          "properties": {
+            "value": { "type": "number" },
+            "unitCode": { "type": "string", "enum": ["kHz"] }
+          },
+          "additionalProperties": false
+        },
+        "pulseControl": { "type": "string" },
+        "powerSupplyVoltage": {
+          "type": "object",
+          "properties": {
+            "value": { "type": "number" },
+            "unitCode": { "type": "string", "enum": ["V"] }
+          },
+          "additionalProperties": false
+        },
+        "powerSupplyFrequency": {
+          "type": "object",
+          "properties": {
+            "value": { "type": "number" },
+            "unitCode": { "type": "string", "enum": ["Hz"] }
+          },
+          "additionalProperties": false
+        },
+        "dimensions": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "array",
+              "items": { "type": "number" }
             },
-            "type": {
-              "type": "string",
-              "enum": [
-                "UltrasonicGenerator"
-              ],
-              "description": "NGSI-LD entity type. Must be UltrasonicGenerator"
-            },
-            "status": {
-              "type": "string",
-              "description": "Operational status"
-            },
-            "model": {
-              "type": "string",
-              "description": "Device model"
-            },
-            "manufacturer": {
-              "type": "string",
-              "description": "Manufacturer"
-            },
-            "numberOfChannels": {
-              "type": "object",
-              "description": "Number of output channels",
-              "properties": {
-                "value": {
-                  "type": "integer"
-                }
-              },
-              "additionalProperties": false
-            },
-            "outputVoltage": {
-              "type": "object",
-              "description": "Output voltage",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": [
-                    "V"
-                  ]
-                }
-              },
-              "additionalProperties": false
-            },
-            "signalFrequencyMin": {
-              "type": "object",
-              "description": "Minimum generated frequency",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": [
-                    "kHz"
-                  ]
-                }
-              },
-              "additionalProperties": false
-            },
-            "signalFrequencyMax": {
-              "type": "object",
-              "description": "Maximum generated frequency",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": [
-                    "kHz"
-                  ]
-                }
-              },
-              "additionalProperties": false
-            },
-            "pulseControl": {
-              "type": "string",
-              "description": "Signal mode"
-            },
-            "powerSupplyVoltage": {
-              "type": "object",
-              "description": "AC input voltage",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": [
-                    "V"
-                  ]
-                }
-              },
-              "additionalProperties": false
-            },
-            "powerSupplyFrequency": {
-              "type": "object",
-              "description": "AC line frequency",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": [
-                    "Hz"
-                  ]
-                }
-              },
-              "additionalProperties": false
-            },
-            "dimensions": {
-              "type": "object",
-              "description": "Physical size [length, width, height]",
-              "properties": {
-                "value": {
-                  "type": "array",
-                  "items": {
-                    "type": "number"
-                  }
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": [
-                    "MMT"
-                  ]
-                }
-              },
-              "additionalProperties": false
-            },
-            "weight": {
-              "type": "object",
-              "description": "Weight of the generator",
-              "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": [
-                    "KGM"
-                  ]
-                }
-              },
-              "additionalProperties": false
+            "unitCode": { "type": "string", "enum": ["MMT"] }
+          },
+          "additionalProperties": false
+        },
+        "weight": {
+          "type": "object",
+          "properties": {
+            "value": { "type": "number" },
+            "unitCode": { "type": "string", "enum": ["KGM"] }
+          },
+          "additionalProperties": false
+        },
+        "controls": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["Relationship"] },
+            "object": {
+              "type": "array",
+              "items": { "type": "string", "format": "uri" }
             }
           },
           "additionalProperties": false
         }
-      ]
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
     }
-  }
+  ]
 }
+

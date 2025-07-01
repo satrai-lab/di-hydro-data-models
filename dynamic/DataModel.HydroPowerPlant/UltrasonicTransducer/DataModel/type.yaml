@@ -1,0 +1,198 @@
+components:
+  schemas:
+
+    UltrasonicTransducer:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/UltrasonicTransducer/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique URI identifier of this ultrasonic transducer entity"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - UltrasonicTransducer
+              description: "NGSI-LD entity type. Must be UltrasonicTransducer"
+              x-ngsi:
+                type: Property
+
+            status:
+              type: object
+              description: "Operational status"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                  description: "e.g. 'receiving_signal', 'idle'"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            model:
+              type: object
+              description: "Device model identifier"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            manufacturer:
+              type: object
+              description: "Name of the manufacturing company"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            resonantFrequency:
+              type: object
+              description: "Operating resonant frequency"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - kHz
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            powerRating:
+              type: object
+              description: "Maximum power handling"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - W
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            material:
+              type: object
+              description: "Main construction material"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            mountType:
+              type: object
+              description: "Installation method"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                  enum:
+                    - adhesive
+                    - magnetic
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            diameter:
+              type: object
+              description: "Transducer face diameter"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            thickness:
+              type: object
+              description: "Transducer thickness"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MMT
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            protectionGrade:
+              type: object
+              description: "Ingress protection rating"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                  description: "e.g. 'IP68'"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            controlledBy:
+              type: array
+              description: "References to the driving Ultrasonic Generator entity"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+
+          additionalProperties: false

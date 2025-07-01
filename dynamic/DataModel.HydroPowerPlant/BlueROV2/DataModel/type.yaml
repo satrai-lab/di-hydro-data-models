@@ -1,0 +1,453 @@
+components:
+  schemas:
+
+    BlueROV2:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/BlueROV2/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              description: "Unique identifier of this BlueROV2 entity"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - BlueROV2
+              description: "NGSI-LD entity type. Must be BlueROV2"
+              x-ngsi:
+                type: Property
+
+            thrustersNumbers:
+              type: object
+              description: "Number of thruster units installed"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: integer
+                  description: "Count of thrusters"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            thrustersModel:
+              type: object
+              description: "Model identifier of each thruster"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                  description: "Thruster model"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            directions:
+              type: object
+              description: "Degrees-of-freedom (motion axes)"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: array
+                  items:
+                    type: string
+                  description: "List of motion axes"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            maxForwardThrust:
+              type: object
+              description: "Maximum continuous forward thrust"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - N
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            topSpeed:
+              type: object
+              description: "Maximum forward speed"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "MTR/PER_S"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            weightInAir:
+              type: object
+              description: "Vehicle weight in air (including battery)"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - KGM
+                    - LB
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            batteryVoltage:
+              type: object
+              description: "Nominal pack voltage"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - V
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            batteryCapacity:
+              type: object
+              description: "Pack capacity"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - AH
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            batteryConfiguration:
+              type: object
+              description: "Cell arrangement"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            runtimeMin:
+              type: object
+              description: "Minimum expected mission duration"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - h
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            runtimeMax:
+              type: object
+              description: "Maximum expected mission duration"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - h
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            numberOfLEDs:
+              type: object
+              description: "Number of onboard LED light bars"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: integer
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            LEDType:
+              type: object
+              description: "LED light bar output brightness"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            cameraResolution:
+              type: object
+              description: "Main camera imaging resolution"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            cameraFrameRate:
+              type: object
+              description: "Main camera maximum frame rate"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - fps
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            cameraLowLightCapable:
+              type: object
+              description: "Low-light capability of main camera"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                  enum:
+                    - "yes"
+                    - "no"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            cameraMount:
+              type: object
+              description: "Mount mechanism for the main camera"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            cameraEncoding:
+              type: object
+              description: "Live-stream encoding format"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            depthPressureSensor:
+              type: object
+              description: "Depth/pressure sensor model"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            imuComponents:
+              type: object
+              description: "Built-in IMU components"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: array
+                  items:
+                    type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            optionalGPS:
+              type: object
+              description: "GPS/compass presence"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                  enum:
+                    - "optional"
+                    - "none"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            commLinkType:
+              type: object
+              description: "Data/video tether medium"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            commBandwidth:
+              type: object
+              description: "Data/video tether bandwidth"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - "Mb/s"
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            commRange:
+              type: object
+              description: "Maximum tether length"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - m
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            payloadCapacity:
+              type: object
+              description: "Spare buoyancy payload capacity"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - KGM
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            depthRating:
+              type: object
+              description: "Maximum safe operating depth"
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MTR
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+          additionalProperties: false

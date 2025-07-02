@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "HydropowerPlantModeling",
+  "description": "Data Model of DraftTube in Hydropower Plant Modeling",
+  "definitions": {
+    "DraftTube": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json#/definitions/GenericStaticComponent"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this DraftTube component"
+            },
+            "type": {
+              "type": "string",
+              "enum": ["DraftTube"],
+              "description": "NGSI-LD entity type. Must be DraftTube"
+            },
+            "shape": {
+              "type": "object",
+              "description": "Shape of the draft tube",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": ["conical", "elbow"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "length": {
+              "type": "object",
+              "description": "Tube length in meters",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "diameterAtEntry": {
+              "type": "object",
+              "description": "Entry diameter of the tube (m)",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "diameterAtExit": {
+              "type": "object",
+              "description": "Exit diameter of the tube (m)",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "material": {
+              "type": "object",
+              "description": "Construction material of the draft tube",
+              "properties": {
+                "value": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "connectsTurbine": {
+              "type": "object",
+              "description": "Reference to the Turbine entity",
+              "properties": {
+                "object": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "additionalProperties": false
+            },
+            "dischargesToTailrace": {
+              "type": "object",
+              "description": "Reference to the Tailrace entity",
+              "properties": {
+                "object": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

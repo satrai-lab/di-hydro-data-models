@@ -1,0 +1,232 @@
+openapi: 3.0.3
+info:
+  title: Tailrace Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for Tailrace entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a Tailrace entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Tailrace'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json"
+              id: "urn:ngsi-ld:Tailrace:tailrace-01"
+              type: "Tailrace"
+              name:
+                type: "Property"
+                value: "Downstream Tailrace Channel"
+              geographicalLocation:
+                type: "GeoProperty"
+                value:
+                  type: "Point"
+                  coordinates: [-121.55, 47.36]
+              isPartOfHydroPowerPlant:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+              hasDevices:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Sensor:level-sensor-01"
+              observations:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Observation:obs999"
+              actuations:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Actuation:flow-regulator-01"
+              length:
+                type: "Property"
+                value: 120.0
+                unitCode:
+                  type: "Property"
+                  value: "M"
+              waterLevel:
+                type: "Property"
+                value: 3.2
+                unitCode:
+                  type: "Property"
+                  value: "M"
+              flowRate:
+                type: "Property"
+                value: 55.4
+                unitCode:
+                  type: "Property"
+                  value: "MQS"
+              connectsToWaterBody:
+                type: "Relationship"
+                object: "urn:ngsi-ld:WaterBody:river-blue-001"
+              receivesFromDraftTube:
+                type: "Relationship"
+                object: "urn:ngsi-ld:DraftTube:dtube001"
+      responses:
+        '201':
+          description: Tailrace entity created successfully
+
+components:
+  schemas:
+    GenericStaticComponent:
+      type: object
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          type: string
+          format: uri
+        type:
+          type: string
+        name:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+        geographicalLocation:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [GeoProperty]
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Point]
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+        isPartOfHydroPowerPlant:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        hasDevices:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        observations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+
+    Tailrace:
+      allOf:
+        - $ref: '#/components/schemas/GenericStaticComponent'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum: [Tailrace]
+              description: NGSI-LD entity type. Must be Tailrace
+            length:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [Property]
+                    value:
+                      type: string
+                      enum: [M]
+            waterLevel:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [Property]
+                    value:
+                      type: string
+                      enum: [M]
+            flowRate:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [Property]
+                    value:
+                      type: string
+                      enum: [MQS]
+            connectsToWaterBody:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: string
+                  format: uri
+            receivesFromDraftTube:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: string
+                  format: uri
+      description: Data Model of Tailrace in Hydropower Plant Modeling

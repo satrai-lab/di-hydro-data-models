@@ -1,4 +1,9 @@
 # GenericStaticComponent
+<div style="display: flex; justify-content: center; margin: 20px 0">
+  <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/static/Diagrams/GenericStaticComponent.png" 
+       alt="GenericStaticComponent Diagram" 
+       style="max-width: 100%; height: auto; width: 650px">
+</div>
 
 ## Definition
 

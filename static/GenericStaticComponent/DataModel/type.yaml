@@ -79,7 +79,7 @@ components:
           x-ngsi:
             type: GeoProperty
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/GenericStaticComponent/DataModel/type.json"
 
 info:
   description: "Generic static component schema for Hydropower Plant data modeling. Acts as a base for Dam, Spillway, Intake, etc."

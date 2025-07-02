@@ -1,0 +1,72 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json",
+  "id": "urn:ngsi-ld:Tailrace:tailrace-01",
+  "type": "Tailrace",
+  "name": {
+    "type": "Property",
+    "value": "Downstream Tailrace Channel"
+  },
+  "geographicalLocation": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [-121.55, 47.36]
+    }
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  },
+  "hasDevices": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Sensor:level-sensor-01"
+    ]
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:obs999"
+    ]
+  },
+  "actuations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Actuation:flow-regulator-01"
+    ]
+  },
+  "length": {
+    "type": "Property",
+    "value": 120.0,
+    "unitCode":{
+      "type": "Property",
+      "value": "M"
+    }
+  },
+  "waterLevel": {
+    "type": "Property",
+    "value": 3.2,
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
+    }
+  },
+  "flowRate": {
+    "type": "Property",
+    "value": 55.4,
+    "unitCode": {
+      "type": "Property",
+      "value": "MQS"
+    }
+  },
+  "connectsToWaterBody": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:WaterBody:river-blue-001"
+  },
+  "receivesFromDraftTube": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:DraftTube:dtube001"
+  }
+}

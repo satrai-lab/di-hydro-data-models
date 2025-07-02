@@ -1,0 +1,131 @@
+components:
+  schemas:
+
+    DraftTube:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/DraftTube/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
+        - type: object
+          properties:
+
+            id:
+              type: string
+              format: uri
+              pattern: '^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$'
+              description: "Unique identifier of this DraftTube component"
+              x-ngsi:
+                type: Property
+
+            type:
+              type: string
+              enum:
+                - DraftTube
+              description: "NGSI-LD entity type. Must be DraftTube"
+              x-ngsi:
+                type: Property
+
+            shape:
+              type: object
+              description: "Shape of the draft tube"
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+                  enum: ["conical", "elbow"]
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            length:
+              type: object
+              description: "Tube length in meters"
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [M]
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            diameterAtEntry:
+              type: object
+              description: "Entry diameter of the tube (m)"
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [M]
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            diameterAtExit:
+              type: object
+              description: "Exit diameter of the tube (m)"
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [M]
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            material:
+              type: object
+              description: "Construction material of the draft tube"
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+              x-ngsi:
+                type: Property
+              additionalProperties: false
+
+            connectsTurbine:
+              type: object
+              description: "Relationship to the Turbine entity"
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: string
+                  format: uri
+              x-ngsi:
+                type: Relationship
+              additionalProperties: false
+
+            dischargesToTailrace:
+              type: object
+              description: "Relationship to the Tailrace entity"
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: string
+                  format: uri
+              x-ngsi:
+                type: Relationship
+              additionalProperties: false
+
+          additionalProperties: false

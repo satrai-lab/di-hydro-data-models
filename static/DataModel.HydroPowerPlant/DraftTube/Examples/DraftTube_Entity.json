@@ -1,0 +1,80 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json",
+  "id": "urn:ngsi-ld:DraftTube:dtube001",
+  "type": "DraftTube",
+  "name": {
+    "type": "Property",
+    "value": "Main Draft Tube"
+  },
+  "geographicalLocation": {
+    "type": "GeoProperty",
+    "value": {
+      "type": "Point",
+      "coordinates": [-121.50, 47.35]
+    }
+  },
+  "isPartOfHydroPowerPlant": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+    ]
+  },
+  "hasDevices": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Sensor:pressure-sensor-01"
+    ]
+  },
+  "observations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Observation:obs9876"
+    ]
+  },
+  "actuations": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Actuation:valve-actuation-01"
+    ]
+  },
+  "shape": {
+    "type": "Property",
+    "value": "conical"
+  },
+  "length": {
+    "type": "Property",
+    "value": 8.5,
+    "unitCode":{
+      "type": "Property",
+      "value": "M"
+    }
+  },
+  "diameterAtEntry": {
+    "type": "Property",
+    "value": 4.2,
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
+    }
+  },
+  "diameterAtExit": {
+    "type": "Property",
+    "value": 5.5,
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
+    }
+  },
+  "material": {
+    "type": "Property",
+    "value": "Steel"
+  },
+  "connectsTurbine": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Turbine:turbine-A1"
+  },
+  "dischargesToTailrace": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Tailrace:tailrace-01"
+  }
+}

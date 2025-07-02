@@ -1,0 +1,98 @@
+components:
+  schemas:
+
+    GenericStaticComponent:
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          anyOf: &anyof
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              type: string
+          format: uri
+          type: string
+          description: "Unique identifier of the GenericStaticComponent"
+          x-ngsi:
+            type: Property
+        type:
+          type: string
+          enum:
+            - GenericStaticComponent
+          description: "NGSI Entity type. It has to be GenericStaticComponent"
+          x-ngsi:
+            type: Property
+        name:
+          type: string
+          description: "The name of the static component"
+          x-ngsi:
+            type: Property
+        isPartOfHydroPowerPlant:
+          type: array
+          description: "Array of references to the HydropowerPlant entity this component is part of"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+        hasDevices:
+          type: array
+          description: "Array of references to sensors, meters, or embedded systems linked to this component"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+        observations:
+          type: array
+          description: "Array of references to Observation entities produced by linked devices"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+        actuations:
+          type: array
+          description: "Array of references to Actuation entities for control or manipulation (e.g., gate opening)"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
+        geographicalLocation:
+          type: object
+          description: "GeoJSON property of type 'Point' representing the component’s location. First element is longitude, second is latitude."
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+              minItems: 2
+          x-ngsi:
+            type: GeoProperty
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json"
+
+info:
+  description: "Generic static component schema for Hydropower Plant data modeling. Acts as a base for Dam, Spillway, Intake, etc."
+  title: HydropowerPlantModeling
+  version: "1.0.2"
+openapi: "3.0.3"
+paths:
+  /ngsi-ld/v1/entities:
+    get:
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                type: object
+          description: OK

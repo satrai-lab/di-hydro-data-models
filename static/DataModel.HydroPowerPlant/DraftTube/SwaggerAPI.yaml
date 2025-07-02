@@ -1,0 +1,254 @@
+openapi: 3.0.3
+info:
+  title: DraftTube Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API with attribute-level documentation for DraftTube entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a DraftTube entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/DraftTube'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json"
+              id: "urn:ngsi-ld:DraftTube:dtube001"
+              type: "DraftTube"
+              name:
+                type: "Property"
+                value: "Main Draft Tube"
+              geographicalLocation:
+                type: "GeoProperty"
+                value:
+                  type: "Point"
+                  coordinates: [-121.50, 47.35]
+              isPartOfHydroPowerPlant:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+              hasDevices:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Sensor:pressure-sensor-01"
+              observations:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Observation:obs9876"
+              actuations:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Actuation:valve-actuation-01"
+              shape:
+                type: "Property"
+                value: "conical"
+              length:
+                type: "Property"
+                value: 8.5
+                unitCode:
+                  type: "Property"
+                  value: "M"
+              diameterAtEntry:
+                type: "Property"
+                value: 4.2
+                unitCode:
+                  type: "Property"
+                  value: "M"
+              diameterAtExit:
+                type: "Property"
+                value: 5.5
+                unitCode:
+                  type: "Property"
+                  value: "M"
+              material:
+                type: "Property"
+                value: "Steel"
+              connectsTurbine:
+                type: "Relationship"
+                object: "urn:ngsi-ld:Turbine:turbine-A1"
+              dischargesToTailrace:
+                type: "Relationship"
+                object: "urn:ngsi-ld:Tailrace:tailrace-01"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    GenericStaticComponent:
+      type: object
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier
+        type:
+          type: string
+        name:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+        geographicalLocation:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [GeoProperty]
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Point]
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+        isPartOfHydroPowerPlant:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        hasDevices:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        observations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+
+    DraftTube:
+      allOf:
+        - $ref: '#/components/schemas/GenericStaticComponent'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum: [DraftTube]
+              description: NGSI-LD entity type. Must be DraftTube
+            shape:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+                  enum: [conical, elbow]
+            length:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [Property]
+                    value:
+                      type: string
+                      enum: [M]
+            diameterAtEntry:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [Property]
+                    value:
+                      type: string
+                      enum: [M]
+            diameterAtExit:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [Property]
+                    value:
+                      type: string
+                      enum: [M]
+            material:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+            connectsTurbine:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: string
+            dischargesToTailrace:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: string
+      description: Data Model of DraftTube in Hydropower Plant Modeling

@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "HydropowerPlantModeling",
+  "description": "Data Model of Tailrace in Hydropower Plant Modeling",
+  "definitions": {
+    "Tailrace": {
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json#/definitions/GenericStaticComponent"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "description": "Unique identifier of this Tailrace component"
+            },
+            "type": {
+              "type": "string",
+              "enum": ["Tailrace"],
+              "description": "NGSI-LD entity type. Must be Tailrace"
+            },
+            "length": {
+              "type": "object",
+              "description": "Channel length in meters",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["M"] }
+              },
+              "additionalProperties": false
+            },
+            "waterLevel": {
+              "type": "object",
+              "description": "Current water level at the tailrace (m)",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["M"] }
+              },
+              "additionalProperties": false
+            },
+            "flowRate": {
+              "type": "object",
+              "description": "Discharge rate at the tailrace outlet (m³/s)",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["MQS"] }
+              },
+              "additionalProperties": false
+            },
+            "connectsToWaterBody": {
+              "type": "object",
+              "description": "Points to a downstream river, lake, or reservoir",
+              "properties": {
+                "object": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "additionalProperties": false
+            },
+            "receivesFromDraftTube": {
+              "type": "object",
+              "description": "Indicates which draft tube(s) feed this tailrace",
+              "properties": {
+                "object": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

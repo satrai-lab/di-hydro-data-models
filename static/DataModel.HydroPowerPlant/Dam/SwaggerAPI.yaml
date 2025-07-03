@@ -31,11 +31,15 @@ paths:
               damHeight:
                 type: "Property"
                 value: 85
-                unitCode: "M"
+                unitCode:
+                  type: "Property"
+                  value: "M"
               damLength:
                 type: "Property"
                 value: 320
-                unitCode: "M"
+                unitCode:
+                  type: "Property"
+                  value: "M"
               constructionMaterials:
                 type: "Property"
                 value: "Concrete"
@@ -48,7 +52,9 @@ paths:
               damCrestElevation:
                 type: "Property"
                 value: 400
-                unitCode: "M"
+                unitCode:
+                  type: "Property"
+                  value: "M"
               hasSpillway:
                 type: "Relationship"
                 object:
@@ -71,7 +77,7 @@ paths:
 
 components:
   schemas:
-    Dam:
+    GenericStaticComponent:
       type: object
       required:
         - id
@@ -81,202 +87,224 @@ components:
         id:
           type: string
           format: uri
-          description: Unique URI identifier for the Dam
-
+          description: Unique URI identifier
         type:
           type: string
-          enum:
-            - Dam
-          description: Fixed entity type identifier
-
         name:
           type: object
-          description: Official or common name of the Dam
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-              description: Dam name
-          required: [type, value]
-
         geographicalLocation:
           type: object
-          description: GeoJSON Point of the dam’s location (longitude, latitude)
           properties:
             type:
               type: string
-              enum:
-                - GeoProperty
+              enum: [GeoProperty]
             value:
               type: object
               properties:
                 type:
                   type: string
-                  enum:
-                    - Point
+                  enum: [Point]
                 coordinates:
                   type: array
                   items:
                     type: number
-                  minItems: 2
-                  maxItems: 2
-          required: [type, value]
+        isPartOfHydroPowerPlant:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        hasDevices:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        observations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
 
+    Dam:
+      allOf:
+        - $ref: '#/components/schemas/GenericStaticComponent'
+      type: object
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier for the Dam
+        type:
+          type: string
+          enum: [Dam]
+          description: NGSI-LD entity type. Must be Dam
+        name:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+        geographicalLocation:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [GeoProperty]
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Point]
+                coordinates:
+                  type: array
+                  items:
+                    type: number
         damHeight:
           type: object
-          description: Vertical height from foundation to crest (m)
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: number
-              description: Dam height value
             unitCode:
-              type: string
-              enum:
-                - M
-              description: UN/CEFACT unit code for meters
-          required: [type, value, unitCode]
-
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+                  enum: [M]
         damLength:
           type: object
-          description: Horizontal span or width of the dam (m)
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: number
-              description: Dam length value
             unitCode:
-              type: string
-              enum:
-                - M
-              description: UN/CEFACT unit code for meters
-          required: [type, value, unitCode]
-
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+                  enum: [M]
         constructionMaterials:
           type: object
-          description: Primary materials used in dam construction
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-              description: Material specification
-          required: [type, value]
-
         damType:
           type: object
-          description: Structural design classification
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-              enum:
-                - "Concrete Gravity"
-                - "Arch Dam"
-                - "Embankment Dam"
-          required: [type, value]
-
+              enum: [Concrete Gravity, Arch Dam, Embankment Dam]
         yearOfConstruction:
           type: object
-          description: Calendar year when the dam was built
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: integer
-              description: Year of construction
-          required: [type, value]
-
         damCrestElevation:
           type: object
-          description: Elevation of the dam crest above mean sea level (m)
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: number
-              description: Crest elevation value
             unitCode:
-              type: string
-              enum:
-                - M
-              description: UN/CEFACT unit code for meters
-          required: [type, value, unitCode]
-
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+                  enum: [M]
         hasSpillway:
           type: object
-          description: References to Spillway entities for controlled releases
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          required: [type, object]
-
         hasintakes:
           type: object
-          description: References to Intake entities feeding the dam
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          required: [type, object]
-
         isPartOfReservoir:
           type: object
-          description: References to Reservoir entities created by this dam
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          required: [type, object]
-
         isPartOfHydroPlant:
           type: object
-          description: References to HydropowerPlant entities this dam belongs to
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          required: [type, object]

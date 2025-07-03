@@ -2,77 +2,85 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
+  "description": "Data Model of PumpingStation in Hydropower Plant Modeling",
   "definitions": {
     "PumpingStation": {
-        "required": ["id", "type", "name"],
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uri",
-            "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
-          },
-          "type": {
-            "type": "string",
-            "enum": ["PumpingStation"]
-          },
-          "name": {
-            "type": "string"
-          },
-          "totalPower": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "number"
-              },
-              "unitCode": {
-                "type": "string",
-                "enum": ["MW"]
-              }
-            }
-          },
-          "unitCount": {
-            "type": "number"
-          },
-          "yearlyEnergyConsumption": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "number"
-              },
-              "unitCode": {
-                "type": "string",
-                "enum": ["KWH"]
-              }
-            }
-          },
-          "estimatedAnnualContribution": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "number"
-              },
-              "unitCode": {
-                "type": "string",
-                "enum": ["MWH"]
-              }
-            }
-          },
-          "feedsReservoir": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uri"
-            }
-          },
-          "increasesProductionAt": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uri"
-            }
-          }
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json#/definitions/GenericStaticComponent"
         },
-        "additionalProperties": false
+        {
+          "required": ["id", "type", "name"],
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+            },
+            "type": {
+              "type": "string",
+              "enum": ["PumpingStation"]
+            },
+            "name": {
+              "type": "string"
+            },
+            "totalPower": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MW"]
+                }
+              }
+            },
+            "unitCount": {
+              "type": "number"
+            },
+            "yearlyEnergyConsumption": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["KWH"]
+                }
+              }
+            },
+            "estimatedAnnualContribution": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MWH"]
+                }
+              }
+            },
+            "feedsReservoir": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "increasesProductionAt": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
     }
   }
 }

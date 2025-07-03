@@ -9,6 +9,10 @@
 
 A **Penstock** is a large conduit or pipe that delivers water under pressure from an intake or reservoir to the turbine in a hydropower plant. It is engineered to withstand high hydraulic pressures and minimize energy losses, connecting upstream water sources through components such as surge tanks, valves, and the turbine inlet.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
+
 ## Attributes Specifications
 
 | Attribute                     | Type         | Required | Description                                                                                | Units / Values                                    |

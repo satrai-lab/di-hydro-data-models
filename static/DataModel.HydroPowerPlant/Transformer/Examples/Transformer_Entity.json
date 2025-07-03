@@ -9,12 +9,18 @@
   "ratedPower": {
     "type": "Property",
     "value": 500,
-    "unitCode": "MVA"
+    "unitCode": {
+      "type": "Property",
+      "value": "MVA"
+    }
   },
   "regulationRange": {
     "type": "Property",
     "value": "110kV/33kV",
-    "unitCode": "KV"
+    "unitCode": {
+      "type": "Property",
+      "value": "KV"
+    }
   },
   "belongsToGenerator": {
     "type": "Relationship",

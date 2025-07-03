@@ -22,16 +22,16 @@ paths:
               type: "Turbine"
               name: { "type": "Property", "value": "Alpine Francis Unit" }
               turbineType: { "type": "Property", "value": "Francis" }
-              capacity: { "type": "Property", "value": 300, "unitCode": "MW" }
-              efficiency: { "type": "Property", "value": 92.1, "unitCode": "PCT" }
-              operatingFlowRate: { "type": "Property", "value": 250, "unitCode": "M3S" }
-              head: { "type": "Property", "value": 120, "unitCode": "M" }
+              capacity: { "type": "Property", "value": 300, "unitCode": { "type": "Property", "value": "MW" } }
+              efficiency: { "type": "Property", "value": 92.1, "unitCode": { "type": "Property", "value": "PCT" } }
+              operatingFlowRate: { "type": "Property", "value": 250, "unitCode": { "type": "Property", "value": "M3S" } }
+              head: { "type": "Property", "value": 120, "unitCode": { "type": "Property", "value": "M" } }
               manufacturer: { "type": "Property", "value": "HydroTurb Co." }
               yearOfInstallation: { "type": "Property", "value": 2010 }
               numberOfImpellers: { "type": "Property", "value": 15 }
               axis: { "type": "Property", "value": "vertical" }
-              maxPower: { "type": "Property", "value": 350, "unitCode": "MW" }
-              speed: { "type": "Property", "value": 750, "unitCode": "RPM" }
+              maxPower: { "type": "Property", "value": 350, "unitCode": { "type": "Property", "value": "MW" } }
+              speed: { "type": "Property", "value": 750, "unitCode": { "type": "Property", "value": "RPM" } }
               dischargesToReservoir:
                 "type": "Relationship"
                 object:
@@ -65,26 +65,99 @@ paths:
 
 components:
   schemas:
-    Turbine:
+    GenericStaticComponent:
       type: object
       required:
-        - "@context"
         - id
         - type
         - name
-        - turbineType
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier
+        type:
+          type: string
+        name:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+        geographicalLocation:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [GeoProperty]
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Point]
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+        isPartOfHydroPowerPlant:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        hasDevices:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        observations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+
+    Turbine:
+      allOf:
+      - $ref: '#/components/schemas/GenericStaticComponent'
+      - type: object
+      required:
+        - id
+        - type
+        - name
       properties:
 
-        "@context":
-          type: string
-          description: Context file defining vocabulary
-          example: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
 
         id:
           type: string
           format: uri
           description: Unique URI identifier for the Turbine
-          example: "urn:ngsi-ld:Turbine:turb1"
 
         type:
           type: string
@@ -102,9 +175,7 @@ components:
                 - Property
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Alpine Francis Unit"
+
 
         turbineType:
           type: object
@@ -121,9 +192,7 @@ components:
                 - Kaplan
                 - Pelton
                 - Other
-          example:
-            type: "Property"
-            value: "Francis"
+
 
         capacity:
           type: object
@@ -139,10 +208,7 @@ components:
               type: string
               enum:
                 - MW
-          example:
-            type: "Property"
-            value: 300
-            unitCode: "MW"
+
 
         efficiency:
           type: object
@@ -158,10 +224,7 @@ components:
               type: string
               enum:
                 - PCT
-          example:
-            type: "Property"
-            value: 92.1
-            unitCode: "PCT"
+
 
         operatingFlowRate:
           type: object
@@ -177,10 +240,7 @@ components:
               type: string
               enum:
                 - M3S
-          example:
-            type: "Property"
-            value: 250
-            unitCode: "M3S"
+
 
         head:
           type: object
@@ -196,10 +256,7 @@ components:
               type: string
               enum:
                 - M
-          example:
-            type: "Property"
-            value: 120
-            unitCode: "M"
+
 
         manufacturer:
           type: object
@@ -211,9 +268,7 @@ components:
                 - Property
             value:
               type: string
-          example:
-            type: "Property"
-            value: "HydroTurb Co."
+
 
         yearOfInstallation:
           type: object
@@ -225,9 +280,7 @@ components:
                 - Property
             value:
               type: integer
-          example:
-            type: "Property"
-            value: 2010
+
 
         numberOfImpellers:
           type: object
@@ -239,9 +292,7 @@ components:
                 - Property
             value:
               type: integer
-          example:
-            type: "Property"
-            value: 15
+
 
         axis:
           type: object
@@ -256,9 +307,7 @@ components:
               enum:
                 - horizontal
                 - vertical
-          example:
-            type: "Property"
-            value: "vertical"
+
 
         maxPower:
           type: object
@@ -274,10 +323,7 @@ components:
               type: string
               enum:
                 - MW
-          example:
-            type: "Property"
-            value: 350
-            unitCode: "MW"
+
 
         speed:
           type: object
@@ -293,10 +339,7 @@ components:
               type: string
               enum:
                 - RPM
-          example:
-            type: "Property"
-            value: 750
-            unitCode: "RPM"
+
 
         dischargesToReservoir:
           type: array
@@ -338,10 +381,7 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+
 
         drivesGenerators:
           type: object
@@ -356,10 +396,7 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Generator:gen1"
+
 
         isPartOfPowerHouse:
           type: object
@@ -374,10 +411,7 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:PowerHouse:ph1"
+
 
         controlledByGovernor:
           type: object
@@ -392,7 +426,4 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Governor:gov1"
+  

@@ -10,6 +10,10 @@
 
 A **PumpingStation** is a facility that moves water from one location to another—such as from a river or lower reservoir up to an upper reservoir or between network segments—using electrically driven pumps.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
+
 ## Attributes Specifications
 
 | Attribute                         | Type         | Required | Description                                                                                      | Units / Values       |

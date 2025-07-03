@@ -66,22 +66,34 @@
               "description": "Information on the types and extent of vegetation in the catchment"
             },
             "flowVariationProfile": {
-              "type": "array",
+              "type": "object",
               "description": "Array of monthly water flow rates in m³/s: [Jan, Feb, ..., Dec]",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "value": {
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
                     "type": "number"
-                  },
-                  "unitCode": {
-                    "type": "string",
-                    "enum": ["M3S"]
                   }
                 },
-                "additionalProperties": false
+                "unitCode": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": ["Property"]
+                    },
+                    "value": {
+                      "type": "string",
+                      "enum": ["M3S"]
+                    }
+                  }
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
               }
             },
+
             "averageWaterFlow": {
               "type": "object",
               "description": "Average historical water flow (in cubic meters per second)",

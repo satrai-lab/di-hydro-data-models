@@ -2,144 +2,152 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
+  "description": "Data Model of Generator in Hydropower Plant Modeling",
   "definitions": {
     "Generator": {
-      "type": "object",
-      "required": ["id", "type", "name"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json#/definitions/GenericStaticComponent"
         },
-        "type": {
-          "type": "string",
-          "enum": ["Generator"]
-        },
-        "name": {
-          "type": "string"
-        },
-        "ratedCapacity": {
+        {
           "type": "object",
+          "required": ["id", "type", "name"],
           "properties": {
-            "value": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+            },
+            "type": {
+              "type": "string",
+              "enum": ["Generator"]
+            },
+            "name": {
+              "type": "string"
+            },
+            "ratedCapacity": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MW"]
+                }
+              }
+            },
+            "efficiency": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["PCT"]
+                }
+              }
+            },
+            "manufacturer": {
+              "type": "string"
+            },
+            "yearOfInstallation": {
               "type": "number"
             },
-            "unitCode": {
+            "generatorType": {
+              "type": "string"
+            },
+            "axis": {
               "type": "string",
-              "enum": ["MW"]
-            }
-          }
-        },
-        "efficiency": {
-          "type": "object",
-          "properties": {
-            "value": {
+              "enum": ["Horizontal", "Vertical"]
+            },
+            "voltageLevel": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["KV"]
+                }
+              }
+            },
+            "ratedOutputMVA": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MVA"]
+                }
+              }
+            },
+            "speed": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["RPM"]
+                }
+              }
+            },
+            "ratedPowerFactor": {
               "type": "number"
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["PCT"]
-            }
-          }
-        },
-        "manufacturer": {
-          "type": "string"
-        },
-        "yearOfInstallation": {
-          "type": "number"
-        },
-        "generatorType": {
-          "type": "string"
-        },
-        "axis": {
-          "type": "string",
-          "enum": ["Horizontal", "Vertical"]
-        },
-        "voltageLevel": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "voltageRegulationRange": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["PCT"]
+                }
+              }
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["KV"]
-            }
-          }
-        },
-        "ratedOutputMVA": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "windingInsulationClass": {
+              "type": "string"
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["MVA"]
-            }
-          }
-        },
-        "speed": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "isPartOfHydroPowerPlant": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["RPM"]
-            }
-          }
-        },
-        "ratedPowerFactor": {
-          "type": "number"
-        },
-        "voltageRegulationRange": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "isDrivenByTurbines": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["PCT"]
+            "hasTransformers": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "isPartOfPowerHouse": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             }
-          }
-        },
-        "windingInsulationClass": {
-          "type": "string"
-        },
-        "isPartOfHydroPowerPlant": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isDrivenByTurbines": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasTransformers": {
-        "type": "array",
-        "items": {
-          "type": "string",
-          "format": "uri"
-         }
-       },
-        "isPartOfPowerHouse": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
+          },
+          "additionalProperties": false
         }
-      },
-      "additionalProperties": false
+      ]
     }
   }
 }

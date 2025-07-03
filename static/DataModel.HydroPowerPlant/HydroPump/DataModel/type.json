@@ -2,91 +2,99 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
+  "description": "Data Model of HydroPump in Hydropower Plant Modeling",
   "definitions": {
     "HydroPump": {
-      "type": "object",
-      "required": ["id", "type", "name"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json#/definitions/GenericStaticComponent"
         },
-        "type": {
-          "type": "string",
-          "enum": ["HydroPump"]
-        },
-        "name": {
-          "type": "string"
-        },
-        "pumpCapacity": {
+        {
           "type": "object",
+          "required": ["id", "type", "name"],
           "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
+            "id": {
               "type": "string",
-              "enum": ["MW", "M3S"]
-            }
-          }
-        },
-        "pumpEfficiency": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
             },
-            "unitCode": {
+            "type": {
               "type": "string",
-              "enum": ["PCT"]
-            }
-          }
-        },
-        "operationalMode": {
-          "type": "string",
-          "enum": ["Pumping", "Generating"]
-        },
-        "powerConsumption": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+              "enum": ["HydroPump"]
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["MW"]
-            }
-          }
-        },
-        "cycleTime": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "name": {
+              "type": "string"
             },
-            "unitCode": {
+            "pumpCapacity": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MW", "M3S"]
+                }
+              }
+            },
+            "pumpEfficiency": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["PCT"]
+                }
+              }
+            },
+            "operationalMode": {
               "type": "string",
-              "enum": ["H"]
+              "enum": ["Pumping", "Generating"]
+            },
+            "powerConsumption": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MW"]
+                }
+              }
+            },
+            "cycleTime": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["H"]
+                }
+              }
+            },
+            "PumpWaterTo": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "isPartOfHydrPowerPlant": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             }
-          }
-        },
-        "PumpWaterTo": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isPartOfHydrPowerPlant": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
+          },
+          "additionalProperties": false
         }
-      },
-      "additionalProperties": false
+      ]
     }
   }
 }

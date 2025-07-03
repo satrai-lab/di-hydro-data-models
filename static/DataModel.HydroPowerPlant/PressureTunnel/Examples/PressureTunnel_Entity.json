@@ -5,24 +5,21 @@
   "length": {
     "type": "Property",
     "value": 3500,
-    "unitCode": "M"
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
+    }
   },
   "fromReservoir": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:Reservoir:res1"
-    ]
+    "object": ["urn:ngsi-ld:Reservoir:res1"]
   },
   "toPenstock": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:Penstock:pen1"
-    ]
+    "object": ["urn:ngsi-ld:Penstock:pen1"]
   },
   "isPartOfHydroPowerPlant": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
-    ]
+    "object": ["urn:ngsi-ld:HydropowerPlant:plant-alpine-001"]
   }
 }

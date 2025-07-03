@@ -9,6 +9,10 @@
 
 A **Governor** is a control device in a hydropower system that regulates turbine speed and power output. By sensing deviations from a set speed, it adjusts water flow into the turbine—via wicket gates or guide vanes—to maintain stable frequency and load response.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
+
 ## Attributes Specifications
 
 | Attribute                     | Type         | Required | Description                                                                     | Units / Values |

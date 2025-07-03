@@ -9,6 +9,10 @@
 
 A **Transformer** in a hydropower plant is an electrical device that steps up or steps down the generator’s voltage to the appropriate transmission or distribution level. It consists of primary and secondary windings around a magnetic core, enabling efficient voltage conversion while maintaining power balance.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
+
 ## Attributes Specifications
 
 | Attribute                 | Type         | Required | Description                                                                | Units / Format         |

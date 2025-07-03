@@ -26,11 +26,15 @@ paths:
               ratedPower:
                 type: "Property"
                 value: 500
-                unitCode: "MVA"
+                unitCode: 
+                  type: "Property"
+                  value: "MVA"
               regulationRange:
                 type: "Property"
                 value: "110kV/33kV"
-                unitCode: "KV"
+                unitCode: 
+                  type: "Property"
+                  value: "KV"
               belongsToGenerator:
                 type: "Relationship"
                 object:
@@ -41,92 +45,155 @@ paths:
 
 components:
   schemas:
-    Transformer:
+    GenericStaticComponent:
       type: object
       required:
         - id
         - type
+        - name
       properties:
-
         id:
           type: string
           format: uri
-          description: Unique URI identifier for the Transformer
-          example: "urn:ngsi-ld:Transformer:trans1"
-
+          description: Unique URI identifier
         type:
           type: string
-          enum:
-            - Transformer
-          description: Fixed entity type identifier
-          example: "Transformer"
-
-        transformerSupplier:
+        name:
           type: object
-          description: Manufacturer or supplier of the transformer
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-          example:
-            type: "Property"
-            value: "PowerGear Inc."
-
-        ratedPower:
+        geographicalLocation:
           type: object
-          description: Nameplate apparent-power capacity under normal conditions
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [GeoProperty]
             value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - MVA
-          example:
-            type: "Property"
-            value: 500
-            unitCode: "MVA"
-
-        regulationRange:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Point]
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+        isPartOfHydroPowerPlant:
           type: object
-          description: Voltage conversion ratio (input kV/output kV)
           properties:
             type:
               type: string
-              enum:
-                - Property
-            value:
-              type: string
-            unitCode:
-              type: string
-              enum:
-                - KV
-          example:
-            type: "Property"
-            value: "110kV/33kV"
-            unitCode: "KV"
-
-        belongsToGenerator:
-          type: object
-          description: Reference(s) to the Generator entity or entities this transformer serves
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
+        hasDevices:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
             object:
-              - "urn:ngsi-ld:Generator:gen1"
+              type: array
+              items:
+                type: string
+        observations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+
+    Transformer:
+      allOf: 
+        - $ref: '#/components/schemas/GenericStaticComponent'
+        - type: object
+          required:
+            - id
+            - type
+          properties:
+    
+            id:
+              type: string
+              format: uri
+              description: Unique URI identifier for the Transformer
+    
+            type:
+              type: string
+              enum:
+                - Transformer
+              description: Fixed entity type identifier
+    
+            transformerSupplier:
+              type: object
+              description: Manufacturer or supplier of the transformer
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+    
+            ratedPower:
+              type: object
+              description: Nameplate apparent-power capacity under normal conditions
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MVA
+    
+            regulationRange:
+              type: object
+              description: Voltage conversion ratio (input kV/output kV)
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                unitCode:
+                  type: string
+                  enum:
+                    - KV
+    
+            belongsToGenerator:
+              type: object
+              description: Reference(s) to the Generator entity or entities this transformer serves
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri

@@ -2,13 +2,16 @@
 <div style="display: flex; justify-content: center; margin: 20px 0">
   <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/static/Diagrams/CatchementArea.png" 
        alt="HydroPowerPlantCommunity Diagram" 
-       style="max-width: 100%; height: auto; width: 350px">
+       style="max-width: 100%; height: auto; width: 250px">
 </div>
 
 
 ## Definition
 
 A **CatchmentArea** is the geographic region draining into a common water body, such as a river, lake, or reservoir. It collects surface water and precipitation, channeling flow through streams and tributaries into the hydropower system. Understanding its characteristics—area, soil, vegetation, and flow patterns—is critical for predicting water availability and managing reservoir inflows.
+
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
 
 ## Attributes Specifications
 

@@ -10,6 +10,9 @@
 
 A **PressureTunnel** is a conduit that conveys water under pressure from a reservoir to a penstock in a hydropower system. It is designed to maintain hydraulic gradient and minimize head losses over long distances, ensuring stable delivery of water to the turbine inlet.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
 ## Attributes Specifications
 
 | Attribute                     | Type         | Required | Description                                                                                 | Units / Values     |

@@ -12,12 +12,18 @@
   "pumpCapacity": {
     "type": "Property",
     "value": 300,
-    "unitCode": "MW"
+    "unitCode": {
+      "type": "Property",
+      "value": "MW"
+    }
   },
   "pumpEfficiency": {
     "type": "Property",
     "value": 82.5,
-    "unitCode": "PCT"
+    "unitCode": {
+      "type": "Property",
+      "value": "PCT"
+    }
   },
   "operationalMode": {
     "type": "Property",
@@ -26,12 +32,18 @@
   "powerConsumption": {
     "type": "Property",
     "value": 275,
-    "unitCode": "MW"
+    "unitCode": {
+      "type": "Property",
+      "value": "MW"
+    }
   },
   "cycleTime": {
     "type": "Property",
     "value": 4.5,
-    "unitCode": "H"
+    "unitCode": {
+      "type": "Property",
+      "value": "H"
+    }
   },
   "PumpWaterTo": {
     "type": "Relationship",

@@ -9,6 +9,10 @@
 
 A **PowerHouse** is the structural and mechanical enclosure within a hydropower plant that houses the prime movers (turbines), electrical generators, governors, and auxiliary systems. It serves as the interface between the water conveyance system (penstocks) and the energy conversion machinery, providing support, protection, and access for operation and maintenance.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
+
 ## Attributes Specifications
 
 | Attribute                     | Type         | Required | Description                                                                           | Units / Values     |

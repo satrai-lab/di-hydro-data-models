@@ -9,6 +9,9 @@
 
 A **Valve** is a mechanical device in a hydropower system that regulates or isolates water flow within conduits such as penstocks or valve houses. It can throttle, start, or stop flow to control pressure, protect equipment, and facilitate maintenance.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
 ## Attributes Specifications
 
 | Attribute                     | Type         | Required | Description                                                                   | Units / Values                                                       |

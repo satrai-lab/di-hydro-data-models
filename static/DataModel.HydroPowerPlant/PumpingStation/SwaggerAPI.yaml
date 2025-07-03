@@ -26,18 +26,24 @@ paths:
               totalPower:
                 type: "Property"
                 value: 300
-                unitCode: "MW"
+                unitCode: 
+                  type: "Property"
+                  value: "MW"
               unitCount:
                 type: "Property"
                 value: 4
               yearlyEnergyConsumption:
                 type: "Property"
                 value: 1200000000
-                unitCode: "KWH"
+                unitCode: 
+                  type: "Property"
+                  value: "KWH"
               estimatedAnnualContribution:
                 type: "Property"
                 value: 8000000
-                unitCode: "MWH"
+                unitCode: 
+                  type: "Property"
+                  value: "MWH"
               feedsReservoir:
                 type: "Relationship"
                 object:
@@ -52,144 +58,196 @@ paths:
 
 components:
   schemas:
-    PumpingStation:
+    GenericStaticComponent:
       type: object
       required:
         - id
         - type
         - name
       properties:
-
         id:
           type: string
           format: uri
-          description: Unique URI identifier for the PumpingStation
-          example: "urn:ngsi-ld:PumpingStation:ps1"
-
+          description: Unique URI identifier
         type:
           type: string
-          enum:
-            - PumpingStation
-          description: Fixed entity type identifier
-          example: "PumpingStation"
-
         name:
           type: object
-          description: Official name of the pumping station
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Alpine Peak Pumping Station"
-
-        totalPower:
+        geographicalLocation:
           type: object
-          description: Total installed motor power capacity
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [GeoProperty]
             value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - MW
-          example:
-            type: "Property"
-            value: 300
-            unitCode: "MW"
-
-        unitCount:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Point]
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+        isPartOfHydroPowerPlant:
           type: object
-          description: Number of individual pump units
           properties:
             type:
               type: string
-              enum:
-                - Property
-            value:
-              type: integer
-          example:
-            type: "Property"
-            value: 4
-
-        yearlyEnergyConsumption:
-          type: object
-          description: Annual electricity consumed by all pumps
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - KWH
-          example:
-            type: "Property"
-            value: 1200000000
-            unitCode: "KWH"
-
-        estimatedAnnualContribution:
-          type: object
-          description: Estimated additional hydropower generation enabled by pumping
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - MWH
-          example:
-            type: "Property"
-            value: 8000000
-            unitCode: "MWH"
-
-        feedsReservoir:
-          type: object
-          description: References to Reservoir entities this station pumps into
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Reservoir:res1"
-
-        increasesProductionAt:
+        hasDevices:
           type: object
-          description: References to HydropowerPlant entities whose generation is boosted by this station
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
+        observations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
             object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+
+    PumpingStation:
+      allOf:
+        - $ref: '#/components/schemas/GenericStaticComponent'
+        - type: object
+          required:
+            - id
+            - type
+            - name
+          properties:
+    
+            id:
+              type: string
+              format: uri
+              description: Unique URI identifier for the PumpingStation
+    
+            type:
+              type: string
+              enum:
+                - PumpingStation
+              description: Fixed entity type identifier
+    
+            name:
+              type: object
+              description: Official name of the pumping station
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+    
+            totalPower:
+              type: object
+              description: Total installed motor power capacity
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MW
+    
+            unitCount:
+              type: object
+              description: Number of individual pump units
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: integer
+    
+            yearlyEnergyConsumption:
+              type: object
+              description: Annual electricity consumed by all pumps
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - KWH
+    
+            estimatedAnnualContribution:
+              type: object
+              description: Estimated additional hydropower generation enabled by pumping
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - MWH
+    
+            feedsReservoir:
+              type: object
+              description: References to Reservoir entities this station pumps into
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+    
+            increasesProductionAt:
+              type: object
+              description: References to HydropowerPlant entities whose generation is boosted by this station
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri

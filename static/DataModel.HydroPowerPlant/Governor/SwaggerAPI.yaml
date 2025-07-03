@@ -26,19 +26,27 @@ paths:
               droopSetting:
                 type: "Property"
                 value: 5
-                unitCode: "PCT"
+                unitCode: 
+                  type: "Property"
+                  value: "PCT"
               speedSetPoint:
                 type: "Property"
                 value: 500
-                unitCode: "RPM"
+                unitCode: 
+                  type: "Property"
+                  value: "RPM"
               regulationRange:
                 type: "Property"
                 value: 10
-                unitCode: "PCT"
+                unitCode:   
+                  type: "Property"
+                  value: "PCT"
               responseTime:
                 type: "Property"
                 value: 0.5
-                unitCode: "S"
+                unitCode: 
+                  type: "Property"
+                  value: "S"
               manufacturer:
                 type: "Property"
                 value: "ControlTech Ltd"
@@ -62,192 +70,238 @@ paths:
           description: Entity created successfully
 components:
   schemas:
-    Governor:
+    GenericStaticComponent:
       type: object
       required:
-        - "@context"
         - id
         - type
         - name
       properties:
-
-        "@context":
-          type: string
-          description: Context file defining vocabulary
-          example: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
-
         id:
           type: string
           format: uri
-          description: Unique URI identifier for the Governor
-          example: "urn:ngsi-ld:Governor:gov1"
-
+          description: Unique URI identifier
         type:
           type: string
-          enum:
-            - Governor
-          description: Fixed entity type identifier
-          example: "Governor"
-
         name:
           type: object
-          description: Official or common name of the Governor
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Main Speed Governor"
-        droopSetting:
+        geographicalLocation:
           type: object
-          description: Droop setting percentage indicating speed drop as load increases
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [GeoProperty]
             value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - PCT
-          example: 
-            type: "Property"
-            value: 5
-            unitCode: "PCT"
-        speedSetPoint:
-          type: object
-          description: Target operating speed of the turbine
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - RPM
-          example: 
-            type: "Property"
-            value: 500
-            unitCode: "RPM"
-        regulationRange:
-          type: object
-          description: Range over which the governor can adjust turbine input
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - PCT
-          example: 
-            type: "Property"
-            value: 10
-            unitCode: "PCT"
-        responseTime:
-          type: object
-          description: Time it takes for the governor to react to changes (in seconds)
-          properties:
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - S
-          example:
-            value: 0.5
-            unitCode: "S"
-
-        manufacturer:
-          type: object
-          description: Name or details of the governor’s manufacturer
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-          example:
-            type: "Property"
-            value: "ControlTech Ltd"
-
-        yearOfInstallation:
-          type: object
-          description: Year the governor was installed
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: integer
-          example:
-            type: "Property"
-            value: 2017
-
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Point]
+                coordinates:
+                  type: array
+                  items:
+                    type: number
         isPartOfHydroPowerPlant:
           type: object
-          description: Relationship to parent HydropowerPlant entity
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-                - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
-
-        controlsTurbine:
+        hasDevices:
           type: object
-          description: Relationship to Turbine entities controlled by this governor
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-                - "urn:ngsi-ld:Turbine:turb1"
-
-        isPartOfPowerHouse:
+        observations:
           type: object
-          description: Relationship to the PowerHouse entity housing this governor
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
             object:
-                - "urn:ngsi-ld:PowerHouse:ph1"
+              type: array
+              items:
+                type: string
+
+    Governor:
+      allOf:
+        - $ref: "#/components/schemas/GenericStaticComponent"
+        - type: object
+          required:
+            - id
+            - type
+            - name
+          properties:
+    
+            id:
+              type: string
+              format: uri
+              description: Unique URI identifier for the Governor
+    
+            type:
+              type: string
+              enum:
+                - Governor
+              description: Fixed entity type identifier
+    
+            name:
+              type: object
+              description: Official or common name of the Governor
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+    
+            droopSetting:
+              type: object
+              description: Droop setting percentage indicating speed drop as load increases
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - PCT
+    
+            speedSetPoint:
+              type: object
+              description: Target operating speed of the turbine
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - RPM
+    
+            regulationRange:
+              type: object
+              description: Range over which the governor can adjust turbine input
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - PCT
+    
+            responseTime:
+              type: object
+              description: Time it takes for the governor to react to changes (in seconds)
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - S
+    
+    
+            manufacturer:
+              type: object
+              description: Name or details of the governor’s manufacturer
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+    
+    
+            yearOfInstallation:
+              type: object
+              description: Year the governor was installed
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: integer
+    
+    
+            isPartOfHydroPowerPlant:
+              type: object
+              description: Relationship to parent HydropowerPlant entity
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+    
+    
+            controlsTurbine:
+              type: object
+              description: Relationship to Turbine entities controlled by this governor
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+    
+    
+            isPartOfPowerHouse:
+              type: object
+              description: Relationship to the PowerHouse entity housing this governor
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+    

@@ -10,6 +10,10 @@
 A **Spillway** is a structure engineered to safely pass excess water from a reservoir or dam to downstream channels, preventing overtopping and potential dam failure.
 It is designed with specific discharge capacities, crest elevations, and flow control features to handle varying flood conditions.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
+
 ## Attributes Specifications
 
 | Attribute                     | Type         | Required | Description                                                                            | Units / Values                                                        |

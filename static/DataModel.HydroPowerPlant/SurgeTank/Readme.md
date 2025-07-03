@@ -9,6 +9,9 @@
 
 A **SurgeTank** is a protective reservoir in a hydropower conveyance system that mitigates rapid pressure changes (“water hammer”) in penstocks. It temporarily absorbs or supplies water to smooth out pressure surges caused by sudden flow variations, protecting piping and equipment.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
 ## Attributes Specifications
 
 | Attribute                         | Type         | Required | Description                                                                              | Units / Values    |

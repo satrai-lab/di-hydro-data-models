@@ -9,6 +9,9 @@
 
 A **Dam** is a barrier constructed across a river or stream to impound water, creating a reservoir for hydropower production, flood control, irrigation, or water supply. It consists of structural elements such as a crest, spillways, and intakes, and its height, length, and materials determine storage capacity and stability.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
 ## Attributes Specifications
 
 | Attribute                   | Type         | Required | Description                                                        | Units / Values                                           |

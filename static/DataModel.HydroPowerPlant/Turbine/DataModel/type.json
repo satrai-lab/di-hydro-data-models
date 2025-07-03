@@ -2,163 +2,171 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
+  "description": "Data Model of Turbine in Hydropower Plant Modeling",
   "definitions": {
     "Turbine": {
-      "type": "object",
-      "required": ["id", "type", "name", "turbineType"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json#/definitions/GenericStaticComponent"
         },
-        "type": {
-          "type": "string",
-          "enum": ["Turbine"]
-        },
-        "name": {
-          "type": "string"
-        },
-        "turbineType": {
-          "type": "string",
-          "enum": ["Francis", "Kaplan", "Pelton", "Other"]
-        },
-        "capacity": {
+        {
           "type": "object",
+          "required": ["id", "type", "name", "turbineType"],
           "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
+            "id": {
               "type": "string",
-              "enum": ["MW"]
-            }
-          }
-        },
-        "efficiency": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
             },
-            "unitCode": {
+            "type": {
               "type": "string",
-              "enum": ["PCT"]
-            }
-          }
-        },
-        "operatingFlowRate": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+              "enum": ["Turbine"]
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M3S"]
-            }
-          }
-        },
-        "head": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "name": {
+              "type": "string"
             },
-            "unitCode": {
+            "turbineType": {
               "type": "string",
-              "enum": ["M"]
-            }
-          }
-        },
-        "manufacturer": {
-          "type": "string"
-        },
-        "yearOfInstallation": {
-          "type": "number"
-        },
-        "numberOfImpellers": {
-          "type": "number"
-        },
-        "axis": {
-          "type": "string",
-          "enum": ["horizontal", "vertical"]
-        },
-        "maxPower": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+              "enum": ["Francis", "Kaplan", "Pelton", "Other"]
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["MW"]
-            }
-          }
-        },
-        "speed": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["RPM"]
-            }
-          }
-        },
-        "dischargesToReservoir": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "tunnelLength": {
-                "type": "object",
-                "properties": {
-                  "value": {
-                    "type": "number"
-                  },
-                  "unitCode": {
-                    "type": "string",
-                    "enum": ["KM"]
-                  }
+            "capacity": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MW"]
                 }
               }
             },
-            "format":"uri"
-          }
-        },
-        "isPartOfHydroPowerPlant": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "drivesGenerators": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isPartOfPowerHouse": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "controlledByGovernor": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
+            "efficiency": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["PCT"]
+                }
+              }
+            },
+            "operatingFlowRate": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M3S"]
+                }
+              }
+            },
+            "head": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
+              }
+            },
+            "manufacturer": {
+              "type": "string"
+            },
+            "yearOfInstallation": {
+              "type": "number"
+            },
+            "numberOfImpellers": {
+              "type": "number"
+            },
+            "axis": {
+              "type": "string",
+              "enum": ["horizontal", "vertical"]
+            },
+            "maxPower": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["MW"]
+                }
+              }
+            },
+            "speed": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["RPM"]
+                }
+              }
+            },
+            "dischargesToReservoir": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "tunnelLength": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "number"
+                      },
+                      "unitCode": {
+                        "type": "string",
+                        "enum": ["KM"]
+                      }
+                    }
+                  }
+                },
+                "format": "uri"
+              }
+            },
+            "isPartOfHydroPowerPlant": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "drivesGenerators": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "isPartOfPowerHouse": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "controlledByGovernor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "additionalProperties": false
         }
-      },
-      "additionalProperties": false
+      ]
     }
   }
 }

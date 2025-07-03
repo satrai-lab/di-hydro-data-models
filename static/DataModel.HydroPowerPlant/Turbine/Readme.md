@@ -10,6 +10,9 @@
 
 A **Turbine** is the mechanical engine in a hydropower plant that converts the potential and kinetic energy of flowing water into rotational mechanical energy. It consists of a runner (with buckets or blades) mounted on a shaft; as water passes through under pressure (the “head”), it spins the runner, which then drives the electrical generator.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
 ## Attributes Specifications
 
 | Attribute                     | Type         | Required | Description                                                                                 | Units / Values                                 |

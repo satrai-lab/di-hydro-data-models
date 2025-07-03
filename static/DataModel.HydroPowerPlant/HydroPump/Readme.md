@@ -10,6 +10,10 @@ A **HydroPump** is a critical component in pumped-storage hydropower systems tha
 1. **Pumping Mode**: Consumes electricity to pump water to a higher reservoir (energy storage)
 2. **Generating Mode**: Acts as a turbine to generate electricity when water flows back down
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
+
 ## Attribute Specification 
 
 | Attribute | Type | Required | Description | Units/Values | 

@@ -2,128 +2,136 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
+  "description": "Data Model of Penstock in Hydropower Plant Modeling",
   "definitions": {
     "Penstock": {
-      "type": "object",
-      "required": ["id", "type", "name"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json#/definitions/GenericStaticComponent"
         },
-        "type": {
-          "type": "string",
-          "enum": ["Penstock"]
-        },
-        "name": {
-          "type": "string"
-        },
-        "geographicalLocation": {
+        {
           "type": "object",
+          "required": ["id", "type", "name"],
           "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+            },
             "type": {
               "type": "string",
-              "enum": ["Point"]
+              "enum": ["Penstock"]
             },
-            "coordinates": {
+            "name": {
+              "type": "string"
+            },
+            "geographicalLocation": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Point"]
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2
+                }
+              }
+            },
+            "length": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
+              }
+            },
+            "diameter": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
+              }
+            },
+            "material": {
+              "type": "string",
+              "enum": ["Steel", "Reinforced Concrete", "Composite"]
+            },
+            "designPressure": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["BAR"]
+                }
+              }
+            },
+            "flowCapacity": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M3S"]
+                }
+              }
+            },
+            "isPartOfHydroPowerPlant": {
               "type": "array",
               "items": {
-                "type": "number"
-              },
-              "minItems": 2
-            }
-          }
-        },
-        "length": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+                "type": "string",
+                "format": "uri"
+              }
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M"]
-            }
-          }
-        },
-        "diameter": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "isConnectedToIntake": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M"]
-            }
-          }
-        },
-        "material": {
-          "type": "string",
-          "enum": ["Steel", "Reinforced Concrete", "Composite"]
-        },
-        "designPressure": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "isConnectedToSurgeTank": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["BAR"]
-            }
-          }
-        },
-        "flowCapacity": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "isConnectedToValve": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M3S"]
+            "isConnectedToValveHouse": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             }
-          }
-        },
-        "isPartOfHydroPowerPlant": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isConnectedToIntake": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isConnectedToSurgeTank": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isConnectedToValve": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isConnectedToValveHouse": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
+          },
+          "additionalProperties": false
         }
-      },
-      "additionalProperties": false
+      ]
     }
   }
 }

@@ -10,6 +10,10 @@
 
 A **WaterBody** is any significant accumulation of water on Earth’s surface—such as a river, lake, or reservoir—that serves as a source, conduit, or storage for hydropower systems. It is characterized by its physical dimensions, flow dynamics, water quality, and ecological indicators, all of which inform water availability, generation potential, and environmental management.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
+
 ## Attributes Specifications
 
 | Attribute                     | Type         | Required | Description                                                                            | Units / Values                                        |

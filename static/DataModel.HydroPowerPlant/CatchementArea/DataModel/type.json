@@ -2,136 +2,120 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
+  "description": "Data Model of CatchmentArea in Hydropower Plant Modeling",
   "definitions": {
     "CatchmentArea": {
-      "type": "object",
-      "required": ["id", "type"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json#/definitions/GenericStaticComponent"
         },
-        "type": {
-          "type": "string",
-          "enum": ["CatchmentArea"]
-        },
-        "area": {
+        {
           "type": "object",
           "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
+            "id": {
               "type": "string",
-              "enum": ["KM2"]
-            }
-          }
-        },
-        "annualPrecipitationVolume": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+              "format": "uri",
+              "description": "Unique identifier of the Catchment Area"
             },
-            "unitCode": {
+            "type": {
               "type": "string",
-              "enum": ["M3"]
+              "enum": ["CatchmentArea"],
+              "description": "NGSI Entity type. It must be CatchmentArea"
+            },
+            "area": {
+              "type": "object",
+              "description": "The total area of the catchment in square kilometers",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["KM2"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "annualPrecipitationVolume": {
+              "type": "object",
+              "description": "The total volume of rainfall collected annually in the catchment area (in cubic meters)",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M3"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "seasonalRainfallDistribution": {
+              "type": "array",
+              "description": "Distribution of annual rainfall across seasons as percentages. [Spring, Summer, Autumn, Winter]",
+              "items": {
+                "type": "number"
+              }
+            },
+            "soilType": {
+              "type": "string",
+              "description": "Classification of soil in the catchment area"
+            },
+            "vegetationCover": {
+              "type": "string",
+              "description": "Information on the types and extent of vegetation in the catchment"
+            },
+            "flowVariationProfile": {
+              "type": "array",
+              "description": "Array of monthly water flow rates in m³/s: [Jan, Feb, ..., Dec]",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  },
+                  "unitCode": {
+                    "type": "string",
+                    "enum": ["M3S"]
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "averageWaterFlow": {
+              "type": "object",
+              "description": "Average historical water flow (in cubic meters per second)",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M3S"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "suppliesWaterToWaterBody": {
+              "type": "array",
+              "description": "Array of references to Water Body entities that are supplied by this catchment area",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "suppliesWaterToHydroPowerPlant": {
+              "type": "array",
+              "description": "Array of references to HydropowerPlant entities that are supplied by this catchment area",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             }
-          }
-        },
-        "seasonalRainfallDistribution": {
-          "type": "object",
-          "properties": {
-            "spring": {
-              "type": "number"
-            },
-            "summer": {
-              "type": "number"
-            },
-            "autumn": {
-              "type": "number"
-            },
-            "winter": {
-              "type": "number"
-            }
-          }
-        },
-        "soilType": {
-          "type": "string"
-        },
-        "vegetationCover": {
-          "type": "string"
-        },
-        "flowVariationProfile": {
-          "type": "object",
-          "properties": {
-            "jan":{
-              "type": "number"
-            },
-            "feb": {
-              "type": "number"
-            },
-            "mar": {
-              "type": "number"
-            },
-            "apr": {
-              "type": "number"
-            },
-            "may": {
-              "type": "number"
-            },
-            "jun": {
-              "type": "number"
-            },
-            "jul": {
-              "type": "number"
-            },
-            "aug": {
-              "type": "number"
-            },
-            "sep": {
-              "type": "number"
-            },
-            "oct": {
-              "type": "number"
-            },
-            "nov": {
-              "type": "number"
-            },
-            "dec": {
-              "type": "number"
-            }
-          }
-        },
-        "averageWaterFlow": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "number"
           },
-          "unitCode": {
-            "type": "string",
-            "enum": ["M3S"]
-          }
+          "additionalProperties": false
         }
-        },
-        "suppliesWaterToWaterBody": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "suppliesWaterToHydroPowerPlant": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        }
-      },
-      "additionalProperties": false
+      ]
     }
   }
 }

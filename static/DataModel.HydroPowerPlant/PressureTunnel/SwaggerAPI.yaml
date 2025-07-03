@@ -23,7 +23,9 @@ paths:
               length:
                 type: "Property"
                 value: 3500
-                unitCode: "M"
+                unitCode: 
+                  type: "Property"
+                  value: "M"
               fromReservoir:
                 type: "Relationship"
                 object:
@@ -43,25 +45,101 @@ paths:
 
 components:
   schemas:
-    PressureTunnel:
+    GenericStaticComponent:
       type: object
       required:
         - id
         - type
+        - name
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier
+        type:
+          type: string
+        name:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+        geographicalLocation:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [GeoProperty]
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Point]
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+        isPartOfHydroPowerPlant:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        hasDevices:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        observations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+
+    PressureTunnel:
+      allOf: 
+        - $ref: '#/components/schemas/GenericStaticComponent'
+        - type: object
+
       properties:
 
         id:
           type: string
           format: uri
           description: Unique URI identifier for the PressureTunnel
-          example: "urn:ngsi-ld:PressureTunnel:pt1"
 
         type:
           type: string
           enum:
             - PressureTunnel
           description: Fixed entity type identifier
-          example: "PressureTunnel"
 
         length:
           type: object
@@ -77,10 +155,7 @@ components:
               type: string
               enum:
                 - M
-          example:
-            type: "Property"
-            value: 3500
-            unitCode: "M"
+
 
         fromReservoir:
           type: object
@@ -95,10 +170,7 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Reservoir:res1"
+
 
         toPenstock:
           type: object
@@ -113,10 +185,7 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Penstock:pen1"
+
 
         isPartOfHydroPowerPlant:
           type: object
@@ -131,7 +200,3 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"

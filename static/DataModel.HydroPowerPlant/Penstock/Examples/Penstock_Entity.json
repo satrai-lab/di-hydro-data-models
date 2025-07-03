@@ -10,21 +10,24 @@
     "type": "GeoProperty",
     "value": {
       "type": "Point",
-      "coordinates": [
-        -121.495,
-        47.34
-      ]
+      "coordinates": [-121.495, 47.34]
     }
   },
   "length": {
     "type": "Property",
     "value": 1200,
-    "unitCode": "M"
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
+    }
   },
   "diameter": {
     "type": "Property",
     "value": 4.5,
-    "unitCode": "M"
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
+    }
   },
   "material": {
     "type": "Property",
@@ -33,41 +36,37 @@
   "designPressure": {
     "type": "Property",
     "value": 50,
-    "unitCode": "BAR"
+    "unitCode": {
+      "type": "Property",
+      "value": "BAR"
+    }
   },
   "flowCapacity": {
     "type": "Property",
     "value": 200,
-    "unitCode": "M3S"
+    "unitCode": {
+      "type": "Property",
+      "value": "M3S"
+    }
   },
   "isPartOfHydroPowerPlant": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
-    ]
+    "object": ["urn:ngsi-ld:HydropowerPlant:plant-alpine-001"]
   },
   "isConnectedToIntake": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:Intake:int1"
-    ]
+    "object": ["urn:ngsi-ld:Intake:int1"]
   },
   "isConnectedToSurgeTank": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:SurgeTank:st1"
-    ]
+    "object": ["urn:ngsi-ld:SurgeTank:st1"]
   },
   "isConnectedToValve": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:Valve:valve1"
-    ]
+    "object": ["urn:ngsi-ld:Valve:valve1"]
   },
   "isConnectedToValveHouse": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:ValveHouse:vh1"
-    ]
+    "object": ["urn:ngsi-ld:ValveHouse:vh1"]
   }
 }

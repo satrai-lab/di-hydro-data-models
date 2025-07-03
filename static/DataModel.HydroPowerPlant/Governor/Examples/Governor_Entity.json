@@ -10,22 +10,34 @@
   "droopSetting": {
     "type": "Property",
     "value": 5,
-    "unitCode": "PCT"
+    "unitCode":{
+      "type": "Property",
+      "value": "PCT"
+    }
   },
   "speedSetPoint": {
     "type": "Property",
     "value": 500,
-    "unitCode": "RPM"
+    "unitCode": {
+      "type": "Property",
+      "value": "RPM"
+    }
   },
   "regulationRange": {
     "type": "Property",
     "value": 10,
-    "unitCode": "PCT"
+    "unitCode": {
+      "type": "Property",
+      "value": "PCT"
+    }
   },
   "responseTime": {
     "type": "Property",
     "value": 0.5,
-    "unitCode": "S"
+    "unitCode": {
+      "type": "Property",
+      "value": "S"
+    }
   },
   "manufacturer": {
     "type": "Property",

@@ -9,6 +9,10 @@
 
 An **Intake** is the structure at the head of a hydropower conveyance system that diverts water from its source—river, reservoir, or lake—into the penstocks or canals. It typically includes gates, screens, or trash racks to control flow and prevent debris entry, ensuring safe and efficient delivery to downstream turbines.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
+
 ## Attributes Specifications
 
 | Attribute                       | Type         | Required | Description                                                                            | Units / Values |

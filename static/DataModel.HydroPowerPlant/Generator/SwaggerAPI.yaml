@@ -21,17 +21,17 @@ paths:
               id: "urn:ngsi-ld:Generator:gen1"
               type: "Generator"
               name: { "type": "Property", "value": "Alpine Unit 1 - Main Generator" }
-              ratedCapacity: { "type": "Property", "value": 250, "unitCode": "MW" }
-              efficiency: { "type": "Property", "value": 97.2,"unitCode": "PCT"  }
+              ratedCapacity: { "type": "Property", "value": 250, "unitCode": { "type": "Property", "value": "MW" } }
+              efficiency: { "type": "Property", "value": 97.2,"unitCode": { "type": "Property", "value": "PCT" } }
               manufacturer: { "type": "Property", "value": "HydroElec Inc"}
               yearOfInstallation: { "type": "Property", "value": 2015}
               generatorType: { "type": "Property", "value": "HEI-SyncGen-250MW"}
               axis: { "type": "Property", "value": "Vertical"}
-              voltageLevel: { "type": "Property", "value": 15, "unitCode": "KV" }
-              ratedOutputMVA: { "type": "Property", "value": 263, "unitCode": "MVA" }
-              speed: { "type": "Property", "value": 150, "unitCode": "RPM" }
+              voltageLevel: { "type": "Property", "value": 15, "unitCode": { "type": "Property", "value": "KV" } }
+              ratedOutputMVA: { "type": "Property", "value": 263, "unitCode": { "type": "Property", "value": "MVA" } }
+              speed: { "type": "Property", "value": 150, "unitCode": { "type": "Property", "value": "RPM" } }
               ratedPowerFactor: { "type": "Property", "value": 0.95}
-              voltageRegulationRange: { "type": "Property", "value": 5, "unitCode": "PCT" }
+              voltageRegulationRange: { "type": "Property", "value": 5, "unitCode": { "type": "Property", "value": "PCT" } }
               windingInsulationClass: { "type": "Property", "value": "F"}
               isPartOfHydroPowerPlant: { "type": "Relationship", "object": ["urn:ngsi-ld:HydropowerPlant:plant-alpine-001"] }
               isPartOfPowerHouse: { "type": "Relationship", "object": ["urn:ngsi-ld:PowerHouse:ph1"] }
@@ -43,7 +43,87 @@ paths:
 
 components:
   schemas:
+    GenericStaticComponent:
+      type: object
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique URI identifier
+        type:
+          type: string
+        name:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+        geographicalLocation:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [GeoProperty]
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Point]
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+        isPartOfHydroPowerPlant:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        hasDevices:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        observations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+
     Generator:
+      allOf:
+        - $ref: '#/components/schemas/GenericStaticComponent'
       type: object
       required:
         - "@context"
@@ -52,16 +132,10 @@ components:
         - name
       properties:
 
-        "@context":
-          type: string
-          description: Context file defining vocabulary
-          example: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
-
         id:
           type: string
           format: uri
           description: Unique URI identifier for the Generator
-          example: "urn:ngsi-ld:Generator:gen1"
 
         type:
           type: string
@@ -79,9 +153,7 @@ components:
                 - Property
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Alpine Unit 1 - Main Generator"
+
 
         ratedCapacity:
           type: object
@@ -97,10 +169,7 @@ components:
               type: string
               enum:
                 - MW
-          example:
-            type: "Property"
-            value: 250
-            unitCode: "MW"
+
 
         efficiency:
           type: object
@@ -116,10 +185,6 @@ components:
               type: string
               enum:
                 - PCT
-          example:
-            type: "Property"
-            value: 97.2
-            unitCode: "PCT"
 
         manufacturer:
           type: object
@@ -131,9 +196,6 @@ components:
                 - Property
             value:
               type: string
-          example:
-            type: "Property"
-            value: "HydroElec Inc"
 
         yearOfInstallation:
           type: object
@@ -145,9 +207,7 @@ components:
                 - Property
             value:
               type: integer
-          example:
-            type: "Property"
-            value: 2015
+
 
         generatorType:
           type: object
@@ -159,9 +219,7 @@ components:
                 - Property
             value:
               type: string
-          example:
-            type: "Property"
-            value: "HEI-SyncGen-250MW"
+
 
         axis:
           type: object
@@ -173,9 +231,7 @@ components:
                 - Property
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Vertical"
+
 
         voltageLevel:
           type: object
@@ -191,10 +247,7 @@ components:
               type: string
               enum:
                 - KV
-          example:
-            type: "Property"
-            value: 15
-            unitCode: "KV"
+
 
         ratedOutputMVA:
           type: object
@@ -210,10 +263,7 @@ components:
               type: string
               enum:
                 - MVA
-          example:
-            type: "Property"
-            value: 263
-            unitCode: "MVA"
+
 
         speed:
           type: object
@@ -229,10 +279,7 @@ components:
               type: string
               enum:
                 - RPM
-          example:
-            type: "Property"
-            value: 150
-            unitCode: "RPM"
+
 
         ratedPowerFactor:
           type: object
@@ -244,9 +291,7 @@ components:
                 - Property
             value:
               type: number
-          example:
-            type: "Property"
-            value: 0.95
+
 
         voltageRegulationRange:
           type: object
@@ -262,10 +307,7 @@ components:
               type: string
               enum:
                 - PCT
-          example:
-            type: "Property"
-            value: 5
-            unitCode: "PCT"
+
 
         windingInsulationClass:
           type: object
@@ -277,9 +319,6 @@ components:
                 - Property
             value:
               type: string
-          example:
-            type: "Property"
-            value: "F"
 
         isPartOfHydroPowerPlant:
           type: object
@@ -294,10 +333,7 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
+
 
         isPartOfPowerHouse:
           type: object
@@ -312,10 +348,7 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:PowerHouse:ph1"
+
 
         isDrivenByTurbines:
           type: object
@@ -330,10 +363,7 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Turbine:turb1"
+
 
         hasTransformers:
           type: object
@@ -348,7 +378,3 @@ components:
               items:
                 type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Transformer:trans1"

@@ -27,22 +27,30 @@ paths:
               pumpCapacity: 
                 type: Property
                 value: 300
-                unitCode: "MW"
+                unitCode: 
+                  type: Property
+                  value: "MW"
               pumpEfficiency: 
                 type: Property
                 value: 82.5
-                unitCode: "PCT"
+                unitCode: 
+                  type: Property
+                  value: "PCT"
               operationalMode: 
                 type: Property
                 value: "Pumping"
               powerConsumption: 
                 type: Property
                 value: 275
-                unitCode: "MW"
+                unitCode: 
+                  type: Property
+                  value: "MW"
               cycleTime:
                 type: Property
                 value: 4.5
-                unitCode: "H"
+                unitCode:
+                  type: Property
+                  value: "H"
               PumpWaterTo: 
                 type: Relationship
                 object: 
@@ -58,89 +66,151 @@ paths:
 
 components:
   schemas:
-    HydroPump:
+    GenericStaticComponent:
       type: object
       required:
         - id
         - type
         - name
       properties:
-        "@context":
-          type: string
-          example: ["https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
-            "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json"]
         id:
           type: string
           format: uri
-          example: "urn:ngsi-ld:HydroPump:pump-001"
+          description: Unique URI identifier
         type:
           type: string
-          enum: ["HydroPump"]
         name:
-          type: string
-          example: "Alpine Pump Unit #5"
-        pumpCapacity:
           type: object
           properties:
-            value:
-              type: number
-            unitCode:
+            type:
               type: string
-              enum: ["MW", "M3S"]
-          example:
-            value: 300
-            unitCode: "MW"
-        pumpEfficiency:
+              enum: [Property]
+            value:
+              type: string
+        geographicalLocation:
           type: object
           properties:
-            value:
-              type: number
-              minimum: 0
-              maximum: 100
-            unitCode:
+            type:
               type: string
-              enum: ["PCT"]
-          example:
-            value: 82.5
-            unitCode: "PCT"
-        operationalMode:
-          type: string
-          enum: ["Pumping", "Generating"]
-          example: "Pumping"
-        powerConsumption:
+              enum: [GeoProperty]
+            value:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Point]
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+        isPartOfHydroPowerPlant:
           type: object
           properties:
-            value:
-              type: number
-            unitCode:
+            type:
               type: string
-              enum: ["MW"]
-          example:
-            value: 275
-            unitCode: "MW"
-        cycleTime:
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        hasDevices:
           type: object
           properties:
-            value:
-              type: number
-            unitCode:
+            type:
               type: string
-              enum: ["H"]
-          example:
-            value: 4.5
-            unitCode: "H"
-        PumpWaterTo:
-          type: array
-          items:
-            type: string
-            format: uri
-          example:
-            - "urn:ngsi-ld:Reservoir:upper-basin"
-            - "urn:ngsi-ld:Reservoir:backup-storage"
-        isPartOfHydrPowerPlant:
-          type: array
-          items:
-            type: string
-            format: uri
-          example:
-            - "urn:ngsi-ld:HydropowerPlant:alpine-psp"
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        observations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+
+    HydroPump:
+      allOf:
+        - $ref: '#/components/schemas/GenericStaticComponent'
+        - type: object
+          
+          required:
+            - id
+            - type
+            - name
+          properties:
+            "@context":
+              type: string
+              example: ["https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+                "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json"]
+            id:
+              type: string
+              format: uri
+            type:
+              type: string
+              enum: ["HydroPump"]
+            name:
+              type: string
+            pumpCapacity:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: ["MW", "M3S"]
+            pumpEfficiency:
+              type: object
+              properties:
+                value:
+                  type: number
+                  minimum: 0
+                  maximum: 100
+                unitCode:
+                  type: string
+                  enum: ["PCT"]
+            operationalMode:
+              type: string
+              enum: ["Pumping", "Generating"]
+            powerConsumption:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: ["MW"]
+            cycleTime:
+              type: object
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: ["H"]
+            PumpWaterTo:
+              type: array
+              items:
+                type: string
+                format: uri
+            isPartOfHydrPowerPlant:
+              type: array
+              items:
+                type: string
+                format: uri
+          

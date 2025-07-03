@@ -67,211 +67,242 @@ paths:
           description: Entity created successfully
 components:
   schemas:
-    PowerHouse:
+    GenericStaticComponent:
       type: object
       required:
-        - "@context"
         - id
         - type
         - name
       properties:
-
-        "@context":
-          type: string
-          description: Context file defining vocabulary
-          example: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
-
         id:
           type: string
           format: uri
-          description: Unique URI identifier for the PowerHouse
-          example: "urn:ngsi-ld:PowerHouse:ph1"
-
+          description: Unique URI identifier
         type:
           type: string
-          enum:
-            - PowerHouse
-          description: Fixed entity type identifier
-          example: "PowerHouse"
-
         name:
           type: object
-          description: Official or common name of the PowerHouse
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Alpine Main PowerHouse"
-
         geographicalLocation:
           type: object
-          description: GeoJSON Point location of the PowerHouse (longitude, latitude)
           properties:
             type:
               type: string
-              enum:
-                - GeoProperty
+              enum: [GeoProperty]
             value:
               type: object
               properties:
                 type:
                   type: string
-                  enum:
-                    - Point
+                  enum: [Point]
                 coordinates:
                   type: array
                   items:
                     type: number
-                  minItems: 2
-                  maxItems: 2
-          example:
-            type: "GeoProperty"
-            value:
-              type: "Point"
-              coordinates: [-121.5, 47.31]
-
-        address:
-          type: object
-          description: Physical street address of the PowerHouse
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-          example:
-            type: "Property"
-            value: "456 Generator Ave, Alpine Valley"
-
-        buildingArea:
-          type: object
-          description: Total floor area of the PowerHouse
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - M2
-          example:
-            type: "Property"
-            value: 1200
-            unitCode: "M2"
-
-        numberOfFloors:
-          type: object
-          description: Number of stories within the PowerHouse
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: integer
-          example:
-            type: "Property"
-            value: 2
-
         isPartOfHydroPowerPlant:
           type: object
-          description: Relationship to parent HydropowerPlant entity
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
-
-        containsGenerators:
+        hasDevices:
           type: object
-          description: Relationship to Generator entities contained in this PowerHouse
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Generator:gen1"
-              - "urn:ngsi-ld:Generator:gen2"
-
-        containsTurbines:
+        observations:
           type: object
-          description: Relationship to Turbine entities contained in this PowerHouse
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Turbine:turb1"
-              - "urn:ngsi-ld:Turbine:turb2"
-
-        isConnectedToPenstock:
+        actuations:
           type: object
-          description: Relationship to Penstock entities delivering water here
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Penstock:pen1"
-              - "urn:ngsi-ld:Penstock:pen2"
 
-        hasGovernors:
-          type: object
-          description: Relationship to Governor entities present in this PowerHouse
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
+    PowerHouse:
+      allOf:
+      - $ref: '#/components/schemas/GenericStaticComponent'
+      - type: object
+        required:
+          - id
+          - type
+          - name
+        properties:
+
+          id:
+            type: string
+            format: uri
+            description: Unique URI identifier for the PowerHouse
+
+          type:
+            type: string
+            enum:
+              - PowerHouse
+            description: Fixed entity type identifier
+
+          name:
+            type: object
+            description: Official or common name of the PowerHouse
+            properties:
+              type:
                 type: string
+                enum:
+                  - Property
+              value:
+                type: string
+
+          geographicalLocation:
+            type: object
+            description: GeoJSON Point location of the PowerHouse (longitude, latitude)
+            properties:
+              type:
+                type: string
+                enum:
+                  - GeoProperty
+              value:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - Point
+                  coordinates:
+                    type: array
+                    items:
+                      type: number
+                    minItems: 2
+                    maxItems: 2
+
+          address:
+            type: object
+            description: Physical street address of the PowerHouse
+            properties:
+              type:
+                type: string
+                enum:
+                  - Property
+              value:
+                type: string
+
+          buildingArea:
+            type: object
+            description: Total floor area of the PowerHouse
+            properties:
+              type:
+                type: string
+                enum:
+                  - Property
+              value:
+                type: number
+              unitCode:
+                type: string
+                enum:
+                  - M2
+
+          numberOfFloors:
+            type: object
+            description: Number of stories within the PowerHouse
+            properties:
+              type:
+                type: string
+                enum:
+                  - Property
+              value:
+                type: integer
+
+          isPartOfHydroPowerPlant:
+            type: object
+            description: Relationship to parent HydropowerPlant entity
+            properties:
+              type:
+                type: string
+                enum:
+                  - Relationship
+              object:
+                type: array
+                items:
+                  type: string
+                  format: uri
+
+          containsGenerators:
+            type: object
+            description: Relationship to Generator entities contained in this PowerHouse
+            properties:
+              type:
+                type: string
+                enum:
+                  - Relationship
+              object:
+                type: array
+                items:
+                  type: string
+                  format: uri
+
+          containsTurbines:
+            type: object
+            description: Relationship to Turbine entities contained in this PowerHouse
+            properties:
+              type:
+                type: string
+                enum:
+                  - Relationship
+              object:
+                type: array
+                items:
+                  type: string
+                  format: uri
+
+          isConnectedToPenstock:
+            type: object
+            description: Relationship to Penstock entities delivering water here
+            properties:
+              type:
+                type: string
+                enum:
+                  - Relationship
+              object:
+                type: array
+                items:
+                  type: string
+                  format: uri
+
+          hasGovernors:
+            type: object
+            description: Relationship to Governor entities present in this PowerHouse
+            properties:
+              type:
+                type: string
+                enum:
+                  - Relationship
+              object:
+                type: array
+                items:
+                  type: string
                 format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Governor:gov1"
-              - "urn:ngsi-ld:Governor:gov2"
+ 

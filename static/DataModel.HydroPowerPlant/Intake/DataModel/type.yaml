@@ -1,119 +1,106 @@
----
 components:
   schemas:
 
     Intake:
-      required:
-        - id
-        - type
-        - name
-      properties:
-        id:
-          anyOf: &anyof
-            - description: "Property. Identifier format of any NGSI entity"
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/Intake/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
+        - type: object
+
+          required:
+            - id
+            - type
+            - name
+          properties:
+            id:
+              description: "Property. Identifier format of any NGSI entity"
               maxLength: 256
               minLength: 1
               pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
               type: string
-          format: uri
-          type: string
-          description: "Unique identifier of the Intake"
-          x-ngsi:
-            type: Property
-        type:
-          type: string
-          enum:
-            - Intake
-          description: "NGSI Entity type. It has to be Intake"
-          x-ngsi:
-            type: Property
-        name:
-          type: string
-          description: "The official or common name for the Intake"
-          x-ngsi:
-            type: Property
-        geographicalLocation:
-          type: object
-          description: "GeoJSON property of type 'Point' representing the intake’s location. The first element in coordinates is longitude, and the second is latitude."
-          properties:
+              format: uri
+              type: string
+              description: "Unique identifier of the Intake"
+              x-ngsi:
+                type: Property
             type:
               type: string
               enum:
-                - Point
-            coordinates:
-              type: array
-              items:
-                type: number
-              minItems: 2
-          x-ngsi:
-            type: GeoProperty
-        intakeStructureType:
-          type: string
-          description: "Specifies the design or configuration of the intake (e.g., open channel, gated, screened, or submerged intake)"
-          x-ngsi:
-            type: Property
-        waterFlowRate:
-          type: object
-          description: "Indicates the rate at which water is drawn into the intake (in m³/s)"
-          properties:
-            value:
-              type: number
-              description: "Water flow rate value"
-            unitCode:
+                - Intake
+              description: "NGSI Entity type. It has to be Intake"
+              x-ngsi:
+                type: Property
+            name:
               type: string
-              enum:
-                - "M3S"
-              description: "UN/CEFACT unit code for cubic meters per second"
-          x-ngsi:
-            type: Property
-        filtrationOrDebrisControl:
-          type: string
-          description: "Mechanisms (e.g., screens, gratings, or trash racks) used to prevent debris from entering the system"
-          x-ngsi:
-            type: Property
+              description: "The official or common name for the Intake"
+              x-ngsi:
+                type: Property
+            geographicalLocation:
+              type: object
+              description: "GeoJSON property of type 'Point' representing the intake’s location. The first element in coordinates is longitude, and the second is latitude."
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Point
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+                  minItems: 2
+              x-ngsi:
+                type: GeoProperty
+            intakeStructureType:
+              type: string
+              description: "Specifies the design or configuration of the intake (e.g., open channel, gated, screened, or submerged intake)"
+              x-ngsi:
+                type: Property
+            waterFlowRate:
+              type: object
+              description: "Indicates the rate at which water is drawn into the intake (in m³/s)"
+              properties:
+                value:
+                  type: number
+                  description: "Water flow rate value"
+                unitCode:
+                  type: string
+                  enum:
+                    - "M3S"
+                  description: "UN/CEFACT unit code for cubic meters per second"
+              x-ngsi:
+                type: Property
+            filtrationOrDebrisControl:
+              type: string
+              description: "Mechanisms (e.g., screens, gratings, or trash racks) used to prevent debris from entering the system"
+              x-ngsi:
+                type: Property
 
-        isPartOfDam:
-          type: array
-          description: "Array of references to the Dam entity that this Intake is part of"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
+              isPartOfDam:
+              type: array
+              description: "Array of references to the Dam entity that this Intake is part of"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
     
-        isPartOfHydroPowerPlant:
-          type: array
-          description: "Array of references to the HydropowerPlant entity that this Intake is part of"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
+              isPartOfHydroPowerPlant:
+              type: array
+              description: "Array of references to the HydropowerPlant entity that this Intake is part of"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
     
-        leadsToPenstocks:
-          type: array
-          description: "Array of references to the Penstock entity that this Intake leads to"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
-      x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/Intake/DataModel/type.json"
+              leadsToPenstocks:
+              type: array
+              description: "Array of references to the Penstock entity that this Intake leads to"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
 
 
-info:
-  description: "Data Model of Intake for Hydropower Plant Modeling"
-  title: HydropowerPlantModeling
-  version: "1.0.2"
-openapi: "3.0.3"
-paths:
-  /ngsi-ld/v1/entities:
-    get:
-      responses:
-        "200":
-          content:
-            application/ld+json:
-              schema:
-                type: object
-          description: OK

@@ -2,118 +2,126 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
+  "description": "Data Model of Dam in Hydropower Plant Modeling",
   "definitions": {
     "Dam": {
-      "type": "object",
-      "required": ["id", "type", "name"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json#/definitions/GenericStaticComponent"
         },
-        "type": {
-          "type": "string",
-          "enum": ["Dam"]
-        },
-        "name": {
-          "type": "string"
-        },
-        "geographicalLocation": {
+        {
           "type": "object",
+          "required": ["id", "type", "name"],
           "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+            },
             "type": {
               "type": "string",
-              "enum": ["Point"]
+              "enum": ["Dam"]
             },
-            "coordinates": {
+            "name": {
+              "type": "string"
+            },
+            "geographicalLocation": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Point"]
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2
+                }
+              }
+            },
+            "damHeight": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
+              }
+            },
+            "damLength": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
+              }
+            },
+            "damCrestElevation": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
+              }
+            },
+
+            "constructionMaterials": {
+              "type": "string",
+              "enum": ["Concrete", "Earth-fill", "Rock-fill", "Masonry"]
+            },
+            "damType": {
+              "type": "string",
+              "enum": ["Concrete Gravity", "Arch Dam", "Embankment Dam"]
+            },
+
+            "yearOfConstruction": {
+              "type": "number"
+            },
+            "hasSpillway": {
               "type": "array",
               "items": {
-                "type": "number"
-              },
-              "minItems": 2
-            }
-          }
-        },
-        "damHeight": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+                "type": "string",
+                "format": "uri"
+              }
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M"]
-            }
-          }
-        },
-        "damLength": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "hasintakes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M"]
-            }
-          }
-        },
-        "damCrestElevation": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "isPartOfReservoir": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M"]
+            "isPartOfHydroPlant": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             }
-          }
-        },
-
-        "constructionMaterials": {
-          "type": "string",
-          "enum": ["Concrete", "Earth-fill", "Rock-fill", "Masonry"]
-        },
-        "damType": {
-          "type": "string",
-          "enum": ["Concrete Gravity", "Arch Dam", "Embankment Dam"]
-        },
-
-        "yearOfConstruction": {
-          "type": "number"
-        },
-        "hasSpillway": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "hasintakes": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isPartOfReservoir": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isPartOfHydroPlant": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
+          },
+          "additionalProperties": false
         }
-      },
-      "additionalProperties": false
+      ]
     }
   }
 }

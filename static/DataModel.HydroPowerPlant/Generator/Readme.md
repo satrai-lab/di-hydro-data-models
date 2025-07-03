@@ -8,6 +8,9 @@
 ## Definition
 A **Generator** is the core electrical component in hydropower plants that converts mechanical energy from turbines into electrical energy. It consists of rotating electromagnets (rotor) and stationary coils (stator) that produce alternating current through electromagnetic induction.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
 ## Attributes Specifications
 
 | Attribute | Type | Required | Description | Units/Values |

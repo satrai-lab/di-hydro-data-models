@@ -1,165 +1,68 @@
 components:
   schemas:
 
-    CatchmentArea:
+    CrackGrowthSensor:
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/CatchementArea/DataModel/type.json"
-
+        uri-prefix: "http://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/CrackGrowthSensor/DataModel/type.json"
       allOf:
-        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.yaml#/components/schemas/Device"
         - type: object
-
-          required:
-            - id
-            - type
           properties:
-            id:
-              format: uri
+
+            monitoringType:
               type: string
-              description: "Unique identifier of the WaterBody"
-              x-ngsi:
-                type: Property
-            type:
-              type: string
+              description: "Category of monitoring application for this sensor"
               enum:
-                - CatchmentArea
-              description: "NGSI Entity type. It has to be CatchmentArea"
-              x-ngsi:
-                type: Property
-            area:
-              type: object
-              description: "The total area of the catchment in square kilometers"
-              properties:
-                value:
-                  type: number
-                  description: "Area value"
-                unitCode:
-                  type: string
-                  enum:
-                    - "KM2"
-                  description: "UN/CEFACT unit code for square kilometer"
-              x-ngsi:
-                type: Property
-            annualPrecipitationVolume:
-              type: object
-              description: "The total volume of rainfall collected annually in the catchment area (in cubic meters)"
-              properties:
-                value:
-                  type: number
-                  description: "Annual precipitation volume value"
-                unitCode:
-                  type: string
-                  enum:
-                    - "M3"
-                  description: "UN/CEFACT unit code for cubic meter"
-              x-ngsi:
-                type: Property
-            seasonalRainfallDistribution:
-              type: object
-              description: "Breakdown of how the annual precipitation is distributed across different seasons"
-              properties:
-                spring:
-                  type: number
-                  description: "Percentage of annual precipitation in spring"
-                summer:
-                  type: number
-                  description: "Percentage of annual precipitation in summer"
-                autumn:
-                  type: number
-                  description: "Percentage of annual precipitation in autumn"
-                winter:
-                  type: number
-                  description: "Percentage of annual precipitation in winter"
-              x-ngsi:
-                type: Property
-            soilType:
-              type: string
-              description: "Classification of soil in the catchment area"
-              x-ngsi:
-                type: Property
-            vegetationCover:
-              type: string
-              description: "Information on the types and extent of vegetation in the catchment"
-              x-ngsi:
-                type: Property
-            flowVariationProfile:
-              type: object
-              description: "Data describing how water flow varies throughout the year"
-              properties:
-                jan:
-                  type: number
-                  description: "Water flow in January (in cubic meters per second)"
-                feb:
-                  type: number
-                  description: "Water flow in February (in cubic meters per second)"
-                mar:
-                  type: number
-                  description: "Water flow in March (in cubic meters per second)"
-                apr:
-                  type: number
-                  description: "Water flow in April (in cubic meters per second)"
-                may:
-                  type: number
-                  description: "Water flow in May (in cubic meters per second)"
-                jun:
-                  type: number
-                  description: "Water flow in June (in cubic meters per second)"
-                jul:
-                  type: number
-                  description: "Water flow in July (in cubic meters per second)"
-                aug:
-                  type: number
-                  description: "Water flow in August (in cubic meters per second)"
-                sep:
-                  type: number
-                  description: "Water flow in September (in cubic meters per second)"
-                oct:
-                  type: number
-                  description: "Water flow in October (in cubic meters per second)"
-                nov:
-                  type: number
-                  description: "Water flow in November (in cubic meters per second)"
-                dec:
-                  type: number
-                  description: "Water flow in December (in cubic meters per second)"
-              x-ngsi:
-                type: Property
-            averageWaterFlow:
-              type: object
-              description: "Average historical water flow (in cubic meters per second)"
-              properties:
-                value:
-                  type: number
-                  description: "Average water flow value"
-                unitCode:
-                  type: string
-                  enum:
-                    - "M3S"
-                  description: "UN/CEFACT unit code for cubic meters per second"
+                - StructuralHealthAndConditionMonitoring
+                - EnvironmentalMonitoring
+                - BiodiversityMonitoring
               x-ngsi:
                 type: Property
 
-            suppliesWaterToWaterBody:
+            adcResolution:
+              type: object
+              description: "Resolution of the ADC used for strain readings"
+              properties:
+                value:
+                  type: integer
+                  description: "Number of bits of ADC resolution"
+                unitCode:
+                  type: string
+                  enum:
+                    - bit
+                  description: "Unit code for bits"
+              x-ngsi:
+                type: Property
+
+            leadConfiguration:
+              type: object
+              description: "Type of lead wiring configuration to minimize errors"
+              properties:
+                value:
+                  type: string
+                  description: "Lead wiring method"
+                unitCode:
+                  type: string
+                  enum:
+                    - ""
+                  description: "Unit code (none)"
+              x-ngsi:
+                type: Property
+
+            hasMicrocontroller:
               type: array
-              description: "Array of references to Water Body entities that are supplied by this catchment area"
+              description: "Reference to the microcontroller that this sensor is connected to"
               items:
                 type: string
                 format: uri
               x-ngsi:
                 type: Relationship
-            suppliesWaterToHydroPowerPlant:
-              type: array
-              description: "Array of references to HydropowerPlant entities that are supplied by this catchment area"
-              items:
-                type: string
-                format: uri
-              x-ngsi:
-                type: Relationship
-        
+
+          additionalProperties: false
 
 info:
-  description: "Data Model of Catchment Area for Hydropower Plant Modeling"
-  title: HydropowerPlantModeling
+  description: "Data Model of CrackGrowthSensor of Hydropower Plant Modeling"
+  title: Dynamic HydropowerPlantModeling
   version: "1.0.2"
 openapi: "3.0.3"
 paths:

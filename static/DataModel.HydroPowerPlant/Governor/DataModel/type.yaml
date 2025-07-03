@@ -1,145 +1,131 @@
----
 components:
   schemas:
 
     Governor:
-      required:
-        - id
-        - type
-        - name
-      properties:
-        id:
-          anyOf: &anyof
-            - description: "Property. Identifier format of any NGSI entity"
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/Governor/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
+        - type: object
+          required:
+            - id
+            - type
+            - name
+          properties:
+            id:
+              description: "Property. Identifier format of any NGSI entity"
               maxLength: 256
               minLength: 1
               pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
               type: string
-          format: uri
-          type: string
-          description: "Unique identifier of the Governor"
-          x-ngsi:
-            type: Property
-        type:
-          type: string
-          enum:
-            - Governor
-          description: "NGSI Entity type. It has to be Governor"
-          x-ngsi:
-            type: Property
-        name:
-          type: string
-          description: "The official or common name of the Governor"
-          x-ngsi:
-            type: Property
-        droopSetting:
-          type: object
-          description: "Droop setting percentage indicating how much the turbine speed drops as load increases."
-          properties:
-            value:
-              type: number
-              description: "Droop setting value (in percentage)"
-            unitCode:
+              format: uri
+              type: string
+              description: "Unique identifier of the Governor"
+              x-ngsi:
+                type: Property
+            type:
               type: string
               enum:
-                - "PCT"
-              description: "UN/CEFACT unit code for percentage"
-          x-ngsi:
-            type: Property
-        speedSetPoint:
-          type: object
-          description: "Target operating speed of the turbine."
-          properties:
-            value:
-              type: number
-              description: "Speed set point value (in RPM)"
-            unitCode:
+                - Governor
+              description: "NGSI Entity type. It has to be Governor"
+              x-ngsi:
+                type: Property
+            name:
               type: string
-              enum:
-                - "RPM"
-              description: "Unit code for revolutions per minute"
-          x-ngsi:
-            type: Property
-        regulationRange:
-          type: object
-          description: "Range over which the governor can adjust the turbine’s input, reflecting load regulation capability."
-          properties:
-            value:
-              type: number
-              description: "Regulation range value (in percentage)"
-            unitCode:
+              description: "The official or common name of the Governor"
+              x-ngsi:
+                type: Property
+            droopSetting:
+              type: object
+              description: "Droop setting percentage indicating how much the turbine speed drops as load increases."
+              properties:
+                value:
+                  type: number
+                  description: "Droop setting value (in percentage)"
+                unitCode:
+                  type: string
+                  enum:
+                    - "PCT"
+                  description: "UN/CEFACT unit code for percentage"
+              x-ngsi:
+                type: Property
+            speedSetPoint:
+              type: object
+              description: "Target operating speed of the turbine."
+              properties:
+                value:
+                  type: number
+                  description: "Speed set point value (in RPM)"
+                unitCode:
+                  type: string
+                  enum:
+                    - "RPM"
+                  description: "Unit code for revolutions per minute"
+              x-ngsi:
+                type: Property
+            regulationRange:
+              type: object
+              description: "Range over which the governor can adjust the turbine’s input, reflecting load regulation capability."
+              properties:
+                value:
+                  type: number
+                  description: "Regulation range value (in percentage)"
+                unitCode:
+                  type: string
+                  enum:
+                    - "PCT"
+                  description: "UN/CEFACT unit code for percentage"
+              x-ngsi:
+                type: Property
+            responseTime:
+              type: object
+              description: "The time it takes for the governor to react to changes in load or turbine speed."
+              properties:
+                value:
+                  type: number
+                  description: "Response time value (in seconds)"
+                unitCode:
+                  type: string
+                  enum:
+                    - "S"
+                  description: "UN/CEFACT unit code for seconds"
+              x-ngsi:
+                type: Property
+            manufacturer:
               type: string
-              enum:
-                - "PCT"
-              description: "UN/CEFACT unit code for percentage"
-          x-ngsi:
-            type: Property
-        responseTime:
-          type: object
-          description: "The time it takes for the governor to react to changes in load or turbine speed."
-          properties:
-            value:
+              description: "The name or details of the manufacturer of the governor"
+              x-ngsi:
+                type: Property
+            yearOfInstallation:
               type: number
-              description: "Response time value (in seconds)"
-            unitCode:
-              type: string
-              enum:
-                - "S"
-              description: "UN/CEFACT unit code for seconds"
-          x-ngsi:
-            type: Property
-        manufacturer:
-          type: string
-          description: "The name or details of the manufacturer of the governor"
-          x-ngsi:
-            type: Property
-        yearOfInstallation:
-          type: number
-          description: "The year when the governor was installed"
-          x-ngsi:
-            type: Property
+              description: "The year when the governor was installed"
+              x-ngsi:
+                type: Property
 
-        isPartOfHydroPowerPlant:
-          type: array
-          description: "Array of references to the HydropowerPlant entity that this Governor is part of"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
+              isPartOfHydroPowerPlant:
+              type: array
+              description: "Array of references to the HydropowerPlant entity that this Governor is part of"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
     
-        controlsTurbine:
-          type: array
-          description: "Array of references to the Turbine entity (or entities) controlled by this Governor"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
+              controlsTurbine:
+              type: array
+              description: "Array of references to the Turbine entity (or entities) controlled by this Governor"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
     
-        isPartOfPowerHouse:
-          type: array
-          description: "Array of references to the PowerHouse entity that houses this Governor"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
-      x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/Governor/DataModel/type.json"
-      
-info:
-  description: "Data Model of Governor"
-  title: HydropowerPlantModeling
-  version: "1.0.2"
-openapi: "3.0.3"
-paths:
-  /ngsi-ld/v1/entities:
-    get:
-      responses:
-        "200":
-          content:
-            application/ld+json:
-              schema:
-                type: object
-          description: OK
+              isPartOfPowerHouse:
+              type: array
+              description: "Array of references to the PowerHouse entity that houses this Governor"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+ 

@@ -9,6 +9,10 @@
 
 A **ValveHouse** is a structure that encloses and protects one or more valves, associated actuators, and control equipment in a hydropower system. It provides a controlled environment for operation, maintenance access, and safeguarding of flow-control components against weather and debris.
 
+> **Inheritance:**
+> This entity **inherits** all core properties from the [GenericStaticComponent ](https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json) base type (e.g. `id`, `type`, `name`, `geographicalLocation`, `isPartOfHydroPowerPlant`, `hasDevices`, `observations`, `actuations`), and adds the following specific attributes.
+
+
 ## Attributes Specifications
 
 | Attribute                     | Type         | Required | Description                                                                | Units / Values |

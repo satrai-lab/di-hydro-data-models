@@ -9,12 +9,18 @@
   "ratedCapacity": {
     "type": "Property",
     "value": 250,
-    "unitCode": "MW"
+    "unitCode": {
+        "type": "Property",
+        "value": "MW"
+    }
   },
   "efficiency": {
     "type": "Property",
     "value": 97.2,
-    "unitCode": "PCT"
+    "unitCode": {
+        "type": "Property",
+        "value": "PCT"
+    }
   },
   "manufacturer": {
     "type": "Property",
@@ -35,17 +41,26 @@
   "voltageLevel": {
     "type": "Property",
     "value": 15,
-    "unitCode": "KV"
+    "unitCode": {
+      "type": "Property",
+      "value": "kV"
+    }
   },
   "ratedOutputMVA": {
     "type": "Property",
     "value": 263,
-    "unitCode": "MVA"
+    "unitCode": {
+      "type": "Property",
+      "value": "MVA"
+    }
   },
   "speed": {
     "type": "Property",
     "value": 150,
-    "unitCode": "RPM"
+    "unitCode": {
+      "type": "Property",
+      "value": "RPM"
+    }
   },
   "ratedPowerFactor": {
     "type": "Property",
@@ -54,7 +69,10 @@
   "voltageRegulationRange": {
     "type": "Property",
     "value": 5,
-    "unitCode": "PCT"
+    "unitCode": {
+      "type": "Property",
+      "value": "PCT"
+    }
   },
   "windingInsulationClass": {
     "type": "Property",

@@ -19,12 +19,18 @@
   "dischargeCapacity": {
     "type": "Property",
     "value": 2000,
-    "unitCode": "M3S"
+    "unitCode": {
+        "type":"Property",
+        "value": "M3S"
+    }
   },
   "designFlowRate": {
     "type": "Property",
     "value": 1800,
-    "unitCode": "M3S"
+    "unitCode": {
+      "type": "Property",
+      "value": "M3S"
+    }
   },
   "spillwayType": {
     "type": "Property",
@@ -33,7 +39,10 @@
   "crestElevation": {
     "type": "Property",
     "value": 385,
-    "unitCode": "M"
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
+    }
   },
   "spillwayClassification": {
     "type": "Property",

@@ -31,22 +31,30 @@ paths:
               length:
                 type: "Property"
                 value: 1200
-                unitCode: "M"
+                unitCode: 
+                  type: "Property"
+                  value: "M"
               diameter:
                 type: "Property"
                 value: 4.5
-                unitCode: "M"
+                unitCode:
+                  type: "Property"
+                  value: "M"
               material:
                 type: "Property"
                 value: "Steel"
               designPressure:
                 type: "Property"
                 value: 50
-                unitCode: "BAR"
+                unitCode: 
+                  type: "Property"
+                  value: "BAR"
               flowCapacity:
                 type: "Property"
                 value: 200
-                unitCode: "M3S"
+                unitCode: 
+                  type: "Property"
+                  value: "M3S"
               isPartOfHydroPowerPlant:
                 type: "Relationship"
                 object:
@@ -73,248 +81,280 @@ paths:
 
 components:
   schemas:
-    Penstock:
+    GenericStaticComponent:
       type: object
       required:
         - id
         - type
         - name
       properties:
-
         id:
           type: string
           format: uri
-          description: Unique URI identifier for the Penstock
-          example: "urn:ngsi-ld:Penstock:pen1"
-
+          description: Unique URI identifier
         type:
           type: string
-          enum:
-            - Penstock
-          description: Fixed entity type identifier
-          example: "Penstock"
-
         name:
           type: object
-          description: Official or common name of the Penstock
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Main Alpine Penstock"
-
         geographicalLocation:
           type: object
-          description: GeoJSON Point marking the penstock’s start location (longitude, latitude)
           properties:
             type:
               type: string
-              enum:
-                - GeoProperty
+              enum: [GeoProperty]
             value:
               type: object
               properties:
                 type:
                   type: string
-                  enum:
-                    - Point
+                  enum: [Point]
                 coordinates:
                   type: array
                   items:
                     type: number
-                  minItems: 2
-                  maxItems: 2
-          example:
-            type: "GeoProperty"
-            value:
-              type: "Point"
-              coordinates: [-121.495, 47.34]
-
-        length:
-          type: object
-          description: Physical length of the penstock
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-                type: number
-            unitCode:
-                type: string
-                enum:
-                    - M
-          example:
-            type: "Property"
-            value: 1200
-            unitCode: "M"
-
-        diameter:
-          type: object
-          description: Internal diameter of the penstock
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - M
-          example:
-            type: "Property"
-            value: 4.5
-            unitCode: "M"
-
-        material:
-          type: object
-          description: Construction material of the penstock
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-              enum:
-                - Steel
-                - "Reinforced Concrete"
-                - Composite
-          example:
-            type: "Property"
-            value: "Steel"
-
-        designPressure:
-          type: object
-          description: Maximum hydraulic pressure the penstock is engineered to withstand
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - BAR
-          example:
-            type: "Property"
-            value: 50
-            unitCode: "BAR"
-
-        flowCapacity:
-          type: object
-          description: Designed maximum flow capacity to the turbine
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - M3S
-          example:
-            type: "Property"
-            value: 200
-            unitCode: "M3S"
-
         isPartOfHydroPowerPlant:
           type: object
-          description: Relationship to parent HydropowerPlant entity
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
-
-        isConnectedToIntake:
+        hasDevices:
           type: object
-          description: Relationship to Intake entity feeding this penstock
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Intake:int1"
-
-        isConnectedToSurgeTank:
+        observations:
           type: object
-          description: Relationship to SurgeTank entity mitigating pressure transients
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:SurgeTank:st1"
-
-        isConnectedToValve:
+        actuations:
           type: object
-          description: Relationship to Valve entity installed on this penstock
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Valve:valve1"
 
-        isConnectedToValveHouse:
-          type: object
-          description: Relationship to ValveHouse entity housing valves for this penstock
+    Penstock:
+      allOf:
+        - $ref: '#/components/schemas/GenericStaticComponent'
+        - type: object
+          required:
+            - id
+            - type
+            - name
           properties:
+
+            id:
+              type: string
+              format: uri
+              description: Unique URI identifier for the Penstock
+
             type:
               type: string
               enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:ValveHouse:vh1"
+                - Penstock
+              description: Fixed entity type identifier
+
+            name:
+              type: object
+              description: Official or common name of the Penstock
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+
+
+            geographicalLocation:
+              type: object
+              description: GeoJSON Point marking the penstock’s start location (longitude, latitude)
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - GeoProperty
+                value:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                        - Point
+                    coordinates:
+                      type: array
+                      items:
+                        type: number
+                      minItems: 2
+                      maxItems: 2
+
+            length:
+              type: object
+              description: Physical length of the penstock
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                    type: number
+                unitCode:
+                    type: string
+                    enum:
+                        - M
+
+            diameter:
+              type: object
+              description: Internal diameter of the penstock
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M
+
+            material:
+              type: object
+              description: Construction material of the penstock
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                  enum:
+                    - Steel
+                    - "Reinforced Concrete"
+                    - Composite
+
+            designPressure:
+              type: object
+              description: Maximum hydraulic pressure the penstock is engineered to withstand
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - BAR
+
+            flowCapacity:
+              type: object
+              description: Designed maximum flow capacity to the turbine
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum:
+                    - M3S
+
+            isPartOfHydroPowerPlant:
+              type: object
+              description: Relationship to parent HydropowerPlant entity
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+
+            isConnectedToIntake:
+              type: object
+              description: Relationship to Intake entity feeding this penstock
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+
+            isConnectedToSurgeTank:
+              type: object
+              description: Relationship to SurgeTank entity mitigating pressure transients
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+
+            isConnectedToValve:
+              type: object
+              description: Relationship to Valve entity installed on this penstock
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+
+            isConnectedToValveHouse:
+              type: object
+              description: Relationship to ValveHouse entity housing valves for this penstock
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri

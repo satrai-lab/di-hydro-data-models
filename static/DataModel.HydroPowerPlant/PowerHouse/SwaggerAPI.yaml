@@ -34,7 +34,9 @@ paths:
               buildingArea:
                 type: "Property"
                 value: 1200
-                unitCode: "M2"
+                unitCode: 
+                  type: "Property"
+                  value: "M2"
               numberOfFloors:
                 type: "Property"
                 value: 2

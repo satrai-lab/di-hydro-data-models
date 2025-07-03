@@ -1,113 +1,100 @@
----
 components:
   schemas:
 
     PumpingStation:
-      required:
-        - id
-        - type
-        - name
-      properties:
-        id:
-          type: string
-          description: "Unique identifier of the PumpingStation"
-          maxLength: 256
-          minLength: 1
-          pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
-          x-ngsi:
-            type: Property
-        type:
-          type: string
-          enum:
-            - PumpingStation
-          description: "Must be set to ‘PumpingStation’"
-          x-ngsi:
-            type: Property
-        name:
-          type: string
-          description: "Official name of the pumping station"
-          x-ngsi:
-            type: Property
-        totalPower:
-          type: object
-          description: "Total installed motor power capacity (megawatts (MW))"
-          properties:
-            value:
-              type: number
-              description: "Power capacity in megawatts"
-            unitCode:
-              type: string
-              enum:
-                - "MW"
-              description: "UN/CEFACT unit code for megawatt"
-          x-ngsi:
-            type: Property
-        unitCount:
-          type: number
-          description: "Number of individual pump units"
-          x-ngsi:
-            type: Property
-        yearlyEnergyConsumption:
-          type: object
-          description: "Annual electricity consumed by all pumps (kilowatt-hours (kWh))"
-          properties:
-            value:
-              type: number
-              description: "Annual energy consumption in kilowatt-hours"
-            unitCode:
-              type: string
-              enum:
-                - "KWH"
-              description: "UN/CEFACT unit code for kilowatt-hour"
-          x-ngsi:
-            type: Property
-        estimatedAnnualContribution:
-          type: object
-          description: "Estimated additional hydropower generation enabled by pumping (megawatt-hours (MWh))"
-          properties:
-            value:
-              type: number
-              description: "Additional generation enabled in megawatt-hours"
-            unitCode:
-              type: string
-              enum:
-                - "MWH"
-              description: "UN/CEFACT unit code for megawatt-hour"
-          x-ngsi:
-            type: Property
-
-        feedsReservoir:
-          type: array
-          description: "Array of references to the Reservoir entity that this station pumps water into"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
-        increasesProductionAt:
-          type: array
-          description: "Array of references to the HydropowerPlant entity whose generation is boosted by this pumping station"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
-
       x-ngsi:
         uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/PumpingStation/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
+        - type: object
+          required:
+            - id
+            - type
+            - name
+          properties:
+            id:
+              type: string
+              description: "Unique identifier of the PumpingStation"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              x-ngsi:
+                type: Property
+            type:
+              type: string
+              enum:
+                - PumpingStation
+              description: "Must be set to ‘PumpingStation’"
+              x-ngsi:
+                type: Property
+            name:
+              type: string
+              description: "Official name of the pumping station"
+              x-ngsi:
+                type: Property
+            totalPower:
+              type: object
+              description: "Total installed motor power capacity (megawatts (MW))"
+              properties:
+                value:
+                  type: number
+                  description: "Power capacity in megawatts"
+                unitCode:
+                  type: string
+                  enum:
+                    - "MW"
+                  description: "UN/CEFACT unit code for megawatt"
+              x-ngsi:
+                type: Property
+            unitCount:
+              type: number
+              description: "Number of individual pump units"
+              x-ngsi:
+                type: Property
+            yearlyEnergyConsumption:
+              type: object
+              description: "Annual electricity consumed by all pumps (kilowatt-hours (kWh))"
+              properties:
+                value:
+                  type: number
+                  description: "Annual energy consumption in kilowatt-hours"
+                unitCode:
+                  type: string
+                  enum:
+                    - "KWH"
+                  description: "UN/CEFACT unit code for kilowatt-hour"
+              x-ngsi:
+                type: Property
+            estimatedAnnualContribution:
+              type: object
+              description: "Estimated additional hydropower generation enabled by pumping (megawatt-hours (MWh))"
+              properties:
+                value:
+                  type: number
+                  description: "Additional generation enabled in megawatt-hours"
+                unitCode:
+                  type: string
+                  enum:
+                    - "MWH"
+                  description: "UN/CEFACT unit code for megawatt-hour"
+              x-ngsi:
+                type: Property
+    
+            feedsReservoir:
+              type: array
+              description: "Array of references to the Reservoir entity that this station pumps water into"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+            increasesProductionAt:
+              type: array
+              description: "Array of references to the HydropowerPlant entity whose generation is boosted by this pumping station"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
 
-info:
-  description: "Data Model of PumpingStation for Hydropower Plant Modeling"
-  title: HydropowerPlantModeling
-  version: "1.0.2"
-openapi: "3.0.3"
-paths:
-  /ngsi-ld/v1/entities:
-    get:
-      responses:
-        "200":
-          content:
-            application/ld+json:
-              schema:
-                type: object
-          description: OK
+

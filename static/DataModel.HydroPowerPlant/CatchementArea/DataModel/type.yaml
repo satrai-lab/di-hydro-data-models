@@ -1,21 +1,18 @@
 components:
   schemas:
-
     CatchmentArea:
       x-ngsi:
         uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/CatchementArea/DataModel/type.json"
-
       allOf:
         - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
         - type: object
-
           required:
             - id
             - type
           properties:
             id:
-              format: uri
               type: string
+              format: uri
               description: "Unique identifier of the WaterBody"
               x-ngsi:
                 type: Property
@@ -32,11 +29,9 @@ components:
               properties:
                 value:
                   type: number
-                  description: "Area value"
                 unitCode:
                   type: string
-                  enum:
-                    - "KM2"
+                  enum: [KM2]
                   description: "UN/CEFACT unit code for square kilometer"
               x-ngsi:
                 type: Property
@@ -46,30 +41,19 @@ components:
               properties:
                 value:
                   type: number
-                  description: "Annual precipitation volume value"
                 unitCode:
                   type: string
-                  enum:
-                    - "M3"
+                  enum: [M3]
                   description: "UN/CEFACT unit code for cubic meter"
               x-ngsi:
                 type: Property
             seasonalRainfallDistribution:
-              type: object
-              description: "Breakdown of how the annual precipitation is distributed across different seasons"
-              properties:
-                spring:
-                  type: number
-                  description: "Percentage of annual precipitation in spring"
-                summer:
-                  type: number
-                  description: "Percentage of annual precipitation in summer"
-                autumn:
-                  type: number
-                  description: "Percentage of annual precipitation in autumn"
-                winter:
-                  type: number
-                  description: "Percentage of annual precipitation in winter"
+              type: array
+              description: >
+                Distribution of annual rainfall across seasons as percentages. The array follows the order:
+                [Spring, Summer, Autumn, Winter]
+              items:
+                type: number
               x-ngsi:
                 type: Property
             soilType:
@@ -83,45 +67,17 @@ components:
               x-ngsi:
                 type: Property
             flowVariationProfile:
-              type: object
-              description: "Data describing how water flow varies throughout the year"
-              properties:
-                jan:
-                  type: number
-                  description: "Water flow in January (in cubic meters per second)"
-                feb:
-                  type: number
-                  description: "Water flow in February (in cubic meters per second)"
-                mar:
-                  type: number
-                  description: "Water flow in March (in cubic meters per second)"
-                apr:
-                  type: number
-                  description: "Water flow in April (in cubic meters per second)"
-                may:
-                  type: number
-                  description: "Water flow in May (in cubic meters per second)"
-                jun:
-                  type: number
-                  description: "Water flow in June (in cubic meters per second)"
-                jul:
-                  type: number
-                  description: "Water flow in July (in cubic meters per second)"
-                aug:
-                  type: number
-                  description: "Water flow in August (in cubic meters per second)"
-                sep:
-                  type: number
-                  description: "Water flow in September (in cubic meters per second)"
-                oct:
-                  type: number
-                  description: "Water flow in October (in cubic meters per second)"
-                nov:
-                  type: number
-                  description: "Water flow in November (in cubic meters per second)"
-                dec:
-                  type: number
-                  description: "Water flow in December (in cubic meters per second)"
+              type: array
+              description: "Array of monthly water flow rates in m³/s: [Jan, Feb, ..., Dec]"
+              items:
+                type: object
+                properties:
+                  value:
+                    type: number
+                  unitCode:
+                    type: string
+                    enum: [M3S]
+                    description: "UN/CEFACT unit code for cubic meters per second"
               x-ngsi:
                 type: Property
             averageWaterFlow:
@@ -130,15 +86,12 @@ components:
               properties:
                 value:
                   type: number
-                  description: "Average water flow value"
                 unitCode:
                   type: string
-                  enum:
-                    - "M3S"
+                  enum: [M3S]
                   description: "UN/CEFACT unit code for cubic meters per second"
               x-ngsi:
                 type: Property
-
             suppliesWaterToWaterBody:
               type: array
               description: "Array of references to Water Body entities that are supplied by this catchment area"
@@ -155,20 +108,3 @@ components:
                 format: uri
               x-ngsi:
                 type: Relationship
-        
-
-info:
-  description: "Data Model of Catchment Area for Hydropower Plant Modeling"
-  title: HydropowerPlantModeling
-  version: "1.0.2"
-openapi: "3.0.3"
-paths:
-  /ngsi-ld/v1/entities:
-    get:
-      responses:
-        "200":
-          content:
-            application/ld+json:
-              schema:
-                type: object
-          description: OK

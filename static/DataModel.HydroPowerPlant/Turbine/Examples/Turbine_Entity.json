@@ -13,22 +13,34 @@
   "capacity": {
     "type": "Property",
     "value": 300,
-    "unitCode": "MW"
+    "unitCode": {
+        "type": "Property",
+        "value": "MW"
+    }
   },
   "efficiency": {
     "type": "Property",
     "value": 92.1,
-    "unitCode": "PCT"
+    "unitCode": {
+        "type": "Property",
+        "value": "PCT"
+    }
   },
   "operatingFlowRate": {
     "type": "Property",
     "value": 250,
-    "unitCode": "M3S"
+    "unitCode": {
+        "type": "Property",
+        "value": "M3S"
+    }
   },
   "head": {
     "type": "Property",
     "value": 120,
-    "unitCode": "M"
+    "unitCode": {
+        "type": "Property",
+        "value": "M"
+    }
   },
   "manufacturer": {
     "type": "Property",
@@ -49,12 +61,18 @@
   "maxPower": {
     "type": "Property",
     "value": 350,
-    "unitCode": "MW"
+    "unitCode": {
+        "type": "Property",
+        "value": "MW"
+    }
   },
   "speed": {
     "type": "Property",
     "value": 750,
-    "unitCode": "RPM"
+    "unitCode": {
+        "type": "Property",
+        "value": "RPM"
+    }
   },
   "dischargesToReservoir": {
     "type": "Relationship",
@@ -62,14 +80,20 @@
       {
         "tunnelLength": {
           "value": 2.5,
-          "unitCode": "KM"
+          "unitCode": {
+            "type": "Property",
+            "value": "KM"
+          }
         },
         "object": "urn:ngsi-ld:Reservoir:res1"
       },
       {
         "tunnelLength": {
           "value": 3.2,
-          "unitCode": "KM"
+          "unitCode": {
+            "type": "Property",
+            "value": "KM"
+          }
         },
         "object": "urn:ngsi-ld:Reservoir:res2"
       }

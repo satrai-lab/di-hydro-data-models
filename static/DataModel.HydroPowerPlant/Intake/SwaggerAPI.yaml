@@ -56,165 +56,218 @@ paths:
 
 components:
   schemas:
-    Intake:
+    GenericStaticComponent:
       type: object
       required:
         - id
         - type
         - name
       properties:
-
         id:
           type: string
           format: uri
-          description: Unique URI identifier for the Intake
-          example: "urn:ngsi-ld:Intake:int1"
-
+          description: Unique URI identifier
         type:
           type: string
-          enum:
-            - Intake
-          description: Fixed entity type identifier
-          example: "Intake"
-
         name:
           type: object
-          description: Official or common name of the Intake
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Main River Intake"
-
         geographicalLocation:
           type: object
-          description: GeoJSON Point representing the intake’s location (longitude, latitude)
           properties:
             type:
               type: string
-              enum:
-                - GeoProperty
+              enum: [GeoProperty]
             value:
               type: object
               properties:
                 type:
                   type: string
-                  enum:
-                    - Point
+                  enum: [Point]
                 coordinates:
                   type: array
                   items:
                     type: number
-                  minItems: 2
-                  maxItems: 2
-          example:
-            type: "GeoProperty"
-            value:
-              type: "Point"
-              coordinates: [-121.49, 47.33]
-
-        intakeStructureType:
-          type: object
-          description: Design or configuration of the intake
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-          example:
-            type: "Property"
-            value: "Gated"
-
-        waterFlowRate:
-          type: object
-          description: Rate at which water is drawn into the intake
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-                type: number
-            unitCode:
-                  type: string
-                  enum:
-                    - M3S
-          example:
-            type: "Property"
-            value: 120
-            unitCode: "M3S"
-
-        filtrationOrDebrisControl:
-          type: object
-          description: Mechanisms used to prevent debris entry
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-          example:
-            type: "Property"
-            value: "Trash rack with 10 mm spacing"
-
-        isPartOfDam:
-          type: object
-          description: Relationship to the Dam entity this intake is part of
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Dam:dam1"
-
         isPartOfHydroPowerPlant:
           type: object
-          description: Relationship to the HydropowerPlant entity this intake serves
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
-
-        leadsToPenstocks:
+        hasDevices:
           type: object
-          description: Relationship to Penstock entities receiving water from this intake
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
+        observations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
             object:
-              - "urn:ngsi-ld:Penstock:pen1"
+              type: array
+              items:
+                type: string
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+
+    Intake:
+      allOf:
+      - $ref: '#/components/schemas/GenericStaticComponent'
+      - type: object
+        required:
+          - id
+          - type
+          - name
+        properties:
+  
+          id:
+            type: string
+            format: uri
+            description: Unique URI identifier for the Intake
+  
+          type:
+            type: string
+            enum:
+              - Intake
+            description: Fixed entity type identifier
+  
+          name:
+            type: object
+            description: Official or common name of the Intake
+            properties:
+              type:
+                type: string
+                enum:
+                  - Property
+              value:
+                type: string
+  
+          geographicalLocation:
+            type: object
+            description: GeoJSON Point representing the intake’s location (longitude, latitude)
+            properties:
+              type:
+                type: string
+                enum:
+                  - GeoProperty
+              value:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                      - Point
+                  coordinates:
+                    type: array
+                    items:
+                      type: number
+                    minItems: 2
+                    maxItems: 2
+  
+  
+          intakeStructureType:
+            type: object
+            description: Design or configuration of the intake
+            properties:
+              type:
+                type: string
+                enum:
+                  - Property
+              value:
+                type: string
+  
+  
+          waterFlowRate:
+            type: object
+            description: Rate at which water is drawn into the intake
+            properties:
+              type:
+                type: string
+                enum:
+                  - Property
+              value:
+                  type: number
+              unitCode:
+                    type: string
+                    enum:
+                      - M3S
+  
+          filtrationOrDebrisControl:
+            type: object
+            description: Mechanisms used to prevent debris entry
+            properties:
+              type:
+                type: string
+                enum:
+                  - Property
+              value:
+                type: string
+  
+  
+          isPartOfDam:
+            type: object
+            description: Relationship to the Dam entity this intake is part of
+            properties:
+              type:
+                type: string
+                enum:
+                  - Relationship
+              object:
+                type: array
+                items:
+                  type: string
+                  format: uri
+  
+  
+          isPartOfHydroPowerPlant:
+            type: object
+            description: Relationship to the HydropowerPlant entity this intake serves
+            properties:
+              type:
+                type: string
+                enum:
+                  - Relationship
+              object:
+                type: array
+                items:
+                  type: string
+                  format: uri
+  
+  
+          leadsToPenstocks:
+            type: object
+            description: Relationship to Penstock entities receiving water from this intake
+            properties:
+              type:
+                type: string
+                enum:
+                  - Relationship
+              object:
+                type: array
+                items:
+                  type: string
+                  format: uri

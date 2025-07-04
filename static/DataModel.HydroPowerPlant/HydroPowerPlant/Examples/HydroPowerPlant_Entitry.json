@@ -26,12 +26,18 @@
     "min": {
       "type": "Property",
       "value": 300,
-      "unitCode": "MW"
+      "unitCode": {
+        "type": "Property",
+        "value": "MW"
+      }
     },
     "max": {
       "type": "Property",
       "value": 1000,
-      "unitCode": "MW"
+      "unitCode": {
+        "type": "Property",
+        "value": "MW"
+      }
     },
     "standard": {
       "type": "Property",
@@ -41,12 +47,18 @@
   "installedCapacity": {
     "type": "Property",
     "value": 750,
-    "unitCode": "MW"
+    "unitCode": {
+      "type": "Property",
+      "value": "MW"
+    }
   },
   "powerPlantCapacity": {
     "type": "Property",
     "value": 750,
-    "unitCode": "MW"
+    "unitCode": {
+      "type": "Property",
+      "value": "MW"
+    }
   },
   "powerplantType": {
     "type": "Property",
@@ -67,22 +79,34 @@
   "annualEnergyOutput": {
     "type": "Property",
     "value": 4200000000,
-    "unitCode": "KWH"
+    "unitCode": {
+      "type": "Property",
+      "value": "KWH"
+    }
   },
   "ecologicalDischarge": {
     "type": "Property",
     "value": 15.2,
-    "unitCode": "M3/S"
+    "unitCode": {
+      "type": "Property",
+      "value": "M3S"
+    }
   },
   "maxTailwaterLevel": {
     "type": "Property",
     "value": 324.5,
-    "unitCode": "M"
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
+    }
   },
   "grossHead": {
     "type": "Property",
     "value": 186,
-    "unitCode": "M"
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
+    }
   },
   "partOfCommunity": {
     "type": "Relationship",

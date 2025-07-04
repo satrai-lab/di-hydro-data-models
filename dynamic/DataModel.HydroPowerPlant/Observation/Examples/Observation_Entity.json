@@ -1,0 +1,35 @@
+{
+  "@context": "https://raw.githubusercontent.com/satrai-lab/data-models/main/device-models/context.json",
+  "id": "urn:ngsi-ld:Observation:obs-001",
+  "type": "Observation",
+  "name": {
+    "type": "Property",
+    "value": "Main River Flow Rate - July"
+  },
+  "category": {
+    "type": "Property",
+    "value": "Hydrology"
+  },
+  "dateModified": {
+    "type": "Property",
+    "value": "2025-07-03T14:15:00Z"
+  },
+  "measurement": {
+    "type": "Property",
+    "value": {
+      "value": 185.7,
+      "measurementUnit":{
+        "type": "Property",
+        "value": "M3S"
+      }
+    }
+  },
+  "measurementType": {
+    "type": "Property",
+    "value": "Instantaneous"
+  },
+  "externalLink": {
+    "type": "Property",
+    "value": "https://example.org/data/river_observation_001.png"
+  }
+}

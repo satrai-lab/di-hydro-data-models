@@ -47,119 +47,179 @@ paths:
 
 components:
   schemas:
-    ValveHouse:
+    GenericStaticComponent:
       type: object
       required:
         - id
         - type
         - name
       properties:
-
         id:
           type: string
           format: uri
-          description: Unique URI identifier for the ValveHouse
-          example: "urn:ngsi-ld:ValveHouse:vh1"
-
+          description: Unique URI identifier
         type:
           type: string
-          enum:
-            - ValveHouse
-          description: Fixed entity type identifier
-          example: "ValveHouse"
-
         name:
           type: object
-          description: Official or common name of the ValveHouse
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Main Penstock ValveHouse"
-
         geographicalLocation:
           type: object
-          description: GeoJSON Point representing the ValveHouse’s location (longitude, latitude)
           properties:
             type:
               type: string
-              enum:
-                - GeoProperty
+              enum: [GeoProperty]
             value:
               type: object
               properties:
                 type:
                   type: string
-                  enum:
-                    - Point
+                  enum: [Point]
                 coordinates:
                   type: array
                   items:
                     type: number
-                  minItems: 2
-                  maxItems: 2
-          example:
-            type: "GeoProperty"
-            value:
-              type: "Point"
-              coordinates: [-121.497, 47.336]
-
         isPartOfHydroPowerPlant:
           type: object
-          description: Relationship to HydropowerPlant entities that this ValveHouse belongs to
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
-
-        containsValves:
+        hasDevices:
           type: object
-          description: Relationship to Valve entities contained within this ValveHouse
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:Valve:valve1"
-              - "urn:ngsi-ld:Valve:valve2"
-
-        isConnectedToPenstock:
+        observations:
           type: object
-          description: Relationship to Penstock entities connected to this ValveHouse
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
             object:
-              - "urn:ngsi-ld:Penstock:pen1"
+              type: array
+              items:
+                type: string
+
+    ValveHouse:
+      allOf:
+        - $ref: '#/components/schemas/GenericStaticComponent'
+        - type: object
+          required:
+            - id
+            - type
+            - name
+          properties:
+    
+            id:
+              type: string
+              format: uri
+              description: Unique URI identifier for the ValveHouse
+    
+            type:
+              type: string
+              enum:
+                - ValveHouse
+              description: Fixed entity type identifier
+    
+            name:
+              type: object
+              description: Official or common name of the ValveHouse
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+    
+            geographicalLocation:
+              type: object
+              description: GeoJSON Point representing the ValveHouse’s location (longitude, latitude)
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - GeoProperty
+                value:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                        - Point
+                    coordinates:
+                      type: array
+                      items:
+                        type: number
+                      minItems: 2
+                      maxItems: 2
+    
+            isPartOfHydroPowerPlant:
+              type: object
+              description: Relationship to HydropowerPlant entities that this ValveHouse belongs to
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+    
+    
+            containsValves:
+              type: object
+              description: Relationship to Valve entities contained within this ValveHouse
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+    
+    
+            isConnectedToPenstock:
+              type: object
+              description: Relationship to Penstock entities connected to this ValveHouse
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+    

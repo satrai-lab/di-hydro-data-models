@@ -3,7 +3,7 @@ components:
 
       HydropowerPlant:
         x-ngsi:
-          uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/CatchementArea/DataModel/type.json"
+          uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/HydroPowerPlant/DataModel/type.json"
 
         required:
         - id

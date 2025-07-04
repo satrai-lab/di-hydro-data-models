@@ -43,7 +43,9 @@ A **HydropowerPlant** represents a physical facility that converts the energy of
 | **`hasValveHouse`**     | Relationship  | URI[]         | No       | Valve housing structures. Protects critical flow controls.                                                            | Array of URIs                  |  
 | **`hasWaterBody`**      | Relationship  | URI[]         | No       | Connected water sources (rivers/reservoirs). Maps water rights and sources.                                           | Array of URIs                  |  
 | **`hasSurgeTank`**      | Relationship  | URI[]         | No       | Surge suppression tanks. Prevents water hammer damage.                                                                | Array of URIs                  |    
-| **`hasSpillway`**      | Relationship  | URI[]         | No       |  safely pass excess water from a reservoir or dam to downstream channels.                                                                | Array of URIs                  |  
-
+| **`hasSpillway`**      | Relationship  | URI[]         | No       |  safely pass excess water from a reservoir or dam to downstream channels.                                                                | Array of URIs 
+| **`hasDraftTube`**      | Relationship  | URI[]         | No       |  A passage attached to a reaction turbine that helps recover the remaining pressure energy of the water after it exits the turbine blades, increasing efficiency.                                                                | Array of URIs
+| **`hasTailrace`**      | Relationship  | URI[]         | No       |  The channel that carries water away from the power plant after it exits the turbine.                                                               | Array of URIs 
+| **`hasDevices`**      | Relationship  | URI[]         | No       |  all the devices belong to this HPP including sensors, actuations, systems..                                                                | Array of URIs 
 
 

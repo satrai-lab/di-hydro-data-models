@@ -1,0 +1,143 @@
+openapi: 3.0.3
+info:
+  title: Observation Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API for Observation entities
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/data-models/main/device-models/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create an Observation entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Observation'
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/data-models/main/device-models/context.json"
+              id: "urn:ngsi-ld:Observation:obs-001"
+              type: "Observation"
+              name:
+                type: "Property"
+                value: "Main River Flow Rate - July"
+              category:
+                type: "Property"
+                value: "Hydrology"
+              dateModified:
+                type: "Property"
+                value: "2025-07-03T14:15:00Z"
+              measurement:
+                type: "Property"
+                value: 185.7
+                measurementUnit:
+                  type: "Property"
+                  value: "M3S"
+              measurementType:
+                type: "Property"
+                value: "Instantaneous"
+              externalLink:
+                type: "Property"
+                value: "https://example.org/data/river_observation_001.png"
+      responses:
+        '201':
+          description: Entity created successfully
+
+components:
+  schemas:
+    Observation:
+      type: object
+      required:
+        - id
+        - type
+      properties:
+        "@context":
+          type: string
+          description: JSON-LD context link
+          example: "https://raw.githubusercontent.com/satrai-lab/data-models/main/device-models/context.json"
+
+        id:
+          type: string
+          format: uri
+          description: Unique identifier of the observation entity
+
+        type:
+          type: string
+          enum: [Observation]
+          description: NGSI-LD entity type identifier
+
+        name:
+          type: object
+          description: Name of the observation
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+
+        category:
+          type: object
+          description: The category of the observation
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+
+        dateModified:
+          type: object
+          description: ISO 8601 timestamp of the last modification
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+              format: date-time
+
+        measurement:
+          type: object
+          description: Contains the measurement value and its unit
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: object
+              properties:
+                value:
+                  type: number
+                measurementUnit:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [Property]
+                    value:
+                      type: string
+                      enum: [M3S]
+
+        measurementType:
+          type: object
+          description: Describes the type of the measurement (e.g., instantaneous, average)
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+
+        externalLink:
+          type: object
+          description: External URI pointing to image/video if the observation has multimedia
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+              format: uri

@@ -8,93 +8,92 @@ components:
         - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
         - type: object
  
-      required:
-        - id
-        - type
-        - name
-      properties:
-        id:
-          description: "Property. Identifier format of any NGSI entity"
-          maxLength: 256
-          minLength: 1
-          pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
-          type: string
-          format: uri
-          type: string
-          description: "Unique identifier for the valve"
-          x-ngsi:
-            type: Property
-        type:
-          type: string
-          enum:
-            - Valve
-          description: "NGSI Entity type. It has to be Valve"
-          x-ngsi:
-            type: Property
-        name:
-          type: string
-          description: "The official or common name of the valve"
-          x-ngsi:
-            type: Property
-        geographicalLocation:
-          type: object
-          description: "GeoJSON property of type 'Point' indicating the physical location of the valve (e.g., along the penstock or within the valve house)."
+          required:
+            - id
+            - type
+            - name
           properties:
+            id:
+              description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+              type: string
+              format: uri
+              type: string
+              description: "Unique identifier for the valve"
+              x-ngsi:
+                type: Property
             type:
               type: string
               enum:
-                - Point
-            coordinates:
+                - Valve
+              description: "NGSI Entity type. It has to be Valve"
+              x-ngsi:
+                type: Property
+            name:
+              type: string
+              description: "The official or common name of the valve"
+              x-ngsi:
+                type: Property
+            geographicalLocation:
+              type: object
+              description: "GeoJSON property of type 'Point' indicating the physical location of the valve (e.g., along the penstock or within the valve house)."
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Point
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+                  minItems: 2
+              x-ngsi:
+                type: GeoProperty
+            valveType:
+              type: string
+              enum:
+                - "Gate Valve"
+                - "Butterfly Valve"
+                - "Ball Valve"
+                - "Sluice Gate"
+              description: "Classification or design of the valve"
+              x-ngsi:
+                type: Property
+            material:
+              type: string
+              enum:
+                - "Stainless Steel"
+                - "Cast Iron"
+                - "Composite"
+              description: "Construction material of the valve"
+              x-ngsi:
+                type: Property
+    
+            isPartOfHydroPowerPlant:
               type: array
+              description: "Array of references to the HydropowerPlant entity that this valve is part of"
               items:
-                type: number
-              minItems: 2
-          x-ngsi:
-            type: GeoProperty
-        valveType:
-          type: string
-          enum:
-            - "Gate Valve"
-            - "Butterfly Valve"
-            - "Ball Valve"
-            - "Sluice Gate"
-          description: "Classification or design of the valve"
-          x-ngsi:
-            type: Property
-        material:
-          type: string
-          enum:
-            - "Stainless Steel"
-            - "Cast Iron"
-            - "Composite"
-          description: "Construction material of the valve"
-          x-ngsi:
-            type: Property
-
-        isPartOfHydroPowerPlant:
-          type: array
-          description: "Array of references to the HydropowerPlant entity that this valve is part of"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+        
+            isPartOfValveHouse:
+              type: array
+              description: "Array of references to the ValveHouse entity that this valve is part of"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
+                type: Relationship
+        
+            isConnectedToPenstock:
+              type: array
+              description: "Array of references to the Penstock entity connected to this valve"
+              items:
+                type: string
+                format: uri
+              x-ngsi:
             type: Relationship
-    
-        isPartOfValveHouse:
-          type: array
-          description: "Array of references to the ValveHouse entity that this valve is part of"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
-    
-        isConnectedToPenstock:
-          type: array
-          description: "Array of references to the Penstock entity connected to this valve"
-          items:
-            type: string
-            format: uri
-          x-ngsi:
-            type: Relationship
-

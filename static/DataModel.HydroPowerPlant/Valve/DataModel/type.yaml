@@ -1,20 +1,24 @@
----
 components:
   schemas:
 
     Valve:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/Valve/DataModel/type.json"
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
+        - type: object
+ 
       required:
         - id
         - type
         - name
       properties:
         id:
-          anyOf: &anyof
-            - description: "Property. Identifier format of any NGSI entity"
-              maxLength: 256
-              minLength: 1
-              pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
-              type: string
+          description: "Property. Identifier format of any NGSI entity"
+          maxLength: 256
+          minLength: 1
+          pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+          type: string
           format: uri
           type: string
           description: "Unique identifier for the valve"
@@ -93,21 +97,4 @@ components:
             format: uri
           x-ngsi:
             type: Relationship
-      x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/Valve/DataModel/type.json"
 
-info:
-  description: "Data Model of Valve for Hydropower Plant Modeling"
-  title: HydropowerPlantModeling
-  version: "1.0.2"
-openapi: "3.0.3"
-paths:
-  /ngsi-ld/v1/entities:
-    get:
-      responses:
-        "200":
-          content:
-            application/ld+json:
-              schema:
-                type: object
-          description: OK

@@ -2,166 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
+  "description": "Data Model of Reservoir in Hydropower Plant Modeling",
   "definitions": {
-    "WaterBody": {
-      "type": "object",
-      "required": ["id", "type", "name"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
-        },
-        "type": {
-          "type": "string",
-          "enum": ["WaterBody"]
-        },
-        "name": {
-          "type": "string"
-        },
-        "waterBodyCategory": {
-          "type": "string",
-          "enum": ["River", "Lake", "Reservoir", "Other"]
-        },
-        "geographicalLocation": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": ["Point"]
-            },
-            "coordinates": {
-              "type": "array",
-              "items": {
-                "type": "number"
-              },
-              "minItems": 2
-            }
-          }
-        },
-        "surfaceArea": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["KM2"]
-            }
-          }
-        },
-        "length": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["KM"]
-            }
-          }
-        },
-        "averageDepth": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M"]
-            }
-          }
-        },
-        "averageFlowRate": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M3S"]
-            }
-          }
-        },
-        "peakFlow": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "number"
-              },
-              "unitCode": {
-                "type": "string",
-                "enum": ["M3S"]
-              }
-            }
-        },
-        "seasonalVariation": {
-              "type": "object",
-              "properties": {
-                "winter": {
-                  "type": "number"
-                },
-                "spring": {
-                  "type": "number"
-                },
-                "summer": {
-                  "type": "number"
-                },
-                "autumn": {
-                  "type": "number"
-                }
-              }
-            },
-        "averageWaterLevel": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M"]
-            }
-          }
-        },
-        "operationalData": {
-          "type": "object",
-          "properties": {
-            "floodRisk": {
-              "type": "string",
-              "enum": ["Low", "Medium", "High"]
-            },
-            "waterRights": {
-              "type": "string",
-              "enum": ["Public", "Private", "Mixed"]
-            }
-          }
-        },
-        "isFedBy": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isPartOfHydroPowerPlant": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        }
-      },
-      "additionalProperties": false
-    },
     "Reservoir": {
       "allOf": [
         {
-          "$ref": "#/definitions/WaterBody"
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/WaterBody/DataModel/type.json#/definitions/WaterBody"
         },
         {
           "type": "object",
@@ -227,56 +73,56 @@
               }
             },
             "maxReservoirLevel": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "number"
-              },
-              "unitCode": {
-                "type": "string",
-                "enum": ["M"]
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
               }
-            }
             },
             "normalReservoirLevel": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "number"
-              },
-              "unitCode": {
-                "type": "string",
-                "enum": ["M"]
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
               }
-            }
             },
             "reservoirLength": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "number"
-              },
-              "unitCode": {
-                "type": "string",
-                "enum": ["KM"]
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["KM"]
+                }
               }
-            }
             },
             "maximumEnergeticVolume": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "number"
-              },
-              "unitCode": {
-                "type": "string",
-                "enum": ["GWH"]
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["GWH"]
+                }
               }
-            }
             },
             "reservoirType": {
-            "type": "string",
-            "enum": ["seasonal", "weekly", "daily"]
+              "type": "string",
+              "enum": ["seasonal", "weekly", "daily"]
             },
             "grossVolume": {
               "type": "object",
@@ -300,21 +146,21 @@
                   "type": "string",
                   "enum": ["M3"]
                 }
-              },
+              }
             },
             "hasPressureTunnel": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uri"
-            }
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             },
             "fedByPumpingStation": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uri"
-            }
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             },
             "hasDams": {
               "type": "array",

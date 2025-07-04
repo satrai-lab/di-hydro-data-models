@@ -1,5 +1,5 @@
 {
-  "@context": "https://raw.githubusercontent.com/satrai-lab/data-models/main/device-models/context.json",
+  "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
   "id": "urn:ngsi-ld:Observation:obs-001",
   "type": "Observation",
   "name": {

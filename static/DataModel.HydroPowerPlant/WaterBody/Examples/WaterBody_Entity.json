@@ -14,68 +14,79 @@
     "type": "GeoProperty",
     "value": {
       "type": "Point",
-      "coordinates": [
-        -121.51,
-        47.34
-      ]
+      "coordinates": [-121.51, 47.34]
     }
   },
   "surfaceArea": {
     "type": "Property",
     "value": 15.2,
-    "unitCode": "KM2"
+    "unitCode": {
+      "type": "Property",
+      "value": "KM2"
+    }
   },
   "length": {
     "type": "Property",
     "value": 120,
-    "unitCode": "KM"
+    "unitCode": {
+      "type": "Property",
+      "value": "KM"
+    }
   },
   "averageDepth": {
     "type": "Property",
     "value": 8.5,
-    "unitCode": "M"
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
+    }
   },
   "averageFlowRate": {
     "type": "Property",
     "value": 200,
-    "unitCode": "M3S"
+    "unitCode": {
+      "type": "Property",
+      "value": "M3S"
+    }
   },
   "peakFlow": {
     "type": "Property",
     "value": 450,
-    "unitCode": "M3S"
+    "unitCode": {
+      "type": "Property",
+      "value": "M3S"
+    }
   },
   "seasonalVariation": {
     "type": "Property",
-    "value": { 
-      "winter":120,
-      "spring":250,
-      "summer":180,
-      "autumn":160
+    "value": [120, 250, 180, 160],
+    "unitCode": {
+      "type": "Property",
+      "value": "M3S"
     }
   },
   "averageWaterLevel": {
     "type": "Property",
-        "value": 3.2,
-        "unitCode": "M"
-  },
-  "operationalData": {
-    "type": "Property",
-    "value": {
-      "floodRisk": "Medium",
-      "waterRights": "Mixed"
+    "value": 3.2,
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
     }
+  },
+  "floodRisk": {
+    "type": "Property",
+    "value": "Medium"
+  },
+  "waterRights": {
+    "type": "Property",
+    "value": "Mixed"
   },
   "isFedBy": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:CatchmentArea:ca1"
-    ]
+    "object": ["urn:ngsi-ld:CatchmentArea:ca1"]
   },
   "isPartOfHydroPowerPlant": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
-    ]
+    "object": ["urn:ngsi-ld:HydropowerPlant:plant-alpine-001"]
   }
 }

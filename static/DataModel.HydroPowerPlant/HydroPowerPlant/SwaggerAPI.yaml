@@ -37,22 +37,30 @@ paths:
                 min:
                   type : "Property"
                   value: 300
-                  unitCode: "MW"
+                  unitCode: 
+                   type: Property
+                   value: "MW"
                 max:
                   type: "Property"
                   value: 1000
-                  unitCode: "MW"
+                  unitCode: 
+                    type: Property
+                    value: "MW"
                 standard: 
                   type: "Property"
                   value: "IEC"
               installedCapacity:
                 type: "Property"
                 value: 750
-                unitCode: "MW"
+                unitCode:
+                  type: "Property"
+                  value: "MW"
               powerPlantCapacity:
                 type: "Property"
                 value: 750
-                unitCode: "MW"
+                unitCode: 
+                  type: "Property"
+                  value: "MW"
               powerplantType:
                 type: "Property"
                 value: "storage/reservoir"
@@ -68,19 +76,27 @@ paths:
               annualEnergyOutput:
                 type: "Property"
                 value: 4200000000
-                unitCode: "KWH"
+                unitCode: 
+                  type: "Property"
+                  value: "KWH"
               ecologicalDischarge:
                 type: "Property"
                 value: 15.2
-                unitCode: "M3/S"
+                unitCode: 
+                  type: "Property"
+                  value: "M3S"
               maxTailwaterLevel:
                 type: "Property"
                 value: 324.5
-                unitCode: "M"
+                unitCode: 
+                  type: "Property"
+                  value: "M"
               grossHead:
                 type: "Property"
                 value: 186
-                unitCode: "M"
+                unitCode: 
+                  type: "Property"
+                  value: "M"
               partOfCommunity:
                 type: "Relationship"
                 object: "urn:ngsi-ld:HydroPowerCommunity:comm-alpine-001"
@@ -144,6 +160,19 @@ paths:
                 type: "Relationship"
                 object:
                   - "urn:ngsi-ld:Spillway:sw1"
+              hasDraftTube:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:DfaftTube:dt1"
+              hasTailrace:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Tailrace:tr1"
+              hasDevices:
+                type: "Relationship"  
+                object:
+                  - "urn:ngsi-ld:Device:device1"
+                  - "urn:ngsi-ld:Device:device2"
       responses:
         '201':
           description: Entity created successfully
@@ -546,5 +575,39 @@ components:
                 type: string
                 format: uri
           description: List of spillways associated with the plant
-
- 
+        hasDraftTube:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of draft tube associated with the plant
+        hasTailrace:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of tailraces associated with the plant
+        hasDevices:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+          description: List of hasDevices associated with the plant

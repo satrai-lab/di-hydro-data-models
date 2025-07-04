@@ -1,8 +1,8 @@
 # 📈 Observation Entity
 <div style="display: flex; justify-content: center; margin: 20px 0">
-  <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/Diagrams/ADCChip.png" 
+  <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/Diagrams/Observation.png" 
        alt="HydroPowerPlantCommunity Diagram" 
-       style="max-width: 100%; height: auto; width: 400px">
+       style="max-width: 100%; height: auto; width: 500px">
 </div>
 
 ## Definition

@@ -2,62 +2,70 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
+  "description": "Data Model of ValveHouse in Hydropower Plant Modeling",
   "definitions": {
     "ValveHouse": {
-      "type": "object",
-      "required": ["id", "type", "name"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json#/definitions/GenericStaticComponent"
         },
-        "type": {
-          "type": "string",
-          "enum": ["ValveHouse"]
-        },
-        "name": {
-          "type": "string"
-        },
-        "geographicalLocation": {
+        {
           "type": "object",
+          "required": ["id", "type", "name"],
           "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+            },
             "type": {
               "type": "string",
-              "enum": ["Point"]
+              "enum": ["ValveHouse"]
             },
-            "coordinates": {
+            "name": {
+              "type": "string"
+            },
+            "geographicalLocation": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Point"]
+                },
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2
+                }
+              }
+            },
+            "isPartOfHydroPowerPlant": {
               "type": "array",
               "items": {
-                "type": "number"
-              },
-              "minItems": 2
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "containsValves": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "isConnectedToPenstock": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
             }
-          }
-        },
-        "isPartOfHydroPowerPlant": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "containsValves": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isConnectedToPenstock": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
+          },
+          "additionalProperties": false
         }
-      },
-      "additionalProperties": false
+      ]
     }
   }
 }

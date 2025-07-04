@@ -1,0 +1,66 @@
+components:
+  schemas:    
+    Observation:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/data-models/main/device-models/context.json"      
+      required:
+        - id
+        - type
+      properties:
+        id:
+          anyOf: &anyof
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
+              type: string
+          format: uri
+          type: string
+          description: "Unique identifier of the entity"
+          x-ngsi:
+            type: Property
+        type:
+           description: 'NGSI Entity type. It has to be Observation'
+           enum:
+             - Observation
+           type: string
+           x-ngsi:
+            type: Property
+        name:
+          description: "The name of the observation."
+          type: string
+          x-ngsi:
+            type: Property
+        category:
+          description: "The category of the observation."
+          type: string
+          x-ngsi:
+            type: Property         
+        dateModified:
+          description: "The date that the observation was modified."
+          type: string
+          x-ngsi:
+            type: Property
+        measurement:
+            required:
+              - value
+              - measurementUnit
+            type: object
+            properties:
+              value: number
+              type: string
+              measurementUnit: string
+              description: "The value of the observation."
+            x-ngsi:
+              type: Property
+        measurementType:
+          description: "The type of the measurement of the observation."
+          type: string
+          x-ngsi:
+            type: Property
+        externalLink:
+          description: "An external link used in case the observation is an image or a video."
+          type: string
+          format: uri
+          x-ngsi:
+            type: Property

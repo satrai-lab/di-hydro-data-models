@@ -1,4 +1,3 @@
----
 components:
   schemas:
 
@@ -96,18 +95,3 @@ components:
       x-ngsi:
         uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/HydroPowerPlantCommunity/DataModel/type.json"
 
-info:
-  description: "Data Model of HydroPowerCommunity"
-  title: HydropowerPlantModeling
-  version: "1.0.2"
-openapi: "3.0.3"
-paths:
-  /ngsi-ld/v1/entities:
-    get:
-      responses:
-        "200":
-          content:
-            application/ld+json:
-              schema:
-                type: object
-          description: OK

@@ -1,3 +1,4 @@
+
 {
   "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json",
   "id": "urn:ngsi-ld:HydroPowerCommunity:comm-alpine-001",
@@ -17,12 +18,18 @@
   "totalInstalledCapacity": {
     "type": "Property",
     "value": 2450.5,
-    "unitCode": "MW"
+    "unitCode": {
+      "type": "Property",
+      "value": "MW"
+    }
   },
   "totalAnnualEnergyOutput": {
     "type": "Property",
     "value": 12500000000,
-    "unitCode": "KWH"
+    "unitCode": {
+      "type": "Property",
+      "value": "KWH"
+    }
   },
   "governanceModel": {
     "type": "Property",

@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "HydropowerPlantModeling",
+  "description": "Data Model of Reservoir in Hydropower Plant Modeling",
+  "definitions": {
+    "Observation": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["Observation"],
+          "description": "Property. NGSI Entity type. It has to be Observation."
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "dateModified": {
+          "type": "string"
+        },
+        "measurement": {
+          "type": "object",
+          "required": ["value", "measurementUnit"],
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "value": {
+              "type": "number"
+            },
+            "measurementUnit": {
+              "type": "string"
+            }
+          }
+        },
+        "measurementType": {
+          "type": "string"
+        },
+        "externalLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "An external link used in case the observation is an image or a video."
+        }
+      }
+    }
+  }
+}

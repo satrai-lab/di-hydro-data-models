@@ -2,161 +2,258 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
+  "description": "Data Model of WaterBody in Hydropower Plant Modeling",
   "definitions": {
     "WaterBody": {
-      "type": "object",
-      "required": ["id", "type", "name"],
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
+      "allOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.json#/definitions/GenericStaticComponent"
         },
-        "type": {
-          "type": "string",
-          "enum": ["WaterBody"]
-        },
-        "name": {
-          "type": "string"
-        },
-        "waterBodyCategory": {
-          "type": "string",
-          "enum": ["River", "Lake", "Reservoir", "Other"]
-        },
-        "geographicalLocation": {
+        {
           "type": "object",
+          "required": ["id", "type", "name"],
           "properties": {
+            "id": {
+              "type": "string",
+              "format": "uri",
+              "description": "Unique identifier of the WaterBody",
+              "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+              "minLength": 1,
+              "maxLength": 256,
+              "x-ngsi": {
+                "type": "Property"
+              }
+            },
             "type": {
               "type": "string",
-              "enum": ["Point"]
-            },
-            "coordinates": {
-              "type": "array",
-              "items": {
-                "type": "number"
-              },
-              "minItems": 2
-            }
-          }
-        },
-        "surfaceArea": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["KM2"]
-            }
-          }
-        },
-        "length": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["KM"]
-            }
-          }
-        },
-        "averageDepth": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M"]
-            }
-          }
-        },
-        "averageFlowRate": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
-            },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M3S"]
-            }
-          }
-        },
-        "peakFlow": {
-            "type": "object",
-            "properties": {
-              "value": {
-                "type": "number"
-              },
-              "unitCode": {
-                "type": "string",
-                "enum": ["M3S"]
+              "enum": ["WaterBody"],
+              "description": "NGSI Entity type. It has to be WaterBody",
+              "x-ngsi": {
+                "type": "Property"
               }
-            }
-        },
-        "seasonalVariation": {
+            },
+            "name": {
+              "type": "string",
+              "description": "The name of the WaterBody",
+              "x-ngsi": {
+                "type": "Property"
+              }
+            },
+            "waterBodyCategory": {
+              "type": "string",
+              "enum": ["River", "Lake", "Reservoir", "Other"],
+              "description": "Indicates whether the water body is a River, Lake, Reservoir, or Other",
+              "x-ngsi": {
+                "type": "Property"
+              }
+            },
+            "geographicalLocation": {
               "type": "object",
+              "description": "GeoJSON property of type 'Point' representing the water body’s location. The first element in coordinates is longitude, and the second is latitude.",
               "properties": {
-                "winter": {
-                  "type": "number"
+                "type": {
+                  "type": "string",
+                  "enum": ["Point"]
                 },
-                "spring": {
-                  "type": "number"
-                },
-                "summer": {
-                  "type": "number"
-                },
-                "autumn": {
-                  "type": "number"
+                "coordinates": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "minItems": 2
                 }
+              },
+              "x-ngsi": {
+                "type": "GeoProperty"
               }
             },
-        "averageWaterLevel": {
-          "type": "object",
-          "properties": {
-            "value": {
-              "type": "number"
+            "surfaceArea": {
+              "type": "object",
+              "description": "Surface area of the water body",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["KM2"],
+                  "description": "UN/CEFACT unit code for square kilometer"
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              }
             },
-            "unitCode": {
-              "type": "string",
-              "enum": ["M"]
-            }
-          }
-        },
-        "operationalData": {
-          "type": "object",
-          "properties": {
+            "length": {
+              "type": "object",
+              "description": "Length of the water body (applicable for rivers or elongated lakes)",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["KM"],
+                  "description": "UN/CEFACT unit code for kilometer"
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              }
+            },
+            "averageDepth": {
+              "type": "object",
+              "description": "Average depth of the water body",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"],
+                  "description": "UN/CEFACT unit code for meter"
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              }
+            },
+            "averageFlowRate": {
+              "type": "object",
+              "description": "Average flow rate",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M3S"],
+                  "description": "UN/CEFACT unit code for cubic meters per second"
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              }
+            },
+            "peakFlow": {
+              "type": "object",
+              "description": "Peak flow rate",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M3S"],
+                  "description": "UN/CEFACT unit code for cubic meters per second"
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              }
+            },
+            "seasonalVariation": {
+              "type": "object",
+              "description": "Seasonal flow variation details as an array [winter, spring, summer, autumn] in m³/s",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "array",
+                  "description": "Array of seasonal flow rates in m³/s ordered as: [winter, spring, summer, autumn]",
+                  "minItems": 4,
+                  "maxItems": 4,
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M3S"],
+                  "description": "UN/CEFACT unit code for cubic meters per second"
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              }
+            },
+            "averageWaterLevel": {
+              "type": "object",
+              "description": "Average water level",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M"]
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              }
+            },
             "floodRisk": {
-              "type": "string",
-              "enum": ["Low", "Medium", "High"]
+              "type": "object",
+              "description": "Flood risk classification (e.g., Low, Medium, High)",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "string",
+                  "enum": ["Low", "Medium", "High"]
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              }
             },
             "waterRights": {
-              "type": "string",
-              "enum": ["Public", "Private", "Mixed"]
+              "type": "object",
+              "description": "Information on water rights or allocation",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["Property"]
+                },
+                "value": {
+                  "type": "string",
+                  "enum": ["Public", "Private", "Mixed"]
+                }
+              },
+              "x-ngsi": {
+                "type": "Property"
+              }
+            },
+            "isFedBy": {
+              "type": "array",
+              "description": "Array of references to the CatchmentArea entities that feed this water body",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "x-ngsi": {
+                "type": "Relationship"
+              }
+            },
+            "isPartOfHydroPowerPlant": {
+              "type": "array",
+              "description": "Array of references to the HydropowerPlant entities of which this water body is a part",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "x-ngsi": {
+                "type": "Relationship"
+              }
             }
           }
-        },
-        "isFedBy": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "isPartOfHydroPowerPlant": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "uri"
-          }
         }
-      },
-      "additionalProperties": false
+      ]
     }
   }
 }

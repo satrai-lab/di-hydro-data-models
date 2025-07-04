@@ -16,21 +16,22 @@ A **WaterBody** is any significant accumulation of water on Earth’s surface—
 
 ## Attributes Specifications
 
-| Attribute                     | Type         | Required | Description                                                                            | Units / Values                                        |
-| ----------------------------- | ------------ | -------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| **`id`**                      | Property     | Yes      | Unique URI identifier for the water body                                               | URN format                                            |
-| **`type`**                    | Property     | Yes      | Fixed entity type                                                                      | `"WaterBody"`                                         |
-| **`name`**                    | Property     | Yes      | Official or common name of the water body                                              | String                                                |
-| **`waterBodyCategory`**       | Property     | No       | Classification indicating whether the water body is a river, lake, reservoir, or other | `"River"`, `"Lake"`, `"Reservoir"`, `"Other"`         |
-| **`geographicalLocation`**    | GeoProperty  | No       | GeoJSON point specifying the water body’s location (longitude, latitude)               | `[lon, lat]`                                          |
-| **`surfaceArea`**             | Property     | No       | Surface area of the water body                                                         | km² (`KM2`)                                           |
-| **`length`**                  | Property     | No       | Length of the water body (applicable for rivers or elongated lakes)                    | km (`KM`)                                             |
-| **`averageDepth`**            | Property     | No       | Average depth of the water body                                                        | m (`M`)                                               |
-| **`averageFlowRate`**         | Property     | No       | Average water flow rate                                                                | m³/s (`M3S`)                                          |
-| **`peakFlow`**                | Property     | No       | Maximum observed or design flow rate                                                   | m³/s (`M3S`)                                          |
-| **`seasonalVariation`**       | Property     | No       | Flow rate variation by season (winter, spring, summer, autumn)                         | numeric (m³/s)                                        |
-| **`averageWaterLevel`**       | Property     | No       | Mean water‐surface elevation                                                           | m (`M`)                                               |
-| **`operationalData`**         | Property     | No       | Management data including flood risk classification and water rights                   | `"Low"/"Medium"/"High"`, `"Public"/"Private"/"Mixed"` |
-| **`isFedBy`**                 | Relationship | No       | References to upstream CatchmentArea entities that supply this water body              | Array of URIs                                         |
-| **`isPartOfHydroPowerPlant`** | Relationship | No       | References to HydropowerPlant entities that utilize or include this water body         | Array of URIs                                         |
-                                      |
+| Attribute                     | NGSI Type    | Required | Description                                                              | Units / Values                                   |
+| ----------------------------- | ------------ | -------- | ------------------------------------------------------------------------ | ------------------------------------------------ |
+| **`id`**                      | Property     | Yes      | Unique NGSI-LD URI identifier for the water body                         | URN (e.g., `urn:ngsi-ld:WaterBody:river1`)       |
+| **`type`**                    | Property     | Yes      | Entity type, must be `"WaterBody"`                                       | `"WaterBody"`                                    |
+| **`name`**                    | Property     | Yes      | Official or common name of the water body                                | String                                           |
+| **`waterBodyCategory`**       | Property     | No       | Classification of the water body                                         | `"River"`, `"Lake"`, `"Reservoir"`, `"Other"`    |
+| **`geographicalLocation`**    | GeoProperty  | No       | GeoJSON point indicating geographic coordinates (longitude, latitude)    | `[lon, lat]`                                     |
+| **`surfaceArea`**             | Property     | No       | Total surface area of the water body                                     | km² (`KM2`)                                      |
+| **`length`**                  | Property     | No       | Linear length of the water body (mainly for rivers or long lakes)        | km (`KM`)                                        |
+| **`averageDepth`**            | Property     | No       | Average vertical depth of the water body                                 | meters (`M`)                                     |
+| **`averageFlowRate`**         | Property     | No       | Long-term average volumetric flow rate                                   | cubic meters per second (`M3S`)                  |
+| **`peakFlow`**                | Property     | No       | Maximum recorded or designed flow rate                                   | cubic meters per second (`M3S`)                  |
+| **`seasonalVariation`**       | Property     | No       | Seasonal flow variation as array `[winter, spring, summer, autumn]`      | numeric array (m³/s), unit via nested `unitCode` |
+| **`averageWaterLevel`**       | Property     | No       | Average elevation of the water surface                                   | meters (`M`)                                     |
+| **`floodRisk`**               | Property     | No       | Flood risk classification                                                | `"Low"`, `"Medium"`, `"High"`                    |
+| **`waterRights`**             | Property     | No       | Legal ownership or usage rights of water                                 | `"Public"`, `"Private"`, `"Mixed"`               |
+| **`isFedBy`**                 | Relationship | No       | References to upstream `CatchmentArea` entities feeding this water body  | Array of URNs                                    |
+| **`isPartOfHydroPowerPlant`** | Relationship | No       | References to `HydropowerPlant` entities that this water body is part of | Array of URNs                                    |
+

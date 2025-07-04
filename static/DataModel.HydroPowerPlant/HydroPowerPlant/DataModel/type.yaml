@@ -2,6 +2,9 @@ components:
   schemas:
 
       HydropowerPlant:
+        x-ngsi:
+          uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/CatchementArea/DataModel/type.json"
+
         required:
         - id
         - type
@@ -311,8 +314,6 @@ components:
             format: uri
           x-ngsi:
             type: Relationship
-        x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/HydroPowerPlant/DataModel/type.json"
         hasDraftTube:
           type: array
           description: "Array of draft tube entity identifiers"
@@ -321,8 +322,6 @@ components:
             format: uri
           x-ngsi:
             type: Relationship
-        x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/HydroPowerPlant/DataModel/type.json"
         hasTailrace:
           type: array
           description: "Array of tailrace entity identifiers"
@@ -331,6 +330,12 @@ components:
             format: uri
           x-ngsi:
             type: Relationship
-        x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/HydroPowerPlant/DataModel/type.json"
+        hasDevices:
+          type: array
+          description: "Array of devices entity identifiers"
+          items:
+            type: string
+            format: uri
+          x-ngsi:
+            type: Relationship
              

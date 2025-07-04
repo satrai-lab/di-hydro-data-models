@@ -52,155 +52,213 @@ paths:
 
 components:
   schemas:
-    Valve:
+    GenericStaticComponent:
       type: object
       required:
         - id
         - type
         - name
       properties:
-
         id:
           type: string
           format: uri
-          description: Unique URI identifier for the Valve
-          example: "urn:ngsi-ld:Valve:valve1"
-
+          description: Unique URI identifier
         type:
           type: string
-          enum:
-            - Valve
-          description: Fixed entity type identifier
-          example: "Valve"
-
         name:
           type: object
-          description: Official or common name of the Valve
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-          example:
-            type: "Property"
-            value: "Main Penstock Gate Valve"
-
         geographicalLocation:
           type: object
-          description: GeoJSON Point indicating the Valve’s location (longitude, latitude)
           properties:
             type:
               type: string
-              enum:
-                - GeoProperty
+              enum: [GeoProperty]
             value:
               type: object
               properties:
                 type:
                   type: string
-                  enum:
-                    - Point
+                  enum: [Point]
                 coordinates:
                   type: array
                   items:
                     type: number
-                  minItems: 2
-                  maxItems: 2
-          example:
-            type: "GeoProperty"
-            value:
-              type: "Point"
-              coordinates: [-121.496, 47.335]
-
-        valveType:
-          type: object
-          description: Classification or design of the Valve
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-              enum:
-                - "Gate Valve"
-                - "Butterfly Valve"
-                - "Ball Valve"
-                - "Sluice Gate"
-          example:
-            type: "Property"
-            value: "Gate Valve"
-
-        material:
-          type: object
-          description: Construction material of the Valve
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-              enum:
-                - "Stainless Steel"
-                - "Cast Iron"
-                - "Composite"
-          example:
-            type: "Property"
-            value: "Stainless Steel"
-
         isPartOfHydroPowerPlant:
           type: object
-          description: Relationship to HydropowerPlant entities this Valve belongs to
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
-
-        isPartOfValveHouse:
+        hasDevices:
           type: object
-          description: Relationship to ValveHouse entities that house this Valve
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
-            object:
-              - "urn:ngsi-ld:ValveHouse:vh1"
-
-        isConnectedToPenstock:
+        observations:
           type: object
-          description: Relationship to Penstock entities connected to this Valve
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
-                format: uri
-          example:
-            type: "Relationship"
+        actuations:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
             object:
-              - "urn:ngsi-ld:Penstock:pen1"
+              type: array
+              items:
+                type: string
+
+    Valve:
+      allOf:
+        - $ref: '#/components/schemas/GenericStaticComponent'
+        - type: object
+          required:
+            - id
+            - type
+            - name
+          properties:
+    
+            id:
+              type: string
+              format: uri
+              description: Unique URI identifier for the Valve
+    
+            type:
+              type: string
+              enum:
+                - Valve
+              description: Fixed entity type identifier
+    
+            name:
+              type: object
+              description: Official or common name of the Valve
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+    
+    
+            geographicalLocation:
+              type: object
+              description: GeoJSON Point indicating the Valve’s location (longitude, latitude)
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - GeoProperty
+                value:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                        - Point
+                    coordinates:
+                      type: array
+                      items:
+                        type: number
+                      minItems: 2
+                      maxItems: 2
+    
+    
+            valveType:
+              type: object
+              description: Classification or design of the Valve
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                  enum:
+                    - "Gate Valve"
+                    - "Butterfly Valve"
+                    - "Ball Valve"
+                    - "Sluice Gate"
+    
+    
+            material:
+              type: object
+              description: Construction material of the Valve
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Property
+                value:
+                  type: string
+                  enum:
+                    - "Stainless Steel"
+                    - "Cast Iron"
+                    - "Composite"
+    
+    
+            isPartOfHydroPowerPlant:
+              type: object
+              description: Relationship to HydropowerPlant entities this Valve belongs to
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+    
+            isPartOfValveHouse:
+              type: object
+              description: Relationship to ValveHouse entities that house this Valve
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+    
+    
+            isConnectedToPenstock:
+              type: object
+              description: Relationship to Penstock entities connected to this Valve
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - Relationship
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+    

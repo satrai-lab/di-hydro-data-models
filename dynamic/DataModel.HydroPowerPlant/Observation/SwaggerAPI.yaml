@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: Interactive NGSI-LD API for Observation entities
 servers:
-  - url: https://raw.githubusercontent.com/satrai-lab/data-models/main/device-models/context.json
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json
 
 paths:
   /entities:
@@ -17,7 +17,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Observation'
             example:
-              "@context": "https://raw.githubusercontent.com/satrai-lab/data-models/main/device-models/context.json"
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
               id: "urn:ngsi-ld:Observation:obs-001"
               type: "Observation"
               name:

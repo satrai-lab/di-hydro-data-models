@@ -178,5 +178,24 @@
     "object": [
       "urn:ngsi-ld:Spillway:sw1"
     ]
+  },
+    "hasDraftTube": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:DraftTube:dt1"
+    ]
+  },
+    "hasTailrace": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Tailrace:tl1"
+    ]
+  },
+    "hasDevices": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Device:device1",
+      "urn:ngsi-ld:Device:device2"
+    ]
   }
 }

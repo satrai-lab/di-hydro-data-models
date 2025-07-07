@@ -109,8 +109,12 @@ components:
             value:
               type: object
               properties:
-                value:
-                  type: number
+                value: 
+                  oneOf:
+                    - type: number
+                      description: The measurement value
+                    - type: string
+                      description: The measurement value as a string
                 measurementUnit:
                   type: object
                   properties:

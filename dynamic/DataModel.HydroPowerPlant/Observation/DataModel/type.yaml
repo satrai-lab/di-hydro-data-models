@@ -47,7 +47,12 @@ components:
               - measurementUnit
             type: object
             properties:
-              value: number
+              value: 
+                oneOf: &oneof
+                  - type: number
+                    description: "The value of the observation."
+                  - type: string
+                    description: "The value of the observation."
               type: string
               measurementUnit: string
               description: "The value of the observation."

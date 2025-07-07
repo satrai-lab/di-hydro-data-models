@@ -5,7 +5,36 @@ import string
 import re
 import argparse
 import os
+"""
+IoT_agent.py
+------------
+This script reads sensor data from a CSV or Excel file and converts each column of sensor readings
+into a list of NGSI-LD Observation entities, one JSON file per observation type.
 
+📌 Expected Input Format:
+- The input file must be a `.csv`, `.xls`, or `.xlsx`.
+- The first column must contain timestamp information (it can be empty; fallback will be used).
+- Each other column represents one observation type.
+
+🧾 Structure of the Input File:
+| Date        | Temperature (C) | Pressure(hPa) | FlowRate_M3S | ...
+|-------------|-----------------|---------------|--------------|
+| 2025-01-01  | 25.4            | 1013.25       | 0.56         |
+| ...         | ...             | ...           | ...          |
+
+🧠 Column Name Formats Supported:
+- ObservationName (Unit)
+- ObservationName[Unit]
+- ObservationName_Unit
+- ObservationName  ← if no unit is provided
+
+📤 Output:
+- For each column, a `.ngsild.json` file will be created in the same directory.
+- Each output file contains a list of Observation entities in NGSI-LD format with:
+  - A unique ID
+  - Standardized NGSI-LD properties (name, value, unit, timestamp, etc.)
+  - A fixed @context URL
+"""
 def generate_random_id():
     return ''.join(random.choices(string.digits, k=12))
 

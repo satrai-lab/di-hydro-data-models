@@ -16,12 +16,10 @@
   },
   "measurement": {
     "type": "Property",
-    "value": {
-      "value": 185.7,
-      "measurementUnit":{
-        "type": "Property",
-        "value": "M3S"
-      }
+    "value": 185.7,
+    "measurementUnit": {
+      "type": "Property",
+      "value": "M3S"
     }
   },
   "measurementType": {

@@ -1,0 +1,29 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-952829774068",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "ain3"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "2025-07-08T16:26:06Z"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 126.375,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "mv"
+      }
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    },
+    "category": {
+      "type": "Property",
+      "value": "electricityConsumption"
+    }
+  }

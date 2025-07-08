@@ -24,7 +24,7 @@
   },
   "measurementType": {
     "type": "Property",
-    "value": "Physical"
+    "value": "physical"
   },
   "externalLink": {
     "type": "Property",

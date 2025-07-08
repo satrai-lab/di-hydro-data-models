@@ -32,7 +32,7 @@ components:
           x-ngsi:
             type: Property
         category:
-          description: "The category of the observation."
+          description: "The category of the observation  represents types of data that can be observed or acted upon in IoT systems, such as environmental metrics (e.g., temperature, airPollution), utility usage (e.g., waterFlow, electricityConsumption), human activity (e.g., occupancy, heartRate), and system status (e.g., doorStatus, fireAlarm). They serve as standard references for consistent data modeling."
           type: string
           x-ngsi:
             type: Property         
@@ -59,7 +59,8 @@ components:
             x-ngsi:
               type: Property
         measurementType:
-          description: "The type of the measurement of the observation."
+          description: "The type of an observation measurement can be classified as either physical or virtual. A physical measurement is obtained directly from a single sensor, whereas a virtual measurement is derived or inferred by combining multiple physical measurements.
+"
           type: string
           x-ngsi:
             type: Property

@@ -1,0 +1,29 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-761113407681",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "Water temperature"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "2025-02-05T11:28:46"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 4.0,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "°C"
+      }
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    },
+    "category": {
+      "type": "Property",
+      "value": "temperature"
+    }
+  }

@@ -1,0 +1,29 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-512643980892",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "sht_temp"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "2025-07-08T16:26:06Z"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 0.0,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "Degrees Celsius"
+      }
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    },
+    "category": {
+      "type": "Property",
+      "value": "temperature"
+    }
+  }

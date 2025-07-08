@@ -1,0 +1,29 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-878539582495",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "roll"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "2025-07-08T16:26:06Z"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 0.0,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "Degrees"
+      }
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "virtual"
+    },
+    "category": {
+      "type": "Property",
+      "value": "orientation"
+    }
+  }

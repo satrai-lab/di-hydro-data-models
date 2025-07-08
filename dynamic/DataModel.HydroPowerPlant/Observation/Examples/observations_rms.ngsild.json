@@ -1,0 +1,29 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-841589680640",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "RMS"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "5.901657"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 0.0008,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "V"
+      }
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    },
+    "category": {
+      "type": "Property",
+      "value": "soundIntensity"
+    }
+  }

@@ -15,7 +15,7 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Observation'
+              $ref: "#/components/schemas/Observation"
             example:
               "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
               id: "urn:ngsi-ld:Observation:obs-001"
@@ -37,12 +37,12 @@ paths:
                   value: "M3S"
               measurementType:
                 type: "Property"
-                value: "Instantaneous"
+                value: "physical"
               externalLink:
                 type: "Property"
                 value: "https://example.org/data/river_observation_001.png"
       responses:
-        '201':
+        "201":
           description: Entity created successfully
 
 components:
@@ -80,7 +80,7 @@ components:
 
         category:
           type: object
-          description: The category of the observation
+          description: The category of the observation represents types of data that can be observed or acted upon in IoT systems, such as environmental metrics (e.g., temperature, airPollution), utility usage (e.g., waterFlow, electricityConsumption), human activity (e.g., occupancy, heartRate), and system status (e.g., doorStatus, fireAlarm). They serve as standard references for consistent data modeling.
           properties:
             type:
               type: string
@@ -109,7 +109,7 @@ components:
             value:
               type: object
               properties:
-                value: 
+                value:
                   oneOf:
                     - type: number
                       description: The measurement value
@@ -127,7 +127,7 @@ components:
 
         measurementType:
           type: object
-          description: Describes the type of the measurement (e.g., instantaneous, average)
+          description: The type of an observation measurement can be classified as either physical or virtual. A physical measurement is obtained directly from a single sensor, whereas a virtual measurement is derived or inferred by combining multiple physical measurements.
           properties:
             type:
               type: string

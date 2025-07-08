@@ -1,0 +1,29 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-177648714665",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "mag_y"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "2025-07-08T16:26:06Z"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": -332.75,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "Microteslas"
+      }
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    },
+    "category": {
+      "type": "Property",
+      "value": "motion"
+    }
+  }

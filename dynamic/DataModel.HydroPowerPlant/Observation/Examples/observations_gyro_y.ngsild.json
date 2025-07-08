@@ -1,0 +1,29 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-866809943186",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "gyro_y"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "2025-07-08T16:26:06Z"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": -13.0,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "Degrees per second"
+      }
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    },
+    "category": {
+      "type": "Property",
+      "value": "motion"
+    }
+  }

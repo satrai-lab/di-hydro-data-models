@@ -1,0 +1,29 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-452836606340",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "Average rate of water level rise over 3 hours"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "2025-02-05T11:28:46"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 0.002,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "m/h"
+      }
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    },
+    "category": {
+      "type": "Property",
+      "value": "waterLevel"
+    }
+  }

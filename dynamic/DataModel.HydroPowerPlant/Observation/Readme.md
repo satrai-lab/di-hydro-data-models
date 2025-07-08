@@ -20,12 +20,12 @@ This entity is typically associated with physical or environmental parameters su
 | **`id`**                | Property  | ✅ Yes    | Unique NGSI-LD identifier of the observation entity                         | URI (e.g., `urn:ngsi-ld:Observation:001`) |
 | **`type`**              | Property  | ✅ Yes    | NGSI-LD entity type (must be `"Observation"`)                               | `"Observation"`                           |
 | **`name`**              | Property  | ❌ No     | Name or label assigned to the observation                                   | String                                    |
-| **`category`**          | Property  | ❌ No     | Describes the category or domain of the observation                         | String (e.g., "Environmental", "Energy")  |
+| **`category`**          | Property  | ❌ No     | represents types of data that can be observed or acted upon in IoT systems, such as environmental metrics (e.g., temperature, airPollution), utility usage (e.g., waterFlow, electricityConsumption), human activity (e.g., occupancy, heartRate), and system status (e.g., doorStatus, fireAlarm). They serve as standard references for consistent data modeling.                         | String (e.g., "Environmental", "Energy")  | 
 | **`dateModified`**      | Property  | ❌ No     | Timestamp of the last modification to the observation                       | ISO 8601 Date-Time String                 |
 | **`measurement`**       | Property  | ✅ Yes    | Value and unit of the observation (structured object)                       | Object with: `value`, `measurementUnit`   |
 |     • `value`           | -         | ✅ Yes    | The numeric value of the measurement                                        | Number                                    |
 |     • `measurementUnit` | -         | ✅ Yes    | Unit of measurement                                                         | String (e.g., `"M3S"`, `"°C"`, etc.)      |
-| **`measurementType`**   | Property  | ❌ No     | Describes what kind of measurement it is (e.g., "Instantaneous", "Average") | String                                    |
+| **`measurementType`**   | Property  | ❌ No     | The type of an observation measurement can be classified as either **physical** or **virtual**. A **physical** measurement is obtained directly from a single sensor, whereas a **virtual** measurement is derived or inferred by combining multiple physical measurements.| String (e.g., `virtual`, `physical`|                                   |
 | **`externalLink`**      | Property  | ❌ No     | URI linking to an external media file like an image or video                | URI                                       |
 
 

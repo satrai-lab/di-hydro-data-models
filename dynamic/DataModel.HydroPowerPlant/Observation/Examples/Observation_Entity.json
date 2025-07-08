@@ -24,7 +24,7 @@
   },
   "measurementType": {
     "type": "Property",
-    "value": "Instantaneous"
+    "value": "Physical"
   },
   "externalLink": {
     "type": "Property",

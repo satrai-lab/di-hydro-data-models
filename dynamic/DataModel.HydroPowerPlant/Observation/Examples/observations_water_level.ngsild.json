@@ -1,0 +1,29 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-735205847225",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "Water level"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "2025-02-05T11:28:46"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 1000.55,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "m WGS84"
+      }
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    },
+    "category": {
+      "type": "Property",
+      "value": "waterLevel"
+    }
+  }

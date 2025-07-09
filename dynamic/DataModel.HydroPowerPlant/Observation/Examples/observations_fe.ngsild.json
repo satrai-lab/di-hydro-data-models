@@ -1,0 +1,21 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-025397924779",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "Fe"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "20.01.2016"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 0.05,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "mg/L"
+      }
+    }
+  }

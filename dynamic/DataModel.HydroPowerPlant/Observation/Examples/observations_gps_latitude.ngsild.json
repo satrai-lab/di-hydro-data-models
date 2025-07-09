@@ -1,0 +1,25 @@
+ {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-181486095019",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "GPS Latitude"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "14.12.2022"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": "43°54'28''"
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    },
+    "category": {
+      "type": "Property",
+      "value": "location"
+    }
+  }

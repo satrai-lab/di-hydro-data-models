@@ -1,0 +1,25 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-093195186068",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "pH"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "20.01.2016"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 8.03
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    },
+    "category": {
+      "type": "Property",
+      "value": "PH"
+    }
+  }

@@ -1,0 +1,25 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-605513116868",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "Suspended matter"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "20.01.2016"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 8.0,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "mg/L"
+      }
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    }
+  }

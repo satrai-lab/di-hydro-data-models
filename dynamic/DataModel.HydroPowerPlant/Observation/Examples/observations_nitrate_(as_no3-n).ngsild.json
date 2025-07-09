@@ -1,0 +1,21 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-918072141400",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "Nitrate (as NO3-N)"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "20.01.2016"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 1.94,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "mg/L"
+      }
+    }
+  }

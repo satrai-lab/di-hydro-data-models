@@ -1,0 +1,29 @@
+  {
+    "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json",
+    "id": "urn:ngsi-ld:Observation:obs-352375117457",
+    "type": "Observation",
+    "name": {
+      "type": "Property",
+      "value": "Total Coliforms"
+    },
+    "dateModified": {
+      "type": "Property",
+      "value": "20.01.2016"
+    },
+    "measurement": {
+      "type": "Property",
+      "value": 3800.0,
+      "measurementUnit": {
+        "type": "Property",
+        "value": "CFU/100ml"
+      }
+    },
+    "measurementType": {
+      "type": "Property",
+      "value": "physical"
+    },
+    "category": {
+      "type": "Property",
+      "value": "wateQuality"
+    }
+  }

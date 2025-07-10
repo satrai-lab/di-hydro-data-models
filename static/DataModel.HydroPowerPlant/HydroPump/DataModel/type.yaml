@@ -110,11 +110,11 @@ components:
                 type: Relationship
     
             isPartOfHydrPowerPlant:
-            type: array
-            description: "Array of references to HydropowerPlant entities that this HydroPump is a component of"
-            items:
-              type: string
-              format: uri
-            x-ngsi:
+             type: array
+             description: "Array of references to HydropowerPlant entities that this HydroPump is a component of"
+             items:
+               type: string
+               format: uri
+             x-ngsi:
               type: Relationship
 

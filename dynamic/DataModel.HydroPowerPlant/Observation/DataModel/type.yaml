@@ -59,8 +59,7 @@ components:
             x-ngsi:
               type: Property
         measurementType:
-          description: "The type of an observation measurement can be classified as either physical or virtual. A physical measurement is obtained directly from a single sensor, whereas a virtual measurement is derived or inferred by combining multiple physical measurements.
-"
+          description: "The type of an observation measurement can be classified as either physical or virtual. A physical measurement is obtained directly from a single sensor, whereas a virtual measurement is derived or inferred by combining multiple physical measurements."
           type: string
           x-ngsi:
             type: Property
@@ -70,3 +69,4 @@ components:
           format: uri
           x-ngsi:
             type: Property
+        additionalProperties: false

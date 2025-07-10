@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "ActuationModel",
+  "definitions": {
+    "Actuation": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+          "description": "Unique identifier of the entity"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["Actuation"],
+          "description": "NGSI-LD entity type. Must be Actuation"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the actuation."
+        },
+        "category": {
+          "type": "string",
+          "description": "The category of the actuation represents types of data that can be observed or acted upon in IoT systems, such as environmental metrics (e.g., temperature, airPollution), utility usage (e.g., waterFlow, electricityConsumption), human activity (e.g., occupancy, heartRate), and system status (e.g., doorStatus, fireAlarm). They serve as standard references for consistent data modeling."
+        },
+        "dateModified": {
+          "type": "string",
+          "description": "The date that the actuation was modified."
+        },
+        "command": {
+          "type": "string",
+          "description": "The command to be executed."
+        },
+        "commandResult": {
+          "type": "string",
+          "description": "The result of the command execution."
+        },
+        "duration": {
+          "type": "number",
+          "description": "The time it took to execute the command in seconds."
+        },
+        "controlsDevices": {
+          "type": "object",
+          "description": "Relationship to the devices controlled by this actuation.",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Relationship"]
+            },
+            "object": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "description": "URIs of the controlled Device entities."
+            }
+          },
+          "required": ["type", "object"],
+          "additionalProperties": false
+        },
+        "controlsComponents": {
+          "type": "object",
+          "description": "Relationship to the components controlled by this actuation.",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Relationship"]
+            },
+            "object": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "description": "URIs of the controlled Component entities."
+            }
+          },
+          "required": ["type", "object"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

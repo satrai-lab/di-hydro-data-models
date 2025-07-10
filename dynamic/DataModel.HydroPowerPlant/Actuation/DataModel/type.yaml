@@ -1,0 +1,104 @@
+components:
+  schemas:
+    Actuation:
+      required:
+        - id
+        - type
+      properties:
+        id:
+          anyOf:
+            - description: "Property. Identifier format of any NGSI entity"
+              maxLength: 256
+              minLength: 1
+              pattern: ^[\w\-\.\{\}\$\+\*\[\]`|~^@!,:\\]+$
+              type: string
+          format: uri
+          type: string
+          description: "Unique identifier of the entity"
+          x-ngsi:
+            type: Property
+
+        type:
+          description: "NGSI Entity type. It has to be Actuation"
+          enum:
+            - Actuation
+          type: string
+          x-ngsi:
+            type: Property
+
+        name:
+          description: "The name of the actuation."
+          type: string
+          x-ngsi:
+            type: Property
+
+        category:
+          description: "The category of the actuation represents types of data that can be observed or acted upon in IoT systems, such as environmental metrics (e.g., temperature, airPollution), utility usage (e.g., waterFlow, electricityConsumption), human activity (e.g., occupancy, heartRate), and system status (e.g., doorStatus, fireAlarm). They serve as standard references for consistent data modeling."
+          type: string
+          x-ngsi:
+            type: Property
+
+        dateModified:
+          description: "The date that the actuation was modified."
+          type: string
+          x-ngsi:
+            type: Property
+
+        command:
+          description: "The command to be executed."
+          type: string
+          x-ngsi:
+            type: Property
+
+        commandResult:
+          description: "The result of the command execution."
+          type: string
+          x-ngsi:
+            type: Property
+
+        duration:
+          description: "The time it took to execute the command in seconds."
+          type: number
+          x-ngsi:
+            type: Property
+
+        controlsDevices:
+          description: "Relationship to the devices controlled by this actuation."
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+              description: "URIs of the controlled Device entities."
+          required:
+            - type
+            - object
+          x-ngsi:
+            type: Relationship
+
+        controlsComponents:
+          description: "Relationship to the components controlled by this actuation."
+          type: object
+          properties:
+            type:
+              type: string
+              enum: ["Relationship"]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+              description: "URIs of the controlled Component entities."
+          required:
+            - type
+            - object
+          x-ngsi:
+            type: Relationship
+
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/data-models/main/device-models/context.json"

@@ -2,14 +2,14 @@ components:
   schemas:
 
       HydropowerPlant:
-        x-ngsi:
+       x-ngsi:
           uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/HydroPowerPlant/DataModel/type.json"
 
-        required:
+       required:
         - id
         - type
         - name
-        properties:
+       properties:
         id:
           description: "Property. Identifier format of any NGSI entity"
           maxLength: 256

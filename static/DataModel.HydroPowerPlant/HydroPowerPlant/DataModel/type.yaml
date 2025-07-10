@@ -1,15 +1,13 @@
 components:
   schemas:
-
-      HydropowerPlant:
-       x-ngsi:
-          uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/HydroPowerPlant/DataModel/type.json"
-
-       required:
+    HydropowerPlant:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/DataModel.HydroPowerPlant/HydroPowerPlant/DataModel/type.json"
+      required:
         - id
         - type
         - name
-       properties:
+      properties:
         id:
           description: "Property. Identifier format of any NGSI entity"
           maxLength: 256
@@ -17,8 +15,6 @@ components:
           pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
           type: string
           format: uri
-          type: string
-          description: "Unique identifier of the Hydropower Plant"
           x-ngsi:
             type: Property
         type:
@@ -67,34 +63,34 @@ components:
                 - Medium
                 - Large
               description: "Capacity category (e.g., Pico, Micro, Mini, Small, Medium, Large)."
-              min:
-                  type: object
-                  description: "Minimum capacity value in MW."
-                  properties:
-                    value:
-                      type: number
-                      description: "Minimum capacity"
-                    unitCode:
-                      type: string
-                      enum:
-                        - "MW"
-                      description: "UN/CEFACT unit code for megawatt"
-                  x-ngsi:
-                    type: Property
-              max:
-                  type: object
-                  description: "Maximum capacity value in MW."
-                  properties:
-                    value:
-                      type: number
-                      description: "Maximum capacity"
-                    unitCode:
-                      type: string
-                      enum:
-                        - "MW"
-                      description: "UN/CEFACT unit code for megawatt"
-                  x-ngsi:
-                    type: Property
+            min:
+              type: object
+              description: "Minimum capacity value in MW."
+              properties:
+                value:
+                  type: number
+                  description: "Minimum capacity"
+                unitCode:
+                  type: string
+                  enum:
+                    - "MW"
+                  description: "UN/CEFACT unit code for megawatt"
+              x-ngsi:
+                type: Property
+            max:
+              type: object
+              description: "Maximum capacity value in MW."
+              properties:
+                value:
+                  type: number
+                  description: "Maximum capacity"
+                unitCode:
+                  type: string
+                  enum:
+                    - "MW"
+                  description: "UN/CEFACT unit code for megawatt"
+              x-ngsi:
+                type: Property
             standard:
               type: string
               description: "The standard used to define the capacity range (e.g., 'Swedish' for below 1.5 MW, 'Chinese' for below 50 MW)."
@@ -338,4 +334,5 @@ components:
             format: uri
           x-ngsi:
             type: Relationship
-             
+
+     

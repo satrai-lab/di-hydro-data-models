@@ -1,0 +1,45 @@
+{
+  "id": "urn:ngsi-ld:Actuation:001",
+  "type": "Actuation",
+  "name": {
+    "type": "Property",
+    "value": "Open Main Valve"
+  },
+  "category": {
+    "type": "Property",
+    "value": "Energy"
+  },
+  "dateModified": {
+    "type": "Property",
+    "value": "2025-07-10T08:30:00Z"
+  },
+  "command": {
+    "type": "Property",
+    "value": "openValve"
+  },
+  "commandResult": {
+    "type": "Property",
+    "value": "success"
+  },
+  "duration": {
+    "type": "Property",
+    "value": 3.7
+  },
+  "controlsDevices": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Device:main-valve-controller",
+      "urn:ngsi-ld:Device:backup-valve-controller"
+    ]
+  },
+  "controlsComponents": {
+    "type": "Relationship",
+    "object": [
+      "urn:ngsi-ld:Component:valve-1"
+    ]
+  },
+  "@context": [
+    "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+    "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
+  ]
+}

@@ -126,7 +126,7 @@ components:
             - actuator
             - sensorActuator
             - Device
-            -System
+            - System
           description: "Indicates the type of the device: sensor, actuator, or both"
           x-ngsi:
             type: Property

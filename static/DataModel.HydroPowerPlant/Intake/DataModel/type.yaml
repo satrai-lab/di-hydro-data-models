@@ -76,7 +76,7 @@ components:
               x-ngsi:
                 type: Property
 
-              isPartOfDam:
+            isPartOfDam:
               type: array
               description: "Array of references to the Dam entity that this Intake is part of"
               items:
@@ -85,7 +85,7 @@ components:
               x-ngsi:
                 type: Relationship
     
-              isPartOfHydroPowerPlant:
+            isPartOfHydroPowerPlant:
               type: array
               description: "Array of references to the HydropowerPlant entity that this Intake is part of"
               items:
@@ -94,7 +94,7 @@ components:
               x-ngsi:
                 type: Relationship
     
-              leadsToPenstocks:
+            leadsToPenstocks:
               type: array
               description: "Array of references to the Penstock entity that this Intake leads to"
               items:

@@ -133,55 +133,74 @@ components:
           x-ngsi:
             type: Property
         installedCapacity:
-          type: number
+          type: object
           description: "The plant’s total rated electrical capacity (MW)"
           x-ngsi:
             type: Property
-          unitCode:
-            type: string
-            enum:
-              - "MW"
-            description: "UN/CEFACT unit code for megawatt"
+          properties:
+            value:
+              type: number
+              description: "Installed capacity value in megawatts"
+            unitCode:
+              type: string
+              enum:
+                - "MW"
+              description: "UN/CEFACT unit code for megawatt"
         annualEnergyOutput:
-          type: number
+          type: object
           description: "The average total energy the plant produces per year (kWh)"
           x-ngsi:
             type: Property
-          unitCode:
-            type: string
-            enum:
-              - "KWH"
-            description: "UN/CEFACT unit code for kilowatt-hour"
+          properties:
+            value:
+              type: number
+              description: "Annual energy output value in kilowatt-hours"
+            unitCode:
+              type: string
+              enum:
+                - "KWH"
+              description: "UN/CEFACT unit code for kilowatt-hour"
         ecologicalDischarge:
-          type: number
+          type: object
           description: "The minimum flow always released downstream to keep the river healthy (m³/s)"
           x-ngsi:
             type: Property
-          unitCode:
-            type: string
-            enum:
-              - "M3/S"
-            description: "UN/CEFACT unit code for cubic meters per second"
+          properties:
+            value:
+              type: number
+              description: "Ecological discharge value in cubic meters per second"
+            unitCode:
+              type: string
+              enum:
+                - "M3/S"
+              description: "UN/CEFACT unit code for cubic meters per second"
         maxTailwaterLevel:
-          type: number
+          type: object
           description: "Highest water‑surface elevation downstream of the turbines above mean sea level (m)"
           x-ngsi:
             type: Property
-          unitCode:
-            type: string
-            enum:
-              - "M"
-            description: "UN/CEFACT unit code for meters"
+          properties:
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum:
+                - "M"
+              description: "UN/CEFACT unit code for meters"
         grossHead:
-          type: number
+          type: object
           description: "Total vertical drop from reservoir water surface to turbine inlet before losses (m)"
           x-ngsi:
             type: Property
-          unitCode:
-            type: string
-            enum:
-              - "M"
-            description: "UN/CEFACT unit code for meters"
+          properties:
+            value:
+              type: number
+              description: "Gross head value in meters"
+            unitCode:
+              type: string
+              enum:
+                - "M"
+              description: "UN/CEFACT unit code for meters"
         partOfCommunity:
           type: array
           items:

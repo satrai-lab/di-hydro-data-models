@@ -1,11 +1,10 @@
 components:
   schemas:
-
     Dam:
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/Dam/DataModel/type.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/DataModel.HydroPowerPlant/Dam/DataModel/type.json"
       allOf:
-        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
+        - $ref: "#/components/schemas/GenericStaticComponent"
         - type: object
           required:
             - id
@@ -19,8 +18,6 @@ components:
               pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
               type: string
               format: uri
-              type: string
-              description: "Unique identifier of the Dam"
               x-ngsi:
                 type: Property
             type:
@@ -51,7 +48,7 @@ components:
               x-ngsi:
                 type: GeoProperty
 
-              damHeight:
+            damHeight:
               type: object
               description: "The vertical height from the dam’s foundation to its crest"
               properties:
@@ -92,7 +89,7 @@ components:
               x-ngsi:
                 type: Property
 
-              damType:
+            damType:
               type: string
               description: "Structural design of the dam (e.g., ‘Concrete Gravity’, ‘Arch Dam’, ‘Embankment Dam’)"
               enum:
@@ -101,8 +98,8 @@ components:
                 - "Embankment Dam"
               x-ngsi:
                 type: Property
-
-              yearOfConstruction:
+            
+            yearOfConstruction:
               type: number
               description: "The year the dam was built"
               x-ngsi:
@@ -140,7 +137,7 @@ components:
               x-ngsi:
                 type: Relationship
     
-              isPartOfReservoir:
+            isPartOfReservoir:
               type: array
               description: "Array of references to the Reservoir entity that is supplied by this dam"
               items:
@@ -148,8 +145,8 @@ components:
                 format: uri
               x-ngsi:
                 type: Relationship
-    
-              isPartOfHydroPlant:
+  
+            isPartOfHydroPlant:
               type: array
               description: "Array of references to the HydropowerPlant entity that this dam is a component of"
               items:
@@ -157,5 +154,6 @@ components:
                 format: uri
               x-ngsi:
                 type: Relationship
+
           
     

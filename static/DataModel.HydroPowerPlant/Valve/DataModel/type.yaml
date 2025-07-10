@@ -96,4 +96,4 @@ components:
                 type: string
                 format: uri
               x-ngsi:
-            type: Relationship
+               type: Relationship

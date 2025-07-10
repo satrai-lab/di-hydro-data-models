@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: Actuation Interactive API
+  version: 1.0.0
+  description: Interactive NGSI-LD API for Actuation entities
+
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create an Actuation entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: "#/components/schemas/Actuation"
+            example:
+              "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json"
+              id: "urn:ngsi-ld:Actuation:001"
+              type: "Actuation"
+              name:
+                type: "Property"
+                value: "Open Main Valve"
+              category:
+                type: "Property"
+                value: "Energy"
+              dateModified:
+                type: "Property"
+                value: "2025-07-10T08:30:00Z"
+              command:
+                type: "Property"
+                value: "openValve"
+              commandResult:
+                type: "Property"
+                value: "success"
+              duration:
+                type: "Property"
+                value: 3.7
+              controlsDevices:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Device:main-valve-controller"
+                  - "urn:ngsi-ld:Device:backup-valve-controller"
+              controlsComponents:
+                type: "Relationship"
+                object:
+                  - "urn:ngsi-ld:Component:valve-1"
+      responses:
+        "201":
+          description: Entity created successfully
+
+components:
+  schemas:
+    Actuation:
+      type: object
+      required:
+        - id
+        - type
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique identifier of the actuation entity
+
+        type:
+          type: string
+          enum: [Actuation]
+          description: NGSI-LD entity type identifier
+
+        name:
+          type: object
+          description: Name of the actuation
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+
+        category:
+          type: object
+          description: The category of the actuation represents types of data that can be observed or acted upon in IoT systems, such as environmental metrics (e.g., temperature, airPollution), utility usage (e.g., waterFlow, electricityConsumption), human activity (e.g., occupancy, heartRate), and system status (e.g., doorStatus, fireAlarm). They serve as standard references for consistent data modeling.
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+
+        dateModified:
+          type: object
+          description: ISO 8601 timestamp of the last modification
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+              format: date-time
+
+        command:
+          type: object
+          description: The control instruction or command issued (e.g., openValve, startPump)
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+
+        commandResult:
+          type: object
+          description: Result or output returned after executing the command
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+
+        duration:
+          type: object
+          description: Time taken to execute the command (in seconds)
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: number
+
+        controlsDevices:
+          type: object
+          description: Relationship to the devices controlled by this actuation
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri
+
+        controlsComponents:
+          type: object
+          description: Relationship to the components controlled by this actuation
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: array
+              items:
+                type: string
+                format: uri

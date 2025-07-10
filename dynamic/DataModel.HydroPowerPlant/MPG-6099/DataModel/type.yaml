@@ -234,10 +234,6 @@ components:
               type: object
               description: "Reference to the ammonia sensor module"
               x-ngsi:
-                type: string
-                enum:
-                  - Relationship
-              x-ngsi:
                 type: Relationship
               properties:
                 type:

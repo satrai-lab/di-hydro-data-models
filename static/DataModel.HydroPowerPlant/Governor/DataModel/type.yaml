@@ -1,11 +1,10 @@
 components:
   schemas:
-
     Governor:
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/Governor/DataModel/type.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/DataModel.HydroPowerPlant/Governor/DataModel/type.json"
       allOf:
-        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
+        - $ref: "#/components/schemas/GenericStaticComponent"
         - type: object
           required:
             - id
@@ -19,8 +18,6 @@ components:
               pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
               type: string
               format: uri
-              type: string
-              description: "Unique identifier of the Governor"
               x-ngsi:
                 type: Property
             type:
@@ -102,7 +99,7 @@ components:
               x-ngsi:
                 type: Property
 
-              isPartOfHydroPowerPlant:
+            isPartOfHydroPowerPlant:
               type: array
               description: "Array of references to the HydropowerPlant entity that this Governor is part of"
               items:
@@ -111,7 +108,7 @@ components:
               x-ngsi:
                 type: Relationship
     
-              controlsTurbine:
+            controlsTurbine:
               type: array
               description: "Array of references to the Turbine entity (or entities) controlled by this Governor"
               items:
@@ -120,7 +117,7 @@ components:
               x-ngsi:
                 type: Relationship
     
-              isPartOfPowerHouse:
+            isPartOfPowerHouse:
               type: array
               description: "Array of references to the PowerHouse entity that houses this Governor"
               items:
@@ -128,4 +125,5 @@ components:
                 format: uri
               x-ngsi:
                 type: Relationship
+ 
  

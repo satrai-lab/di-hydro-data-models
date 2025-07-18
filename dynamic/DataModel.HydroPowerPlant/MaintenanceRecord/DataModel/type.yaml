@@ -2,7 +2,7 @@ components:
   schemas:
     MaintenanceRecord:
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/MaintenanceRecord/DataModel/type.yaml"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/MaintenanceRecord/DataModel/type.json"
       type: object
       properties:
         id:

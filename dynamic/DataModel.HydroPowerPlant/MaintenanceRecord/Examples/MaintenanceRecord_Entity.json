@@ -1,0 +1,49 @@
+{
+  "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld",
+  "@id": "urn:ngsi-ld:MaintenanceRecord:0001",
+  "@type": "MaintenanceRecord",
+  "inHPP": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:HPP:HPPXYZ"
+  },
+  "onHPPComponent": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Turbine:tb001"
+  },
+  "onDevice": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:acceleraometer:001"
+  },
+  "maintenanceType": {
+    "type": "Property",
+    "value": "Preventive"
+  },
+  "workType": {
+    "type": "Property",
+    "value": "Cleaning"
+  },
+  "datePerformed": {
+    "type": "Property",
+    "value": "2025-06-15T10:30:00Z"
+  },
+  "issueFound": {
+    "type": "Property",
+    "value": "Slight debris build-up in filter housing"
+  },
+  "workPerformed": {
+    "type": "Property",
+    "value": "Cleaned filter meshes; cleared debris; tested ΔP sensor calibration"
+  },
+  "durationMinutes": {
+    "type": "Property",
+    "value": 60
+  },
+  "technician": {
+    "type": "Relationship",
+    "object": "urn:ngsi-ld:Technician:Arapis"
+  },
+  "responsibleType": {
+    "type": "Property",
+    "value": "Technician"
+  }
+}

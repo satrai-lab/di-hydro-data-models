@@ -1,6 +1,12 @@
 # 🛠️ Maintenance Record 
 
 
+<div style="display: flex; justify-content: center; margin: 20px 0">
+  <img src="https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/Diagrams/MaintenanceRecord.png" 
+       alt="HydroPowerPlantCommunity Actuation Diagram" 
+       style="max-width: 100%; height: auto; width: 600px">
+</div>
+
 ## Definition
 
 The `MaintenanceRecord` entity captures a single maintenance event performed on equipment within an NGSI‑LD-enabled system. It links the work to a specific hydro‑power‑plant (HPP), component, and device, and records metadata such as the type of maintenance, specific work category, timestamp, findings, actions taken, duration, and the responsible party (technician or company).

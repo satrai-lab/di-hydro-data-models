@@ -1,0 +1,190 @@
+openapi: 3.0.3
+info:
+  title: MaintenanceRecord Interactive API
+  version: 1.0.0
+  description: Interactive NGSI‑LD API for MaintenanceRecord entities
+
+servers:
+  - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json
+
+paths:
+  /entities:
+    post:
+      summary: Create a MaintenanceRecord entity
+      requestBody:
+        required: true
+        content:
+          application/ld+json:
+            schema:
+              $ref: "#/components/schemas/MaintenanceRecord"
+            example:
+              "@context": "https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld"
+              id: "urn:ngsi-ld:MaintenanceRecord:0001"
+              type: "MaintenanceRecord"
+              inHPP:
+                type: "Relationship"
+                object: "urn:ngsi-ld:HPP:HPPXYZ"
+              onHPPComponent:
+                type: "Relationship"
+                object: "urn:ngsi-ld:Turbine:tb001"
+              onDevice:
+                type: "Relationship"
+                object: "urn:ngsi-ld:Accelerometer:001"
+              maintenanceType:
+                type: "Property"
+                value: "Preventive"
+              workType:
+                type: "Property"
+                value: "Cleaning"
+              datePerformed:
+                type: "Property"
+                value: "2025-06-15T10:30:00Z"
+              issueFound:
+                type: "Property"
+                value: "Slight debris build-up in filter housing"
+              workPerformed:
+                type: "Property"
+                value: "Cleaned filter meshes; cleared debris; tested ΔP sensor calibration"
+              durationMinutes:
+                type: "Property"
+                value: 60
+              technician:
+                type: "Relationship"
+                object: "urn:ngsi-ld:Technician:Arapis"
+              responsibleType:
+                type: "Property"
+                value: "Technician"
+      responses:
+        "201":
+          description: Entity created successfully
+
+components:
+  schemas:
+    MaintenanceRecord:
+      type: object
+      required:
+        - id
+        - type
+      properties:
+        id:
+          type: string
+          format: uri
+          description: Unique identifier of this MaintenanceRecord entity
+        type:
+          type: string
+          enum: [MaintenanceRecord]
+          description: NGSI‑LD entity type. Must be MaintenanceRecord
+        inHPP:
+          type: object
+          description: Relationship to the Hydro‑Power‑Plant (HPP) this record belongs to
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: string
+              format: uri
+              description: URI of the HPP entity
+
+        onHPPComponent:
+          type: object
+          description: Relationship to the specific HPP component serviced
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: string
+              format: uri
+              description: URI of the Component entity
+
+        onDevice:
+          type: object
+          description: Relationship to the device on which work was performed
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: string
+              format: uri
+              description: URI of the Device entity
+
+        maintenanceType:
+          type: object
+          description: High‑level category of maintenance (e.g. Preventive, Corrective, Predictive)
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+          required: [type, value]
+        workType:
+          type: object
+          description: Specific work discipline (e.g. Cleaning, Lubrication, Inspection, Replacement)
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+        datePerformed:
+          type: object
+          description: Timestamp when maintenance was carried out
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+              format: date-time
+        issueFound:
+          type: object
+          description: Description of any anomaly detected during maintenance
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+        workPerformed:
+          type: object
+          description: Free-text description of actions taken
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+        durationMinutes:
+          type: object
+          description: Total time spent on maintenance (minutes)
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: integer
+        technician:
+          type: object
+          description: Relationship to the Technician or Company entity performing the work
+          properties:
+            type:
+              type: string
+              enum: [Relationship]
+            object:
+              type: string
+              format: uri
+              description: URI of the Technician or Organization entity
+
+        responsibleType:
+          type: object
+          description: Indicates if responsible party is an individual technician or a company
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+              enum: [Technician, Company]

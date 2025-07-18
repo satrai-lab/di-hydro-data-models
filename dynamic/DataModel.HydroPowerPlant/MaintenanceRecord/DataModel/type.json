@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
+  "title": "MaintenanceRecordModel",
+  "description": "JSON‑Schema for the NGSI‑LD MaintenanceRecord entity in a hydropower‑plant data model",
+  "definitions": {
+    "MaintenanceRecord": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$",
+          "description": "Unique URI identifier of this MaintenanceRecord entity"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["MaintenanceRecord"],
+          "description": "NGSI‑LD entity type. Must be MaintenanceRecord"
+        },
+        "inHPP": {
+          "type": "object",
+          "description": "Relationship to the HydroPowerPlant (HPP) this record belongs to",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Relationship"]
+            },
+            "object": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        },
+        "onHPPComponent": {
+          "type": "object",
+          "description": "Relationship to the specific HPP component serviced",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Relationship"]
+            },
+            "object": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        },
+        "onDevice": {
+          "type": "object",
+          "description": "Relationship to the device on which work was performed",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["Relationship"]
+            },
+            "object": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        },
+        "maintenanceType": {
+          "type": "string",
+          "description": "High‑level category of maintenance (e.g. Preventive, Corrective, Predictive)"
+        },
+        "workType": {
+          "type": "string",
+          "description": "Specific work discipline (e.g. Cleaning, Lubrication, Inspection, Replacement)"
+        },
+        "datePerformed": {
+          "type": "string",
+          "description": "Timestamp when maintenance was carried out"
+        },
+        "issueFound": {
+          "type": "string",
+          "description": "Description of any anomaly detected during maintenance"
+        },
+        "workPerformed": {
+          "type": "string",
+          "description": "Free-text description of actions taken"
+        },
+        "durationMinutes": {
+          "type": "integer",
+          "description": "Total time spent on maintenance (minutes)"
+        },
+        "technician": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Relationship to the Technician or Company entity performing the work"
+        },
+        "responsibleType": {
+          "type": "string",
+          "description": "Indicates if responsible party is an individual technician or a company",
+          "enum": ["Technician", "Company"]
+        }
+      },
+      "required": ["id", "type"]
+    }
+  }
+}

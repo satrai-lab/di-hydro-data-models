@@ -1,0 +1,137 @@
+components:
+  schemas:
+    MaintenanceRecord:
+      x-ngsi:
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/DataModel.HydroPowerPlant/MaintenanceRecord/DataModel/type.yaml"
+      type: object
+      properties:
+        id:
+          type: string
+          format: uri
+          pattern: '^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$'
+          description: "Unique identifier of this MaintenanceRecord entity"
+          x-ngsi:
+            type: Property
+  
+        type:
+          type: string
+          enum:
+            - MaintenanceRecord
+          description: "NGSI-LD entity type. Must be MaintenanceRecord"
+          x-ngsi:
+            type: Property
+  
+        inHPP:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: "Links to the Hydro-Power-Plant (HPP) this record belongs to"
+          x-ngsi:
+            type: Relationship
+  
+        onHPPComponent:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: "Links to the specific HPP component serviced"
+          x-ngsi:
+            type: Relationship
+  
+        onDevice:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: "Links to the device on which work was performed"
+          x-ngsi:
+            type: Relationship
+  
+        maintenanceType:
+          type: object
+          description: "High-level category of maintenance (e.g. Preventive, Corrective, annual)"
+          properties:
+            value:
+              type: string
+          x-ngsi:
+            type: Property
+          additionalProperties: false
+  
+        workType:
+          type: object
+          description: "Specific work discipline (e.g. Cleaning, Inspection, Replacement)"
+          properties:
+            value:
+              type: string
+          x-ngsi:
+            type: Property
+          additionalProperties: false
+  
+        datePerformed:
+          type: object
+          description: "Timestamp when maintenance was carried out"
+          properties:
+            value:
+              type: string
+              format: date-time
+          x-ngsi:
+            type: Property
+          additionalProperties: false
+  
+        issueFound:
+          type: object
+          description: "Description of any anomaly detected during maintenance"
+          properties:
+            value:
+              type: string
+          x-ngsi:
+            type: Property
+          additionalProperties: false
+  
+        workPerformed:
+          type: object
+          description: "Free-text description of actions taken"
+          properties:
+            value:
+              type: string
+          x-ngsi:
+            type: Property
+          additionalProperties: false
+  
+        durationMinutes:
+          type: object
+          description: "Total time spent on maintenance (minutes)"
+          properties:
+            value:
+              type: integer
+          x-ngsi:
+            type: Property
+          additionalProperties: false
+  
+        technician:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: "Reference(s) to Technician or Company entity performing the work"
+          x-ngsi:
+            type: Relationship
+  
+        responsibleType:
+          type: object
+          description: "Indicates if responsible party is an individual technician or a company"
+          properties:
+            value:
+              type: string
+              enum:
+                - Technician
+                - Company
+          x-ngsi:
+            type: Property
+          additionalProperties: false
+  
+      required:
+        - id
+        - type
+  

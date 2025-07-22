@@ -40,7 +40,7 @@
   },
   "technician": {
     "type": "Property",
-    "object": "Arapis"
+    "object": ["Arapis"]
   },
   "responsibleType": {
     "type": "Property",

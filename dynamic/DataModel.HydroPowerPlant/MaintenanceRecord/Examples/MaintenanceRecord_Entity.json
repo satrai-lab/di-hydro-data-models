@@ -39,8 +39,8 @@
     "value": 60
   },
   "technician": {
-    "type": "Relationship",
-    "object": "urn:ngsi-ld:Technician:Arapis"
+    "type": "Property",
+    "object": "Arapis"
   },
   "responsibleType": {
     "type": "Property",

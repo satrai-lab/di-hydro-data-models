@@ -14,6 +14,7 @@ A **Dam** is a barrier constructed across a river or stream to impound water, cr
 
 ## Attributes Specifications
 
+
 | Attribute                   | Type         | Required | Description                                                        | Units / Values                                           |
 | --------------------------- | ------------ | -------- | ------------------------------------------------------------------ | -------------------------------------------------------- |
 | **`id`**                    | Property     | Yes      | Unique URI identifier for the dam                                  | URN format                                               |
@@ -26,8 +27,17 @@ A **Dam** is a barrier constructed across a river or stream to impound water, cr
 | **`damType`**               | Property     | No       | Structural design classification                                   | `"Concrete Gravity"`, `"Arch Dam"`, `"Embankment Dam"`   |
 | **`yearOfConstruction`**    | Property     | No       | Calendar year when the dam was completed                           | Integer                                                  |
 | **`damCrestElevation`**     | Property     | No       | Elevation of the dam crest above mean sea level                    | m                                                        |
+| **`reservoirWaterLevel`**   | Property     | No       | Current water level in the dam’s reservoir                         | m (meters above sea level)                               |
+| **`usefulWaterContent`**    | Property     | No       | Volume of usable water stored in the reservoir                     | m³ × 10³                                                 |
+| **`energyContent`**         | Property     | No       | Amount of storable energy in the reservoir                         | MWh                                                      |
+| **`specificConsumption`**   | Property     | No       | Water needed to generate one unit of electricity                   | m³/kWh                                                   |
+| **`lowerProductionLimit`**  | Property     | No       | Minimum technical production limit of turbines                     | m³/s                                                     |
+| **`upperProductionLimit`**  | Property     | No       | Maximum technical production limit of turbines                     | m³/s                                                     |
 | **`hasSpillway`**           | Relationship | No       | Spillway entities used to safely release excess water              | Array of URIs                                            |
 | **`hasintakes`**            | Relationship | No       | Intake entities that feed water into the conveyance system         | Array of URIs                                            |
 | **`isPartOfReservoir`**     | Relationship | No       | Reservoir entity or entities created by this dam                   | Array of URIs                                            |
 | **`isPartOfHydroPlant`**    | Relationship | No       | HydropowerPlant entity or entities that this dam is a component of | Array of URIs                                            |
+
+
+
 

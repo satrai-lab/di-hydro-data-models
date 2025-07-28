@@ -55,6 +55,42 @@ paths:
                 unitCode:
                   type: "Property"
                   value: "M"
+              reservoirWaterLevel:
+                type: "Property"
+                value: 390
+                unitCode:
+                  type: "Property"
+                  value: "M"
+              usefulWaterContent:
+                type: "Property"
+                value: 23000
+                unitCode:
+                  type: "Property"
+                  value: "M3"
+              energyContent:
+                type: "Property"
+                value: 180000
+                unitCode:
+                  type: "Property"
+                  value: "MWH"
+              specificConsumption:
+                type: "Property"
+                value: 0.12
+                unitCode:
+                  type: "Property"
+                  value: "M3/KWH"
+              lowerProductionLimit:
+                type: "Property"
+                value: 25
+                unitCode:
+                  type: "Property"
+                  value: "M3S"
+              upperProductionLimit:
+                type: "Property"
+                value: 150
+                unitCode:
+                  type: "Property"
+                  value: "M3S"
               hasSpillway:
                 type: "Relationship"
                 object:
@@ -114,197 +150,160 @@ components:
                   type: array
                   items:
                     type: number
-        isPartOfHydroPowerPlant:
-          type: object
-          properties:
-            type:
-              type: string
-              enum: [Relationship]
-            object:
-              type: array
-              items:
-                type: string
-        hasDevices:
-          type: object
-          properties:
-            type:
-              type: string
-              enum: [Relationship]
-            object:
-              type: array
-              items:
-                type: string
-        observations:
-          type: object
-          properties:
-            type:
-              type: string
-              enum: [Relationship]
-            object:
-              type: array
-              items:
-                type: string
-        actuations:
-          type: object
-          properties:
-            type:
-              type: string
-              enum: [Relationship]
-            object:
-              type: array
-              items:
-                type: string
 
     Dam:
       allOf:
         - $ref: '#/components/schemas/GenericStaticComponent'
       type: object
       properties:
-        id:
-          type: string
-          format: uri
-          description: Unique URI identifier for the Dam
         type:
           type: string
           enum: [Dam]
-          description: NGSI-LD entity type. Must be Dam
-        name:
-          type: object
-          properties:
-            type:
-              type: string
-              enum: [Property]
-            value:
-              type: string
-        geographicalLocation:
-          type: object
-          properties:
-            type:
-              type: string
-              enum: [GeoProperty]
-            value:
-              type: object
-              properties:
-                type:
-                  type: string
-                  enum: [Point]
-                coordinates:
-                  type: array
-                  items:
-                    type: number
         damHeight:
           type: object
           properties:
-            type:
-              type: string
-              enum: [Property]
-            value:
-              type: number
+            type: { type: string, enum: [Property] }
+            value: { type: number }
             unitCode:
               type: object
               properties:
-                type:
-                  type: string
-                  enum: [Property]
-                value:
-                  type: string
-                  enum: [M]
+                type: { type: string, enum: [Property] }
+                value: { type: string, enum: [M] }
+
         damLength:
           type: object
           properties:
-            type:
-              type: string
-              enum: [Property]
-            value:
-              type: number
+            type: { type: string, enum: [Property] }
+            value: { type: number }
             unitCode:
               type: object
               properties:
-                type:
-                  type: string
-                  enum: [Property]
-                value:
-                  type: string
-                  enum: [M]
-        constructionMaterials:
-          type: object
-          properties:
-            type:
-              type: string
-              enum: [Property]
-            value:
-              type: string
-        damType:
-          type: object
-          properties:
-            type:
-              type: string
-              enum: [Property]
-            value:
-              type: string
-              enum: [Concrete Gravity, Arch Dam, Embankment Dam]
-        yearOfConstruction:
-          type: object
-          properties:
-            type:
-              type: string
-              enum: [Property]
-            value:
-              type: integer
+                type: { type: string, enum: [Property] }
+                value: { type: string, enum: [M] }
+
         damCrestElevation:
           type: object
           properties:
-            type:
-              type: string
-              enum: [Property]
-            value:
-              type: number
+            type: { type: string, enum: [Property] }
+            value: { type: number }
             unitCode:
               type: object
               properties:
-                type:
-                  type: string
-                  enum: [Property]
-                value:
-                  type: string
-                  enum: [M]
+                type: { type: string, enum: [Property] }
+                value: { type: string, enum: [M] }
+
+        reservoirWaterLevel:
+          type: object
+          properties:
+            type: { type: string, enum: [Property] }
+            value: { type: number }
+            unitCode:
+              type: object
+              properties:
+                type: { type: string, enum: [Property] }
+                value: { type: string, enum: [M] }
+
+        usefulWaterContent:
+          type: object
+          properties:
+            type: { type: string, enum: [Property] }
+            value: { type: number }
+            unitCode:
+              type: object
+              properties:
+                type: { type: string, enum: [Property] }
+                value: { type: string, enum: [M3] }
+
+        energyContent:
+          type: object
+          properties:
+            type: { type: string, enum: [Property] }
+            value: { type: number }
+            unitCode:
+              type: object
+              properties:
+                type: { type: string, enum: [Property] }
+                value: { type: string, enum: [MWH] }
+
+        specificConsumption:
+          type: object
+          properties:
+            type: { type: string, enum: [Property] }
+            value: { type: number }
+            unitCode:
+              type: object
+              properties:
+                type: { type: string, enum: [Property] }
+                value: { type: string, enum: [M3/KWH] }
+
+        lowerProductionLimit:
+          type: object
+          properties:
+            type: { type: string, enum: [Property] }
+            value: { type: number }
+            unitCode:
+              type: object
+              properties:
+                type: { type: string, enum: [Property] }
+                value: { type: string, enum: [M3S] }
+
+        upperProductionLimit:
+          type: object
+          properties:
+            type: { type: string, enum: [Property] }
+            value: { type: number }
+            unitCode:
+              type: object
+              properties:
+                type: { type: string, enum: [Property] }
+                value: { type: string, enum: [M3S] }
+
+        constructionMaterials:
+          type: object
+          properties:
+            type: { type: string, enum: [Property] }
+            value: { type: string }
+
+        damType:
+          type: object
+          properties:
+            type: { type: string, enum: [Property] }
+            value: { type: string, enum: [Concrete Gravity, Arch Dam, Embankment Dam] }
+
+        yearOfConstruction:
+          type: object
+          properties:
+            type: { type: string, enum: [Property] }
+            value: { type: integer }
+
         hasSpillway:
           type: object
           properties:
-            type:
-              type: string
-              enum: [Relationship]
+            type: { type: string, enum: [Relationship] }
             object:
               type: array
-              items:
-                type: string
+              items: { type: string }
+
         hasintakes:
           type: object
           properties:
-            type:
-              type: string
-              enum: [Relationship]
+            type: { type: string, enum: [Relationship] }
             object:
               type: array
-              items:
-                type: string
+              items: { type: string }
+
         isPartOfReservoir:
           type: object
           properties:
-            type:
-              type: string
-              enum: [Relationship]
+            type: { type: string, enum: [Relationship] }
             object:
               type: array
-              items:
-                type: string
+              items: { type: string }
+
         isPartOfHydroPlant:
           type: object
           properties:
-            type:
-              type: string
-              enum: [Relationship]
+            type: { type: string, enum: [Relationship] }
             object:
               type: array
-              items:
-                type: string
+              items: { type: string }

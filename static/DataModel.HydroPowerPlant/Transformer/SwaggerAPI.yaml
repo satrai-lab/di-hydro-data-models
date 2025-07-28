@@ -35,7 +35,7 @@ paths:
                 unitCode: 
                   type: "Property"
                   value: "KV"
-              belongsToGenerator:
+              isConnectedTo:
                 type: "Relationship"
                 object:
                   - "urn:ngsi-ld:Generator:gen1"
@@ -184,7 +184,7 @@ components:
                   enum:
                     - KV
     
-            belongsToGenerator:
+            isConnectedTo:
               type: object
               description: Reference(s) to the Generator entity or entities this transformer serves
               properties:

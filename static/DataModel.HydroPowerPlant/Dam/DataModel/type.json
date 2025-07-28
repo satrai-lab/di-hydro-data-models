@@ -77,7 +77,6 @@
                 }
               }
             },
-
             "constructionMaterials": {
               "type": "string",
               "enum": ["Concrete", "Earth-fill", "Rock-fill", "Masonry"]
@@ -86,7 +85,6 @@
               "type": "string",
               "enum": ["Concrete Gravity", "Arch Dam", "Embankment Dam"]
             },
-
             "yearOfConstruction": {
               "type": "number"
             },
@@ -116,6 +114,48 @@
               "items": {
                 "type": "string",
                 "format": "uri"
+              }
+            },
+            "reservoirWaterLevel": {
+              "type": "object",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["M"] }
+              }
+            },
+            "usefulWaterContent": {
+              "type": "object",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["M3"] }
+              }
+            },
+            "energyContent": {
+              "type": "object",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["MWH"] }
+              }
+            },
+            "specificConsumption": {
+              "type": "object",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["M3KWH"] }
+              }
+            },
+            "lowerProductionLimit": {
+              "type": "object",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["M3S"] }
+              }
+            },
+            "upperProductionLimit": {
+              "type": "object",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["M3S"] }
               }
             }
           },

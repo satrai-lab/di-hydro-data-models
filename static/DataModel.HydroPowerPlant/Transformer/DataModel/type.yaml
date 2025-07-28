@@ -60,7 +60,7 @@ components:
               x-ngsi:
                 type: Property    
 
-            belongsToGenerator:
+            isConnectedTo:
               type: array
               description: "Array of references to the single Generator that this transformer serves"
               items:

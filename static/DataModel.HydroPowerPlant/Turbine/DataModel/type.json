@@ -114,6 +114,28 @@
                 }
               }
             },
+            "typicalHeadRange": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": {
+                "type": "number"
+              },
+              "description": "Typical operational head range of the turbine, as [min, max] in meters"
+            },
+            "yearlyProduction": {
+              "type": "object",
+              "description": "Estimated or measured annual energy production by the turbine (in GWh)",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["GWH"]
+                }
+              }
+            },
             "dischargesToReservoir": {
               "type": "array",
               "items": {

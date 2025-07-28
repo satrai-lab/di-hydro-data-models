@@ -118,6 +118,79 @@ components:
                   description: "UN/CEFACT unit code for meter"
               x-ngsi:
                 type: Property
+
+            reservoirWaterLevel:
+              type: object
+              description: "Measured or estimated water surface elevation in the reservoir (meters above sea level)"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [M]
+              x-ngsi:
+                type: Property
+            
+            usefulWaterContent:
+              type: object
+              description: "Effective usable water volume in the reservoir for power generation"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: ["M3"]
+              x-ngsi:
+                type: Property
+            
+            energyContent:
+              type: object
+              description: "Estimated energy content in the reservoir based on head and volume"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: ["MWH"]
+              x-ngsi:
+                type: Property
+            
+            specificConsumption:
+              type: object
+              description: "Volume of water required to generate one kilowatt-hour of electricity"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: ["M3KWH"]
+              x-ngsi:
+                type: Property
+            
+            lowerProductionLimit:
+              type: object
+              description: "Minimum water level or flow required for turbine operation"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: ["M3S"]
+              x-ngsi:
+                type: Property
+            
+            upperProductionLimit:
+              type: object
+              description: "Maximum production rate or turbine limit under technical constraints"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: ["M3S"]
+              x-ngsi:
+                type: Property
+            
             
             hasSpillway:
               type: array

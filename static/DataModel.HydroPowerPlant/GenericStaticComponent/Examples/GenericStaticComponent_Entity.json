@@ -6,6 +6,10 @@
     "type": "Property",
     "value": "Generic Static Component"
   },
+    "status": {
+    "type": "Property",
+    "value": "normal"
+  },
   "geographicalLocation": {
     "type": "GeoProperty",
     "value": {

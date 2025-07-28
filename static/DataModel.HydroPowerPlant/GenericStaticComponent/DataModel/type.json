@@ -19,6 +19,10 @@
         "name": {
           "type": "string"
         },
+        "status": {
+          "type": "string",
+          "description": "the status of the device if it fonctions normally or under maintenance"
+        },
         "isPartOfHydroPowerPlant": {
           "type": "array",
           "items": {

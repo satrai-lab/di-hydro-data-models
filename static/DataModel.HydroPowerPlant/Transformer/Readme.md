@@ -22,7 +22,7 @@ A **Transformer** in a hydropower plant is an electrical device that steps up or
 | **`transformerSupplier`** | Property     | No       | Manufacturer or supplier of the transformer                                | String                 |
 | **`ratedPower`**          | Property     | No       | Nameplate apparent-power capacity under normal operating conditions        | MVA (megavolt-amperes) |
 | **`regulationRange`**     | Property     | No       | Voltage conversion ratio expressed as input kV/output kV                   | KV (kilovolts)         |
-| **`belongsToGenerator`**  | Relationship | No       | Reference to the Generator entity or entities that this transformer serves | Array of URIs          |
+| **`isConnectedTo`**  | Relationship | No       | Reference to the Generator entity or entities that this transformer serves | Array of URIs          |
 
 
 

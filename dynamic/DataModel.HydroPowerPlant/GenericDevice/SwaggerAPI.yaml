@@ -3,6 +3,7 @@ info:
   title: Device Interactive API
   version: 1.0.0
   description: Interactive NGSI-LD API with attribute-level documentation for generic Device entities
+
 servers:
   - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/dynamic/context.json
 
@@ -60,7 +61,12 @@ paths:
                   - 12.3456
                   - 78.9012
                 faces: []
-
+              status:
+                type: "Property"
+                value: "normal"
+              monitoringType:
+                type: "Property"
+                value: "StructuralHealthAndConditionMonitoring"
       responses:
         '201':
           description: Entity created successfully
@@ -76,27 +82,24 @@ components:
           description: Unique URI identifier of the entity
         type:
           type: string
-          enum:
-            - Device
+          enum: [Device]
           description: NGSI-LD entity type. Must be Device
         name:
           type: object
-          description: The human-readable name of the Device
+          description: Human-readable name of the Device
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
         onObject:
           type: object
-          description: Component(s) of the HPP that this device is installed on
+          description: Component(s) of the HPP this device is installed on
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
@@ -105,12 +108,11 @@ components:
           additionalProperties: false
         inHPP:
           type: object
-          description: The HydropowerPlant that this device belongs to
+          description: Hydropower plant this device belongs to
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: string
               format: uri
@@ -121,8 +123,7 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: array
               items:
@@ -134,8 +135,7 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
@@ -148,8 +148,7 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: array
               items:
@@ -161,8 +160,7 @@ components:
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
@@ -171,12 +169,11 @@ components:
           additionalProperties: false
         deviceType:
           type: object
-          description: "Indicates the type of the device: sensor, actuator, or both"
+          description: Indicates the type of the device (sensor, actuator, both)
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
               enum:
@@ -202,13 +199,38 @@ components:
               type: string
             dimensions:
               type: string
-              enum:
-                - "2D"
-                - "3D"
+              enum: [2D, 3D]
             coordinates:
               type: array
               items: {}
             faces:
               type: array
               items: {}
+          additionalProperties: false
+        status:
+          type: object
+          description: The status of the device (e.g., normal or under maintenance)
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+              enum:
+                - normal
+                - underMaintenance
+          additionalProperties: false
+        monitoringType:
+          type: object
+          description: Category of monitoring application for this sensor
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
+              enum:
+                - StructuralHealthAndConditionMonitoring
+                - EnvironmentalMonitoring
+                - BiodiversityMonitoring
           additionalProperties: false

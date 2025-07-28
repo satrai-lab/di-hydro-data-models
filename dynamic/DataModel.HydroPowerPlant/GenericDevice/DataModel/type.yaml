@@ -41,7 +41,7 @@ components:
         monitoringType:
             type: string
             description: "Category of monitoring application for this sensor"
-           enum:
+             enum:
                 - StructuralHealthAndConditionMonitoring
                 - EnvironmentalMonitoring
                 - BiodiversityMonitoring

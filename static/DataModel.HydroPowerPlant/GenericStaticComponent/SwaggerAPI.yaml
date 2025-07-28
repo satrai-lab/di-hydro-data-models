@@ -15,7 +15,7 @@ paths:
         content:
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/GenericStaticComponent'
+              $ref: "#/components/schemas/GenericStaticComponent"
             example:
               "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
               id: "urn:ngsi-ld:GenericStaticComponent:comp1"
@@ -23,6 +23,9 @@ paths:
               name:
                 type: "Property"
                 value: "Generic Static Component"
+              status:
+                type: "Property"
+                value: "normal"
               geographicalLocation:
                 type: "GeoProperty"
                 value:
@@ -46,7 +49,7 @@ paths:
                 object:
                   - "urn:ngsi-ld:Actuation:actuator456"
       responses:
-        '201':
+        "201":
           description: Entity created successfully
 
 components:
@@ -80,7 +83,17 @@ components:
             value:
               type: string
               description: Component name
-          required: [type, value]
+
+        status:
+          type: object
+          description: The status of the device (e.g. if it functions normally or is under maintenance)
+          properties:
+            type:
+              type: string
+              enum:
+                - Property
+            value:
+              type: string
 
         geographicalLocation:
           type: object

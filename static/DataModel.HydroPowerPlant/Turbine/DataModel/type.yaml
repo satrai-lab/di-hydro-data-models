@@ -154,8 +154,31 @@ components:
                  description: "UN/CEFACT unit code for revolutions per minute"
              x-ngsi:
                type: Property
+           typicalHeadRange:
+              type: array
+              minItems: 2
+              maxItems: 2
+              items:
+                type: number
+              description: "Typical operational head range of the turbine, as [min, max] in meters"
+              x-ngsi:
+                type: Property
+
+           yearlyProduction:
+              type: object
+              description: "Estimated or measured annual energy production by the turbine (in GWh)"
+              properties:
+                value:
+                  type: number
+                  description: "Production value in gigawatt-hours"
+                unitCode:
+                  type: string
+                  enum:
+                    - "GWH"
+                  description: "UN/CEFACT unit code for gigawatt-hour"
+              x-ngsi:
+                type: Property
    
-           # New Relationship to Add
            dischargesToReservoir:
              type: array
              description: "Array of objects linking the turbine to a downstream reservoir via its pressure tunnel."
@@ -181,7 +204,6 @@ components:
              x-ngsi:
                type: Relationship
    
-           # Existing Relationships (remained unchanged)
            isPartOfHydroPowerPlant:
              type: array
              description: "Array of references to the HydropowerPlant entity that this Turbine is part of"
@@ -217,4 +239,3 @@ components:
                format: uri
              x-ngsi:
                type: Relationship
-

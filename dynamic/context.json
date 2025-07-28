@@ -239,7 +239,7 @@
     "sizeWidth": "https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/DataModel.HydroPowerPlant/EcoliBioSensor/DataModel/type.json#sizeWidth",
     "sleepModeCurrent": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/dynamic/DataModel.HydroPowerPlant/AESystem/DataModel/type.json#sleepModeCurrent",
     "specificity": "https://github.com/satrai-lab/di-hydro-data-models/blob/main/dynamic/DataModel.HydroPowerPlant/EcoliBioSensor/DataModel/type.json#specificity",
-    "status": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/dynamic/DataModel.HydroPowerPlant/UltrasonicTransducer/DataModel/type.json#status",
+    "status": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/dynamic/DataModel.HydroPowerPlant/GenericDevice/DataModel/type.json#status",
     "storage": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/dynamic/DataModel.HydroPowerPlant/Microcontroller/DataModel/type.json#storage",
     "storageTemperatureMax": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/dynamic/DataModel.HydroPowerPlant/TurbiditySensor/DataModel/type.json#storageTemperatureMax",
     "storageTemperatureMin": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/dynamic/DataModel.HydroPowerPlant/TurbiditySensor/DataModel/type.json#storageTemperatureMin",
@@ -262,4 +262,3 @@
     "wirelessOption": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/dynamic/DataModel.HydroPowerPlant/MPG-6099/DataModel/type.json#wirelessOption"
   }
 }
-

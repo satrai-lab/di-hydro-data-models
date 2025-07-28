@@ -14,32 +14,32 @@
     "type": "Property",
     "value": 300,
     "unitCode": {
-        "type": "Property",
-        "value": "MW"
+      "type": "Property",
+      "value": "MW"
     }
   },
   "efficiency": {
     "type": "Property",
     "value": 92.1,
     "unitCode": {
-        "type": "Property",
-        "value": "PCT"
+      "type": "Property",
+      "value": "PCT"
     }
   },
   "operatingFlowRate": {
     "type": "Property",
     "value": 250,
     "unitCode": {
-        "type": "Property",
-        "value": "M3S"
+      "type": "Property",
+      "value": "M3S"
     }
   },
   "head": {
     "type": "Property",
     "value": 120,
     "unitCode": {
-        "type": "Property",
-        "value": "M"
+      "type": "Property",
+      "value": "M"
     }
   },
   "manufacturer": {
@@ -62,16 +62,28 @@
     "type": "Property",
     "value": 350,
     "unitCode": {
-        "type": "Property",
-        "value": "MW"
+      "type": "Property",
+      "value": "MW"
     }
   },
   "speed": {
     "type": "Property",
     "value": 750,
     "unitCode": {
-        "type": "Property",
-        "value": "RPM"
+      "type": "Property",
+      "value": "RPM"
+    }
+  },
+  "typicalHeadRange": {
+    "type": "Property",
+    "value": [100, 140]
+  },
+  "yearlyProduction": {
+    "type": "Property",
+    "value": 1150,
+    "unitCode": {
+      "type": "Property",
+      "value": "GWH"
     }
   },
   "dischargesToReservoir": {

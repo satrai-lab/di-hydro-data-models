@@ -3,6 +3,7 @@ info:
   title: Penstock Interactive API
   version: 1.0.0
   description: Interactive NGSI-LD API with attribute-level documentation for Penstock entities
+
 servers:
   - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
 
@@ -31,7 +32,7 @@ paths:
               length:
                 type: "Property"
                 value: 1200
-                unitCode: 
+                unitCode:
                   type: "Property"
                   value: "M"
               diameter:
@@ -46,15 +47,51 @@ paths:
               designPressure:
                 type: "Property"
                 value: 50
-                unitCode: 
+                unitCode:
                   type: "Property"
                   value: "BAR"
               flowCapacity:
                 type: "Property"
                 value: 200
-                unitCode: 
+                unitCode:
                   type: "Property"
                   value: "M3S"
+              valveMaxFlow:
+                type: "Property"
+                value: 220
+                unitCode:
+                  type: "Property"
+                  value: "M3S"
+              valveMaxStaticPressure:
+                type: "Property"
+                value: 55
+                unitCode:
+                  type: "Property"
+                  value: "BAR"
+              inletPipeDimensions:
+                type: "Property"
+                value:
+                  length: 30
+                  innerDiameter: 4.3
+                  outerDiameter: 4.6
+              outletPipeDimensions:
+                type: "Property"
+                value:
+                  length: 25
+                  innerDiameter: 4.2
+                  outerDiameter: 4.5
+              diversionTunnelDimensions:
+                type: "Property"
+                value:
+                  length: 150
+                  innerDiameter: 3.5
+                  outerDiameter: 3.8
+              drainingPipeDimensions:
+                type: "Property"
+                value:
+                  length: 40
+                  innerDiameter: 1.2
+                  outerDiameter: 1.5
               isPartOfHydroPowerPlant:
                 type: "Relationship"
                 object:
@@ -168,191 +205,243 @@ components:
             - type
             - name
           properties:
-
             id:
               type: string
               format: uri
               description: Unique URI identifier for the Penstock
-
             type:
               type: string
-              enum:
-                - Penstock
+              enum: [Penstock]
               description: Fixed entity type identifier
-
             name:
               type: object
               description: Official or common name of the Penstock
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: string
-
-
             geographicalLocation:
               type: object
               description: GeoJSON Point marking the penstock’s start location (longitude, latitude)
               properties:
                 type:
                   type: string
-                  enum:
-                    - GeoProperty
+                  enum: [GeoProperty]
                 value:
                   type: object
                   properties:
                     type:
                       type: string
-                      enum:
-                        - Point
+                      enum: [Point]
                     coordinates:
                       type: array
                       items:
                         type: number
                       minItems: 2
                       maxItems: 2
-
             length:
               type: object
               description: Physical length of the penstock
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                     type: number
                 unitCode:
                     type: string
-                    enum:
-                        - M
-
+                    enum: [M]
             diameter:
               type: object
               description: Internal diameter of the penstock
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: number
                 unitCode:
                   type: string
-                  enum:
-                    - M
-
+                  enum: [M]
             material:
               type: object
               description: Construction material of the penstock
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: string
-                  enum:
-                    - Steel
-                    - "Reinforced Concrete"
-                    - Composite
-
+                  enum: [Steel, "Reinforced Concrete", Composite]
             designPressure:
               type: object
               description: Maximum hydraulic pressure the penstock is engineered to withstand
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: number
                 unitCode:
                   type: string
-                  enum:
-                    - BAR
-
+                  enum: [BAR]
             flowCapacity:
               type: object
               description: Designed maximum flow capacity to the turbine
               properties:
                 type:
                   type: string
-                  enum:
-                    - Property
+                  enum: [Property]
                 value:
                   type: number
                 unitCode:
                   type: string
-                  enum:
-                    - M3S
-
+                  enum: [M3S]
+            valveMaxFlow:
+              type: object
+              description: Maximum water flow the penstock valve can handle
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [M3S]
+            valveMaxStaticPressure:
+              type: object
+              description: Maximum static pressure at the penstock valve
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [BAR]
+            inletPipeDimensions:
+              type: object
+              description: Dimensions of the inlet pipe (length, inner diameter, outer diameter)
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: object
+                  properties:
+                    length:
+                      type: number
+                    innerDiameter:
+                      type: number
+                    outerDiameter:
+                      type: number
+            outletPipeDimensions:
+              type: object
+              description: Dimensions of the outlet pipe (length, inner diameter, outer diameter)
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: object
+                  properties:
+                    length:
+                      type: number
+                    innerDiameter:
+                      type: number
+                    outerDiameter:
+                      type: number
+            diversionTunnelDimensions:
+              type: object
+              description: Dimensions of the diversion tunnel (length, inner diameter, outer diameter)
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: object
+                  properties:
+                    length:
+                      type: number
+                    innerDiameter:
+                      type: number
+                    outerDiameter:
+                      type: number
+            drainingPipeDimensions:
+              type: object
+              description: Dimensions of the draining pipe (length, inner diameter, outer diameter)
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: object
+                  properties:
+                    length:
+                      type: number
+                    innerDiameter:
+                      type: number
+                    outerDiameter:
+                      type: number
             isPartOfHydroPowerPlant:
               type: object
               description: Relationship to parent HydropowerPlant entity
               properties:
                 type:
                   type: string
-                  enum:
-                    - Relationship
+                  enum: [Relationship]
                 object:
                   type: array
                   items:
                     type: string
                     format: uri
-
             isConnectedToIntake:
               type: object
               description: Relationship to Intake entity feeding this penstock
               properties:
                 type:
                   type: string
-                  enum:
-                    - Relationship
+                  enum: [Relationship]
                 object:
                   type: array
                   items:
                     type: string
                     format: uri
-
             isConnectedToSurgeTank:
               type: object
               description: Relationship to SurgeTank entity mitigating pressure transients
               properties:
                 type:
                   type: string
-                  enum:
-                    - Relationship
+                  enum: [Relationship]
                 object:
                   type: array
                   items:
                     type: string
                     format: uri
-
             isConnectedToValve:
               type: object
               description: Relationship to Valve entity installed on this penstock
               properties:
                 type:
                   type: string
-                  enum:
-                    - Relationship
+                  enum: [Relationship]
                 object:
                   type: array
                   items:
                     type: string
                     format: uri
-
             isConnectedToValveHouse:
               type: object
               description: Relationship to ValveHouse entity housing valves for this penstock
               properties:
                 type:
                   type: string
-                  enum:
-                    - Relationship
+                  enum: [Relationship]
                 object:
                   type: array
                   items:

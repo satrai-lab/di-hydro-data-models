@@ -3,6 +3,7 @@ info:
   title: Turbine NGSI-LD API
   version: 1.0.0
   description: Interactive NGSI-LD API with attribute-level documentation for Turbine entities
+
 servers:
   - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json
 
@@ -20,20 +21,22 @@ paths:
               "@context": "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/context.json"
               id: "urn:ngsi-ld:Turbine:turb1"
               type: "Turbine"
-              name: { "type": "Property", "value": "Alpine Francis Unit" }
-              turbineType: { "type": "Property", "value": "Francis" }
-              capacity: { "type": "Property", "value": 300, "unitCode": { "type": "Property", "value": "MW" } }
-              efficiency: { "type": "Property", "value": 92.1, "unitCode": { "type": "Property", "value": "PCT" } }
-              operatingFlowRate: { "type": "Property", "value": 250, "unitCode": { "type": "Property", "value": "M3S" } }
-              head: { "type": "Property", "value": 120, "unitCode": { "type": "Property", "value": "M" } }
-              manufacturer: { "type": "Property", "value": "HydroTurb Co." }
-              yearOfInstallation: { "type": "Property", "value": 2010 }
-              numberOfImpellers: { "type": "Property", "value": 15 }
-              axis: { "type": "Property", "value": "vertical" }
-              maxPower: { "type": "Property", "value": 350, "unitCode": { "type": "Property", "value": "MW" } }
-              speed: { "type": "Property", "value": 750, "unitCode": { "type": "Property", "value": "RPM" } }
+              name: { type: "Property", value: "Alpine Francis Unit" }
+              turbineType: { type: "Property", value: "Francis" }
+              capacity: { type: "Property", value: 300, unitCode: { type: "Property", value: "MW" } }
+              efficiency: { type: "Property", value: 92.1, unitCode: { type: "Property", value: "PCT" } }
+              operatingFlowRate: { type: "Property", value: 250, unitCode: { type: "Property", value: "M3S" } }
+              head: { type: "Property", value: 120, unitCode: { type: "Property", value: "M" } }
+              manufacturer: { type: "Property", value: "HydroTurb Co." }
+              yearOfInstallation: { type: "Property", value: 2010 }
+              numberOfImpellers: { type: "Property", value: 15 }
+              axis: { type: "Property", value: "vertical" }
+              maxPower: { type: "Property", value: 350, unitCode: { type: "Property", value: "MW" } }
+              speed: { type: "Property", value: 750, unitCode: { type: "Property", value: "RPM" } }
+              typicalHeadRange: { type: "Property", value: [100, 140] }
+              yearlyProduction: { type: "Property", value: 1150, unitCode: { type: "Property", value: "GWH" } }
               dischargesToReservoir:
-                "type": "Relationship"
+                type: "Relationship"
                 object:
                   - tunnelLength:
                       value: 2.5
@@ -145,285 +148,219 @@ components:
 
     Turbine:
       allOf:
-      - $ref: '#/components/schemas/GenericStaticComponent'
-      - type: object
-      required:
-        - id
-        - type
-        - name
-      properties:
-
-
-        id:
-          type: string
-          format: uri
-          description: Unique URI identifier for the Turbine
-
-        type:
-          type: string
-          enum:
-            - Turbine
-          description: Fixed entity type identifier
-
-        name:
-          type: object
-          description: Official or common name of the Turbine
+        - $ref: '#/components/schemas/GenericStaticComponent'
+        - type: object
+          required:
+            - id
+            - type
+            - name
           properties:
+            id:
+              type: string
+              format: uri
+              description: Unique URI identifier for the Turbine
             type:
               type: string
-              enum:
-                - Property
-            value:
-              type: string
-
-
-        turbineType:
-          type: object
-          description: Classification of the turbine
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-              enum:
-                - Francis
-                - Kaplan
-                - Pelton
-                - Other
-
-
-        capacity:
-          type: object
-          description: Rated power capacity of the turbine
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - MW
-
-
-        efficiency:
-          type: object
-          description: Conversion efficiency of the turbine
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - PCT
-
-
-        operatingFlowRate:
-          type: object
-          description: Water flow rate required for operation
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - M3S
-
-
-        head:
-          type: object
-          description: Effective head available across the turbine
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - M
-
-
-        manufacturer:
-          type: object
-          description: Manufacturer of the turbine
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-
-
-        yearOfInstallation:
-          type: object
-          description: Year the turbine was installed
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: integer
-
-
-        numberOfImpellers:
-          type: object
-          description: Number of impellers (buckets) inside the turbine
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: integer
-
-
-        axis:
-          type: object
-          description: Orientation of the turbine shaft
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: string
-              enum:
-                - horizontal
-                - vertical
-
-
-        maxPower:
-          type: object
-          description: Maximum mechanical power under extreme conditions
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - MW
-
-
-        speed:
-          type: object
-          description: Rated rotational speed
-          properties:
-            type:
-              type: string
-              enum:
-                - Property
-            value:
-              type: number
-            unitCode:
-              type: string
-              enum:
-                - RPM
-
-
-        dischargesToReservoir:
-          type: array
-          description: Links to downstream reservoirs via pressure tunnels
-          items:
-            type: object
-            properties:
-              tunnelLength:
-                type: object
-                description: Length of the pressure tunnel
-                properties:
-                  value:
+              enum: [Turbine]
+              description: Fixed entity type identifier
+            name:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+            turbineType:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+                  enum: [Francis, Kaplan, Pelton, Other]
+            capacity:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MW]
+            efficiency:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [PCT]
+            operatingFlowRate:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [M3S]
+            head:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [M]
+            manufacturer:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+            yearOfInstallation:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: integer
+            numberOfImpellers:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: integer
+            axis:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: string
+                  enum: [horizontal, vertical]
+            maxPower:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [MW]
+            speed:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [RPM]
+            typicalHeadRange:
+              type: object
+              description: Typical operational head range of the turbine [min, max] in meters
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: array
+                  minItems: 2
+                  maxItems: 2
+                  items:
                     type: number
-                  unitCode:
+            yearlyProduction:
+              type: object
+              description: Annual energy production by the turbine (GWh)
+              properties:
+                type:
+                  type: string
+                  enum: [Property]
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [GWH]
+            dischargesToReservoir:
+              type: array
+              items:
+                type: object
+                properties:
+                  tunnelLength:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                      unitCode:
+                        type: string
+                        enum: [KM]
+                  object:
                     type: string
-                    enum:
-                      - KM
-                example:
-                  value: 2.5
-                  unitCode: "KM"
-              object:
-                type: string
-                format: uri
-                description: URI of the target Reservoir entity
-            required:
-              - tunnelLength
-              - object
-
-        isPartOfHydroPowerPlant:
-          type: object
-          description: Relationship to parent HydropowerPlant entity
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri
-
-
-        drivesGenerators:
-          type: object
-          description: Relationship to Generator entities driven by this Turbine
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri
-
-
-        isPartOfPowerHouse:
-          type: object
-          description: Relationship to the PowerHouse entity
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri
-
-
-        controlledByGovernor:
-          type: object
-          description: Relationship to Governor entities controlling this Turbine
-          properties:
-            type:
-              type: string
-              enum:
-                - Relationship
-            object:
-              type: array
-              items:
-                type: string
-                format: uri
-  
+                    format: uri
+            isPartOfHydroPowerPlant:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+            drivesGenerators:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+            isPartOfPowerHouse:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+            controlledByGovernor:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [Relationship]
+                object:
+                  type: array
+                  items:
+                    type: string
+                    format: uri

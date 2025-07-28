@@ -49,6 +49,54 @@
       "value": "M3S"
     }
   },
+  "valveMaxFlow": {
+    "type": "Property",
+    "value": 220,
+    "unitCode": {
+      "type": "Property",
+      "value": "M3S"
+    }
+  },
+  "valveMaxStaticPressure": {
+    "type": "Property",
+    "value": 55,
+    "unitCode": {
+      "type": "Property",
+      "value": "BAR"
+    }
+  },
+  "inletPipeDimensions": {
+    "type": "Property",
+    "value": {
+      "length": 30,
+      "innerDiameter": 4.3,
+      "outerDiameter": 4.6
+    }
+  },
+  "outletPipeDimensions": {
+    "type": "Property",
+    "value": {
+      "length": 25,
+      "innerDiameter": 4.2,
+      "outerDiameter": 4.5
+    }
+  },
+  "diversionTunnelDimensions": {
+    "type": "Property",
+    "value": {
+      "length": 150,
+      "innerDiameter": 3.5,
+      "outerDiameter": 3.8
+    }
+  },
+  "drainingPipeDimensions": {
+    "type": "Property",
+    "value": {
+      "length": 40,
+      "innerDiameter": 1.2,
+      "outerDiameter": 1.5
+    }
+  },
   "isPartOfHydroPowerPlant": {
     "type": "Relationship",
     "object": ["urn:ngsi-ld:HydropowerPlant:plant-alpine-001"]

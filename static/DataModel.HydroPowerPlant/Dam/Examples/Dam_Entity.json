@@ -10,26 +10,23 @@
     "type": "GeoProperty",
     "value": {
       "type": "Point",
-      "coordinates": [
-        -121.48,
-        47.32
-      ]
+      "coordinates": [-121.48, 47.32]
     }
   },
   "damHeight": {
     "type": "Property",
     "value": 85,
     "unitCode": {
-        "type": "Property",
-        "value": "M"
+      "type": "Property",
+      "value": "M"
     }
   },
   "damLength": {
     "type": "Property",
     "value": 320,
-    "unitCode":{
-        "type": "Property",
-        "value": "M"
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
     }
   },
   "constructionMaterials": {
@@ -48,32 +45,72 @@
     "type": "Property",
     "value": 400,
     "unitCode": {
-        "type": "Property",
-        "value": "M"
+      "type": "Property",
+      "value": "M"
+    }
+  },
+  "reservoirWaterLevel": {
+    "type": "Property",
+    "value": 390,
+    "unitCode": {
+      "type": "Property",
+      "value": "M"
+    }
+  },
+  "usefulWaterContent": {
+    "type": "Property",
+    "value": 23000,
+    "unitCode": {
+      "type": "Property",
+      "value": "M3"
+    }
+  },
+  "energyContent": {
+    "type": "Property",
+    "value": 180000,
+    "unitCode": {
+      "type": "Property",
+      "value": "MWH"
+    }
+  },
+  "specificConsumption": {
+    "type": "Property",
+    "value": 0.12,
+    "unitCode": {
+      "type": "Property",
+      "value": "M3/KWH"
+    }
+  },
+  "lowerProductionLimit": {
+    "type": "Property",
+    "value": 25,
+    "unitCode": {
+      "type": "Property",
+      "value": "M3S"
+    }
+  },
+  "upperProductionLimit": {
+    "type": "Property",
+    "value": 150,
+    "unitCode": {
+      "type": "Property",
+      "value": "M3S"
     }
   },
   "hasSpillway": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:Spillway:sw1"
-    ]
+    "object": ["urn:ngsi-ld:Spillway:sw1"]
   },
   "hasintakes": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:Intake:int1"
-    ]
+    "object": ["urn:ngsi-ld:Intake:int1"]
   },
   "isPartOfReservoir": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:Reservoir:res1"
-    ]
+    "object": ["urn:ngsi-ld:Reservoir:res1"]
   },
   "isPartOfHydroPlant": {
     "type": "Relationship",
-    "object": [
-      "urn:ngsi-ld:HydropowerPlant:plant-alpine-001"
-    ]
+    "object": ["urn:ngsi-ld:HydropowerPlant:plant-alpine-001"]
   }
 }

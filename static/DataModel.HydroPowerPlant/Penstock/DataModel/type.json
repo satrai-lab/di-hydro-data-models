@@ -93,6 +93,93 @@
                 }
               }
             },
+
+            "valveMaxFlow": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["M3S"]
+                }
+              }
+            },
+
+            "valveMaxStaticPressure": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "unitCode": {
+                  "type": "string",
+                  "enum": ["BAR"]
+                }
+              }
+            },
+
+            "inletPipeDimensions": {
+              "type": "object",
+              "properties": {
+                "length": {
+                  "type": "number"
+                },
+                "innerDiameter": {
+                  "type": "number"
+                },
+                "outerDiameter": {
+                  "type": "number"
+                }
+              }
+            },
+
+            "outletPipeDimensions": {
+              "type": "object",
+              "properties": {
+                "length": {
+                  "type": "number"
+                },
+                "innerDiameter": {
+                  "type": "number"
+                },
+                "outerDiameter": {
+                  "type": "number"
+                }
+              }
+            },
+
+            "diversionTunnelDimensions": {
+              "type": "object",
+              "properties": {
+                "length": {
+                  "type": "number"
+                },
+                "innerDiameter": {
+                  "type": "number"
+                },
+                "outerDiameter": {
+                  "type": "number"
+                }
+              }
+            },
+
+            "drainingPipeDimensions": {
+              "type": "object",
+              "properties": {
+                "length": {
+                  "type": "number"
+                },
+                "innerDiameter": {
+                  "type": "number"
+                },
+                "outerDiameter": {
+                  "type": "number"
+                }
+              }
+            },
+
             "isPartOfHydroPowerPlant": {
               "type": "array",
               "items": {

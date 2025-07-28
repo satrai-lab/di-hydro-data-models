@@ -3,9 +3,9 @@ components:
 
     Penstock:
       x-ngsi:
-        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/Penstock/DataModel/type.json"
+        uri-prefix: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/DataModel.HydroPowerPlant/Penstock/DataModel/type.json"
       allOf:
-        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
+        - $ref: "https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/main/static/DataModel.HydroPowerPlant/GenericStaticComponent/DataModel/type.yaml#/components/schemas/GenericStaticComponent"
         - type: object
           required:
             - id
@@ -19,8 +19,6 @@ components:
               pattern: "^[\\w\\-\\.\\{\\}\\$\\+\\*\\[\\]`|~^@!,:\\\\]+$"
               type: string
               format: uri
-              type: string
-              description: "Unique identifier of the Penstock"
               x-ngsi:
                 type: Property
             type:

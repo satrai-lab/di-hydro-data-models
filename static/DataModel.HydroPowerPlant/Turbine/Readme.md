@@ -31,9 +31,14 @@ A **Turbine** is the mechanical engine in a hydropower plant that converts the p
 | **`axis`**                    | Property     | No       | Orientation of the turbine shaft                                                            | `"horizontal"`, `"vertical"`                   |
 | **`maxPower`**                | Property     | No       | Maximum mechanical power achievable under extreme or peak conditions                        | MW                                             |
 | **`speed`**                   | Property     | No       | Rated rotational speed of the runner                                                        | RPM                                            |
+| **`typicalHeadRange`**        | Property     | No       | Range of head values \[min, max] under typical operation                                    | Array of 2 values (m)                          |
+| **`yearlyProduction`**        | Property     | No       | Estimated or actual annual energy output of the turbine                                     | GWh                                            |
 | **`dischargesToReservoir`**   | Relationship | No       | Downstream reservoir(s) receiving water via the outlet pressure tunnel, with tunnel lengths | Array of `{ tunnelLength (KM), URI }`          |
 | **`isPartOfHydroPowerPlant`** | Relationship | No       | Parent hydropower plant entity                                                              | Array of URIs                                  |
 | **`drivesGenerators`**        | Relationship | No       | Generator entity or entities driven by this turbine                                         | Array of URIs                                  |
 | **`isPartOfPowerHouse`**      | Relationship | No       | PowerHouse entity housing this turbine                                                      | Array of URIs                                  |
 | **`controlledByGovernor`**    | Relationship | No       | Governor device(s) that regulate flow or speed of this turbine                              | Array of URIs                                  |
+
+---
+
 

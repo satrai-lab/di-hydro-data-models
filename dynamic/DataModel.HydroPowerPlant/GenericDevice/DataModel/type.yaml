@@ -33,7 +33,22 @@ components:
           description: "The name of the Device."
           x-ngsi:
             type: Property
+        status:
+          type: string
+          description: "the status of the device if it fonctions normally or under maintenance"
+          x-ngsi:
+            type: Property
+        monitoringType:
+            type: string
+            description: "Category of monitoring application for this sensor"
+           enum:
+                - StructuralHealthAndConditionMonitoring
+                - EnvironmentalMonitoring
+                - BiodiversityMonitoring
+            x-ngsi:
+                type: Property
 
+  
         onObject:
           type: object
           description: "The component(s) of the HPP that this device is installed on"

@@ -56,5 +56,13 @@
       78.9012
     ],
     "faces": []
+  },
+  "status": {
+    "type": "Property",
+    "value": "normal"
+  },
+  "monitoringType": {
+    "type": "Property",
+    "value": "StructuralHealthAndConditionMonitoring"
   }
 }

@@ -22,7 +22,7 @@
       "value": "KV"
     }
   },
-  "belongsToGenerator": {
+  "isConnectedTo": {
     "type": "Relationship",
     "object": [
       "urn:ngsi-ld:Generator:gen1"

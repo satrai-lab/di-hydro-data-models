@@ -23,3 +23,4 @@ A **GenericStaticComponent** represents any static structural or infrastructural
 | `observations`            | `Relationship` | Refers to NGSI-LD Observation entities produced by sensors | Array of URIs                |
 | `actuations`              | `Relationship` | Refers to NGSI-LD Actuation entities (e.g., gate opening)  | Array of URIs                |
 | `geographicalLocation`    | `GeoProperty`  | Point location of the component in GeoJSON format          | `[lon, lat]` (GeoJSON Point) |
+| `status`                  | Property       | The status of the device (e.g. if it functions normally or is under maintenance) | String (e.g. `"normal"`, `"underMaintenance"`) |                           

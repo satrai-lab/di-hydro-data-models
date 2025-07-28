@@ -31,6 +31,11 @@ components:
           description: "The name of the static component"
           x-ngsi:
             type: Property
+        status:
+          type: string
+          description: "the status of the device if it fonctions normally or under maintenance"
+          x-ngsi:
+            type: Property
         isPartOfHydroPowerPlant:
           type: array
           description: "Array of references to the HydropowerPlant entity this component is part of"

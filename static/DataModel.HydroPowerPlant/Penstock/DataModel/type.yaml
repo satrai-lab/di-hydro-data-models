@@ -115,7 +115,94 @@ components:
                   description: "UN/CEFACT unit code for cubic meters per second"
               x-ngsi:
                 type: Property
-              
+                          
+            valveMaxFlow:
+              type: object
+              description: "Maximum water flow the penstock valve can handle"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [M3S]
+              x-ngsi:
+                type: Property            
+
+            valveMaxStaticPressure:
+              type: object
+              description: "Maximum static pressure at the penstock valve"
+              properties:
+                value:
+                  type: number
+                unitCode:
+                  type: string
+                  enum: [BAR]
+              x-ngsi:
+                type: Property            
+
+            inletPipeDimensions:
+              type: object
+              description: "Dimensions of the inlet pipe (length, inner diameter, outer diameter)"
+              properties:
+                length:
+                  type: number
+                  description: "Length in meters"
+                innerDiameter:
+                  type: number
+                  description: "Inner diameter in meters"
+                outerDiameter:
+                  type: number
+                  description: "Outer diameter in meters"
+              x-ngsi:
+                type: Property            
+
+            outletPipeDimensions:
+              type: object
+              description: "Dimensions of the outlet pipe (length, inner diameter, outer diameter)"
+              properties:
+                length:
+                  type: number
+                  description: "Length in meters"
+                innerDiameter:
+                  type: number
+                  description: "Inner diameter in meters"
+                outerDiameter:
+                  type: number
+                  description: "Outer diameter in meters"
+              x-ngsi:
+                type: Property            
+
+            diversionTunnelDimensions:
+              type: object
+              description: "Dimensions of the diversion tunnel (length, inner diameter, outer diameter)"
+              properties:
+                length:
+                  type: number
+                  description: "Length in meters"
+                innerDiameter:
+                  type: number
+                  description: "Inner diameter in meters"
+                outerDiameter:
+                  type: number
+                  description: "Outer diameter in meters"
+              x-ngsi:
+                type: Property            
+
+            drainingPipeDimensions:
+              type: object
+              description: "Dimensions of the draining pipe (length, inner diameter, outer diameter)"
+              properties:
+                length:
+                  type: number
+                  description: "Length in meters"
+                innerDiameter:
+                  type: number
+                  description: "Inner diameter in meters"
+                outerDiameter:
+                  type: number
+                  description: "Outer diameter in meters"
+              x-ngsi:
+                type: Property
 
             isPartOfHydroPowerPlant:
               type: array
@@ -161,4 +248,3 @@ components:
                 format: uri
               x-ngsi:
                 type: Relationship
-

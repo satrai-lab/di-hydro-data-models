@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
   title: Generator Interactive API
-  version: 1.0.0
-  description: Interactive NGSI-LD API with attribute-level documentation
+  version: 1.0.1
+  description: Interactive NGSI-LD API with attribute-level documentation (extended)
 servers:
   - url: https://raw.githubusercontent.com/satrai-lab/di-hydro-data-models/refs/heads/main/static/context.json
 
@@ -21,14 +21,19 @@ paths:
               id: "urn:ngsi-ld:Generator:gen1"
               type: "Generator"
               name: { "type": "Property", "value": "Alpine Unit 1 - Main Generator" }
+              generatorModel: { "type": "Property", "value": "HEI-SyncGen-250MW" }
               ratedCapacity: { "type": "Property", "value": 250, "unitCode": { "type": "Property", "value": "MW" } }
               efficiency: { "type": "Property", "value": 97.2,"unitCode": { "type": "Property", "value": "PCT" } }
               manufacturer: { "type": "Property", "value": "HydroElec Inc"}
               yearOfInstallation: { "type": "Property", "value": 2015}
-              generatorType: { "type": "Property", "value": "HEI-SyncGen-250MW"}
+              generatorType: { "type": "Property", "value": "Synchronous"}
               axis: { "type": "Property", "value": "Vertical"}
               voltageLevel: { "type": "Property", "value": 15, "unitCode": { "type": "Property", "value": "KV" } }
+              connectionToGrid: { "type": "Property", "value": 220, "unitCode": { "type": "Property", "value": "KV" } }
               ratedOutputMVA: { "type": "Property", "value": 263, "unitCode": { "type": "Property", "value": "MVA" } }
+              transformersQuantity: { "type": "Property", "value": 2 }
+              transformersApparentPower: { "type": "Property", "value": 270, "unitCode": { "type": "Property", "value": "MVA" } }
+              industrialControlSystem: { "type": "Property", "value": "Siemens SCADA S7-1500" }
               speed: { "type": "Property", "value": 150, "unitCode": { "type": "Property", "value": "RPM" } }
               ratedPowerFactor: { "type": "Property", "value": 0.95}
               voltageRegulationRange: { "type": "Property", "value": 5, "unitCode": { "type": "Property", "value": "PCT" } }
@@ -131,248 +136,243 @@ components:
         - type
         - name
       properties:
-
         id:
           type: string
           format: uri
           description: Unique URI identifier for the Generator
-
         type:
           type: string
-          enum:
-            - Generator
+          enum: [Generator]
           description: Fixed entity type identifier
-
         name:
           type: object
           description: Official name of the generator
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-
-
+        generatorModel:
+          type: object
+          description: Specific model identifier of the generator
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
         ratedCapacity:
           type: object
           description: Rated electrical capacity of the generator
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: number
             unitCode:
               type: string
-              enum:
-                - MW
-
-
+              enum: [MW]
         efficiency:
           type: object
           description: Conversion efficiency percentage
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: number
             unitCode:
               type: string
-              enum:
-                - PCT
-
+              enum: [PCT]
         manufacturer:
           type: object
           description: Manufacturer name
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-
         yearOfInstallation:
           type: object
           description: Year the generator was installed
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: integer
-
-
         generatorType:
           type: object
           description: Model or type designation
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-
-
         axis:
           type: object
           description: Shaft orientation
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-
-
         voltageLevel:
           type: object
           description: Rated terminal voltage level
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: number
             unitCode:
               type: string
-              enum:
-                - KV
-
-
+              enum: [KV]
+        connectionToGrid:
+          type: object
+          description: Connection voltage level to the electrical grid
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum: [KV]
         ratedOutputMVA:
           type: object
           description: Rated apparent power output
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: number
             unitCode:
               type: string
-              enum:
-                - MVA
-
-
+              enum: [MVA]
+        transformersQuantity:
+          type: object
+          description: Number of transformers linked to this generator
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: integer
+        transformersApparentPower:
+          type: object
+          description: Total apparent power of associated transformers
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: number
+            unitCode:
+              type: string
+              enum: [MVA]
+        industrialControlSystem:
+          type: object
+          description: Supervisory control system used for the generator
+          properties:
+            type:
+              type: string
+              enum: [Property]
+            value:
+              type: string
         speed:
           type: object
           description: Rotational speed
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: number
             unitCode:
               type: string
-              enum:
-                - RPM
-
-
+              enum: [RPM]
         ratedPowerFactor:
           type: object
           description: Rated power factor (dimensionless)
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: number
-
-
         voltageRegulationRange:
           type: object
           description: Voltage regulation band as percentage
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: number
             unitCode:
               type: string
-              enum:
-                - PCT
-
-
+              enum: [PCT]
         windingInsulationClass:
           type: object
           description: Insulation material class
           properties:
             type:
               type: string
-              enum:
-                - Property
+              enum: [Property]
             value:
               type: string
-
         isPartOfHydroPowerPlant:
           type: object
           description: Relationship to parent HydropowerPlant entity
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
                 format: uri
-
-
         isPartOfPowerHouse:
           type: object
           description: Relationship to the PowerHouse entity
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
                 format: uri
-
-
         isDrivenByTurbines:
           type: object
           description: Turbine entities driving this generator
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:
                 type: string
                 format: uri
-
-
         hasTransformers:
           type: object
           description: Transformer entities connected to the generator
           properties:
             type:
               type: string
-              enum:
-                - Relationship
+              enum: [Relationship]
             object:
               type: array
               items:

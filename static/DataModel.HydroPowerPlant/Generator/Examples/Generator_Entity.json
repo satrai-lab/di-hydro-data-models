@@ -6,20 +6,28 @@
     "type": "Property",
     "value": "Alpine Unit 1 - Main Generator"
   },
+  "generatorType": {
+    "type": "Property",
+    "value": "Synchronous"
+  },
+  "generatorModel": {
+    "type": "Property",
+    "value": "HEI-SyncGen-250MW"
+  },
   "ratedCapacity": {
     "type": "Property",
     "value": 250,
     "unitCode": {
-        "type": "Property",
-        "value": "MW"
+      "type": "Property",
+      "value": "MW"
     }
   },
   "efficiency": {
     "type": "Property",
     "value": 97.2,
     "unitCode": {
-        "type": "Property",
-        "value": "PCT"
+      "type": "Property",
+      "value": "PCT"
     }
   },
   "manufacturer": {
@@ -29,10 +37,6 @@
   "yearOfInstallation": {
     "type": "Property",
     "value": 2015
-  },
-  "generatorType": {
-    "type": "Property",
-    "value": "HEI-SyncGen-250MW"
   },
   "axis": {
     "type": "Property",
@@ -46,6 +50,14 @@
       "value": "kV"
     }
   },
+  "connectionToGrid": {
+    "type": "Property",
+    "value": 220,
+    "unitCode": {
+      "type": "Property",
+      "value": "kV"
+    }
+  },
   "ratedOutputMVA": {
     "type": "Property",
     "value": 263,
@@ -53,6 +65,22 @@
       "type": "Property",
       "value": "MVA"
     }
+  },
+  "transformersQuantity": {
+    "type": "Property",
+    "value": 2
+  },
+  "transformersApparentPower": {
+    "type": "Property",
+    "value": 270,
+    "unitCode": {
+      "type": "Property",
+      "value": "MVA"
+    }
+  },
+  "industrialControlSystem": {
+    "type": "Property",
+    "value": "Siemens SCADA S7-1500"
   },
   "speed": {
     "type": "Property",
@@ -99,7 +127,8 @@
   "hasTransformers": {
     "type": "Relationship",
     "object": [
-      "urn:ngsi-ld:Transformer:trans1"
+      "urn:ngsi-ld:Transformer:trans1",
+      "urn:ngsi-ld:Transformer:trans2"
     ]
   }
 }

@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "urn:ngsi-ld:ModelSchema:HydropowerPlant-EU-9283746591823746",
   "title": "HydropowerPlantModeling",
-  "description": "Data Model of Generator in Hydropower Plant Modeling",
+  "description": "Updated Data Model of Generator in Hydropower Plant Modeling",
   "definitions": {
     "Generator": {
       "allOf": [
@@ -25,28 +25,27 @@
             "name": {
               "type": "string"
             },
+            "generatorType": {
+              "type": "string",
+              "enum": ["Synchronous", "Asynchronous", "DC", "PermanentMagnet"],
+              "description": "Technical type of the generator based on electrical operation principle."
+            },
+            "generatorModel": {
+              "type": "string",
+              "description": "Commercial or manufacturer model of the generator."
+            },
             "ratedCapacity": {
               "type": "object",
               "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["MW"]
-                }
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["MW"] }
               }
             },
             "efficiency": {
               "type": "object",
               "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["PCT"]
-                }
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["PCT"] }
               }
             },
             "manufacturer": {
@@ -55,9 +54,6 @@
             "yearOfInstallation": {
               "type": "number"
             },
-            "generatorType": {
-              "type": "string"
-            },
             "axis": {
               "type": "string",
               "enum": ["Horizontal", "Vertical"]
@@ -65,37 +61,46 @@
             "voltageLevel": {
               "type": "object",
               "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["KV"]
-                }
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["KV"] }
               }
             },
             "ratedOutputMVA": {
               "type": "object",
               "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["MVA"]
-                }
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["MVA"] }
               }
+            },
+            "connectionToGrid": {
+              "type": "object",
+              "description": "Voltage level of connection between generator and grid.",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["KV"] }
+              }
+            },
+            "transformersQuantity": {
+              "type": "integer",
+              "description": "Number of transformers connected to the generator."
+            },
+            "transformersApparentPower": {
+              "type": "object",
+              "description": "Total apparent power of connected transformers.",
+              "properties": {
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["MVA"] }
+              }
+            },
+            "industrialControlSystem": {
+              "type": "string",
+              "description": "Type or name of the industrial control system (e.g., SCADA, PLC)."
             },
             "speed": {
               "type": "object",
               "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["RPM"]
-                }
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["RPM"] }
               }
             },
             "ratedPowerFactor": {
@@ -104,13 +109,8 @@
             "voltageRegulationRange": {
               "type": "object",
               "properties": {
-                "value": {
-                  "type": "number"
-                },
-                "unitCode": {
-                  "type": "string",
-                  "enum": ["PCT"]
-                }
+                "value": { "type": "number" },
+                "unitCode": { "type": "string", "enum": ["PCT"] }
               }
             },
             "windingInsulationClass": {
@@ -118,31 +118,19 @@
             },
             "isPartOfHydroPowerPlant": {
               "type": "array",
-              "items": {
-                "type": "string",
-                "format": "uri"
-              }
+              "items": { "type": "string", "format": "uri" }
             },
             "isDrivenByTurbines": {
               "type": "array",
-              "items": {
-                "type": "string",
-                "format": "uri"
-              }
+              "items": { "type": "string", "format": "uri" }
             },
             "hasTransformers": {
               "type": "array",
-              "items": {
-                "type": "string",
-                "format": "uri"
-              }
+              "items": { "type": "string", "format": "uri" }
             },
             "isPartOfPowerHouse": {
               "type": "array",
-              "items": {
-                "type": "string",
-                "format": "uri"
-              }
+              "items": { "type": "string", "format": "uri" }
             }
           },
           "additionalProperties": false

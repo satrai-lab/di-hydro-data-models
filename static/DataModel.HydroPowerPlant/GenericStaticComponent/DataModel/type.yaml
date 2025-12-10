@@ -5,7 +5,6 @@ components:
       required:
         - id
         - type
-        - name
       properties:
         id:
           anyOf: &anyof

@@ -5,7 +5,7 @@
   "definitions": {
     "GenericStaticComponent": {
       "type": "object",
-      "required": ["id", "type", "name"],
+      "required": ["id", "type"],
       "properties": {
         "id": {
           "type": "string",
